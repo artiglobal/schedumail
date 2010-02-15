@@ -1,0 +1,11 @@
+﻿<html>
+	<head>
+		<title>
+			<use content="title" />
+		</title>
+	</head>
+	<body>
+    <div id="pageContent"><use content="view"/></div>
+		
+	</body>
+</html>
