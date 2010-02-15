@@ -1,0 +1,11 @@
+﻿<use master="Site"/>
+<use namespace="ScheduMail.Web.Resources"/>
+<viewdata resource="Home"/>
+
+<h1>${resource.Title}</h1>
+
+<h2>${resource.Intro}</h2>
+<br />
+    Click <a totype="Login">here</a> to login.
+
+	
