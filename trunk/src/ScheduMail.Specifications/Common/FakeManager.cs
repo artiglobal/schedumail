@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Rhino.Mocks;
 
-namespace Jamaica.Test
+namespace ScheduMail.Specifications
 {
     public class FakeManager
     {
