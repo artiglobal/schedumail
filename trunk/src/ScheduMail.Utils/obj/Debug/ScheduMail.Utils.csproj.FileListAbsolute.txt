@@ -3,3 +3,8 @@ C:\Alterax\vs2008\Projects8.0\MJB\Schedumail\schedumail\src\ScheduMail.Utils\bin
 C:\Alterax\vs2008\Projects8.0\MJB\Schedumail\schedumail\src\ScheduMail.Utils\obj\Debug\ResolveAssemblyReference.cache
 C:\Alterax\vs2008\Projects8.0\MJB\Schedumail\schedumail\src\ScheduMail.Utils\obj\Debug\ScheduMail.Utils.dll
 C:\Alterax\vs2008\Projects8.0\MJB\Schedumail\schedumail\src\ScheduMail.Utils\obj\Debug\ScheduMail.Utils.pdb
+C:\Alterax\vs2008\Projects8.0\MJB\Schedumail\trunk\src\ScheduMail.Utils\bin\Debug\ScheduMail.Utils.dll
+C:\Alterax\vs2008\Projects8.0\MJB\Schedumail\trunk\src\ScheduMail.Utils\bin\Debug\ScheduMail.Utils.pdb
+C:\Alterax\vs2008\Projects8.0\MJB\Schedumail\trunk\src\ScheduMail.Utils\obj\Debug\ResolveAssemblyReference.cache
+C:\Alterax\vs2008\Projects8.0\MJB\Schedumail\trunk\src\ScheduMail.Utils\obj\Debug\ScheduMail.Utils.dll
+C:\Alterax\vs2008\Projects8.0\MJB\Schedumail\trunk\src\ScheduMail.Utils\obj\Debug\ScheduMail.Utils.pdb
