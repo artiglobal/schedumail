@@ -18,6 +18,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.DBModel", "ScheduMail.DBModel\ScheduMail.DBModel.csproj", "{021B9D0C-8E70-4B4E-BFD1-2301450355B9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{22A83EF1-DEA0-4B10-B39A-5839F1CF6A2B}"
+	ProjectSection(SolutionItems) = preProject
+		..\doc\scedumail.eap = ..\doc\scedumail.eap
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.CoreTest", "ScheduMail.CoreTest\ScheduMail.CoreTest.csproj", "{FB30D273-5F6B-48C3-9764-3A97B34BA34A}"
 EndProject
