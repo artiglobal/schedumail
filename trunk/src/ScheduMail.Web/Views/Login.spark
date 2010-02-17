@@ -1,15 +1,12 @@
-﻿<use master="Site">
-</use>
-<use namespace="ScheduMail.Web.Resources">
-</use>
-<viewdata resource="Login">
-</viewdata>
+﻿<use master="Site"/>
+<use namespace="ScheduMail.Web.Resources"/>
+<viewdata resource="Login"/>
 
 <div>
-    <form toType="Login" action="POST">
-        <label></label><input type="text" for="resource.EmailAddress" />
-        <label></label><input type="text" for="resource.Password"/>
+    <viewdata newItem="Login" />
+    <form toType="Login" method="POST">
+        <label></label><input type="text" for="newItem.EmailAddress" />
+        <label></label><input type="text" for="newItem.Password"/>
         <input type="submit" value="Login"/>
     </form>
-    
 </div>

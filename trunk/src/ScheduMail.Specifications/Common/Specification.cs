@@ -50,9 +50,9 @@ namespace ScheduMail.Specifications.Common
         return AppContext.GetImplementationOf<T>();
       }
 
-      protected void Verify<T>(T actual, IResolveConstraint assertion) {
-        Assert.AreEqual(actual, assertion);
-      }
+      //protected void Verify<T>(T actual, IResolveConstraint assertion) {
+      //  Assert.AreEqual(actual, assertion);
+      //}
 
       protected InternalDependencyResolver Resolver {
         get { return Dependency<IDependencyResolver>() as InternalDependencyResolver; }
