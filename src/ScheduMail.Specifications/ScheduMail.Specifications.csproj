@@ -66,7 +66,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Specification.cs" />
-    <Compile Include="Common\ThenAttribute.cs" />
     <Compile Include="Common\UnitTestContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
