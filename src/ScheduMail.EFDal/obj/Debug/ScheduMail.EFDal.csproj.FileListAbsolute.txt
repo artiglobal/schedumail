@@ -1,0 +1,9 @@
+C:\Alterax\vs2008\Projects8.0\MJB\Schedumail\schedumail\src\ScheduMail.EFDal\bin\Debug\ScheduMail.EFDal.dll
+C:\Alterax\vs2008\Projects8.0\MJB\Schedumail\schedumail\src\ScheduMail.EFDal\bin\Debug\ScheduMail.EFDal.pdb
+C:\Alterax\vs2008\Projects8.0\MJB\Schedumail\schedumail\src\ScheduMail.EFDal\obj\Debug\ResolveAssemblyReference.cache
+C:\Alterax\vs2008\Projects8.0\MJB\Schedumail\schedumail\src\ScheduMail.EFDal\obj\Debug\ScheduMail.EFDal.dll
+C:\Alterax\vs2008\Projects8.0\MJB\Schedumail\schedumail\src\ScheduMail.EFDal\obj\Debug\ScheduMail.EFDal.pdb
+C:\Alterax\vs2008\Projects8.0\MJB\Schedumail\schedumail\src\ScheduMail.EFDal\bin\Debug\ScheduMail.Core.dll
+C:\Alterax\vs2008\Projects8.0\MJB\Schedumail\schedumail\src\ScheduMail.EFDal\bin\Debug\ScheduMail.DBModel.dll
+C:\Alterax\vs2008\Projects8.0\MJB\Schedumail\schedumail\src\ScheduMail.EFDal\bin\Debug\ScheduMail.DBModel.pdb
+C:\Alterax\vs2008\Projects8.0\MJB\Schedumail\schedumail\src\ScheduMail.EFDal\bin\Debug\ScheduMail.Core.pdb
