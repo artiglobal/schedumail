@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.Utils", "ScheduM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.UtilsTest", "ScheduMail.UtilsTest\ScheduMail.UtilsTest.csproj", "{A44175BB-9748-4483-8CEF-1F92472AAD55}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteProvider", "SQLite-Providers\SQLiteProvider.csproj", "{2FA43DEC-C17C-4616-B3CD-D6E0C12F938A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,10 @@ Global
 		{A44175BB-9748-4483-8CEF-1F92472AAD55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A44175BB-9748-4483-8CEF-1F92472AAD55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A44175BB-9748-4483-8CEF-1F92472AAD55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FA43DEC-C17C-4616-B3CD-D6E0C12F938A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FA43DEC-C17C-4616-B3CD-D6E0C12F938A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FA43DEC-C17C-4616-B3CD-D6E0C12F938A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FA43DEC-C17C-4616-B3CD-D6E0C12F938A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

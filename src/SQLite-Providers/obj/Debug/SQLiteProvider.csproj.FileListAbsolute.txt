@@ -1,0 +1,6 @@
+X:\inetpub\Schedumail\src\SQLite-Providers\bin\TechInfoSystems.Data.SQLiteProvider.dll
+X:\inetpub\Schedumail\src\SQLite-Providers\bin\TechInfoSystems.Data.SQLiteProvider.pdb
+X:\inetpub\Schedumail\src\SQLite-Providers\bin\System.Data.SQLite.DLL
+X:\inetpub\Schedumail\src\SQLite-Providers\obj\Debug\ResolveAssemblyReference.cache
+X:\inetpub\Schedumail\src\SQLite-Providers\obj\Debug\TechInfoSystems.Data.SQLiteProvider.dll
+X:\inetpub\Schedumail\src\SQLite-Providers\obj\Debug\TechInfoSystems.Data.SQLiteProvider.pdb
