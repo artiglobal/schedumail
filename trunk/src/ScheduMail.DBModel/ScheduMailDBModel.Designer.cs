@@ -14,7 +14,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SchedumailDBModel", "UserWebSite", "WebSite", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.WebSite), "aspnet_Users", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.aspnet_Users))]
 
 // Original file name:
-// Generation date: 18/02/2010 11:46:30
+// Generation date: 18/02/2010 16:25:05
 namespace ScheduMail.DBModel
 {
     
@@ -49,65 +49,65 @@ namespace ScheduMail.DBModel
         }
         partial void OnContextCreated();
         /// <summary>
-        /// There are no comments for LogType in the schema.
+        /// There are no comments for LogTypes in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectQuery<LogType> LogType
+        public global::System.Data.Objects.ObjectQuery<LogType> LogTypes
         {
             get
             {
-                if ((this._LogType == null))
+                if ((this._LogTypes == null))
                 {
-                    this._LogType = base.CreateQuery<LogType>("[LogType]");
+                    this._LogTypes = base.CreateQuery<LogType>("[LogTypes]");
                 }
-                return this._LogType;
+                return this._LogTypes;
             }
         }
-        private global::System.Data.Objects.ObjectQuery<LogType> _LogType;
+        private global::System.Data.Objects.ObjectQuery<LogType> _LogTypes;
         /// <summary>
-        /// There are no comments for WebSite in the schema.
+        /// There are no comments for WebSites in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectQuery<WebSite> WebSite
+        public global::System.Data.Objects.ObjectQuery<WebSite> WebSites
         {
             get
             {
-                if ((this._WebSite == null))
+                if ((this._WebSites == null))
                 {
-                    this._WebSite = base.CreateQuery<WebSite>("[WebSite]");
+                    this._WebSites = base.CreateQuery<WebSite>("[WebSites]");
                 }
-                return this._WebSite;
+                return this._WebSites;
             }
         }
-        private global::System.Data.Objects.ObjectQuery<WebSite> _WebSite;
+        private global::System.Data.Objects.ObjectQuery<WebSite> _WebSites;
         /// <summary>
-        /// There are no comments for LogEvent in the schema.
+        /// There are no comments for LogEvents in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectQuery<LogEvent> LogEvent
+        public global::System.Data.Objects.ObjectQuery<LogEvent> LogEvents
         {
             get
             {
-                if ((this._LogEvent == null))
+                if ((this._LogEvents == null))
                 {
-                    this._LogEvent = base.CreateQuery<LogEvent>("[LogEvent]");
+                    this._LogEvents = base.CreateQuery<LogEvent>("[LogEvents]");
                 }
-                return this._LogEvent;
+                return this._LogEvents;
             }
         }
-        private global::System.Data.Objects.ObjectQuery<LogEvent> _LogEvent;
+        private global::System.Data.Objects.ObjectQuery<LogEvent> _LogEvents;
         /// <summary>
-        /// There are no comments for Mail in the schema.
+        /// There are no comments for Mails in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectQuery<Mail> Mail
+        public global::System.Data.Objects.ObjectQuery<Mail> Mails
         {
             get
             {
-                if ((this._Mail == null))
+                if ((this._Mails == null))
                 {
-                    this._Mail = base.CreateQuery<Mail>("[Mail]");
+                    this._Mails = base.CreateQuery<Mail>("[Mails]");
                 }
-                return this._Mail;
+                return this._Mails;
             }
         }
-        private global::System.Data.Objects.ObjectQuery<Mail> _Mail;
+        private global::System.Data.Objects.ObjectQuery<Mail> _Mails;
         /// <summary>
         /// There are no comments for aspnet_Users in the schema.
         /// </summary>
@@ -124,32 +124,32 @@ namespace ScheduMail.DBModel
         }
         private global::System.Data.Objects.ObjectQuery<aspnet_Users> _aspnet_Users;
         /// <summary>
-        /// There are no comments for LogType in the schema.
+        /// There are no comments for LogTypes in the schema.
         /// </summary>
-        public void AddToLogType(LogType logType)
+        public void AddToLogTypes(LogType logType)
         {
-            base.AddObject("LogType", logType);
+            base.AddObject("LogTypes", logType);
         }
         /// <summary>
-        /// There are no comments for WebSite in the schema.
+        /// There are no comments for WebSites in the schema.
         /// </summary>
-        public void AddToWebSite(WebSite webSite)
+        public void AddToWebSites(WebSite webSite)
         {
-            base.AddObject("WebSite", webSite);
+            base.AddObject("WebSites", webSite);
         }
         /// <summary>
-        /// There are no comments for LogEvent in the schema.
+        /// There are no comments for LogEvents in the schema.
         /// </summary>
-        public void AddToLogEvent(LogEvent logEvent)
+        public void AddToLogEvents(LogEvent logEvent)
         {
-            base.AddObject("LogEvent", logEvent);
+            base.AddObject("LogEvents", logEvent);
         }
         /// <summary>
-        /// There are no comments for Mail in the schema.
+        /// There are no comments for Mails in the schema.
         /// </summary>
-        public void AddToMail(Mail mail)
+        public void AddToMails(Mail mail)
         {
-            base.AddObject("Mail", mail);
+            base.AddObject("Mails", mail);
         }
         /// <summary>
         /// There are no comments for aspnet_Users in the schema.

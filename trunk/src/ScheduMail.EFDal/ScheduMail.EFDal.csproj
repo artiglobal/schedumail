@@ -60,6 +60,10 @@
       <Project>{021B9D0C-8E70-4B4E-BFD1-2301450355B9}</Project>
       <Name>ScheduMail.DBModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ScheduMail.Utils\ScheduMail.Utils.csproj">
+      <Project>{50E8AC2D-F488-463F-A692-9FC8EA9FEE49}</Project>
+      <Name>ScheduMail.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\settings\StyleCop\v4.3\Microsoft.StyleCop.Targets" />

@@ -29,7 +29,7 @@ namespace NUnit.Samples.Money
             WebSite webSite = new WebSite
             {
                 SiteName = "wwww.google.com",
-                Template = "<Hello World>"
+                Template = "<Hello World>"                
             };
 
             repository.Save(webSite);
