@@ -9,7 +9,7 @@ namespace ScheduMail.EFDal.Dal
 {
     public class EFUsersRepository : IUserRepository
     {
-        private ScheduMailDBEntities context = new ScheduMailDBEntities();     
+       /// private ScheduMailDBEntities context = new ScheduMailDBEntities();     
 
         #region Ctors
 
@@ -24,7 +24,7 @@ namespace ScheduMail.EFDal.Dal
 
         public IQueryable<ScheduMail.DBModel.User> List
         {
-            get { return context.Users.AsQueryable(); }
+            get { throw new NotImplementedException(); }
         }
 
         public ScheduMail.DBModel.User GetById(int id)
