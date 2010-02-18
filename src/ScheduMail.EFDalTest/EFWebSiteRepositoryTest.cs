@@ -29,10 +29,12 @@ namespace NUnit.Samples.Money
             WebSite webSite = new WebSite
             {
                 SiteName = "wwww.google.com",
-                Template = "<Hello World>"                
+                Template = "<Hello World>",  
+                CreatedBy = "John Coxhead",
+                ModifiedBy = "John Coxhead"
             };
 
-            repository.Save(webSite);
+            webSite = repository.Save(webSite);
         }
     }
 }
