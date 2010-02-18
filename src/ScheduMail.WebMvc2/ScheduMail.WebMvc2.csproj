@@ -58,6 +58,10 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.SQLite, Version=1.0.22.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\sqayyum.THEFORCE\Downloads\20051119\App_Code\System.Data.SQLite.DLL</HintPath>
+    </Reference>
     <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -91,6 +95,9 @@
     <Content Include="bin\ScheduMail.DBModel.pdb" />
     <Content Include="bin\ScheduMail.WebMvc2.dll" />
     <Content Include="bin\ScheduMail.WebMvc2.pdb" />
+    <Content Include="bin\System.Data.SQLite.DLL" />
+    <Content Include="bin\TechInfoSystems.Data.SQLiteProvider.dll" />
+    <Content Include="bin\TechInfoSystems.Data.SQLiteProvider.pdb" />
     <Content Include="Global.asax" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Web.config" />
@@ -127,6 +134,10 @@
     <ProjectReference Include="..\ScheduMail.DBModel\ScheduMail.DBModel.csproj">
       <Project>{021B9D0C-8E70-4B4E-BFD1-2301450355B9}</Project>
       <Name>ScheduMail.DBModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SQLite-Providers\SQLiteProvider.csproj">
+      <Project>{2FA43DEC-C17C-4616-B3CD-D6E0C12F938A}</Project>
+      <Name>SQLiteProvider</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
