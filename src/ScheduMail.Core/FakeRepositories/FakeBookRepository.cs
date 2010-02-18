@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using ScheduMail.Core.Domain;
 using ScheduMail.Core.RepositoryInterfaces;
 
 namespace ScheduMail.Core.FakeRepositories
 {
+    /// <summary>
+    /// Fake Book Repository used to test IOC container
+    /// </summary>
     public class FakeBookRepository : IEBookRepository
-    {       
+    {
+        /// <summary>
+        /// Lists the ebook.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Book> ListEbook()
         {
             List<Book> books = new List<Book>();

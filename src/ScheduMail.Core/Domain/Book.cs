@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ScheduMail.Core.Domain
+﻿namespace ScheduMail.Core.Domain
 {
+    /// <summary>
+    /// Test Class to test IOC Container
+    /// </summary>
     public class Book
     {
         public int ID { get; set; }
