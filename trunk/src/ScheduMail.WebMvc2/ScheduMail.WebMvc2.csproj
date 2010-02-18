@@ -35,6 +35,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Castle\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.DynamicProxy2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Castle\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.MicroKernel, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Castle\Castle.MicroKernel.dll</HintPath>
@@ -81,6 +85,10 @@
     <Compile Include="WindsorControllerFactory.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\ScheduMail.Core.dll" />
+    <Content Include="bin\ScheduMail.Core.pdb" />
+    <Content Include="bin\ScheduMail.WebMvc2.dll" />
+    <Content Include="bin\ScheduMail.WebMvc2.pdb" />
     <Content Include="Global.asax" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Web.config" />
