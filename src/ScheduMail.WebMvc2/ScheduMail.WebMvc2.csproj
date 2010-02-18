@@ -87,6 +87,8 @@
   <ItemGroup>
     <Content Include="bin\ScheduMail.Core.dll" />
     <Content Include="bin\ScheduMail.Core.pdb" />
+    <Content Include="bin\ScheduMail.DBModel.dll" />
+    <Content Include="bin\ScheduMail.DBModel.pdb" />
     <Content Include="bin\ScheduMail.WebMvc2.dll" />
     <Content Include="bin\ScheduMail.WebMvc2.pdb" />
     <Content Include="Global.asax" />
