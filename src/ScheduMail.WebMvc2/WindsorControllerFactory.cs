@@ -31,7 +31,7 @@ public class WindsorControllerFactory : DefaultControllerFactory
                               select t;
         foreach (Type t in controllerTypes)
         {
-            container.AddComponentWithLifestyle(t.FullName, t,
+            container.AddComponentLifeStyle(t.FullName, t,
                 LifestyleType.Transient);
         }
     }
