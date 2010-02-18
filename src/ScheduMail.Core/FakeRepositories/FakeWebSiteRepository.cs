@@ -17,7 +17,7 @@ namespace ScheduMail.Core.FakeRepositories
         /// Gets the list.
         /// </summary>
         /// <value>The list.</value>
-        public IQueryable<ScheduMail.DBModel.WebSite> List
+        public IQueryable<ScheduMail.Core.Domain.WebSite> List
         {
             get { throw new NotImplementedException(); }
         }
@@ -27,7 +27,7 @@ namespace ScheduMail.Core.FakeRepositories
         /// </summary>
         /// <param name="id">The id.</param>
         /// <returns>Website instance.</returns>
-        public ScheduMail.DBModel.WebSite GetById(int id)
+        public ScheduMail.Core.Domain.WebSite GetById(int id)
         {
             throw new NotImplementedException();
         }
@@ -37,7 +37,7 @@ namespace ScheduMail.Core.FakeRepositories
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns>Saved Web site instance.</returns>
-        public ScheduMail.DBModel.WebSite Save(ScheduMail.DBModel.WebSite entity)
+        public ScheduMail.Core.Domain.WebSite Save(ScheduMail.Core.Domain.WebSite entity)
         {
             throw new NotImplementedException();
         }
@@ -48,7 +48,7 @@ namespace ScheduMail.Core.FakeRepositories
         /// <param name="entity">The entity.</param>
         /// <param name="originalEntity">The original entity.</param>
         /// <returns>Updated WebSite instance.</returns>
-        public ScheduMail.DBModel.WebSite Update(ScheduMail.DBModel.WebSite entity, ScheduMail.DBModel.WebSite originalEntity)
+        public ScheduMail.Core.Domain.WebSite Update(ScheduMail.Core.Domain.WebSite entity, ScheduMail.Core.Domain.WebSite originalEntity)
         {
             throw new NotImplementedException();
         }
@@ -57,7 +57,7 @@ namespace ScheduMail.Core.FakeRepositories
         /// Deletes the specified entity.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        public void Delete(ScheduMail.DBModel.WebSite entity)
+        public void Delete(ScheduMail.Core.Domain.WebSite entity)
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,4 @@
-﻿using ScheduMail.DBModel;
+﻿using ScheduMail.Core.Domain;
 
 namespace ScheduMail.Core.RepositoryInterfaces
 {
