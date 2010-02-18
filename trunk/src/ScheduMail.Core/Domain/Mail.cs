@@ -27,7 +27,7 @@ namespace ScheduMail.Core.Domain
         /// <summary>
         /// EMail content
         /// </summary>
-        private string eMailContent;
+        private string emailContent;
 
         /// <summary>
         /// User name (used for logging onto remote system get to list if recipients)
@@ -49,6 +49,7 @@ namespace ScheduMail.Core.Domain
             {
                 return this.webSiteId;
             }
+
             set
             {
                 this.webSiteId = value;
@@ -65,6 +66,7 @@ namespace ScheduMail.Core.Domain
             {
                 return this.subject;
             }
+
             set
             {
                 this.subject = value;
@@ -79,11 +81,12 @@ namespace ScheduMail.Core.Domain
         {
             get
             {
-                return this.eMailContent;
+                return this.emailContent;
             }
+
             set
             {
-                this.eMailContent = value;
+                this.emailContent = value;
             }
         }
 
@@ -97,6 +100,7 @@ namespace ScheduMail.Core.Domain
             {
                 return this.userName;
             }
+
             set
             {
                 this.userName = value;
@@ -113,6 +117,7 @@ namespace ScheduMail.Core.Domain
             {
                 return this.password;
             }
+
             set
             {
                 this.password = value;
