@@ -13,7 +13,7 @@ namespace ScheduMail.Core.Domain
         /// <summary>
         /// Identification key for storage in database
         /// </summary>
-        private int id = default(int);
+        private int? id = default(int);
 
         /// <summary>
         /// User object is created by
@@ -23,7 +23,7 @@ namespace ScheduMail.Core.Domain
         /// <summary>
         /// Date object was created
         /// </summary>
-        private DateTime created;
+        private DateTime? created;
 
         /// <summary>
         /// User object is being modified by
@@ -33,7 +33,7 @@ namespace ScheduMail.Core.Domain
         /// <summary>
         /// Date object is being modified
         /// </summary>
-        private DateTime modified;
+        private DateTime? modified;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseEntity"/> class.
@@ -86,7 +86,7 @@ namespace ScheduMail.Core.Domain
             return str.ToString();
         }
 
-        public int Id
+        public int? Id
         {
             get
             {
@@ -110,7 +110,7 @@ namespace ScheduMail.Core.Domain
             }
         }
 
-        public DateTime Created
+        public DateTime? Created
         {
             get
             {
@@ -134,7 +134,7 @@ namespace ScheduMail.Core.Domain
             }
         }
 
-        public DateTime Modified
+        public DateTime? Modified
         {
             get
             {

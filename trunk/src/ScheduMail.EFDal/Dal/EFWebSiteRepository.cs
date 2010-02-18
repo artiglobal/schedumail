@@ -43,15 +43,22 @@ namespace ScheduMail.EFDal.Dal
         /// <returns>Saved Web site instance.</returns>
         public ScheduMail.Core.Domain.WebSite Save(ScheduMail.Core.Domain.WebSite entity)
         {
-            using (ScheduMailDBEntities context = new ScheduMailDBEntities())
+            try
             {
-                ScheduMail.DBModel.WebSite webSite = 
-                    ObjectExtension.CloneProperties<ScheduMail.Core.Domain.WebSite, ScheduMail.DBModel.WebSite>(entity);
-                context.AddToWebSites(webSite);
-                context.SaveChanges();
+                using (ScheduMailDBEntities context = new ScheduMailDBEntities())
+                {
+                    ScheduMail.DBModel.WebSite webSite =
+                        ObjectExtension.CloneProperties<ScheduMail.Core.Domain.WebSite, ScheduMail.DBModel.WebSite>(entity);
+                    context.AddToWebSites(webSite);
+                    context.SaveChanges();
 
-                return ObjectExtension.CloneProperties<ScheduMail.DBModel.WebSite, ScheduMail.Core.Domain.WebSite>(webSite);
-            }            
+                    return ObjectExtension.CloneProperties<ScheduMail.DBModel.WebSite, ScheduMail.Core.Domain.WebSite>(webSite);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return null;
         }
 
         /// <summary>
