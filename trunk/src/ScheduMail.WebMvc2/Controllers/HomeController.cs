@@ -19,9 +19,9 @@ namespace ScheduMail.WebMvc2.Controllers
         }
 
         public ActionResult Index()
-        {           
+        {
             return View(_repository.ListEbook().ToList<Book>());
-        }    
+        }
 
         public ActionResult About()
         {

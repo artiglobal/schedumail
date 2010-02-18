@@ -48,7 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\BaseEntity.cs" />
     <Compile Include="Domain\Book.cs" />
+    <Compile Include="Domain\LogEvent.cs" />
+    <Compile Include="Domain\LogType.cs" />
+    <Compile Include="Domain\Mail.cs" />
+    <Compile Include="Domain\Role.cs" />
+    <Compile Include="Domain\UserRole.cs" />
+    <Compile Include="Domain\UserWebSite.cs" />
+    <Compile Include="Domain\WebSite.cs" />
     <Compile Include="FakeRepositories\FakeBookRepository.cs" />
     <Compile Include="FakeRepositories\FakeUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,9 +71,11 @@
       <Name>ScheduMail.DBModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UnitsOfWork\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\settings\StyleCop\v4.3\Microsoft.StyleCop.Targets" />
-  
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
