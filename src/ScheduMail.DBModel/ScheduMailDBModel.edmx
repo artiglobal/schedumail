@@ -167,19 +167,19 @@
     <edmx:ConceptualModels>
       <Schema Namespace="SchedumailDBModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
         <EntityContainer Name="ScheduMailDBEntities">
-          <EntitySet Name="LogType" EntityType="SchedumailDBModel.LogType" />
-          <EntitySet Name="WebSite" EntityType="SchedumailDBModel.WebSite" />
-          <EntitySet Name="LogEvent" EntityType="SchedumailDBModel.LogEvent" />
+          <EntitySet Name="LogTypes" EntityType="SchedumailDBModel.LogType" />
+          <EntitySet Name="WebSites" EntityType="SchedumailDBModel.WebSite" />
+          <EntitySet Name="LogEvents" EntityType="SchedumailDBModel.LogEvent" />
           <AssociationSet Name="FK_LogEvent_0" Association="SchedumailDBModel.FK_LogEvent_0">
-            <End Role="WebSite" EntitySet="WebSite" />
-            <End Role="LogEvent" EntitySet="LogEvent" /></AssociationSet>
-          <EntitySet Name="Mail" EntityType="SchedumailDBModel.Mail" />
+            <End Role="WebSite" EntitySet="WebSites" />
+            <End Role="LogEvent" EntitySet="LogEvents" /></AssociationSet>
+          <EntitySet Name="Mails" EntityType="SchedumailDBModel.Mail" />
           <AssociationSet Name="FK_Mail_0" Association="SchedumailDBModel.FK_Mail_0">
-            <End Role="WebSite" EntitySet="WebSite" />
-            <End Role="Mail" EntitySet="Mail" /></AssociationSet>
+            <End Role="WebSite" EntitySet="WebSites" />
+            <End Role="Mail" EntitySet="Mails" /></AssociationSet>
           <EntitySet Name="aspnet_Users" EntityType="SchedumailDBModel.aspnet_Users" />
           <AssociationSet Name="UserWebSite" Association="SchedumailDBModel.UserWebSite">
-            <End Role="WebSite" EntitySet="WebSite" />
+            <End Role="WebSite" EntitySet="WebSites" />
             <End Role="aspnet_Users" EntitySet="aspnet_Users" /></AssociationSet></EntityContainer>
         <EntityType Name="LogType">
           <Key>
@@ -268,7 +268,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
         <EntityContainerMapping StorageEntityContainer="SchedumailDBModelStoreContainer" CdmEntityContainer="ScheduMailDBEntities">
-          <EntitySetMapping Name="LogType">
+          <EntitySetMapping Name="LogTypes">
             <EntityTypeMapping TypeName="IsTypeOf(SchedumailDBModel.LogType)">
               <MappingFragment StoreEntitySet="LogType">
                 <ScalarProperty Name="TypeId" ColumnName="TypeId" />
@@ -276,7 +276,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="WebSite">
+          <EntitySetMapping Name="WebSites">
             <EntityTypeMapping TypeName="IsTypeOf(SchedumailDBModel.WebSite)">
               <MappingFragment StoreEntitySet="WebSite">
                 <ScalarProperty Name="Modified" ColumnName="Modified" />
@@ -286,7 +286,7 @@
                 <ScalarProperty Name="Template" ColumnName="Template" />
                 <ScalarProperty Name="SiteName" ColumnName="SiteName" />
                 <ScalarProperty Name="Id" ColumnName="Id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="LogEvent">
+          <EntitySetMapping Name="LogEvents">
             <EntityTypeMapping TypeName="IsTypeOf(SchedumailDBModel.LogEvent)">
               <MappingFragment StoreEntitySet="LogEvent">
                 <ScalarProperty Name="Modified" ColumnName="Modified" />
@@ -302,7 +302,7 @@
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="WebSite">
               <ScalarProperty Name="Id" ColumnName="WebsiteId" /></EndProperty></AssociationSetMapping>
-          <EntitySetMapping Name="Mail">
+          <EntitySetMapping Name="Mails">
             <EntityTypeMapping TypeName="IsTypeOf(SchedumailDBModel.Mail)">
               <MappingFragment StoreEntitySet="Mail">
                 <ScalarProperty Name="Modified" ColumnName="Modified" />

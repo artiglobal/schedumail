@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using ScheduMail.Core.RepositoryInterfaces;
 using ScheduMail.Core.Domain;
+using ScheduMail.DBModel;
+
+using ScheduMail.Utils;
 
 namespace ScheduMail.EFDal.Dal
 {
@@ -40,7 +43,15 @@ namespace ScheduMail.EFDal.Dal
         /// <returns>Saved Web site instance.</returns>
         public ScheduMail.Core.Domain.WebSite Save(ScheduMail.Core.Domain.WebSite entity)
         {
-            throw new NotImplementedException();
+            using (ScheduMailDBEntities context = new ScheduMailDBEntities())
+            {
+                ScheduMail.DBModel.WebSite webSite = 
+                    ObjectExtension.CloneProperties<ScheduMail.Core.Domain.WebSite, ScheduMail.DBModel.WebSite>(entity);
+                context.AddToWebSites(webSite);
+                context.SaveChanges();
+
+                return ObjectExtension.CloneProperties<ScheduMail.DBModel.WebSite, ScheduMail.Core.Domain.WebSite>(webSite);
+            }            
         }
 
         /// <summary>

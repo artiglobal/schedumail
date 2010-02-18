@@ -66,6 +66,12 @@
       <LastGenOutput>ScheduMailDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ScheduMail.Utils\ScheduMail.Utils.csproj">
+      <Project>{50E8AC2D-F488-463F-A692-9FC8EA9FEE49}</Project>
+      <Name>ScheduMail.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

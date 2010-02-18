@@ -93,6 +93,8 @@
     <Content Include="bin\ScheduMail.Core.pdb" />
     <Content Include="bin\ScheduMail.DBModel.dll" />
     <Content Include="bin\ScheduMail.DBModel.pdb" />
+    <Content Include="bin\ScheduMail.Utils.dll" />
+    <Content Include="bin\ScheduMail.Utils.pdb" />
     <Content Include="bin\ScheduMail.WebMvc2.dll" />
     <Content Include="bin\ScheduMail.WebMvc2.pdb" />
     <Content Include="bin\System.Data.SQLite.DLL" />
