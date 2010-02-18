@@ -9,12 +9,12 @@ namespace ScheduMail.WebMvc2.Controllers
 {
     public class UserController : Controller
     {
-        private IUserRepository userRepository;
+       // private IUserRepository userRepository;
 
-        public UserController(IUserRepository userRepository)
-        {
-            this.userRepository = userRepository;
-        }
+        ////public UserController(IUserRepository userRepository)
+        ////{
+        ////    this.userRepository = userRepository;
+        ////}
 
         public ActionResult Index()
         {
