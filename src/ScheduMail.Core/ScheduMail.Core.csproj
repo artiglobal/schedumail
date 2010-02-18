@@ -53,8 +53,6 @@
     <Compile Include="Domain\LogEvent.cs" />
     <Compile Include="Domain\LogType.cs" />
     <Compile Include="Domain\Mail.cs" />
-    <Compile Include="Domain\Role.cs" />
-    <Compile Include="Domain\UserRole.cs" />
     <Compile Include="Domain\UserWebSite.cs" />
     <Compile Include="Domain\WebSite.cs" />
     <Compile Include="FakeRepositories\FakeBookRepository.cs" />
@@ -62,8 +60,7 @@
     <Compile Include="GlobalSuppresions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryInterfaces\IEBookRepository.cs" />
-    <Compile Include="RepositoryInterfaces\IRoleRepository.cs" />
-    <Compile Include="RepositoryInterfaces\IRepository.cs" />
+    <Compile Include="RepositoryInterfaces\ICrudRepository.cs" />
     <Compile Include="RepositoryInterfaces\IWebSiteRepository.cs" />
   </ItemGroup>
   <ItemGroup>
