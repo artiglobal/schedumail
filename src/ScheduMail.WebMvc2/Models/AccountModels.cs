@@ -404,7 +404,7 @@ namespace ScheduMail.WebMvc2.Models
         private const string DefaultErrorMessage = "'{0}' and '{1}' do not match.";
 
         /// <summary>
-        /// type id for new object.
+        /// Type id for new object.
         /// </summary>
         private readonly object TypeIdentification = new object();
 
@@ -416,26 +416,34 @@ namespace ScheduMail.WebMvc2.Models
         public PropertiesMustMatchAttribute(string originalProperty, string confirmProperty)
             : base(DefaultErrorMessage)
         {
-            OriginalProperty = originalProperty;
-            ConfirmProperty = confirmProperty;
+            this.OriginalProperty = originalProperty;
+            this.ConfirmProperty = confirmProperty;
         }
 
         /// <summary>
-        /// Gets or sets the confirm property.
+        /// Gets the confirm property.
         /// </summary>
         /// <value>The confirm property.</value>
-        public string ConfirmProperty { get; private set; }
+        public string ConfirmProperty 
+        { 
+            get; 
+            private set; 
+        }
 
         /// <summary>
-        /// Gets or sets the original property.
+        /// Gets the original property.
         /// </summary>
         /// <value>The original property.</value>
-        public string OriginalProperty { get; private set; }
+        public string OriginalProperty 
+        { 
+            get; 
+            private set; 
+        }
 
         /// <summary>
         /// When implemented in a derived class, gets a unique identifier for this <see cref="T:System.Attribute"/>.
         /// </summary>
-        /// <value></value>
+        /// <value>Type id value.</value>
         /// <returns>
         /// An <see cref="T:System.Object"/> that is a unique identifier for the attribute.
         /// </returns>
@@ -456,8 +464,7 @@ namespace ScheduMail.WebMvc2.Models
         /// </returns>
         public override string FormatErrorMessage(string name)
         {
-            return String.Format(CultureInfo.CurrentUICulture, ErrorMessageString,
-                OriginalProperty, ConfirmProperty);
+            return String.Format(CultureInfo.CurrentUICulture, this.ErrorMessageString, this.OriginalProperty, this.ConfirmProperty);
         }
 
         /// <summary>
@@ -465,13 +472,13 @@ namespace ScheduMail.WebMvc2.Models
         /// </summary>
         /// <param name="value">The value of the specified validation object on which the <see cref="T:System.ComponentModel.DataAnnotations.ValidationAttribute"/> is declared.</param>
         /// <returns>
-        /// true if the specified value is valid; otherwise, false.
+        /// True if the specified value is valid; otherwise, false.
         /// </returns>
         public override bool IsValid(object value)
         {
             PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(value);
-            object originalValue = properties.Find(OriginalProperty, true /* ignoreCase */).GetValue(value);
-            object confirmValue = properties.Find(ConfirmProperty, true /* ignoreCase */).GetValue(value);
+            object originalValue = properties.Find(this.OriginalProperty, true /* ignoreCase */).GetValue(value);
+            object confirmValue = properties.Find(this.ConfirmProperty, true /* ignoreCase */).GetValue(value);
             return Object.Equals(originalValue, confirmValue);
         }
     }
@@ -485,18 +492,18 @@ namespace ScheduMail.WebMvc2.Models
         /// <summary>
         /// Default error message.
         /// </summary>
-        private const string _defaultErrorMessage = "'{0}' must be at least {1} characters long.";
+        private const string DefaultErrorMessage = "'{0}' must be at least {1} characters long.";
 
         /// <summary>
-        /// min characters.
+        /// Min characters.
         /// </summary>
-        private readonly int _minCharacters = Membership.Provider.MinRequiredPasswordLength;
+        private readonly int MinCharacters = Membership.Provider.MinRequiredPasswordLength;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ValidatePasswordLengthAttribute"/> class.
         /// </summary>
         public ValidatePasswordLengthAttribute()
-            : base(_defaultErrorMessage)
+            : base(DefaultErrorMessage)
         {
         }
 
@@ -509,8 +516,7 @@ namespace ScheduMail.WebMvc2.Models
         /// </returns>
         public override string FormatErrorMessage(string name)
         {
-            return String.Format(CultureInfo.CurrentUICulture, ErrorMessageString,
-                name, _minCharacters);
+            return String.Format(CultureInfo.CurrentUICulture, ErrorMessageString, name, this.MinCharacters);
         }
 
         /// <summary>
@@ -518,12 +524,12 @@ namespace ScheduMail.WebMvc2.Models
         /// </summary>
         /// <param name="value">The value of the specified validation object on which the <see cref="T:System.ComponentModel.DataAnnotations.ValidationAttribute"/> is declared.</param>
         /// <returns>
-        /// true if the specified value is valid; otherwise, false.
+        /// True if the specified value is valid; otherwise, false.
         /// </returns>
         public override bool IsValid(object value)
         {
             string valueAsString = value as string;
-            return (valueAsString != null && valueAsString.Length >= _minCharacters);
+            return valueAsString != null && valueAsString.Length >= this.MinCharacters;
         }
     }
     #endregion

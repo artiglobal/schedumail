@@ -344,7 +344,7 @@ namespace ScheduMail.Core.Domain
         /// Gets or sets a value indicating whether this instance is approved.
         /// </summary>
         /// <value>
-        /// 	<c>true</c> if this instance is approved; otherwise, <c>false</c>.
+        ///    <c>true</c> if this instance is approved; otherwise, <c>false</c>.
         /// </value>
         public bool IsApproved
         {
@@ -363,7 +363,7 @@ namespace ScheduMail.Core.Domain
         /// Gets or sets a value indicating whether this instance is anonymous.
         /// </summary>
         /// <value>
-        /// 	<c>true</c> if this instance is anonymous; otherwise, <c>false</c>.
+        ///     <c>true</c> if this instance is anonymous; otherwise, <c>false</c>.
         /// </value>
         public bool IsAnonymous
         {
@@ -450,7 +450,7 @@ namespace ScheduMail.Core.Domain
         /// Gets or sets a value indicating whether this instance is locked out.
         /// </summary>
         /// <value>
-        /// 	<c>true</c> if this instance is locked out; otherwise, <c>false</c>.
+        ///     <c>true</c> if this instance is locked out; otherwise, <c>false</c>.
         /// </value>
         public bool IsLockedOut
         {

@@ -29,14 +29,13 @@ namespace ScheduMail.UnitsOfWork
         /// <summary>
         /// Get a WebSite instance by id.
         /// </summary>
-        /// <param name="id">The id.</param>
+        /// <param name="id">The Web Site instance id.</param>
         /// <returns>Web Site instance.</returns>
         public ScheduMail.Core.Domain.WebSite GetById(long id)
         {
             IWebSiteRepository repository = new EFWebSiteRepository();
             return repository.GetById(id);
         }
-
 
         /// <summary>
         /// Saves the specified web site.
