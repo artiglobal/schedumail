@@ -16,17 +16,17 @@ namespace ScheduMail.Core.Domain
        /// <summary>
        /// Log Type Id
        /// </summary>
-      private int	logEventTypeId;
+      private int logEventTypeId;
 
       /// <summary>
       /// Log event message
       /// </summary>
-      private string	message;
+      private string message;
 
       /// <summary>
       /// Sender user name. (Creator of EMail template)
       /// </summary>
-      private string	senderUserName;
+      private string senderUserName;
 
       /// <summary>
       /// Gets or sets the log event type id.
@@ -38,6 +38,7 @@ namespace ScheduMail.Core.Domain
          {
             return this.logEventTypeId;
          }
+
          set
          {
             this.logEventTypeId = value;
@@ -54,6 +55,7 @@ namespace ScheduMail.Core.Domain
          {
             return this.message;
          }
+
          set
          {
             this.message = value;
@@ -70,6 +72,7 @@ namespace ScheduMail.Core.Domain
          {
             return this.senderUserName;
          }
+
          set
          {
             this.senderUserName = value;

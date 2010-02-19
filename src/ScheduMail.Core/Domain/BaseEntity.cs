@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ScheduMail.Core.Domain
 {
-    /// <osummary>
+    /// <summary>
     /// Base Entity class provides default values for identification and logging purposes.
     /// </summary>
     public class BaseEntity
@@ -13,7 +13,7 @@ namespace ScheduMail.Core.Domain
         /// <summary>
         /// Identification key for storage in database
         /// </summary>
-        private int? id = default(int);
+        private long id = default(long);
 
         /// <summary>
         /// User object is created by
@@ -54,17 +54,22 @@ namespace ScheduMail.Core.Domain
         }
 
         /// <summary>
-        /// Transient objects are not associated with an item already in storage.  
-        /// For instance, a <see cref="Applicant" /> is transient if its ID is 0.
+        /// Determines whether this instance is new.
         /// </summary>
+        /// <returns>
+        ///    <c>true</c> if this instance is new; otherwise, <c>false</c>.
+        /// </returns>
         public bool IsNew()
         {
-            return id.Equals(default(int));
+            return this.id.Equals(default(long));
         }
 
         /// <summary>
-        /// Must be provided to properly compare two objects
+        /// Returns a hash code for this instance.
         /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
         public override int GetHashCode()
         {
             return this.ToString().GetHashCode();
@@ -73,12 +78,10 @@ namespace ScheduMail.Core.Domain
         /// <summary>
         /// Overriden to return the class type
         /// of this object.
-        /// </summary>
-        /// 
+        /// </summary>        
         /// <returns>
         /// the class name for this object
-        /// </returns>
-        /// 
+        /// </returns>        
         public override string ToString()
         {
             StringBuilder str = new StringBuilder();
@@ -86,60 +89,85 @@ namespace ScheduMail.Core.Domain
             return str.ToString();
         }
 
-        public int? Id
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        /// <value>The id key value.</value>
+        public long Id
         {
             get
             {
                 return this.id;
             }
+
             set
             {
                 this.id = value;
             }
         }
 
+        /// <summary>
+        /// Gets or sets the created by.
+        /// </summary>
+        /// <value>The created by.</value>
         public string CreatedBy
         {
             get
             {
                 return this.createdBy;
             }
+
             set
             {
                 this.createdBy = value;
             }
         }
 
+        /// <summary>
+        /// Gets or sets the created.
+        /// </summary>
+        /// <value>The created.</value>
         public DateTime? Created
         {
             get
             {
                 return this.created;
             }
+
             set
             {
                 this.created = value;
             }
         }
 
+        /// <summary>
+        /// Gets or sets the modified by.
+        /// </summary>
+        /// <value>The modified by.</value>
         public string ModifiedBy
         {
             get
             {
                 return this.modifiedBy;
             }
+
             set
             {
                 this.modifiedBy = value;
             }
         }
 
+        /// <summary>
+        /// Gets or sets the modified.
+        /// </summary>
+        /// <value>The modified.</value>
         public DateTime? Modified
         {
             get
             {
                 return this.modified;
             }
+
             set
             {
                 this.modified = value;

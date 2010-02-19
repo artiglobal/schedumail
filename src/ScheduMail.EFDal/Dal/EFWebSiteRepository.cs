@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using ScheduMail.Core.RepositoryInterfaces;
-using ScheduMail.Core.Domain;
 using ScheduMail.DBModel;
 
 using ScheduMail.Utils;
@@ -15,70 +11,98 @@ namespace ScheduMail.EFDal.Dal
     /// </summary>
     public class EFWebSiteRepository : IWebSiteRepository
     {
+        #region Private Members
+
+        /// <summary>
+        /// ADO.net entity context handle
+        /// </summary>
+        private ScheduMailDBEntities context;
+
+        #endregion
+
+        #region Ctor
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EFWebSiteRepository"/> class.
+        /// </summary>
+        public EFWebSiteRepository()
+        {
+            this.context = new ScheduMailDBEntities();
+        }
+
+        #endregion
+
         #region ICrudRepository<WebSite,int> Members
 
         /// <summary>
         /// Gets the list.
         /// </summary>
-        /// <value>The list.</value>
+        /// <value>The list of web sites.</value>
         public IQueryable<ScheduMail.Core.Domain.WebSite> List
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                return ObjectExtension
+                          .CloneList<ScheduMail.DBModel.WebSite, 
+                                ScheduMail.Core.Domain.WebSite>
+                                     (this.context.WebSites.ToList <ScheduMail.DBModel.WebSite>())
+                          .AsQueryable();
+            }
         }
 
         /// <summary>
         /// Gets the by id.
         /// </summary>
-        /// <param name="id">The id.</param>
+        /// <param name="id">The web siteid.</param>
         /// <returns>Website instance.</returns>
         public ScheduMail.Core.Domain.WebSite GetById(int id)
         {
-            throw new NotImplementedException();
+            var entity = (from w in this.context.WebSites
+                          where w.Id == id
+                          select w).First();
+            return ObjectExtension.CloneProperties<ScheduMail.DBModel.WebSite, ScheduMail.Core.Domain.WebSite>(entity);
         }
 
         /// <summary>
-        /// Saves the specified entity.
+        /// Saves the specified web site.
         /// </summary>
-        /// <param name="entity">The entity.</param>
-        /// <returns>Saved Web site instance.</returns>
-        public ScheduMail.Core.Domain.WebSite Save(ScheduMail.Core.Domain.WebSite entity)
+        /// <param name="webSite">The web site.</param>
+        /// <returns>Changed web site.</returns>
+        public ScheduMail.Core.Domain.WebSite Save(ScheduMail.Core.Domain.WebSite webSite)
         {
-            try
+            ScheduMail.DBModel.WebSite entity =
+                ObjectExtension.CloneProperties<ScheduMail.Core.Domain.WebSite, ScheduMail.DBModel.WebSite>(webSite);
+
+            if (webSite.IsNew())
             {
-                using (ScheduMailDBEntities context = new ScheduMailDBEntities())
-                {
-                    ScheduMail.DBModel.WebSite webSite =
-                        ObjectExtension.CloneProperties<ScheduMail.Core.Domain.WebSite, ScheduMail.DBModel.WebSite>(entity);
-                    context.AddToWebSites(webSite);
-                    context.SaveChanges();
-
-                    return ObjectExtension.CloneProperties<ScheduMail.DBModel.WebSite, ScheduMail.Core.Domain.WebSite>(webSite);
-                }
+                this.context.AddToWebSites(entity);
+                this.context.SaveChanges();
             }
-            catch (Exception ex)
+            else
             {
+                var originalWebSite = (from w in this.context.WebSites
+                                       where w.Id == webSite.Id
+                                       select w).First();
+
+                this.context.ApplyPropertyChanges(originalWebSite.EntityKey.EntitySetName, entity);
+                this.context.SaveChanges();
             }
-            return null;
+
+            return ObjectExtension.CloneProperties<ScheduMail.DBModel.WebSite, ScheduMail.Core.Domain.WebSite>(entity);
         }
 
         /// <summary>
-        /// Updates the specified entity.
+        /// Deletes the specified web site.
         /// </summary>
-        /// <param name="entity">The entity.</param>
-        /// <param name="originalEntity">The original entity.</param>
-        /// <returns>Updated WebSite instance.</returns>
-        public ScheduMail.Core.Domain.WebSite Update(ScheduMail.Core.Domain.WebSite entity, ScheduMail.Core.Domain.WebSite originalEntity)
+        /// <param name="webSite">The web site.</param>
+        public void Delete(ScheduMail.Core.Domain.WebSite webSite)
         {
-            throw new NotImplementedException();
-        }
+            var entity = (from w in this.context.WebSites
+                          where w.Id == webSite.Id
+                          select w).First();
 
-        /// <summary>
-        /// Deletes the specified entity.
-        /// </summary>
-        /// <param name="entity">The entity.</param>
-        public void Delete(ScheduMail.Core.Domain.WebSite entity)
-        {
-            throw new NotImplementedException();
+            this.context.DeleteObject(entity);
+            this.context.SaveChanges();
         }
 
         #endregion

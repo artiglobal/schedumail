@@ -16,7 +16,7 @@ namespace ScheduMail.Core.FakeRepositories
         /// <summary>
         /// Gets the list.
         /// </summary>
-        /// <value>The list.</value>
+        /// <value>The list of Web sites.</value>
         public IQueryable<ScheduMail.Core.Domain.WebSite> List
         {
             get { throw new NotImplementedException(); }
@@ -25,7 +25,7 @@ namespace ScheduMail.Core.FakeRepositories
         /// <summary>
         /// Gets the by id.
         /// </summary>
-        /// <param name="id">The id.</param>
+        /// <param name="id">The website identification.</param>
         /// <returns>Website instance.</returns>
         public ScheduMail.Core.Domain.WebSite GetById(int id)
         {
