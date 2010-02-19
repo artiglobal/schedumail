@@ -11,31 +11,58 @@ using ScheduMail.WebMvc2.Models;
 
 namespace ScheduMail.WebMvc2.Controllers
 {
-
+    /// <summary>
+    /// Authentication provider interface.
+    /// </summary>
     [HandleError]
     public class AccountController : Controller
     {
-
+        /// <summary>
+        /// Gets or sets the forms service.
+        /// </summary>
+        /// <value>The forms service.</value>
         public IFormsAuthenticationService FormsService { get; set; }
+
+        /// <summary>
+        /// Gets or sets the membership service.
+        /// </summary>
+        /// <value>The membership service.</value>
         public IMembershipService MembershipService { get; set; }
 
+        /// <summary>
+        /// Initializes data that might not be available when the constructor is called.
+        /// </summary>
+        /// <param name="requestContext">The HTTP context and route data.</param>
         protected override void Initialize(RequestContext requestContext)
         {
-            if (FormsService == null) { FormsService = new FormsAuthenticationService(); }
-            if (MembershipService == null) { MembershipService = new AccountMembershipService(); }
+            if (FormsService == null) 
+            { 
+                this.FormsService = new FormsAuthenticationService(); 
+            }
+
+            if (MembershipService == null) 
+            { 
+                this.MembershipService = new AccountMembershipService(); 
+            }
 
             base.Initialize(requestContext);
         }
 
-        // **************************************
-        // URL: /Account/LogOn
-        // **************************************
-
+        /// <summary>
+        /// Logs the on.
+        /// </summary>
+        /// <returns>The view instance.</returns>
         public ActionResult LogOn()
         {
             return View();
         }
 
+        /// <summary>
+        /// Logs the on.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns>The Action result.</returns>
         [HttpPost]
         public ActionResult LogOn(LogOnModel model, string returnUrl)
         {
@@ -55,7 +82,7 @@ namespace ScheduMail.WebMvc2.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                    ModelState.AddModelError(String.Empty, "The user name or password provided is incorrect.");
                 }
             }
 
@@ -63,10 +90,10 @@ namespace ScheduMail.WebMvc2.Controllers
             return View(model);
         }
 
-        // **************************************
-        // URL: /Account/LogOff
-        // **************************************
-
+        /// <summary>
+        /// Logs the off.
+        /// </summary>
+        /// <returns>A Redirection to the Index Page</returns>
         public ActionResult LogOff()
         {
             FormsService.SignOut();
@@ -74,16 +101,21 @@ namespace ScheduMail.WebMvc2.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // **************************************
-        // URL: /Account/Register
-        // **************************************
-
+        /// <summary>
+        /// Registers this instance.
+        /// </summary>
+        /// <returns>The veiw instance.</returns>
         public ActionResult Register()
         {
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
             return View();
         }
 
+        /// <summary>
+        /// Registers the specified model.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Teh view instance.</returns>
         [HttpPost]
         public ActionResult Register(RegisterModel model)
         {
@@ -99,7 +131,7 @@ namespace ScheduMail.WebMvc2.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
+                    ModelState.AddModelError(String.Empty, AccountValidation.ErrorCodeToString(createStatus));
                 }
             }
 
@@ -108,10 +140,10 @@ namespace ScheduMail.WebMvc2.Controllers
             return View(model);
         }
 
-        // **************************************
-        // URL: /Account/ChangePassword
-        // **************************************
-
+        /// <summary>
+        /// Changes the password.
+        /// </summary>
+        /// <returns>The logged on view instance.</returns>
         [Authorize]
         public ActionResult ChangePassword()
         {
@@ -119,6 +151,11 @@ namespace ScheduMail.WebMvc2.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Changes the password.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>The view instance.</returns>
         [Authorize]
         [HttpPost]
         public ActionResult ChangePassword(ChangePasswordModel model)
@@ -131,7 +168,7 @@ namespace ScheduMail.WebMvc2.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+                    ModelState.AddModelError(String.Empty, "The current password is incorrect or the new password is invalid.");
                 }
             }
 
@@ -140,14 +177,13 @@ namespace ScheduMail.WebMvc2.Controllers
             return View(model);
         }
 
-        // **************************************
-        // URL: /Account/ChangePasswordSuccess
-        // **************************************
-
+        /// <summary>
+        /// Changes the password success.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ChangePasswordSuccess()
         {
             return View();
         }
-
     }
 }
