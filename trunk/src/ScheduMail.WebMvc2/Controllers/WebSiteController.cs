@@ -114,21 +114,22 @@ namespace ScheduMail.WebMvc2.Controllers
         }
 
         /// <summary>
-        /// Edits the specified id.
+        /// Edits the specified web site.
         /// </summary>
-        /// <param name="id">The id instance.</param>
-        /// <param name="collection">The collection.</param>
-        /// <returns>View instance.</returns>
+        /// <param name="webSite">The web site.</param>
+        /// <returns>The view instance.</returns>
         [HttpPost]
         public ActionResult Edit(WebSite webSite)
         {
             try
             {
                 IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-                IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();                
+                IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
 
                 if (!ModelState.IsValid)
+                {
                     return View();
+                }
 
                 unitOfWork.Save(webSite);
                

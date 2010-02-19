@@ -171,7 +171,7 @@ namespace ScheduMail.WebMvc2.Models
         /// <summary>
         /// Membership Provider.
         /// </summary>
-        private readonly MembershipProvider _provider;
+        private readonly MembershipProvider provider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountMembershipService"/> class.
@@ -187,7 +187,7 @@ namespace ScheduMail.WebMvc2.Models
         /// <param name="provider">The provider.</param>
         public AccountMembershipService(MembershipProvider provider)
         {
-            _provider = provider ?? Membership.Provider;
+            this.provider = provider ?? Membership.Provider;
         }
 
         /// <summary>
@@ -198,7 +198,7 @@ namespace ScheduMail.WebMvc2.Models
         {
             get
             {
-                return _provider.MinRequiredPasswordLength;
+                return this.provider.MinRequiredPasswordLength;
             }
         }
 
@@ -210,10 +210,17 @@ namespace ScheduMail.WebMvc2.Models
         /// <returns>True if valid user.</returns>
         public bool ValidateUser(string userName, string password)
         {
-            if (String.IsNullOrEmpty(userName)) throw new ArgumentException("Value cannot be null or empty.", "userName");
-            if (String.IsNullOrEmpty(password)) throw new ArgumentException("Value cannot be null or empty.", "password");
+            if (String.IsNullOrEmpty(userName))
+            {
+                throw new ArgumentException("Value cannot be null or empty.", "userName");
+            }
 
-            return _provider.ValidateUser(userName, password);
+            if (String.IsNullOrEmpty(password))
+            {
+                throw new ArgumentException("Value cannot be null or empty.", "password");
+            }
+
+            return this.provider.ValidateUser(userName, password);
         }
 
         /// <summary>
@@ -225,12 +232,23 @@ namespace ScheduMail.WebMvc2.Models
         /// <returns>Membership Create Status.</returns>
         public MembershipCreateStatus CreateUser(string userName, string password, string email)
         {
-            if (String.IsNullOrEmpty(userName)) throw new ArgumentException("Value cannot be null or empty.", "userName");
-            if (String.IsNullOrEmpty(password)) throw new ArgumentException("Value cannot be null or empty.", "password");
-            if (String.IsNullOrEmpty(email)) throw new ArgumentException("Value cannot be null or empty.", "email");
+            if (String.IsNullOrEmpty(userName))
+            {
+                throw new ArgumentException("Value cannot be null or empty.", "userName");
+            }
+
+            if (String.IsNullOrEmpty(password))
+            {
+                throw new ArgumentException("Value cannot be null or empty.", "password");
+            }
+
+            if (String.IsNullOrEmpty(email))
+            {
+                throw new ArgumentException("Value cannot be null or empty.", "email");
+            }
 
             MembershipCreateStatus status;
-            _provider.CreateUser(userName, password, email, null, null, true, null, out status);
+            this.provider.CreateUser(userName, password, email, null, null, true, null, out status);
             return status;
         }
 
@@ -243,15 +261,26 @@ namespace ScheduMail.WebMvc2.Models
         /// <returns>True if successful.</returns>
         public bool ChangePassword(string userName, string oldPassword, string newPassword)
         {
-            if (String.IsNullOrEmpty(userName)) throw new ArgumentException("Value cannot be null or empty.", "userName");
-            if (String.IsNullOrEmpty(oldPassword)) throw new ArgumentException("Value cannot be null or empty.", "oldPassword");
-            if (String.IsNullOrEmpty(newPassword)) throw new ArgumentException("Value cannot be null or empty.", "newPassword");
+            if (String.IsNullOrEmpty(userName))
+            {
+                throw new ArgumentException("Value cannot be null or empty.", "userName");
+            }
+
+            if (String.IsNullOrEmpty(oldPassword))
+            {
+                throw new ArgumentException("Value cannot be null or empty.", "oldPassword");
+            }
+
+            if (String.IsNullOrEmpty(newPassword))
+            {
+                throw new ArgumentException("Value cannot be null or empty.", "newPassword");
+            }
 
             // The underlying ChangePassword() will throw an exception rather
             // than return false in certain failure scenarios.
             try
             {
-                MembershipUser currentUser = _provider.GetUser(userName, true /* userIsOnline */);
+                MembershipUser currentUser = this.provider.GetUser(userName, true /* userIsOnline */);
                 return currentUser.ChangePassword(oldPassword, newPassword);
             }
             catch (ArgumentException)
