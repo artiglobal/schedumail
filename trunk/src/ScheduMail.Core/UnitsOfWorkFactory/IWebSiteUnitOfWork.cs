@@ -27,7 +27,7 @@ namespace ScheduMail.Core.UnitsOfWorkFactory
         /// <summary>
         /// Gets the by id.
         /// </summary>
-        /// <param name="id">The id.</param>
+        /// <param name="id">The Web site id.</param>
         /// <returns>Web Site instance.</returns>
         ScheduMail.Core.Domain.WebSite GetById(long id);
 
