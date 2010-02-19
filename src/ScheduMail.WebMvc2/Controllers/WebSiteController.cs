@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using ScheduMail.Core.Domain;
 using ScheduMail.Core.UnitsOfWorkFactory;
 using ScheduMail.Core.UnitsOfWorkRepository;
 
@@ -50,16 +51,20 @@ namespace ScheduMail.WebMvc2.Controllers
         }
 
         /// <summary>
-        /// Creates the specified collection.
+        /// Creates the specified web site.
         /// </summary>
-        /// <param name="collection">The collection.</param>
-        /// <returns>View instance.</returns>
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        /// <param name="webSite">The web site.</param>
+        /// <returns>The navigated to view.</returns>
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Create([Bind(Exclude = "Id")] WebSite webSite)
         {
             try
-            {               
-                return RedirectToAction("Index");
+            {
+                IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+                IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
+                unitOfWork.Save(webSite);
+
+                return RedirectToAction("List");
             }
             catch
             {
@@ -87,8 +92,8 @@ namespace ScheduMail.WebMvc2.Controllers
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
-            {               
-                return RedirectToAction("Index");
+            {
+                return RedirectToAction("List");
             }
             catch
             {
@@ -103,7 +108,9 @@ namespace ScheduMail.WebMvc2.Controllers
         /// <returns>View Instance.</returns>
         public ActionResult Edit(int id)
         {
-            return View();
+            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+            IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
+            return View(unitOfWork.GetById(id));
         }
 
         /// <summary>
@@ -113,11 +120,19 @@ namespace ScheduMail.WebMvc2.Controllers
         /// <param name="collection">The collection.</param>
         /// <returns>View instance.</returns>
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(WebSite webSite)
         {
             try
-            {                 
-                return RedirectToAction("Index");
+            {
+                IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+                IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();                
+
+                if (!ModelState.IsValid)
+                    return View();
+
+                unitOfWork.Save(webSite);
+               
+                return RedirectToAction("List");
             }
             catch
             {

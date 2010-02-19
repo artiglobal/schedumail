@@ -46,6 +46,8 @@ namespace ScheduMail.EFDal.Dal
                           .CloneList<ScheduMail.DBModel.WebSite, 
                                 ScheduMail.Core.Domain.WebSite>
                                      (this.context.WebSites.ToList <ScheduMail.DBModel.WebSite>())
+                                     .Skip(6)
+                                     .Take(5)
                           .AsQueryable();
             }
         }
@@ -55,7 +57,7 @@ namespace ScheduMail.EFDal.Dal
         /// </summary>
         /// <param name="id">The web siteid.</param>
         /// <returns>Website instance.</returns>
-        public ScheduMail.Core.Domain.WebSite GetById(int id)
+        public ScheduMail.Core.Domain.WebSite GetById(long id)
         {
             var entity = (from w in this.context.WebSites
                           where w.Id == id
