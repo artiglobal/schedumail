@@ -12,7 +12,7 @@ namespace ScheduMail.Core.FakeRepositories
         /// <summary>
         /// Lists the ebook.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of Books.</returns>
         public IEnumerable<Book> ListEbook()
         {
             List<Book> books = new List<Book>();

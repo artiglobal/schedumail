@@ -23,19 +23,11 @@ namespace ScheduMail.Core.RepositoryInterfaces
         T GetById(IdT id);
 
         /// <summary>
-        /// Saves the specified entity.
+        /// Saves or Updates the specified entity.
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns>Saved instance.</returns>
-        T Save(T entity);
-
-        /// <summary>
-        /// Updates the specified entity.
-        /// </summary>
-        /// <param name="entity">The entity.</param>
-        /// <param name="originalEntity">The original entity.</param>
-        /// <returns>Updated instance.</returns>
-        T Update(T entity, T originalEntity);
+        T Save(T entity);       
         
         /// <summary>
         /// Deletes the specified entity.

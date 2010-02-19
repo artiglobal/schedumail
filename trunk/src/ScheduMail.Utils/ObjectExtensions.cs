@@ -13,7 +13,7 @@ namespace ScheduMail.Utils
         /// <summary>
         /// Clones the specified entity.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">Type to clone.</typeparam>
         /// <param name="entity">The entity.</param>
         /// <returns>cloned type</returns>
         public static T Clone<T>(this T entity)

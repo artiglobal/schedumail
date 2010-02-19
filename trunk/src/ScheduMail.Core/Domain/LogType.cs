@@ -33,6 +33,7 @@ namespace ScheduMail.Core.Domain
             {
                 return this.typeId;
             }
+
             set
             {
                 this.typeId = value;
@@ -49,6 +50,7 @@ namespace ScheduMail.Core.Domain
             {
                 return this.description;
             }
+
             set
             {
                 this.description = value;

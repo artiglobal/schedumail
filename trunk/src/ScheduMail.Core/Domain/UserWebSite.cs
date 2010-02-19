@@ -14,7 +14,7 @@ namespace ScheduMail.Core.Domain
     public class UserWebSite
     {
         /// <summary>
-        /// User ID
+        /// User ID identification.
         /// </summary>
         private int userID;
 
@@ -33,6 +33,7 @@ namespace ScheduMail.Core.Domain
             {
                 return this.userID;
             }
+
             set
             {
                 this.userID = value;
@@ -49,6 +50,7 @@ namespace ScheduMail.Core.Domain
             {
                 return this.webSiteID;
             }
+
             set
             {
                 this.webSiteID = value;
