@@ -35,12 +35,12 @@ namespace ScheduMail.WebMvc2.Controllers
         /// <param name="requestContext">The HTTP context and route data.</param>
         protected override void Initialize(RequestContext requestContext)
         {
-            if (FormsService == null) 
+            if (this.FormsService == null) 
             { 
                 this.FormsService = new FormsAuthenticationService(); 
             }
 
-            if (MembershipService == null) 
+            if (this.MembershipService == null) 
             { 
                 this.MembershipService = new AccountMembershipService(); 
             }
@@ -68,9 +68,9 @@ namespace ScheduMail.WebMvc2.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (MembershipService.ValidateUser(model.UserName, model.Password))
+                if (this.MembershipService.ValidateUser(model.UserName, model.Password))
                 {
-                    FormsService.SignIn(model.UserName, model.RememberMe);
+                    this.FormsService.SignIn(model.UserName, model.RememberMe);
                     if (!String.IsNullOrEmpty(returnUrl))
                     {
                         return Redirect(returnUrl);
@@ -93,10 +93,10 @@ namespace ScheduMail.WebMvc2.Controllers
         /// <summary>
         /// Logs the off.
         /// </summary>
-        /// <returns>A Redirection to the Index Page</returns>
+        /// <returns>A Redirection to the Index Page.</returns>
         public ActionResult LogOff()
         {
-            FormsService.SignOut();
+           this.FormsService.SignOut();
 
             return RedirectToAction("Index", "Home");
         }
@@ -107,7 +107,7 @@ namespace ScheduMail.WebMvc2.Controllers
         /// <returns>The veiw instance.</returns>
         public ActionResult Register()
         {
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            ViewData["PasswordLength"] = this.MembershipService.MinPasswordLength;
             return View();
         }
 
@@ -122,11 +122,11 @@ namespace ScheduMail.WebMvc2.Controllers
             if (ModelState.IsValid)
             {
                 // Attempt to register the user
-                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email);
+                MembershipCreateStatus createStatus = this.MembershipService.CreateUser(model.UserName, model.Password, model.Email);
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
-                    FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
+                    this.FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -136,7 +136,7 @@ namespace ScheduMail.WebMvc2.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            ViewData["PasswordLength"] = this.MembershipService.MinPasswordLength;
             return View(model);
         }
 
@@ -147,7 +147,7 @@ namespace ScheduMail.WebMvc2.Controllers
         [Authorize]
         public ActionResult ChangePassword()
         {
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            ViewData["PasswordLength"] = this.MembershipService.MinPasswordLength;
             return View();
         }
 
@@ -162,7 +162,7 @@ namespace ScheduMail.WebMvc2.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (MembershipService.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword))
+                if (this.MembershipService.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword))
                 {
                     return RedirectToAction("ChangePasswordSuccess");
                 }
@@ -173,14 +173,14 @@ namespace ScheduMail.WebMvc2.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            ViewData["PasswordLength"] = this.MembershipService.MinPasswordLength;
             return View(model);
         }
 
         /// <summary>
         /// Changes the password success.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The instance view.</returns>
         public ActionResult ChangePasswordSuccess()
         {
             return View();

@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\aspnet_Users.cs" />
     <Compile Include="Domain\BaseEntity.cs" />
     <Compile Include="Domain\Book.cs" />
     <Compile Include="Domain\LogEvent.cs" />

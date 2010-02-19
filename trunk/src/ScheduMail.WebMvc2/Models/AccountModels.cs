@@ -324,7 +324,10 @@ namespace ScheduMail.WebMvc2.Models
         /// <param name="createPersistentCookie">If set to <c>true</c> [create persistent cookie].</param>
         public void SignIn(string userName, bool createPersistentCookie)
         {
-            if (String.IsNullOrEmpty(userName)) throw new ArgumentException("Value cannot be null or empty.", "userName");
+            if (String.IsNullOrEmpty(userName))
+            {
+                throw new ArgumentException("Value cannot be null or empty.", "userName");
+            }
 
             FormsAuthentication.SetAuthCookie(userName, createPersistentCookie);
         }
@@ -349,7 +352,7 @@ namespace ScheduMail.WebMvc2.Models
         /// Errors the code to string.
         /// </summary>
         /// <param name="createStatus">The create status.</param>
-        /// <returns></returns>
+        /// <returns>Error code.</returns>
         public static string ErrorCodeToString(MembershipCreateStatus createStatus)
         {
             // See http://go.microsoft.com/fwlink/?LinkID=177550 for
@@ -398,12 +401,12 @@ namespace ScheduMail.WebMvc2.Models
         /// <summary>
         /// Default error message.
         /// </summary>
-        private const string _defaultErrorMessage = "'{0}' and '{1}' do not match.";
+        private const string DefaultErrorMessage = "'{0}' and '{1}' do not match.";
 
         /// <summary>
         /// type id for new object.
         /// </summary>
-        private readonly object _typeId = new object();
+        private readonly object TypeIdentification = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PropertiesMustMatchAttribute"/> class.
@@ -411,7 +414,7 @@ namespace ScheduMail.WebMvc2.Models
         /// <param name="originalProperty">The original property.</param>
         /// <param name="confirmProperty">The confirm property.</param>
         public PropertiesMustMatchAttribute(string originalProperty, string confirmProperty)
-            : base(_defaultErrorMessage)
+            : base(DefaultErrorMessage)
         {
             OriginalProperty = originalProperty;
             ConfirmProperty = confirmProperty;
@@ -440,7 +443,7 @@ namespace ScheduMail.WebMvc2.Models
         {
             get
             {
-                return _typeId;
+                return this.TypeIdentification;
             }
         }
 
