@@ -25,6 +25,13 @@ namespace ScheduMail.Core.UnitsOfWorkFactory
         ScheduMail.Core.Domain.WebSite Save(WebSite webSite);
 
         /// <summary>
+        /// Gets the by id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns>Web Site instance.</returns>
+        ScheduMail.Core.Domain.WebSite GetById(long id);
+
+        /// <summary>
         /// Deletes the specified web site.
         /// </summary>
         /// <param name="webSite">The web site.</param>

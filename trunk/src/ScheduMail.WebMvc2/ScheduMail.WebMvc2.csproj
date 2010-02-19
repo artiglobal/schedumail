@@ -106,6 +106,10 @@
     <Content Include="bin\TechInfoSystems.Data.SQLiteProvider.pdb" />
     <Content Include="Global.asax" />
     <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Shared\WebSiteSummary.ascx" />
+    <Content Include="Views\WebSite\Create.aspx" />
+    <Content Include="Views\WebSite\Edit.aspx" />
+    <Content Include="Views\WebSite\List.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.4.1.js" />

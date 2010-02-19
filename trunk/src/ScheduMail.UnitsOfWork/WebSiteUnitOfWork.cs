@@ -27,6 +27,18 @@ namespace ScheduMail.UnitsOfWork
         }
 
         /// <summary>
+        /// Get a WebSite instance by id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns>Web Site instance.</returns>
+        public ScheduMail.Core.Domain.WebSite GetById(long id)
+        {
+            IWebSiteRepository repository = new EFWebSiteRepository();
+            return repository.GetById(id);
+        }
+
+
+        /// <summary>
         /// Saves the specified web site.
         /// </summary>
         /// <param name="webSite">The web site.</param>
@@ -47,6 +59,6 @@ namespace ScheduMail.UnitsOfWork
             repository.Delete(webSite);
         }
 
-        #endregion
+        #endregion      
     }
 }

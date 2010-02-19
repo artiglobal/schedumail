@@ -27,7 +27,7 @@ namespace ScheduMail.Core.FakeRepositories
         /// </summary>
         /// <param name="id">The website identification.</param>
         /// <returns>Website instance.</returns>
-        public ScheduMail.Core.Domain.WebSite GetById(int id)
+        public ScheduMail.Core.Domain.WebSite GetById(long id)
         {
             throw new NotImplementedException();
         }
