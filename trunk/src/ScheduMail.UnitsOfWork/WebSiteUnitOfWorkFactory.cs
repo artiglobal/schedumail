@@ -1,4 +1,5 @@
 ﻿using ScheduMail.Core.UnitsOfWorkRepository;
+using ScheduMail.EFDal.Dal;
 
 namespace ScheduMail.UnitsOfWork
 {
@@ -15,7 +16,7 @@ namespace ScheduMail.UnitsOfWork
         /// <returns>Web site unit of work unstance.</returns>
         public ScheduMail.Core.UnitsOfWorkFactory.IWebSiteUnitOfWork GetUnitOfWork()
         {
-            return new WebSiteUnitOfWork();
+            return new WebSiteUnitOfWork(new EFWebSiteRepository());
         }
 
         #endregion
