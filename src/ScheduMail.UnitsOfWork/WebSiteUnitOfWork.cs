@@ -14,6 +14,30 @@ namespace ScheduMail.UnitsOfWork
         #region IWebSiteUnitOfWork Members
 
         /// <summary>
+        /// Repository handle.
+        /// </summary>
+        private IWebSiteRepository repository;
+
+        /// <summary>
+        /// Gets or sets the repository.
+        /// </summary>
+        /// <value>The repository.</value>
+        public IWebSiteRepository Repository
+        {
+            get { return this.repository; }
+            set { this.repository = value; }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebSiteUnitOfWork"/> class.
+        /// </summary>
+        /// <param name="repository">The repository.</param>
+        public WebSiteUnitOfWork(IWebSiteRepository repository)
+        {
+            this.repository = repository;
+        }
+
+        /// <summary>
         /// Gets the list.
         /// </summary>
         /// <value>The Web site list.</value>
@@ -21,8 +45,7 @@ namespace ScheduMail.UnitsOfWork
         {
             get
             {
-                IWebSiteRepository repository = new EFWebSiteRepository();
-                return repository.List.ToList();
+                return this.repository.List.ToList();
             }
         }
 
@@ -33,8 +56,7 @@ namespace ScheduMail.UnitsOfWork
         /// <returns>Web Site instance.</returns>
         public ScheduMail.Core.Domain.WebSite GetById(long id)
         {
-            IWebSiteRepository repository = new EFWebSiteRepository();
-            return repository.GetById(id);
+            return this.repository.GetById(id);
         }
 
         /// <summary>
@@ -44,8 +66,7 @@ namespace ScheduMail.UnitsOfWork
         /// <returns>Updated Web site instance.</returns>
         public ScheduMail.Core.Domain.WebSite Save(ScheduMail.Core.Domain.WebSite webSite)
         {
-            IWebSiteRepository repository = new EFWebSiteRepository();
-            return repository.Save(webSite);
+            return this.repository.Save(webSite);
         }
 
         /// <summary>
@@ -54,10 +75,9 @@ namespace ScheduMail.UnitsOfWork
         /// <param name="webSite">The web site.</param>
         public void Delete(ScheduMail.Core.Domain.WebSite webSite)
         {
-            IWebSiteRepository repository = new EFWebSiteRepository();
-            repository.Delete(webSite);
+            this.repository.Delete(webSite);
         }
 
-        #endregion      
+        #endregion
     }
 }
