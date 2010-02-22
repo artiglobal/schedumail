@@ -1,0 +1,501 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SchedumailDBModel.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="SchedumailDBModelStoreContainer">
+          <EntitySet Name="aspnet_Users" EntityType="SchedumailDBModel.Store.aspnet_Users" store:Type="Tables" />
+          <EntitySet Name="LogEvent" EntityType="SchedumailDBModel.Store.LogEvent" store:Type="Tables" />
+          <EntitySet Name="LogType" EntityType="SchedumailDBModel.Store.LogType" store:Type="Tables" />
+          <EntitySet Name="Mail" EntityType="SchedumailDBModel.Store.Mail" store:Type="Tables" />
+          <EntitySet Name="Schedule" EntityType="SchedumailDBModel.Store.Schedule" store:Type="Tables" />
+          <EntitySet Name="UserWebSite" EntityType="SchedumailDBModel.Store.UserWebSite" store:Type="Tables" />
+          <EntitySet Name="WebSite" EntityType="SchedumailDBModel.Store.WebSite" store:Type="Tables" />
+          <AssociationSet Name="FK_LogEvent_0" Association="SchedumailDBModel.Store.FK_LogEvent_0">
+            <End Role="Mail" EntitySet="Mail" />
+            <End Role="LogEvent" EntitySet="LogEvent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mail_0" Association="SchedumailDBModel.Store.FK_Mail_0">
+            <End Role="WebSite" EntitySet="WebSite" />
+            <End Role="Mail" EntitySet="Mail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_0" Association="SchedumailDBModel.Store.FK_Schedule_0">
+            <End Role="Mail" EntitySet="Mail" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserWebSite_0" Association="SchedumailDBModel.Store.FK_UserWebSite_0">
+            <End Role="Mail" EntitySet="Mail" />
+            <End Role="UserWebSite" EntitySet="UserWebSite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserWebSite_1" Association="SchedumailDBModel.Store.FK_UserWebSite_1">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="UserWebSite" EntitySet="UserWebSite" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="aspnet_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" Nullable="false" />
+          <Property Name="LoweredUsername" Type="nvarchar" Nullable="false" />
+          <Property Name="ApplicationId" Type="nvarchar" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" />
+          <Property Name="LoweredEmail" Type="nvarchar" />
+          <Property Name="Comment" Type="nvarchar" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" />
+          <Property Name="PasswordFormat" Type="nvarchar" Nullable="false" />
+          <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" />
+          <Property Name="PasswordQuestion" Type="nvarchar" />
+          <Property Name="PasswordAnswer" Type="nvarchar" />
+          <Property Name="IsApproved" Type="bit" Nullable="false" />
+          <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+          <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsLockedOut" Type="bit" Nullable="false" />
+          <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
+          <Property Name="FailedPasswordAttemptCount" Type="integer" Nullable="false" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="integer" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LogEventTypeId" Type="integer" />
+          <Property Name="Message" Type="nvarchar" />
+          <Property Name="SenderUserName" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Modified" Type="datetime" />
+          <Property Name="MailId" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogType">
+          <Key>
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="TypeId" Type="integer" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Mail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="WebSiteId" Type="integer" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="256" />
+          <Property Name="EMailContent" Type="nvarchar" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" />
+          <Property Name="Password" Type="nvarchar" MaxLength="250" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Modified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MailId" Type="integer" />
+          <Property Name="Enabled" Type="bit" />
+          <Property Name="StartDateTime" Type="datetime" />
+          <Property Name="EndDateTime" Type="datetime" />
+          <Property Name="DaysOfWeekToRun" Type="integer" />
+        </EntityType>
+        <EntityType Name="UserWebSite">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="MailID" />
+          </Key>
+          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="36" />
+          <Property Name="MailID" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebSite">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SiteName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Template" Type="nvarchar" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Modified" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_LogEvent_0">
+          <End Role="Mail" Type="SchedumailDBModel.Store.Mail" Multiplicity="1" />
+          <End Role="LogEvent" Type="SchedumailDBModel.Store.LogEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LogEvent">
+              <PropertyRef Name="MailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mail_0">
+          <End Role="WebSite" Type="SchedumailDBModel.Store.WebSite" Multiplicity="0..1" />
+          <End Role="Mail" Type="SchedumailDBModel.Store.Mail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebSite">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mail">
+              <PropertyRef Name="WebSiteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_0">
+          <End Role="Mail" Type="SchedumailDBModel.Store.Mail" Multiplicity="0..1" />
+          <End Role="Schedule" Type="SchedumailDBModel.Store.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="MailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserWebSite_0">
+          <End Role="Mail" Type="SchedumailDBModel.Store.Mail" Multiplicity="1" />
+          <End Role="UserWebSite" Type="SchedumailDBModel.Store.UserWebSite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserWebSite">
+              <PropertyRef Name="MailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserWebSite_1">
+          <End Role="aspnet_Users" Type="SchedumailDBModel.Store.aspnet_Users" Multiplicity="1" />
+          <End Role="UserWebSite" Type="SchedumailDBModel.Store.UserWebSite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserWebSite">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SchedumailDBModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="ScheduMailDBEntities">
+          <EntitySet Name="aspnet_Users" EntityType="SchedumailDBModel.aspnet_Users" />
+          <EntitySet Name="LogEvents" EntityType="SchedumailDBModel.LogEvent" />
+          <EntitySet Name="LogTypes" EntityType="SchedumailDBModel.LogType" />
+          <EntitySet Name="Mails" EntityType="SchedumailDBModel.Mail" />
+          <EntitySet Name="Schedules" EntityType="SchedumailDBModel.Schedule" />
+          <EntitySet Name="WebSites" EntityType="SchedumailDBModel.WebSite" />
+          <AssociationSet Name="FK_LogEvent_0" Association="SchedumailDBModel.FK_LogEvent_0">
+            <End Role="Mail" EntitySet="Mails" />
+            <End Role="LogEvent" EntitySet="LogEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mail_0" Association="SchedumailDBModel.FK_Mail_0">
+            <End Role="WebSite" EntitySet="WebSites" />
+            <End Role="Mail" EntitySet="Mails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_0" Association="SchedumailDBModel.FK_Schedule_0">
+            <End Role="Mail" EntitySet="Mails" />
+            <End Role="Schedule" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="UserWebSite" Association="SchedumailDBModel.UserWebSite">
+            <End Role="Mail" EntitySet="Mails" />
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="aspnet_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="LoweredUsername" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="ApplicationId" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="LoweredEmail" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Comment" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordFormat" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordQuestion" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordAnswer" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+          <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
+          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="IsLockedOut" Type="Boolean" Nullable="false" />
+          <Property Name="LastLockoutDate" Type="DateTime" Nullable="false" />
+          <Property Name="FailedPasswordAttemptCount" Type="Int64" Nullable="false" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="Int64" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Mail" Relationship="SchedumailDBModel.UserWebSite" FromRole="aspnet_Users" ToRole="Mail" />
+        </EntityType>
+        <EntityType Name="LogEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="LogEventTypeId" Type="Int64" />
+          <Property Name="Message" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="SenderUserName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Created" Type="DateTime" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Modified" Type="DateTime" />
+          <NavigationProperty Name="Mail" Relationship="SchedumailDBModel.FK_LogEvent_0" FromRole="LogEvent" ToRole="Mail" />
+        </EntityType>
+        <EntityType Name="LogType">
+          <Key>
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="TypeId" Type="Int64" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Mail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Subject" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="EMailContent" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Created" Type="DateTime" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Modified" Type="DateTime" />
+          <NavigationProperty Name="LogEvent" Relationship="SchedumailDBModel.FK_LogEvent_0" FromRole="Mail" ToRole="LogEvent" />
+          <NavigationProperty Name="WebSite" Relationship="SchedumailDBModel.FK_Mail_0" FromRole="Mail" ToRole="WebSite" />
+          <NavigationProperty Name="Schedule" Relationship="SchedumailDBModel.FK_Schedule_0" FromRole="Mail" ToRole="Schedule" />
+          <NavigationProperty Name="aspnet_Users" Relationship="SchedumailDBModel.UserWebSite" FromRole="Mail" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" />
+          <Property Name="StartDateTime" Type="DateTime" />
+          <Property Name="EndDateTime" Type="DateTime" />
+          <Property Name="DaysOfWeekToRun" Type="Int64" />
+          <NavigationProperty Name="Mail" Relationship="SchedumailDBModel.FK_Schedule_0" FromRole="Schedule" ToRole="Mail" />
+        </EntityType>
+        <EntityType Name="WebSite">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="SiteName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Template" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Created" Type="DateTime" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Modified" Type="DateTime" />
+          <NavigationProperty Name="Mail" Relationship="SchedumailDBModel.FK_Mail_0" FromRole="WebSite" ToRole="Mail" />
+        </EntityType>
+        <Association Name="FK_LogEvent_0">
+          <End Role="Mail" Type="SchedumailDBModel.Mail" Multiplicity="1" />
+          <End Role="LogEvent" Type="SchedumailDBModel.LogEvent" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Mail_0">
+          <End Role="WebSite" Type="SchedumailDBModel.WebSite" Multiplicity="0..1" />
+          <End Role="Mail" Type="SchedumailDBModel.Mail" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Schedule_0">
+          <End Role="Mail" Type="SchedumailDBModel.Mail" Multiplicity="0..1" />
+          <End Role="Schedule" Type="SchedumailDBModel.Schedule" Multiplicity="*" />
+        </Association>
+        <Association Name="UserWebSite">
+          <End Role="Mail" Type="SchedumailDBModel.Mail" Multiplicity="*" />
+          <End Role="aspnet_Users" Type="SchedumailDBModel.aspnet_Users" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="SchedumailDBModelStoreContainer" CdmEntityContainer="ScheduMailDBEntities">
+          <EntitySetMapping Name="aspnet_Users">
+            <EntityTypeMapping TypeName="IsTypeOf(SchedumailDBModel.aspnet_Users)">
+              <MappingFragment StoreEntitySet="aspnet_Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="LoweredUsername" ColumnName="LoweredUsername" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LoweredEmail" ColumnName="LoweredEmail" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+                <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+                <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
+                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+                <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptWindowStart" ColumnName="FailedPasswordAnswerAttemptWindowStart" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogEvents">
+            <EntityTypeMapping TypeName="IsTypeOf(SchedumailDBModel.LogEvent)">
+              <MappingFragment StoreEntitySet="LogEvent">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LogEventTypeId" ColumnName="LogEventTypeId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="SenderUserName" ColumnName="SenderUserName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogTypes">
+            <EntityTypeMapping TypeName="IsTypeOf(SchedumailDBModel.LogType)">
+              <MappingFragment StoreEntitySet="LogType">
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mails">
+            <EntityTypeMapping TypeName="IsTypeOf(SchedumailDBModel.Mail)">
+              <MappingFragment StoreEntitySet="Mail">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="EMailContent" ColumnName="EMailContent" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schedules">
+            <EntityTypeMapping TypeName="IsTypeOf(SchedumailDBModel.Schedule)">
+              <MappingFragment StoreEntitySet="Schedule">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="DaysOfWeekToRun" ColumnName="DaysOfWeekToRun" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebSites">
+            <EntityTypeMapping TypeName="IsTypeOf(SchedumailDBModel.WebSite)">
+              <MappingFragment StoreEntitySet="WebSite">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="Template" ColumnName="Template" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_LogEvent_0" TypeName="SchedumailDBModel.FK_LogEvent_0" StoreEntitySet="LogEvent">
+            <EndProperty Name="Mail">
+              <ScalarProperty Name="Id" ColumnName="MailId" />
+            </EndProperty>
+            <EndProperty Name="LogEvent">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Mail_0" TypeName="SchedumailDBModel.FK_Mail_0" StoreEntitySet="Mail">
+            <EndProperty Name="WebSite">
+              <ScalarProperty Name="Id" ColumnName="WebSiteId" />
+            </EndProperty>
+            <EndProperty Name="Mail">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition ColumnName="WebSiteId" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Schedule_0" TypeName="SchedumailDBModel.FK_Schedule_0" StoreEntitySet="Schedule">
+            <EndProperty Name="Mail">
+              <ScalarProperty Name="Id" ColumnName="MailId" />
+            </EndProperty>
+            <EndProperty Name="Schedule">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition ColumnName="MailId" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserWebSite" TypeName="SchedumailDBModel.UserWebSite" StoreEntitySet="UserWebSite">
+            <EndProperty Name="Mail">
+              <ScalarProperty Name="Id" ColumnName="MailID" />
+            </EndProperty>
+            <EndProperty Name="aspnet_Users">
+              <ScalarProperty Name="UserId" ColumnName="UserID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="ScheduMailDBModel">
+        <EntityTypeShape EntityType="SchedumailDBModel.aspnet_Users" Width="1.5" PointX="5.25" PointY="7.875" Height="5.8263151041666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchedumailDBModel.LogEvent" Width="1.5" PointX="5.25" PointY="4.375" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchedumailDBModel.LogType" Width="1.5" PointX="0.75" PointY="0.75" Height="1.4033821614583331" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchedumailDBModel.Mail" Width="1.5" PointX="3" PointY="5.75" Height="3.5186979166666656" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchedumailDBModel.Schedule" Width="1.5" PointX="5.25" PointY="1.375" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchedumailDBModel.WebSite" Width="1.5" PointX="0.75" PointY="6.25" Height="2.5571907552083335" IsExpanded="true" />
+        <AssociationConnector Association="SchedumailDBModel.FK_LogEvent_0" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="6.43724609375" />
+          <ConnectorPoint PointX="5.25" PointY="6.43724609375" /></AssociationConnector>
+        <AssociationConnector Association="SchedumailDBModel.FK_Mail_0" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="7.5285953776041667" />
+          <ConnectorPoint PointX="3" PointY="7.5285953776041667" /></AssociationConnector>
+        <AssociationConnector Association="SchedumailDBModel.FK_Schedule_0" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.75" PointY="5.75" />
+          <ConnectorPoint PointX="3.75" PointY="2.4612939453125" />
+          <ConnectorPoint PointX="5.25" PointY="2.4612939453125" /></AssociationConnector>
+        <AssociationConnector Association="SchedumailDBModel.UserWebSite" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="8.5718489583333337" />
+          <ConnectorPoint PointX="5.25" PointY="8.5718489583333337" /></AssociationConnector></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
