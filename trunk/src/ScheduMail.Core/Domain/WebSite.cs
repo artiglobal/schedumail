@@ -45,8 +45,7 @@ namespace ScheduMail.Core.Domain
         /// <summary>
         /// Gets or sets the template.
         /// </summary>
-        /// <value>The template.</value>
-        ///
+        /// <value>The template.</value>        
         [Required(ErrorMessage = "Template is Required")]
         public string Template
         {

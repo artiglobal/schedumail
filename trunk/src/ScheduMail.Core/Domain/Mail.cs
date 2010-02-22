@@ -40,6 +40,16 @@ namespace ScheduMail.Core.Domain
         private string password;
 
         /// <summary>
+        /// Date time last sent.
+        /// </summary>
+        private DateTime lastSent;
+
+        /// <summary>
+        /// Date time of next send.
+        /// </summary>
+        private DateTime nextSend;       
+
+        /// <summary>
         /// Gets or sets the web site id.
         /// </summary>
         /// <value>The web site id.</value>
@@ -121,6 +131,40 @@ namespace ScheduMail.Core.Domain
             set
             {
                 this.password = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the last sent.
+        /// </summary>
+        /// <value>The last sent.</value>
+        public DateTime LastSent
+        {
+            get 
+            { 
+                return lastSent; 
+            }
+
+            set 
+            { 
+                lastSent = value; 
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the next send.
+        /// </summary>
+        /// <value>The next send.</value>
+        public DateTime NextSend
+        {
+            get 
+            { 
+                return nextSend; 
+            }
+
+            set 
+            { 
+                nextSend = value; 
             }
         }
     }

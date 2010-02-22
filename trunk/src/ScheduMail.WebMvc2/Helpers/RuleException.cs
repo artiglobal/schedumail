@@ -16,11 +16,11 @@ public class RuleException : Exception
     /// <summary>
     /// Initializes a new instance of the <see cref="RuleException"/> class.
     /// </summary>
-    /// <param name="key">The key.</param>
-    /// <param name="value">The value.</param>
+    /// <param name="key">The key value for exception type.</param>
+    /// <param name="value">The value of excption.</param>
     public RuleException(string key, string value)
     {
-        Errors = new NameValueCollection { { key, value } };
+        this.Errors = new NameValueCollection { { key, value } };
     }
 
     /// <summary>
@@ -29,7 +29,7 @@ public class RuleException : Exception
     /// <param name="errors">The errors.</param>
     public RuleException(NameValueCollection errors)
     {
-        Errors = errors;
+        this.Errors = errors;
     }
 
     /// <summary>
@@ -39,9 +39,9 @@ public class RuleException : Exception
     /// <param name="prefix">The prefix.</param>
     public void CopyToModelState(ModelStateDictionary modelState, string prefix)
     {
-        foreach (string key in Errors)
+        foreach (string key in this.Errors)
         {
-            foreach (string value in Errors.GetValues(key))
+            foreach (string value in this.Errors.GetValues(key))
             {
                 modelState.AddModelError(prefix + "." + key, value);
             }
