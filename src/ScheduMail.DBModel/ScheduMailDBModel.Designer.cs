@@ -12,9 +12,10 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SchedumailDBModel", "FK_LogEvent_0", "WebSite", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScheduMail.DBModel.WebSite), "LogEvent", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.LogEvent))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SchedumailDBModel", "FK_Mail_0", "WebSite", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(ScheduMail.DBModel.WebSite), "Mail", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.Mail))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SchedumailDBModel", "UserWebSite", "WebSite", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.WebSite), "aspnet_Users", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.aspnet_Users))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SchedumailDBModel", "FK_Schedule_0", "Mail", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(ScheduMail.DBModel.Mail), "Schedule", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.Schedule))]
 
 // Original file name:
-// Generation date: 22/02/2010 15:05:22
+// Generation date: 22/02/2010 16:41:14
 namespace ScheduMail.DBModel
 {
     
@@ -124,6 +125,21 @@ namespace ScheduMail.DBModel
         }
         private global::System.Data.Objects.ObjectQuery<aspnet_Users> _aspnet_Users;
         /// <summary>
+        /// There are no comments for Schedule in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<Schedule> Schedule
+        {
+            get
+            {
+                if ((this._Schedule == null))
+                {
+                    this._Schedule = base.CreateQuery<Schedule>("[Schedule]");
+                }
+                return this._Schedule;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<Schedule> _Schedule;
+        /// <summary>
         /// There are no comments for LogTypes in the schema.
         /// </summary>
         public void AddToLogTypes(LogType logType)
@@ -157,6 +173,13 @@ namespace ScheduMail.DBModel
         public void AddToaspnet_Users(aspnet_Users aspnet_Users)
         {
             base.AddObject("aspnet_Users", aspnet_Users);
+        }
+        /// <summary>
+        /// There are no comments for Schedule in the schema.
+        /// </summary>
+        public void AddToSchedule(Schedule schedule)
+        {
+            base.AddObject("Schedule", schedule);
         }
     }
     /// <summary>
@@ -981,6 +1004,27 @@ namespace ScheduMail.DBModel
                 }
             }
         }
+        /// <summary>
+        /// There are no comments for Schedule in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("SchedumailDBModel", "FK_Schedule_0", "Schedule")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<Schedule> Schedule
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Schedule>("SchedumailDBModel.FK_Schedule_0", "Schedule");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Schedule>("SchedumailDBModel.FK_Schedule_0", "Schedule", value);
+                }
+            }
+        }
     }
     /// <summary>
     /// There are no comments for SchedumailDBModel.aspnet_Users in the schema.
@@ -1628,6 +1672,180 @@ namespace ScheduMail.DBModel
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<WebSite>("SchedumailDBModel.UserWebSite", "WebSite", value);
+                }
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for SchedumailDBModel.Schedule in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// Id
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="SchedumailDBModel", Name="Schedule")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class Schedule : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new Schedule object.
+        /// </summary>
+        /// <param name="id">Initial value of Id.</param>
+        public static Schedule CreateSchedule(long id)
+        {
+            Schedule schedule = new Schedule();
+            schedule.Id = id;
+            return schedule;
+        }
+        /// <summary>
+        /// There are no comments for Property Id in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public long Id
+        {
+            get
+            {
+                return this._Id;
+            }
+            set
+            {
+                this.OnIdChanging(value);
+                this.ReportPropertyChanging("Id");
+                this._Id = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Id");
+                this.OnIdChanged();
+            }
+        }
+        private long _Id;
+        partial void OnIdChanging(long value);
+        partial void OnIdChanged();
+        /// <summary>
+        /// There are no comments for Property Enabled in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<bool> Enabled
+        {
+            get
+            {
+                return this._Enabled;
+            }
+            set
+            {
+                this.OnEnabledChanging(value);
+                this.ReportPropertyChanging("Enabled");
+                this._Enabled = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Enabled");
+                this.OnEnabledChanged();
+            }
+        }
+        private global::System.Nullable<bool> _Enabled;
+        partial void OnEnabledChanging(global::System.Nullable<bool> value);
+        partial void OnEnabledChanged();
+        /// <summary>
+        /// There are no comments for Property StartDateTime in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> StartDateTime
+        {
+            get
+            {
+                return this._StartDateTime;
+            }
+            set
+            {
+                this.OnStartDateTimeChanging(value);
+                this.ReportPropertyChanging("StartDateTime");
+                this._StartDateTime = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("StartDateTime");
+                this.OnStartDateTimeChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _StartDateTime;
+        partial void OnStartDateTimeChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnStartDateTimeChanged();
+        /// <summary>
+        /// There are no comments for Property EndDateTime in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> EndDateTime
+        {
+            get
+            {
+                return this._EndDateTime;
+            }
+            set
+            {
+                this.OnEndDateTimeChanging(value);
+                this.ReportPropertyChanging("EndDateTime");
+                this._EndDateTime = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("EndDateTime");
+                this.OnEndDateTimeChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _EndDateTime;
+        partial void OnEndDateTimeChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnEndDateTimeChanged();
+        /// <summary>
+        /// There are no comments for Property DaysOfWeekToRun in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<long> DaysOfWeekToRun
+        {
+            get
+            {
+                return this._DaysOfWeekToRun;
+            }
+            set
+            {
+                this.OnDaysOfWeekToRunChanging(value);
+                this.ReportPropertyChanging("DaysOfWeekToRun");
+                this._DaysOfWeekToRun = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("DaysOfWeekToRun");
+                this.OnDaysOfWeekToRunChanged();
+            }
+        }
+        private global::System.Nullable<long> _DaysOfWeekToRun;
+        partial void OnDaysOfWeekToRunChanging(global::System.Nullable<long> value);
+        partial void OnDaysOfWeekToRunChanged();
+        /// <summary>
+        /// There are no comments for Mail in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("SchedumailDBModel", "FK_Schedule_0", "Mail")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public Mail Mail
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Mail>("SchedumailDBModel.FK_Schedule_0", "Mail").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Mail>("SchedumailDBModel.FK_Schedule_0", "Mail").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Mail in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<Mail> MailReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Mail>("SchedumailDBModel.FK_Schedule_0", "Mail");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Mail>("SchedumailDBModel.FK_Schedule_0", "Mail", value);
                 }
             }
         }
