@@ -369,7 +369,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="ScheduMailDBModel">
+      <Diagram Name="ScheduMailDBModel" ZoomLevel="68">
         <EntityTypeShape EntityType="SchedumailDBModel.LogType" Width="1.5" PointX="8.125" PointY="0.75" Height="1.4033821614583331" IsExpanded="true" />
         <EntityTypeShape EntityType="SchedumailDBModel.WebSite" Width="1.5" PointX="3.375" PointY="0.75" Height="2.3648893229166665" />
         <EntityTypeShape EntityType="SchedumailDBModel.LogEvent" Width="1.5" PointX="5.875" PointY="1" Height="2.7494921874999987" />

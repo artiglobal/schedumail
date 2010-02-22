@@ -7,6 +7,14 @@
         <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
     </title>
     <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+
+    <script src="<%= Url.Content("~/Scripts/MicrosoftAjax.debug.js") %>" type="text/javascript"></script>
+
+    <script src="<%= Url.Content("~/Scripts/MicrosoftMvcAjax.debug.js") %>" type="text/javascript"></script>
+
+    <script src="<%= Url.Content("~/Scripts/MicrosoftMvcValidation.debug.js") %>" type="text/javascript"></script>
+
+    <% Html.EnableClientValidation();%>
 </head>
 <body>
     <div class="page">
@@ -21,11 +29,11 @@
             <div id="menucontainer">
                 <ul id="menu">
                     <li>
-                        <%= Html.ActionLink("Home", "Index", "Home")%></li>
+                        <%= Html.ActionLink("Communications", "Index", "Home")%></li>
                     <li>
                         <%= Html.ActionLink("Web Sites", "List", "WebSite")%></li>
                     <li>
-                        <%= Html.ActionLink("About", "About", "Home")%></li>
+                        <%= Html.ActionLink("Users", "About", "Home")%></li>
                 </ul>
             </div>
         </div>
