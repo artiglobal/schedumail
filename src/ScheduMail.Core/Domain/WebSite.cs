@@ -4,6 +4,7 @@
 ***************************************************************************************************/
 
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ScheduMail.Core.Domain
 {
@@ -27,6 +28,7 @@ namespace ScheduMail.Core.Domain
         /// Gets or sets the name of the site.
         /// </summary>
         /// <value>The name of the site.</value>
+        [StringLength(50), Required(ErrorMessage = "Site Name is required")]
         public string SiteName
         {
             get
@@ -44,6 +46,8 @@ namespace ScheduMail.Core.Domain
         /// Gets or sets the template.
         /// </summary>
         /// <value>The template.</value>
+        ///
+        [Required(ErrorMessage = "Template is Required")]
         public string Template
         {
             get

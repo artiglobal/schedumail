@@ -14,7 +14,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SchedumailDBModel", "UserWebSite", "WebSite", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.WebSite), "aspnet_Users", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.aspnet_Users))]
 
 // Original file name:
-// Generation date: 18/02/2010 16:25:05
+// Generation date: 22/02/2010 15:05:22
 namespace ScheduMail.DBModel
 {
     
