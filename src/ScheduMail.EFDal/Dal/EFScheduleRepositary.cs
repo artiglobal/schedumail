@@ -17,7 +17,7 @@ namespace ScheduMail.EFDal.Dal
         /// Adds the Schedule instance into the dataabse
         /// </summary>
         /// <param name="schedule"></param>
-        /// <returns></returns>
+        /// <returns>true or false value.</returns>
         public bool Add(ScheduMail.DBModel.Schedule schedule)
         {
             throw new NotImplementedException();
