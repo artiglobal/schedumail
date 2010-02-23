@@ -71,7 +71,7 @@ namespace ScheduMail.Core.FakeRepositories
         /// </summary>
         /// <param name="webSiteId">The web site id.</param>
         /// <returns>List of User EMails.</returns>
-        public IList<ScheduMail.Core.Domain.UserEMails> GetUserEMails(int webSiteId)
+        public IList<ScheduMail.Core.Domain.WebSiteEMails> GetUserEMails(int webSiteId)
         {
             throw new NotImplementedException();
         }

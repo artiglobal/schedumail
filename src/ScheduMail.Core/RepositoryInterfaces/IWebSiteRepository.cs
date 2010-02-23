@@ -13,6 +13,6 @@ namespace ScheduMail.Core.RepositoryInterfaces
         /// </summary>
         /// <param name="webSiteId">The web site id.</param>
         /// <returns>List of User EMails</returns>
-        IList<UserEMails> GetUserEMails(int webSiteId);
+        IList<WebSiteEMails> GetUserEMails(int webSiteId);
     }
 }

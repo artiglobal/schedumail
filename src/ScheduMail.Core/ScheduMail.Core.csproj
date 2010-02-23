@@ -74,7 +74,7 @@
     <Compile Include="Domain\LogType.cs" />
     <Compile Include="Domain\Mail.cs" />
     <Compile Include="Domain\Schedule.cs" />
-    <Compile Include="Domain\UserEMails.cs" />
+    <Compile Include="Domain\WebSiteEMails.cs" />
     <Compile Include="Domain\UserWebSite.cs" />
     <Compile Include="Domain\WebSite.cs" />
     <Compile Include="FakeRepositories\FakeBookRepository.cs" />
