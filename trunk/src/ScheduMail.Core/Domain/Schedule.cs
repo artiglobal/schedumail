@@ -39,6 +39,11 @@ namespace ScheduMail.Core.Domain
         private int daysOfWeekToRun;
 
         /// <summary>
+        /// Flag to indicate whether or not should be ran daily, weekly or monthly.
+        /// </summary>
+        private int dailyWeeklyOrMonthly;     
+
+        /// <summary>
         /// Gets or sets the mail id.
         /// </summary>
         /// <value>The mail id.</value>
@@ -52,6 +57,23 @@ namespace ScheduMail.Core.Domain
             set
             {
                 this.mailId = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the daily weekly or monthly.
+        /// </summary>
+        /// <value>The daily weekly or monthly.</value>
+        public int DailyWeeklyOrMonthly
+        {
+            get 
+            { 
+                return dailyWeeklyOrMonthly; 
+            }
+
+            set 
+            { 
+                dailyWeeklyOrMonthly = value; 
             }
         }
 
