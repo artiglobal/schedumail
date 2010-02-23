@@ -42,7 +42,9 @@ namespace ScheduMail.Core.Domain
         {
             // Default object to a newly created object
             this.Created = DateTime.Now;
-            this.Modified = DateTime.Now;
+            this.Modified = DateTime.Now;         
+            this.CreatedBy = Auth.GetUserName;            
+            this.ModifiedBy = Auth.GetUserName;
         }
 
         /// <summary>
@@ -51,6 +53,7 @@ namespace ScheduMail.Core.Domain
         public void Modify()
         {
             this.Modified = DateTime.Now;
+            this.ModifiedBy = Auth.GetUserName;
         }
 
         /// <summary>
