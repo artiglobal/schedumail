@@ -1,0 +1,39 @@
+<content name="title">
+	SceduleMail
+</content>
+
+<h2>Scedule Mail</h2>
+
+
+
+# using (Html.BeginForm()) 
+# {
+    <div>
+        <fieldset>
+            <legend>Account Information</legend>
+            <p>
+                <label for="content">content:</label>
+                !{Html.TextBox("content")}
+                
+            </p>
+        </fieldset>
+    </div>
+    
+    <div>
+        <fieldset>
+            <legend>Send to URL </legend>
+            <p>
+                <label for="URL">URL:</label>
+                !{Html.TextBox("URL")}
+                <label for="username">username:</label>
+                !{Html.TextBox("username")}
+                <label for="password">password:</label>
+                !{Html.TextBox("password")}
+                 <p>
+                <input type="submit" value="validate" />
+				</p>
+            </p>
+        </fieldset>
+    </div>
+# }
+
