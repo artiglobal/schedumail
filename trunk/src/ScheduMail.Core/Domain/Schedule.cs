@@ -68,12 +68,12 @@ namespace ScheduMail.Core.Domain
         {
             get 
             { 
-                return dailyWeeklyOrMonthly; 
+                return this.dailyWeeklyOrMonthly; 
             }
 
             set 
             { 
-                dailyWeeklyOrMonthly = value; 
+                this.dailyWeeklyOrMonthly = value; 
             }
         }
 
