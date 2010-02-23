@@ -41,7 +41,7 @@ namespace ScheduMail.Core.Domain
         public BaseEntity()
         {
             // Default object to a newly created object
-            this.Created = DateTime.Now;
+            this.Created = DateTime.Now;        
             this.Modified = DateTime.Now;         
             this.CreatedBy = Auth.GetUserName;            
             this.ModifiedBy = Auth.GetUserName;
