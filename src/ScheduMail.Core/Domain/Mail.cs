@@ -142,12 +142,12 @@ namespace ScheduMail.Core.Domain
         {
             get 
             { 
-                return lastSent; 
+                return this.lastSent; 
             }
 
             set 
             { 
-                lastSent = value; 
+                this.lastSent = value; 
             }
         }
 
@@ -159,12 +159,12 @@ namespace ScheduMail.Core.Domain
         {
             get 
             { 
-                return nextSend; 
+                return this.nextSend; 
             }
 
             set 
             { 
-                nextSend = value; 
+                this.nextSend = value; 
             }
         }
     }
