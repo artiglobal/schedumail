@@ -17,24 +17,28 @@ namespace ScheduMail.Core.RepositoryInterfaces
         /// <param name="schedule"></param>
         /// <returns></returns>
         bool Add(Schedule schedule);
+
         /// <summary>
         /// Update the Schedule instance into the dataabse
         /// </summary>
         /// <param name="schedule">contains all the values of schedulee</param>
-        /// <returns>true/false as a sucess message</returns>
+        /// <returns>true/false as a sucess message</returns>        
         bool Update(Schedule schedule);
+
         /// <summary>
         /// Delete the Schedule instance from the dataabse
         /// </summary>
         /// <param name="id">id of the schedule</param>
-        /// <returns>true/false as a sucess message</returns>
+        /// <returns>true/false as a sucess message</returns>        
         bool Delete(int id);
+
         /// <summary>
         /// Returnts the object of  Schedule from ID
         /// </summary>
         /// <param name="id">id of the schedule to return</param>
         /// <returns>object of Schedule</returns>
         Schedule Get(int id);
+
         /// <summary>
         /// returns all the instance from database of schedules
         /// </summary>

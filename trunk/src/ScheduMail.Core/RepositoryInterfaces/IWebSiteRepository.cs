@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using ScheduMail.Core.Domain;
 
 namespace ScheduMail.Core.RepositoryInterfaces
@@ -13,6 +14,6 @@ namespace ScheduMail.Core.RepositoryInterfaces
         /// </summary>
         /// <param name="webSiteId">The web site id.</param>
         /// <returns>List of User EMails</returns>
-        IList<WebSiteEMails> GetUserEMails(int webSiteId);
+        IQueryable<WebSiteEMails> GetWebSiteEMails(int webSiteId);
     }
 }

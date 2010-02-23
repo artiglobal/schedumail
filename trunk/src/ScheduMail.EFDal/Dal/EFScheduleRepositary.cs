@@ -11,7 +11,6 @@ namespace ScheduMail.EFDal.Dal
     /// </summary>
     public class EFScheduleRepositary : IScheduleRepository
     {
-
         #region IScheduleRepository Members
 
         /// <summary>
@@ -33,6 +32,7 @@ namespace ScheduMail.EFDal.Dal
         {
             throw new NotImplementedException();
         }
+
         /// <summary>
         /// Delete the Schedule instance from the dataabse
         /// </summary>
@@ -42,6 +42,7 @@ namespace ScheduMail.EFDal.Dal
         {
             throw new NotImplementedException();
         }
+
         /// <summary>
         /// Returnts the object of  Schedule from ID
         /// </summary>
@@ -51,6 +52,7 @@ namespace ScheduMail.EFDal.Dal
         {
             throw new NotImplementedException();
         }
+
         /// <summary>
         /// returns all the instance from database of schedules
         /// </summary>

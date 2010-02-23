@@ -18,6 +18,13 @@ namespace ScheduMail.Core.UnitsOfWorkFactory
         List<WebSite> List { get; }
 
         /// <summary>
+        /// Gets the web site E mails.
+        /// </summary>
+        /// <param name="webSiteId">The web site id.</param>
+        /// <returns>List of Web Site EMails.</returns>
+        IList<ScheduMail.Core.Domain.WebSiteEMails> GetWebSiteEMails(int webSiteId);
+
+        /// <summary>
         /// Saves the specified web site.
         /// </summary>
         /// <param name="webSite">The web site.</param>

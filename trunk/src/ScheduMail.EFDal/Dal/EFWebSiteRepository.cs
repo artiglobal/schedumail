@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using ScheduMail.Core.RepositoryInterfaces;
 using ScheduMail.DBModel;
-
 using ScheduMail.Utils;
 
 namespace ScheduMail.EFDal.Dal
@@ -45,9 +44,7 @@ namespace ScheduMail.EFDal.Dal
                 return ObjectExtension
                           .CloneList<ScheduMail.DBModel.WebSite,
                                 ScheduMail.Core.Domain.WebSite>
-                                     (this.context.WebSites.ToList<ScheduMail.DBModel.WebSite>())
-                                     .Skip(6)
-                                     .Take(5)
+                                     (this.context.WebSites.ToList<ScheduMail.DBModel.WebSite>())                                     
                           .AsQueryable();
             }
         }
@@ -112,13 +109,19 @@ namespace ScheduMail.EFDal.Dal
         /// </summary>
         /// <param name="webSiteId">The web site id.</param>
         /// <returns>List of User EMails</returns>
-        public System.Collections.Generic.IList<ScheduMail.Core.Domain.WebSiteEMails> GetUserEMails(int webSiteId)
+        public IQueryable<ScheduMail.Core.Domain.WebSiteEMails> GetWebSiteEMails(int webSiteId)
         {
-            throw new System.NotImplementedException();
+            var entities = from webSiteEmail in this.context.WebSites.Include("EMails")
+                            join email in this.context.Mails on
+                                webSiteEmail.Id equals email.WebSite.Id
+                            join log in this.context.LogEvents on
+                                email.Id equals log.Mail.Id
+                            where webSiteEmail.Id == webSiteId
+                            select new ScheduMail.Core.Domain.WebSiteEMails { EMailSubject = email.Subject, LastSent = email.LastSent, NextSend = email.NextSend, LogId = log.Id };
+
+            return entities.AsQueryable<ScheduMail.Core.Domain.WebSiteEMails>();                
         }
 
-
         #endregion
-      
     }
 }
