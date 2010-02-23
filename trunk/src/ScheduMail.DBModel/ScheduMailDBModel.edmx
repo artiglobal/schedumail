@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SchedumailDBModel.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema Namespace="SchedumailDBModel.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="SchedumailDBModelStoreContainer">
           <EntitySet Name="aspnet_Users" EntityType="SchedumailDBModel.Store.aspnet_Users" store:Type="Tables" />
           <EntitySet Name="LogEvent" EntityType="SchedumailDBModel.Store.LogEvent" store:Type="Tables" />
@@ -26,7 +26,7 @@
             <End Role="Schedule" EntitySet="Schedule" />
           </AssociationSet>
           <AssociationSet Name="FK_UserWebSite_0" Association="SchedumailDBModel.Store.FK_UserWebSite_0">
-            <End Role="Mail" EntitySet="Mail" />
+            <End Role="WebSite" EntitySet="WebSite" />
             <End Role="UserWebSite" EntitySet="UserWebSite" />
           </AssociationSet>
           <AssociationSet Name="FK_UserWebSite_1" Association="SchedumailDBModel.Store.FK_UserWebSite_1">
@@ -98,6 +98,8 @@
           <Property Name="Created" Type="datetime" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
           <Property Name="Modified" Type="datetime" />
+          <Property Name="LastSent" Type="datetime" />
+          <Property Name="NextSend" Type="datetime" />
         </EntityType>
         <EntityType Name="Schedule">
           <Key>
@@ -109,14 +111,19 @@
           <Property Name="StartDateTime" Type="datetime" />
           <Property Name="EndDateTime" Type="datetime" />
           <Property Name="DaysOfWeekToRun" Type="integer" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Modified" Type="datetime" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="DailyWeeklyOrMonthly" Type="integer" />
         </EntityType>
         <EntityType Name="UserWebSite">
           <Key>
             <PropertyRef Name="UserID" />
-            <PropertyRef Name="MailID" />
+            <PropertyRef Name="WebSiteID" />
           </Key>
           <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="36" />
-          <Property Name="MailID" Type="integer" Nullable="false" />
+          <Property Name="WebSiteID" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="WebSite">
           <Key>
@@ -167,14 +174,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserWebSite_0">
-          <End Role="Mail" Type="SchedumailDBModel.Store.Mail" Multiplicity="1" />
+          <End Role="WebSite" Type="SchedumailDBModel.Store.WebSite" Multiplicity="1" />
           <End Role="UserWebSite" Type="SchedumailDBModel.Store.UserWebSite" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Mail">
+            <Principal Role="WebSite">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="UserWebSite">
-              <PropertyRef Name="MailID" />
+              <PropertyRef Name="WebSiteID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -190,8 +197,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SchedumailDBModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
@@ -214,11 +220,9 @@
             <End Role="Mail" EntitySet="Mails" />
             <End Role="Schedule" EntitySet="Schedules" />
           </AssociationSet>
-          <AssociationSet Name="UserWebSite" Association="SchedumailDBModel.UserWebSite">
-            <End Role="Mail" EntitySet="Mails" />
-            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
-          </AssociationSet>
-        </EntityContainer>
+          <AssociationSet Name="UserWebSite1" Association="SchedumailDBModel.UserWebSite1">
+            <End Role="WebSite" EntitySet="WebSites" />
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" /></AssociationSet></EntityContainer>
         <EntityType Name="aspnet_Users">
           <Key>
             <PropertyRef Name="UserId" />
@@ -247,8 +251,7 @@
           <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" Nullable="false" />
           <Property Name="FailedPasswordAnswerAttemptCount" Type="Int64" Nullable="false" />
           <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="Mail" Relationship="SchedumailDBModel.UserWebSite" FromRole="aspnet_Users" ToRole="Mail" />
-        </EntityType>
+          <NavigationProperty Name="WebSite" Relationship="SchedumailDBModel.UserWebSite1" FromRole="aspnet_Users" ToRole="WebSite" /></EntityType>
         <EntityType Name="LogEvent">
           <Key>
             <PropertyRef Name="Id" />
@@ -286,8 +289,8 @@
           <NavigationProperty Name="LogEvent" Relationship="SchedumailDBModel.FK_LogEvent_0" FromRole="Mail" ToRole="LogEvent" />
           <NavigationProperty Name="WebSite" Relationship="SchedumailDBModel.FK_Mail_0" FromRole="Mail" ToRole="WebSite" />
           <NavigationProperty Name="Schedule" Relationship="SchedumailDBModel.FK_Schedule_0" FromRole="Mail" ToRole="Schedule" />
-          <NavigationProperty Name="aspnet_Users" Relationship="SchedumailDBModel.UserWebSite" FromRole="Mail" ToRole="aspnet_Users" />
-        </EntityType>
+          <Property Name="LastSent" Type="DateTime" Nullable="true" />
+          <Property Name="NextSend" Type="DateTime" Nullable="true" /></EntityType>
         <EntityType Name="Schedule">
           <Key>
             <PropertyRef Name="Id" />
@@ -298,7 +301,11 @@
           <Property Name="EndDateTime" Type="DateTime" />
           <Property Name="DaysOfWeekToRun" Type="Int64" />
           <NavigationProperty Name="Mail" Relationship="SchedumailDBModel.FK_Schedule_0" FromRole="Schedule" ToRole="Mail" />
-        </EntityType>
+          <Property Name="Created" Type="DateTime" Nullable="true" />
+          <Property Name="CreatedBy" Type="String" Nullable="true" />
+          <Property Name="Modified" Type="DateTime" Nullable="true" />
+          <Property Name="ModifiedBy" Type="String" Nullable="true" />
+          <Property Name="DailyWeeklyOrMonthly" Type="Int64" Nullable="true" /></EntityType>
         <EntityType Name="WebSite">
           <Key>
             <PropertyRef Name="Id" />
@@ -311,7 +318,7 @@
           <Property Name="ModifiedBy" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Name="Modified" Type="DateTime" />
           <NavigationProperty Name="Mail" Relationship="SchedumailDBModel.FK_Mail_0" FromRole="WebSite" ToRole="Mail" />
-        </EntityType>
+          <NavigationProperty Name="aspnet_Users" Relationship="SchedumailDBModel.UserWebSite1" FromRole="WebSite" ToRole="aspnet_Users" /></EntityType>
         <Association Name="FK_LogEvent_0">
           <End Role="Mail" Type="SchedumailDBModel.Mail" Multiplicity="1" />
           <End Role="LogEvent" Type="SchedumailDBModel.LogEvent" Multiplicity="*" />
@@ -324,11 +331,9 @@
           <End Role="Mail" Type="SchedumailDBModel.Mail" Multiplicity="0..1" />
           <End Role="Schedule" Type="SchedumailDBModel.Schedule" Multiplicity="*" />
         </Association>
-        <Association Name="UserWebSite">
-          <End Role="Mail" Type="SchedumailDBModel.Mail" Multiplicity="*" />
-          <End Role="aspnet_Users" Type="SchedumailDBModel.aspnet_Users" Multiplicity="*" />
-        </Association>
-      </Schema>
+        <Association Name="UserWebSite1">
+          <End Type="SchedumailDBModel.WebSite" Role="WebSite" Multiplicity="*" />
+          <End Type="SchedumailDBModel.aspnet_Users" Role="aspnet_Users" Multiplicity="*" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -389,6 +394,8 @@
           <EntitySetMapping Name="Mails">
             <EntityTypeMapping TypeName="IsTypeOf(SchedumailDBModel.Mail)">
               <MappingFragment StoreEntitySet="Mail">
+                <ScalarProperty Name="NextSend" ColumnName="NextSend" />
+                <ScalarProperty Name="LastSent" ColumnName="LastSent" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Subject" ColumnName="Subject" />
                 <ScalarProperty Name="EMailContent" ColumnName="EMailContent" />
@@ -404,6 +411,11 @@
           <EntitySetMapping Name="Schedules">
             <EntityTypeMapping TypeName="IsTypeOf(SchedumailDBModel.Schedule)">
               <MappingFragment StoreEntitySet="Schedule">
+                <ScalarProperty Name="DailyWeeklyOrMonthly" ColumnName="DailyWeeklyOrMonthly" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Enabled" ColumnName="Enabled" />
                 <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
@@ -451,15 +463,11 @@
             </EndProperty>
             <Condition ColumnName="MailId" IsNull="false" />
           </AssociationSetMapping>
-          <AssociationSetMapping Name="UserWebSite" TypeName="SchedumailDBModel.UserWebSite" StoreEntitySet="UserWebSite">
-            <EndProperty Name="Mail">
-              <ScalarProperty Name="Id" ColumnName="MailID" />
-            </EndProperty>
+          <AssociationSetMapping Name="UserWebSite1" TypeName="SchedumailDBModel.UserWebSite1" StoreEntitySet="UserWebSite">
             <EndProperty Name="aspnet_Users">
-              <ScalarProperty Name="UserId" ColumnName="UserID" />
-            </EndProperty>
-          </AssociationSetMapping>
-        </EntityContainerMapping>
+              <ScalarProperty Name="UserId" ColumnName="UserID" /></EndProperty>
+            <EndProperty Name="WebSite">
+              <ScalarProperty Name="Id" ColumnName="WebSiteID" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -478,24 +486,25 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="ScheduMailDBModel">
-        <EntityTypeShape EntityType="SchedumailDBModel.aspnet_Users" Width="1.5" PointX="5.25" PointY="7.875" Height="5.8263151041666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchedumailDBModel.aspnet_Users" Width="1.5" PointX="3.25" PointY="10.625" Height="5.8263151041666656" IsExpanded="true" />
         <EntityTypeShape EntityType="SchedumailDBModel.LogEvent" Width="1.5" PointX="5.25" PointY="4.375" Height="2.7494921874999996" IsExpanded="true" />
         <EntityTypeShape EntityType="SchedumailDBModel.LogType" Width="1.5" PointX="0.75" PointY="0.75" Height="1.4033821614583331" IsExpanded="true" />
         <EntityTypeShape EntityType="SchedumailDBModel.Mail" Width="1.5" PointX="3" PointY="5.75" Height="3.5186979166666656" IsExpanded="true" />
-        <EntityTypeShape EntityType="SchedumailDBModel.Schedule" Width="1.5" PointX="5.25" PointY="1.375" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchedumailDBModel.Schedule" Width="2" PointX="6" PointY="0.625" Height="3.1340950520833326" IsExpanded="true" />
         <EntityTypeShape EntityType="SchedumailDBModel.WebSite" Width="1.5" PointX="0.75" PointY="6.25" Height="2.5571907552083335" IsExpanded="true" />
         <AssociationConnector Association="SchedumailDBModel.FK_LogEvent_0" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="6.43724609375" />
           <ConnectorPoint PointX="5.25" PointY="6.43724609375" /></AssociationConnector>
         <AssociationConnector Association="SchedumailDBModel.FK_Mail_0" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="7.5285953776041667" />
-          <ConnectorPoint PointX="3" PointY="7.5285953776041667" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="7.62474609375" />
+          <ConnectorPoint PointX="3" PointY="7.62474609375" /></AssociationConnector>
         <AssociationConnector Association="SchedumailDBModel.FK_Schedule_0" ManuallyRouted="false">
           <ConnectorPoint PointX="3.75" PointY="5.75" />
-          <ConnectorPoint PointX="3.75" PointY="2.4612939453125" />
-          <ConnectorPoint PointX="5.25" PointY="2.4612939453125" /></AssociationConnector>
-        <AssociationConnector Association="SchedumailDBModel.UserWebSite" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="8.5718489583333337" />
-          <ConnectorPoint PointX="5.25" PointY="8.5718489583333337" /></AssociationConnector></Diagram></edmx:Diagrams>
+          <ConnectorPoint PointX="3.75" PointY="2.1920475260416663" />
+          <ConnectorPoint PointX="6" PointY="2.1920475260416663" /></AssociationConnector>
+        <AssociationConnector Association="SchedumailDBModel.UserWebSite1" >
+          <ConnectorPoint PointX="1.5" PointY="8.9994921875" />
+          <ConnectorPoint PointX="1.5" PointY="13.538157552083334" />
+          <ConnectorPoint PointX="3.25" PointY="13.538157552083334" /></AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
