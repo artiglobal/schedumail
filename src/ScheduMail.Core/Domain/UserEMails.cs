@@ -32,12 +32,6 @@ namespace ScheduMail.Core.Domain
         /// Gets or sets the next send.
         /// </summary>
         /// <value>The next send.</value>
-        public DateTime NextSend { get; set; }
-
-        /// <summary>
-        /// Gets or sets the log ID.
-        /// </summary>
-        /// <value>The log ID.</value>
-        public int LogID { get; set; }
+        public DateTime NextSend { get; set; }      
     }
 }

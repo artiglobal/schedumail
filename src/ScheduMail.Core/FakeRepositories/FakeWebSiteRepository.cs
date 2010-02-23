@@ -63,5 +63,19 @@ namespace ScheduMail.Core.FakeRepositories
         }
 
         #endregion
+
+        #region IWebSiteRepository Members
+
+        /// <summary>
+        /// Gets the user E mails.
+        /// </summary>
+        /// <param name="webSiteId">The web site id.</param>
+        /// <returns>List of User EMails.</returns>
+        public IList<ScheduMail.Core.Domain.UserEMails> GetUserEMails(int webSiteId)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
