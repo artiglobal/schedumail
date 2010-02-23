@@ -107,6 +107,18 @@ namespace ScheduMail.EFDal.Dal
             this.context.SaveChanges();
         }
 
+        /// <summary>
+        /// Gets the user E mails.
+        /// </summary>
+        /// <param name="webSiteId">The web site id.</param>
+        /// <returns>List of User EMails</returns>
+        public System.Collections.Generic.IList<ScheduMail.Core.Domain.UserEMails> GetUserEMails(int webSiteId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+
         #endregion
+      
     }
 }
