@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dal\EFLogEventRepository.cs" />
     <Compile Include="Dal\EFScheduleRepositary.cs" />
     <Compile Include="Dal\EFWebSiteRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

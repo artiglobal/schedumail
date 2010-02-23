@@ -103,6 +103,16 @@ namespace NUnit.Samples.Money
             Assert.IsTrue(webSites.Count() > 0);
         }
 
+        /// <summary>
+        /// EFWEBs the repository_ list test.
+        /// </summary>
+        [Test]
+        public void EFWEBRepository_ListWebSiteEMailsTest()
+        {
+            IQueryable<WebSiteEMails> webSites = this.repository.GetWebSiteEMails(1);
+            Assert.IsTrue(webSites.Count() > 0);
+        }
+
         #region Private Helpers
 
         /// <summary>

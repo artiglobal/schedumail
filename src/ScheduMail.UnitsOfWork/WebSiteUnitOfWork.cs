@@ -50,6 +50,16 @@ namespace ScheduMail.UnitsOfWork
         }
 
         /// <summary>
+        /// Gets the web site E mails.
+        /// </summary>
+        /// <param name="webSiteId">The web site id.</param>
+        /// <returns>List Of Web Site EMails</returns>
+        public IList<ScheduMail.Core.Domain.WebSiteEMails> GetWebSiteEMails(int webSiteId)
+        {
+            return this.repository.GetWebSiteEMails(webSiteId).ToList();
+        }
+
+        /// <summary>
         /// Get a WebSite instance by id.
         /// </summary>
         /// <param name="id">The Web Site instance id.</param>

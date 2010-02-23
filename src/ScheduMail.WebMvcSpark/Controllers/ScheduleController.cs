@@ -9,33 +9,39 @@ namespace ScheduMail.WebMvcSpark.Controllers
 {
     public class ScheduleController : Controller
     {
-        //
-        // GET: /Schedule/
-
+        /// <summary>
+        /// Indexes this instance.
+        /// </summary>
+        /// <returns>The View Instance.</returns>
         public ActionResult Index()
         {
             return View();
         }
 
-        //
-        // GET: /Schedule/Details/5
-
+        /// <summary>
+        /// Detailses the specified id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns>The View Instance.</returns>
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        //
-        // GET: /Schedule/Create
-
+        /// <summary>
+        /// Creates this instance.
+        /// </summary>
+        /// <returns>The View Instance.</returns>
         public ActionResult Create()
         {
             return View();
-        } 
+        }
 
-        //
-        // POST: /Schedule/Create
-
+        /// <summary>
+        /// Creates the specified collection.
+        /// </summary>
+        /// <param name="collection">The collection.</param>
+        /// <returns>The View Instance.</returns>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(FormCollection collection)
         {
@@ -51,17 +57,22 @@ namespace ScheduMail.WebMvcSpark.Controllers
             }
         }
 
-        //
-        // GET: /Schedule/Edit/5
- 
+        /// <summary>
+        /// Edits the specified id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns>The View Instance.</returns>
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        //
-        // POST: /Schedule/Edit/5
-
+        /// <summary>
+        /// Edits the specified id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <param name="collection">The collection.</param>
+        /// <returns>The View Instance.</returns>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(int id, FormCollection collection)
         {

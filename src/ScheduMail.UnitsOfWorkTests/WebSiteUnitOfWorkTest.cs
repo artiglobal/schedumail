@@ -25,7 +25,7 @@ namespace ScheduMail.UnitsOfWorkTests
             IWindsorContainer container = new WindsorContainer(new XmlInterpreter());
 
             IWebSiteRepository repository;
-
+                        
             // generic default service retrieval
             repository = container.Resolve<IWebSiteRepository>();
             Assert.IsNotNull(repository);
@@ -116,6 +116,25 @@ namespace ScheduMail.UnitsOfWorkTests
 
             webSiteRepositoryMock.Verify(repository => repository.List, Times.AtLeastOnce());
             Assert.True(webSiteList.Count == 0);
+        }
+
+        /// <summary>
+        /// Webs the site_ list.
+        /// </summary>
+        [Test]
+        public void WebSiteEMails_List()
+        {
+            var webSiteRepositoryMock = new Mock<IWebSiteRepository>();
+            List<WebSiteEMails> emails = new List<WebSiteEMails>();
+
+            webSiteRepositoryMock.Setup(repository => repository.GetWebSiteEMails(1))
+                    .Returns(emails.AsQueryable());
+
+            WebSiteUnitOfWork unitOfWork = new WebSiteUnitOfWork(webSiteRepositoryMock.Object);
+            IList<WebSiteEMails> list = unitOfWork.GetWebSiteEMails(1);
+
+            webSiteRepositoryMock.Verify(repository => repository.GetWebSiteEMails(1), Times.AtLeastOnce());
+            Assert.True(list.Count == 0);
         }
     }
 }
