@@ -112,7 +112,7 @@ namespace ScheduMail.EFDal.Dal
         /// </summary>
         /// <param name="webSiteId">The web site id.</param>
         /// <returns>List of User EMails</returns>
-        public System.Collections.Generic.IList<ScheduMail.Core.Domain.UserEMails> GetUserEMails(int webSiteId)
+        public System.Collections.Generic.IList<ScheduMail.Core.Domain.WebSiteEMails> GetUserEMails(int webSiteId)
         {
             throw new System.NotImplementedException();
         }
