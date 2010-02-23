@@ -1,21 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="X:\inetpub\Schedumail\src\ScheduMail.UnitsOfWorkTests\bin\Debug\ScheduMail.UnitsOfWorkTests.dll" total="5" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2010-02-21" time="22:23:02">
+<test-results name="X:\inetpub\Schedumail\src\ScheduMail.UnitsOfWorkTests\bin\Debug\ScheduMail.UnitsOfWorkTests.dll" total="6" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2010-02-23" time="19:48:39">
   <environment nunit-version="2.5.2.9222" clr-version="2.0.50727.4927" os-version="Microsoft Windows NT 6.1.7600.0" platform="Win32NT" cwd="C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE" machine-name="BALI" user="000088" user-domain="BALI" />
   <culture-info current-culture="en-GB" current-uiculture="en-US" />
-  <test-suite name="X:\inetpub\Schedumail\src\ScheduMail.UnitsOfWorkTests\bin\Debug\ScheduMail.UnitsOfWorkTests.dll" executed="True" success="True" time="0.067" asserts="0">
+  <test-suite name="X:\inetpub\Schedumail\src\ScheduMail.UnitsOfWorkTests\bin\Debug\ScheduMail.UnitsOfWorkTests.dll" executed="True" success="True" time="6.718" asserts="0">
     <results>
-      <test-suite name="ScheduMail" executed="True" success="True" time="0.065" asserts="0">
+      <test-suite name="ScheduMail" executed="True" success="True" time="6.714" asserts="0">
         <results>
-          <test-suite name="UnitsOfWorkTests" executed="True" success="True" time="0.063" asserts="0">
+          <test-suite name="UnitsOfWorkTests" executed="True" success="True" time="6.714" asserts="0">
             <results>
-              <test-suite name="WebSiteUnitOfWorkTest" executed="True" success="True" time="0.040" asserts="0">
+              <test-suite name="WebSiteUnitOfWorkTest" executed="True" success="True" time="6.713" asserts="0">
                 <results>
-                  <test-case name="ScheduMail.UnitsOfWorkTests.WebSiteUnitOfWorkTest.WebSite_ContainerTest" executed="True" success="True" time="0.006" asserts="2" />
-                  <test-case name="ScheduMail.UnitsOfWorkTests.WebSiteUnitOfWorkTest.WebSite_CreateTest" executed="True" success="True" time="0.011" asserts="1" />
-                  <test-case name="ScheduMail.UnitsOfWorkTests.WebSiteUnitOfWorkTest.WebSite_DeleteTest" executed="True" success="True" time="0.005" asserts="0" />
-                  <test-case name="ScheduMail.UnitsOfWorkTests.WebSiteUnitOfWorkTest.WebSite_GetById" executed="True" success="True" time="0.003" asserts="0" />
-                  <test-case name="ScheduMail.UnitsOfWorkTests.WebSiteUnitOfWorkTest.WebSite_List" executed="True" success="True" time="0.001" asserts="1" />
+                  <test-case name="ScheduMail.UnitsOfWorkTests.WebSiteUnitOfWorkTest.WebSite_ContainerTest" executed="True" success="True" time="2.476" asserts="2" />
+                  <test-case name="ScheduMail.UnitsOfWorkTests.WebSiteUnitOfWorkTest.WebSite_CreateTest" executed="True" success="True" time="4.052" asserts="1" />
+                  <test-case name="ScheduMail.UnitsOfWorkTests.WebSiteUnitOfWorkTest.WebSite_DeleteTest" executed="True" success="True" time="0.022" asserts="0" />
+                  <test-case name="ScheduMail.UnitsOfWorkTests.WebSiteUnitOfWorkTest.WebSite_GetById" executed="True" success="True" time="0.109" asserts="0" />
+                  <test-case name="ScheduMail.UnitsOfWorkTests.WebSiteUnitOfWorkTest.WebSite_List" executed="True" success="True" time="0.021" asserts="1" />
+                  <test-case name="ScheduMail.UnitsOfWorkTests.WebSiteUnitOfWorkTest.WebSiteEMails_List" executed="True" success="True" time="0.006" asserts="1" />
                 </results>
               </test-suite>
             </results>

@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title><use content="title">Default title</use></title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />    
+    <script src="!{Url.Content("~/Scripts/MicrosoftAjax.debug.js")}" type="text/javascript"></script>   
 </head>
 
 <body>

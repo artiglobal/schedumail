@@ -7,6 +7,9 @@ using System.Web.Mvc.Ajax;
 
 namespace ScheduMail.WebMvcSpark.Controllers
 {
+    /// <summary>
+    /// Scheduling controller.
+    /// </summary>
     public class ScheduleController : Controller
     {
         /// <summary>
@@ -46,9 +49,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
         public ActionResult Create(FormCollection collection)
         {
             try
-            {
-                // TODO: Add insert logic here
-
+            {              
                 return RedirectToAction("Index");
             }
             catch
@@ -60,7 +61,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// <summary>
         /// Edits the specified id.
         /// </summary>
-        /// <param name="id">The id.</param>
+        /// <param name="id">The identificaion.</param>
         /// <returns>The View Instance.</returns>
         public ActionResult Edit(int id)
         {
@@ -77,9 +78,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
-            {
-                // TODO: Add update logic here
- 
+            {               
                 return RedirectToAction("Index");
             }
             catch
