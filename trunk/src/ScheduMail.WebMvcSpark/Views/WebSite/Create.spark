@@ -10,7 +10,13 @@
 # {
    !{Html.ValidationSummary("Creation of Web Site was unsuccessful. Please correct the errors and try again.")}
     <fieldset>
+		<div style="text-align:right">
+			
+		</div>
+		
+		    
         <legend>Fields</legend>
+                        
         <div class="editor-label">              
           <label for="SiteName">SiteName:</label>                                          
         </div>

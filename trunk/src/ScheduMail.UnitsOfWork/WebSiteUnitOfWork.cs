@@ -76,11 +76,11 @@ namespace ScheduMail.UnitsOfWork
         /// <returns>Updated Web site instance.</returns>
         public ScheduMail.Core.Domain.WebSite Save(ScheduMail.Core.Domain.WebSite webSite)
         {
-           var errors = this.GetRuleViolations(webSite);
-           if (errors.Count > 0)
-           {
-               throw new RuleException(errors);
-           }
+            var errors = this.GetRuleViolations(webSite);
+            if (errors.Count > 0)
+            {
+                throw new RuleException(errors);
+            }
 
             return this.repository.Save(webSite);
         }
@@ -105,7 +105,12 @@ namespace ScheduMail.UnitsOfWork
 
             if (string.IsNullOrEmpty(webSite.SiteName))
             {
-                errors.Add("SiteName", "Site name is required");
+                errors.Add("SiteName", "Site Name is required");
+            }
+
+            if (webSite.SiteName.Length > 255)
+            {
+                errors.Add("SiteName", "Site Name max length exceeded");
             }
 
             if (string.IsNullOrEmpty(webSite.Template))
