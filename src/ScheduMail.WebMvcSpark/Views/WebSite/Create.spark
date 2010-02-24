@@ -1,0 +1,40 @@
+﻿<content name="title">
+    Create
+</content>
+
+<viewdata model="ScheduMail.Core.Domain.WebSite" />
+    <h2>
+        Create</h2>
+        
+# using (Html.BeginForm()) 
+# {
+   !{Html.ValidationSummary("Creation of Web Site was unsuccessful. Please correct the errors and try again.")}
+    <fieldset>
+        <legend>Fields</legend>
+        <div class="editor-label">              
+          <label for="SiteName">SiteName:</label>                                          
+        </div>
+                 
+         <div class="editor-field">
+			!{Html.TextBox("SiteName")}
+            !{Html.ValidationMessage("SiteName")}           
+        </div>
+        
+         <div class="editor-label">
+            <label for="Template">Template:</label> 
+        </div>
+        <div class="editor-field">
+           !{Html.TextBox("Template")}
+            !{Html.ValidationMessage("Template")} 
+        </div>
+       
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+   
+    <div>
+        <%=Html.ActionLink("Back to List", "List")%>
+    </div>
+# }
+

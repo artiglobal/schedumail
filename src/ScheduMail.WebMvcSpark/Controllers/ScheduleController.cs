@@ -24,7 +24,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// <summary>
         /// Detailses the specified id.
         /// </summary>
-        /// <param name="id">The id.</param>
+        /// <param name="id">identification for persistence.</param>
         /// <returns>The View Instance.</returns>
         public ActionResult Details(int id)
         {
@@ -71,7 +71,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// <summary>
         /// Edits the specified id.
         /// </summary>
-        /// <param name="id">The id.</param>
+        /// <param name="id">The identification passed in.</param>
         /// <param name="collection">The collection.</param>
         /// <returns>The View Instance.</returns>
         [AcceptVerbs(HttpVerbs.Post)]
