@@ -6,15 +6,24 @@
     <h2>
         Create</h2>
         
+        <div style="text-align:right">				
+			<% using (Html.BeginForm(new { Action = "Selector" } ))
+         { %>                          
+				!{ Html.DropDownList("webSites", 
+					new SelectList((IEnumerable<ScheduMail.Core.Domain.WebSite>)ViewData["webSites"],
+									"Id", 
+									"SiteName"),
+									new { @class = "dropdownlistdisplay" })}
+				<input type="submit" value="Search" />
+			<% } %>
+		</div>
+        
 # using (Html.BeginForm()) 
 # {
    !{Html.ValidationSummary("Creation of Web Site was unsuccessful. Please correct the errors and try again.")}
     <fieldset>
-		<div style="text-align:right">
-			
-		</div>
 		
-		    
+				    
         <legend>Fields</legend>
                         
         <div class="editor-label">              

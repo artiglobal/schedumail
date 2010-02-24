@@ -3,6 +3,7 @@ using ScheduMail.Core.Domain;
 using ScheduMail.Core.UnitsOfWorkFactory;
 using ScheduMail.Core.UnitsOfWorkRepository;
 using ScheduMail.WebMvcSpark.Extensions;
+using System;
 
 namespace ScheduMail.WebMvc2.Controllers
 {
@@ -26,8 +27,8 @@ namespace ScheduMail.WebMvc2.Controllers
         /// <returns>List View.</returns>
         public ActionResult List()
         {
-            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();            
-            IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();           
+            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+            IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
 
             ViewData["webSites"] = unitOfWork.List;
 
@@ -50,6 +51,10 @@ namespace ScheduMail.WebMvc2.Controllers
         /// <returns>View Instance.</returns>
         public ActionResult Create()
         {
+            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+            IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
+
+            ViewData["webSites"] = unitOfWork.List;
             return View();
         }
 
@@ -67,6 +72,7 @@ namespace ScheduMail.WebMvc2.Controllers
                 {
                     IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
                     IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
+                    ViewData["webSites"] = unitOfWork.List;
                     unitOfWork.Save(webSite);
 
                     return RedirectToAction("List");
@@ -81,6 +87,19 @@ namespace ScheduMail.WebMvc2.Controllers
                 ex.CopyToModelState(ModelState);
                 return View();
             }
+        }
+
+        /// <summary>
+        /// Selectors the specified form.
+        /// </summary>
+        /// <param name="form">The form.</param>
+        /// <returns></returns>
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Selector(FormCollection form)
+        {
+            /// Gets the selected product.
+            int webSiteId = Convert.ToInt32(form["webSites"]);
+            return View();
         }
 
         /// <summary>
@@ -143,7 +162,7 @@ namespace ScheduMail.WebMvc2.Controllers
                 }
 
                 unitOfWork.Save(webSite);
-               
+
                 return RedirectToAction("List");
             }
             catch

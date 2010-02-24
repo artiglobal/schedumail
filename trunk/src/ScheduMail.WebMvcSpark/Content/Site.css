@@ -315,3 +315,8 @@ div#title
     font-weight: bold;
     color: #ff0000;
 }
+
+.dropdownlistdisplay
+{
+    width: 300px;
+}
