@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using ScheduMail.Core.RepositoryInterfaces;
 using ScheduMail.Core.UnitsOfWorkFactory;
-using ScheduMail.EFDal.Dal;
 
 namespace ScheduMail.UnitsOfWork
 {
@@ -76,6 +76,12 @@ namespace ScheduMail.UnitsOfWork
         /// <returns>Updated Web site instance.</returns>
         public ScheduMail.Core.Domain.WebSite Save(ScheduMail.Core.Domain.WebSite webSite)
         {
+           var errors = this.GetRuleViolations(webSite);
+           if (errors.Count > 0)
+           {
+               throw new RuleException(errors);
+           }
+
             return this.repository.Save(webSite);
         }
 
@@ -86,6 +92,28 @@ namespace ScheduMail.UnitsOfWork
         public void Delete(ScheduMail.Core.Domain.WebSite webSite)
         {
             this.repository.Delete(webSite);
+        }
+
+        /// <summary>
+        /// Gets the rule violations.
+        /// </summary>
+        /// <param name="webSite">The web site.</param>
+        /// <returns>Collection of Rules Violations.</returns>
+        private NameValueCollection GetRuleViolations(ScheduMail.Core.Domain.WebSite webSite)
+        {
+            var errors = new NameValueCollection();
+
+            if (string.IsNullOrEmpty(webSite.SiteName))
+            {
+                errors.Add("SiteName", "Site name is required");
+            }
+
+            if (string.IsNullOrEmpty(webSite.Template))
+            {
+                errors.Add("Template", "Template is required");
+            }
+
+            return errors;
         }
 
         #endregion

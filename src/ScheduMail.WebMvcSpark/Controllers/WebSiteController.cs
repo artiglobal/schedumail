@@ -2,6 +2,7 @@
 using ScheduMail.Core.Domain;
 using ScheduMail.Core.UnitsOfWorkFactory;
 using ScheduMail.Core.UnitsOfWorkRepository;
+using ScheduMail.WebMvcSpark.Extensions;
 
 namespace ScheduMail.WebMvc2.Controllers
 {
@@ -62,14 +63,22 @@ namespace ScheduMail.WebMvc2.Controllers
         {
             try
             {
-                IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-                IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
-                unitOfWork.Save(webSite);
+                if (ModelState.IsValid)
+                {
+                    IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+                    IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
+                    unitOfWork.Save(webSite);
 
-                return RedirectToAction("List");
+                    return RedirectToAction("List");
+                }
+                else
+                {
+                    return View();
+                }
             }
-            catch
+            catch (RuleException ex)
             {
+                ex.CopyToModelState(ModelState);
                 return View();
             }
         }

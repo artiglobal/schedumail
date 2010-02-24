@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Specialized;
-using System.Web.Mvc;
 
 /// <summary>
 /// Rule Exception wrapper class for Mvc framework.
@@ -30,21 +29,5 @@ public class RuleException : Exception
     public RuleException(NameValueCollection errors)
     {
         this.Errors = errors;
-    }
-
-    /// <summary>
-    /// Copies the state of to model.
-    /// </summary>
-    /// <param name="modelState">State of the model.</param>
-    /// <param name="prefix">The prefix.</param>
-    public void CopyToModelState(ModelStateDictionary modelState, string prefix)
-    {
-        foreach (string key in this.Errors)
-        {
-            foreach (string value in this.Errors.GetValues(key))
-            {
-                modelState.AddModelError(prefix + "." + key, value);
-            }
-        }
-    }
+    }   
 }
