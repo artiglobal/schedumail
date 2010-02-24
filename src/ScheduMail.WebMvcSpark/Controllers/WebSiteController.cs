@@ -27,7 +27,7 @@ namespace ScheduMail.WebMvc2.Controllers
         public ActionResult List()
         {
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();            
-            IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
+            IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();           
 
             ViewData["webSites"] = unitOfWork.List;
 
