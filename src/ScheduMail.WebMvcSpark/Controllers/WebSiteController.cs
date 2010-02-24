@@ -4,6 +4,7 @@ using ScheduMail.Core.UnitsOfWorkFactory;
 using ScheduMail.Core.UnitsOfWorkRepository;
 using ScheduMail.WebMvcSpark.Extensions;
 using System;
+using System.Collections.Generic;
 
 namespace ScheduMail.WebMvc2.Controllers
 {
@@ -36,16 +37,6 @@ namespace ScheduMail.WebMvc2.Controllers
         }
 
         /// <summary>
-        /// Detailses the specified id.
-        /// </summary>
-        /// <param name="id">The id instance.</param>
-        /// <returns>View instance.</returns>
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        /// <summary>
         /// Creates this instance.
         /// </summary>
         /// <returns>View Instance.</returns>
@@ -54,7 +45,11 @@ namespace ScheduMail.WebMvc2.Controllers
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
             IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
 
-            ViewData["webSites"] = unitOfWork.List;
+            WebSite site = ViewData["WebSite"] as WebSite;
+
+            SelectList list = CopyToSelectList(0, unitOfWork);
+            ViewData["webSites"] = list;
+
             return View();
         }
 
@@ -64,26 +59,21 @@ namespace ScheduMail.WebMvc2.Controllers
         /// <param name="webSite">The web site.</param>
         /// <returns>The navigated to view.</returns>
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create([Bind(Exclude = "Id")] WebSite webSite)
+        [ValidateInput(false)]
+        public ActionResult Create(WebSite webSite)
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-                    IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
-                    ViewData["webSites"] = unitOfWork.List;
-                    unitOfWork.Save(webSite);
+                IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+                IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
 
-                    return RedirectToAction("List");
-                }
-                else
-                {
-                    return View();
-                }
+                unitOfWork.Save(webSite);
+                ViewData["webSites"] = GetWebSiteList();
+                return RedirectToAction("Create");
             }
             catch (RuleException ex)
             {
+                ViewData["webSites"] = GetWebSiteList();
                 ex.CopyToModelState(ModelState);
                 return View();
             }
@@ -97,9 +87,51 @@ namespace ScheduMail.WebMvc2.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Selector(FormCollection form)
         {
-            /// Gets the selected product.
-            int webSiteId = Convert.ToInt32(form["webSites"]);
-            return View();
+            // Gets the selected website..
+            long webSiteId = Convert.ToInt32(form["webSites"]);
+            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+            IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
+            WebSite webSite = unitOfWork.GetById(webSiteId);
+
+            // Set up List of web sites.
+            SelectList list = CopyToSelectList(webSiteId, unitOfWork);
+            ViewData["webSites"] = list;
+            ViewData["DeleteId"] = webSiteId;
+            return View("Create", webSite);
+        }
+
+        /// <summary>
+        /// Finds the first.
+        /// </summary>
+        /// <param name="form">The form.</param>
+        /// <returns>Gets initial view.</returns>
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult FindFirst(FormCollection form)
+        {
+            /// Gets the selected product.              
+            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+            IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
+
+            WebSite webSite = unitOfWork.List[0];
+
+            SelectList list = CopyToSelectList(0, unitOfWork);
+
+            ViewData["DeleteId"] = webSite.Id;
+            ViewData["webSites"] = list;
+            return View("Create", webSite);
+        }
+
+        /// <summary>
+        /// News the web site.
+        /// </summary>
+        /// <param name="form">The form.</param>
+        /// <returns>Redirection to Create</returns>
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult NewWebSite(FormCollection form)
+        {
+
+            return RedirectToAction("Create");
+
         }
 
         /// <summary>
@@ -119,56 +151,58 @@ namespace ScheduMail.WebMvc2.Controllers
         /// <param name="collection">The collection.</param>
         /// <returns>View Instance.</returns>
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction("List");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        /// <summary>
-        /// Edits the specified id.
-        /// </summary>
-        /// <param name="id">The id instance.</param>
-        /// <returns>View Instance.</returns>
-        public ActionResult Edit(int id)
-        {
-            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-            IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
-            return View(unitOfWork.GetById(id));
-        }
-
-        /// <summary>
-        /// Edits the specified web site.
-        /// </summary>
-        /// <param name="webSite">The web site.</param>
-        /// <returns>The view instance.</returns>
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(WebSite webSite)
+        public ActionResult Delete(int? id, FormCollection collection)
         {
             try
             {
                 IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
                 IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
-
-                if (!ModelState.IsValid)
+                if (id.HasValue)
                 {
-                    return View();
+                    WebSite webSite = unitOfWork.GetById(id.Value);
+                    unitOfWork.Delete(webSite);
                 }
 
-                unitOfWork.Save(webSite);
-
-                return RedirectToAction("List");
+                return RedirectToAction("Create");
             }
             catch
             {
                 return View();
             }
         }
+
+        #region Private Helpers
+
+        /// <summary>
+        /// Gets the web site list.
+        /// </summary>
+        /// <returns>List of Selected Items.</returns>
+        private SelectList GetWebSiteList()
+        {
+            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+            IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
+
+            SelectList list = CopyToSelectList(0, unitOfWork);
+            return list;
+        }
+
+        /// <summary>
+        /// Copies to select list.
+        /// </summary>
+        /// <param name="webSiteId">The web site id.</param>
+        /// <param name="unitOfWork">The unit of work.</param>
+        /// <returns></returns>
+        private SelectList CopyToSelectList(long webSiteId, IWebSiteUnitOfWork unitOfWork)
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            foreach (ScheduMail.Core.Domain.WebSite item in unitOfWork.List)
+            {
+                items.Add(new SelectListItem { Text = item.SiteName, Value = item.Id.ToString() });
+            }
+            SelectList list = new SelectList(items, "Value", "Text", webSiteId);
+            return list;
+        }
+
+        #endregion
     }
 }
