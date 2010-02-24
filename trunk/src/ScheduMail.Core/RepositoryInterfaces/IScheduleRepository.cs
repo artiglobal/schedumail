@@ -14,8 +14,8 @@ namespace ScheduMail.Core.RepositoryInterfaces
         /// <summary>
         /// Adds the Schedule instance into the dataabse
         /// </summary>
-        /// <param name="schedule"></param>
-        /// <returns></returns>
+        /// <param name="schedule">Schedule instance parameter.</param>
+        /// <returns>True value indicating whether or not schedule added</returns>
         bool Add(Schedule schedule);
 
         /// <summary>

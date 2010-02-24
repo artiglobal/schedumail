@@ -1,0 +1,42 @@
+<content name="title">
+    Index
+</content>
+
+<viewdata webSites="System.Collections.Generic.List[[ScheduMail.Core.Domain.WebSite]]"/> 
+
+<h2>
+    Web Sites</h2>
+    
+    <table>
+    <tr>
+        <th>
+        </th>
+        <th>
+            Web Site Name
+        </th>
+        <th>
+            Template
+        </th>
+    </tr>
+    
+  <for each="var webSite in webSites">
+    <tr>
+        <td>			
+			!{Html.ActionLink("Edit", "Edit", new { id = webSite.Id })}			
+                |
+            !{Html.ActionLink("Delete", "Delete", new { id = webSite.Id })}
+        </td>
+        <td>
+            ${webSite.SiteName}
+        </td>
+        <td>
+            ${webSite.Template}            
+        </td>
+    </tr>
+  </for>
+</table>
+<p>
+    !{Html.ActionLink("Create New", "Create")}
+</p>
+
+    

@@ -5,6 +5,7 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace ScheduMail.Core.Domain
 {
@@ -29,6 +30,7 @@ namespace ScheduMail.Core.Domain
         /// </summary>
         /// <value>The name of the site.</value>
         [StringLength(50), Required(ErrorMessage = "Site Name is required")]
+        [DisplayName("Site Name")]
         public string SiteName
         {
             get
