@@ -24,8 +24,8 @@
             <label for="Template">Template:</label> 
         </div>
         <div class="editor-field">
-           !{Html.TextBox("Template")}
-            !{Html.ValidationMessage("Template")} 
+		   !{Html.TextArea("Template", new { @rows = "20", @cols = "73" })}           
+           !{Html.ValidationMessage("Template")} 
         </div>
        
         <p>
