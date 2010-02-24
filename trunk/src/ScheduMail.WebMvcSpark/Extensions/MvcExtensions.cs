@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Collections.Generic;
 
 namespace ScheduMail.WebMvcSpark.Extensions
 {
@@ -6,7 +7,7 @@ namespace ScheduMail.WebMvcSpark.Extensions
     /// General Extensions helpers
     /// </summary>
     public static class MyExtensions
-    {
+    {       
         /// <summary>
         /// Copies the state of to model.
         /// </summary>

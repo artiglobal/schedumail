@@ -44,7 +44,8 @@ namespace ScheduMail.EFDal.Dal
                 return ObjectExtension
                           .CloneList<ScheduMail.DBModel.WebSite,
                                 ScheduMail.Core.Domain.WebSite>
-                                     (this.context.WebSites.ToList<ScheduMail.DBModel.WebSite>())                                     
+                                     (this.context.WebSites.ToList<ScheduMail.DBModel.WebSite>())
+                                     .OrderBy(q => q.SiteName)
                           .AsQueryable();
             }
         }

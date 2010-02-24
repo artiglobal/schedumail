@@ -1,37 +1,34 @@
 ﻿<content name="title">
-    Create
+   Web Sites
 </content>
 
 <viewdata model="ScheduMail.Core.Domain.WebSite" />
     <h2>
-        Create</h2>
+        Web Sites</h2>
         
         <div style="text-align:right">				
-			<% using (Html.BeginForm(new { Action = "Selector" } ))
-         { %>                          
-				!{ Html.DropDownList("webSites", 
-					new SelectList((IEnumerable<ScheduMail.Core.Domain.WebSite>)ViewData["webSites"],
-									"Id", 
-									"SiteName"),
-									new { @class = "dropdownlistdisplay" })}
+			<% using (Html.BeginForm("Selector", "WebSite"))
+         { %>  
+				!{Html.DropDownList("webSites", null, new { @class = "dropdownlistdisplay" })}, 										                       
 				<input type="submit" value="Search" />
 			<% } %>
 		</div>
         
-# using (Html.BeginForm()) 
+# using (Html.BeginForm("Create", "WebSite")) 
 # {
    !{Html.ValidationSummary("Creation of Web Site was unsuccessful. Please correct the errors and try again.")}
     <fieldset>
-		
-				    
+						    
         <legend>Fields</legend>
+        
+        !{Html.Hidden("Id")}       
                         
         <div class="editor-label">              
           <label for="SiteName">SiteName:</label>                                          
         </div>
                  
          <div class="editor-field">
-			!{Html.TextBox("SiteName")}
+			!{Html.TextBox("SiteName", null, new { style = "width:500px;" })}			
             !{Html.ValidationMessage("SiteName")}           
         </div>
         
@@ -44,12 +41,28 @@
         </div>
        
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Save" />
         </p>
-    </fieldset>
-   
-    <div>
-        <%=Html.ActionLink("Back to List", "List")%>
-    </div>
+    </fieldset>       
 # }
+        
+          <p>
+      <% using (Html.BeginForm("NewWebSite", "WebSite")) %>
+# {
+      <table>
+        <tr>
+          <td>
+            <input type="submit" value="Add New Web Site" />   
+          </td>       
+# }
+       <% using (Html.BeginForm("Delete", "WebSite", new { id = ViewData["DeleteId"] }))
+         { %>
+     <td>
+            <input type="submit" value="Delete" />
+        </td>
+        </tr>
+        </table>
+    <% } %>
+
+         </p>
 
