@@ -1,0 +1,46 @@
+<content name="title">
+   Web Sites
+</content>
+
+<viewdata model="ScheduMail.Core.Domain.LogEvent" />
+
+    <h2>Log Event Detail</h2>
+
+    <fieldset>
+        <legend>Log Event</legend>       
+        
+        <p>
+            Message:
+            <%=Html.Encode(Model.Message)%>
+        </p>
+        
+        <p>
+            SenderUserName:
+            <%=Html.Encode(Model.SenderUserName)%>
+        </p>
+        
+        <p>
+            CreatedBy:
+            <%=Html.Encode(Model.CreatedBy)%>
+        </p>
+        
+        <p>
+            Created:
+            <%=Html.Encode(String.Format("{0:g}", Model.Created))%>
+        </p>
+        
+        <p>
+            ModifiedBy:
+            <%=Html.Encode(Model.ModifiedBy)%>
+        </p>
+        
+        <p>
+            Modified:
+            <%=Html.Encode(String.Format("{0:g}", Model.Modified))%>
+        </p>
+    </fieldset>
+    <p>       
+          <%=Html.ActionLink("Back to web site list", "Index", "WebSiteEMails", null, null)%>    
+    </p>
+
+
