@@ -46,6 +46,7 @@ namespace ScheduMail.UnitsOfWorkTests
             var webSiteMock = new Mock<WebSite>();
             webSiteMock.Object.Id = 1;
             webSiteMock.Object.SiteName = "www.google.com";
+            webSiteMock.Object.Template = "<Test Data>";
 
             webSiteRepositoryMock.Setup(repository => repository.Save(webSiteMock.Object))
                 .Returns(webSiteMock.Object);
@@ -67,6 +68,7 @@ namespace ScheduMail.UnitsOfWorkTests
             var webSiteMock = new Mock<WebSite>();
             webSiteMock.Object.Id = 1;
             webSiteMock.Object.SiteName = "www.google.com";
+            webSiteMock.Object.Template = "<test>";
 
             webSiteRepositoryMock.Setup(repository => repository.Delete(webSiteMock.Object));
 
@@ -86,6 +88,7 @@ namespace ScheduMail.UnitsOfWorkTests
             var webSiteMock = new Mock<WebSite>();
             webSiteMock.Object.Id = 0;
             webSiteMock.Object.SiteName = "www.google.com";
+            webSiteMock.Object.Template = "<test>";
 
             webSiteRepositoryMock.Setup(repository => repository.GetById(It.Is<long>(id => id > 0 && id < 6)))
                     .Returns(webSiteMock.Object);
