@@ -119,7 +119,7 @@
     <None Include="Views\LogEvent\Detail.spark">
     </None>
     <Content Include="Scripts\jquery-ui-1.7.2.custom.min.js" />
-    <Content Include="Views\Schedule\EditMail.aspx" />
+    <None Include="Views\Schedule\EditMail.spark" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />

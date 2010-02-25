@@ -1,10 +1,9 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<ScheduMail.DBModel.Mail>" %>
+<content name="title">
+	Editor
+</content>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	EditMail
-</asp:Content>
+<viewdata model="ScheduMail.Core.Domain.Mail"/> 
 
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>EditMail</h2>
 
@@ -80,5 +79,4 @@
         <%=Html.ActionLink("Back to List", "Index") %>
     </div>
 
-</asp:Content>
 

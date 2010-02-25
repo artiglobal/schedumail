@@ -35,7 +35,8 @@
     
         <tr>                      
             <td>
-                <%=Html.Encode(item.EMailSubject)%>
+				<%=Html.Hidden("EmailId", item.EmailId)%>
+				<%=Html.ActionLink(Html.Encode(item.EMailSubject), "EditMail", "Schedule", new { id = item.LogId }, null)%>                    
             </td>
             <td>
                 <%=Html.Encode(String.Format("{0:g}", item.LastSent))%>
@@ -54,7 +55,7 @@
     </p>
 
     <p>
-		 <%=Html.ActionLink("Add new communication", "Create", "Schedule", null, null)%>             
+		 <%=Html.ActionLink("Add new communication", "EditMail", "Schedule", null, null)%>             
     </p>
     
 #}
