@@ -39,7 +39,7 @@ namespace ScheduMail.UnitsOfWork
 
         ScheduMail.Core.Domain.LogEvent IlogEventUnitOfWork.GetById(long id)
         {
-            throw new System.NotImplementedException();
+            return this.repository.GetById(id);
         }
 
         #endregion

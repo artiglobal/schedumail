@@ -116,7 +116,8 @@
     </None>
     <None Include="Views\WebSite\Create.spark" />
     <None Include="Views\WebSiteEMails\Index.spark" />
-    <Content Include="Views\LogEvent\Detail.aspx" />
+    <None Include="Views\LogEvent\Detail.spark">
+    </None>
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />
@@ -182,7 +183,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1270</DevelopmentServerPort>
+          <DevelopmentServerPort>2263</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

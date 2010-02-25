@@ -3,6 +3,9 @@
 </content>
 
 <viewdata model="System.Collections.Generic.List[[ScheduMail.Core.Domain.WebSiteEMails]]"/> 
+
+  <fieldset>
+        <legend>Web Site Emails</legend>       
    
 # using (Html.BeginForm())
 # { 
@@ -30,10 +33,7 @@
     <% foreach (var item in Model)
          { %>
     
-        <tr>          
-            <td>
-                <%=Html.Encode(item.LogId)%>
-            </td>
+        <tr>                      
             <td>
                 <%=Html.Encode(item.EMailSubject)%>
             </td>
@@ -43,8 +43,8 @@
             <td>
                 <%=Html.Encode(String.Format("{0:g}", item.NextSend))%>
             </td>
-              <td>
-                <%=Html.ActionLink("View Log", "LogDetail", new {  id=item.LogId  })%>            
+              <td>              
+                <%=Html.ActionLink("View Log", "Detail", "LogEvent", new { id = item.LogId }, null)%>            
             </td>
         </tr>
     
@@ -54,9 +54,10 @@
     </p>
 
     <p>
-        <%=Html.ActionLink("Add new communication", "CreateNewCommunication")%>
+		 <%=Html.ActionLink("Add new communication", "Create", "Schedule", null, null)%>             
     </p>
     
 #}
+        </fieldset>
 
 

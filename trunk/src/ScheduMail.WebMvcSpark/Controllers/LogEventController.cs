@@ -20,12 +20,12 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// </summary>
         /// <param name="logEventId">The log event id.</param>
         /// <returns>The view instance.</returns>
-        public ActionResult Detail(int? logEventId)
+        public ActionResult Detail(long? id)
         {
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-            IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
+            IlogEventUnitOfWork unitOfWork = factory.GetLogEventUnitOfWork();
 
-            LogEvent logEvent = new LogEvent();
+            LogEvent logEvent = unitOfWork.GetById(id.Value);
 
             return View(logEvent);
         }
