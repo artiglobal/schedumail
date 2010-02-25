@@ -23,14 +23,20 @@ namespace ScheduMail.Core.UnitsOfWorkRepository
         /// <summary>
         /// Gets the log event unit of work.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Log event instance.</returns>
         IlogEventUnitOfWork GetLogEventUnitOfWork();
 
         /// <summary>
         /// Gets the mail unit of work.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Log event instance.</returns>
         IMailUnitOfWork GetMailUnitOfWork();
+
+        /// <summary>
+        /// Gets the ASP net unit of work.
+        /// </summary>
+        /// <returns>Log event instance.</returns>
+        IAspNetUnitOfWork GetAspNetUnitOfWork();
 
         #endregion
     }

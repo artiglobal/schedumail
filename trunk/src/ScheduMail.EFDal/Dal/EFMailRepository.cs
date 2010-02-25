@@ -8,6 +8,9 @@ using ScheduMail.Utils;
 
 namespace ScheduMail.EFDal.Dal
 {
+    /// <summary>
+    /// EMail repository.
+    /// </summary>
     public class EFMailRepository : IMailRespository
     {
          #region Private Members

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Castle.Windsor;
 using Castle.Windsor.Configuration.Interpreters;
@@ -7,7 +8,6 @@ using NUnit.Framework;
 using ScheduMail.Core.Domain;
 using ScheduMail.Core.RepositoryInterfaces;
 using ScheduMail.UnitsOfWork;
-using System;
 
 namespace ScheduMail.UnitsOfWorkTests
 {

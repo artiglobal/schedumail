@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dal\EFASPNetUserRepository.cs" />
     <Compile Include="Dal\EFLogEventRepository.cs" />
     <Compile Include="Dal\EFMailRepository.cs" />
     <Compile Include="Dal\EFScheduleRepositary.cs" />

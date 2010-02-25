@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using ScheduMail.Core.RepositoryInterfaces;
 using ScheduMail.DBModel;
-using ScheduMail.Core.Domain;
 using ScheduMail.Utils;
 
 namespace ScheduMail.EFDal.Dal
 {
     /// <summary>
     /// Web site repository crud operations for Schedule
-    /// </summary
+    /// </summary>
     public class EFScheduleRepositary : IScheduleRepository
     {
         #region Private Members
