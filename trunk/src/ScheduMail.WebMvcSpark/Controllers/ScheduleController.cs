@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using ScheduMail.Core.UnitsOfWorkRepository;
+using ScheduMail.Core.UnitsOfWorkFactory;
+using ScheduMail.Core.Domain;
 
 namespace ScheduMail.WebMvcSpark.Controllers
 {
@@ -86,5 +89,30 @@ namespace ScheduMail.WebMvcSpark.Controllers
                 return View();
             }
         }
+
+        /// <summary>
+        /// Creates this instance.
+        /// </summary>
+        /// <returns>The View Instance.</returns>
+        public ActionResult EditMail(long? id)
+        {
+            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+            IMailUnitOfWork unitOfWork = factory.GetMailUnitOfWork();
+
+            Mail mail = unitOfWork.GetById(id.Value);
+
+            return View(mail);            
+        }
+
+        /// <summary>
+        /// Creates this instance.
+        /// </summary>
+        /// <returns>The View Instance.</returns>
+       [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EditMail(long? id, Mail mail)
+        {
+            return View();
+        }
+
     }
 }

@@ -28,6 +28,15 @@ namespace ScheduMail.UnitsOfWork
             return new LogEventUnitOfWork(new EFLogEventRepository());
         }
 
-        #endregion
+        /// <summary>
+        /// Gets the mail unit of work.
+        /// </summary>
+        /// <returns></returns>
+        public ScheduMail.Core.UnitsOfWorkFactory.IMailUnitOfWork GetMailUnitOfWork()
+        {
+            return new MailUnitOfWork(new EFMailRepository());
+        }
+      
+        #endregion              
     }
 }

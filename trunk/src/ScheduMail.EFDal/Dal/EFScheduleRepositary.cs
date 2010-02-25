@@ -106,29 +106,7 @@ namespace ScheduMail.EFDal.Dal
                                      (this.context.Schedules.ToList<ScheduMail.DBModel.Schedule>()).AsQueryable();
             }
         }
-
-        /// <summary>
-        /// returns all the instance from database of schedules
-        /// </summary>
-        /// <returns>return as a list</returns>
-        public List<ScheduMail.DBModel.Schedule> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
-
-        #region IScheduleRepository Members
-
-        /// <summary>
-        /// returns all the instance from database of schedules
-        /// </summary>
-        /// <returns>return as a list</returns>
-        List<ScheduMail.Core.Domain.Schedule> IScheduleRepository.GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
+     
+        #endregion      
     }
 }

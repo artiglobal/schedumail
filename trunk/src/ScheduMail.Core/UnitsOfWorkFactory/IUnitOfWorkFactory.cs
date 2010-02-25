@@ -26,6 +26,12 @@ namespace ScheduMail.Core.UnitsOfWorkRepository
         /// <returns></returns>
         IlogEventUnitOfWork GetLogEventUnitOfWork();
 
+        /// <summary>
+        /// Gets the mail unit of work.
+        /// </summary>
+        /// <returns></returns>
+        IMailUnitOfWork GetMailUnitOfWork();
+
         #endregion
     }
 }
