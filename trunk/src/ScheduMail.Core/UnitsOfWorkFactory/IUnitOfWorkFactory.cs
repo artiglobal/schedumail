@@ -19,6 +19,11 @@ namespace ScheduMail.Core.UnitsOfWorkRepository
         /// </summary>
         /// <returns>Interface for Unit of Work.</returns>
         IWebSiteUnitOfWork GetWebSiteUnitOfWork();
+
+        /// <summary>
+        /// Gets the log event unit of work.
+        /// </summary>
+        /// <returns></returns>
         IlogEventUnitOfWork GetLogEventUnitOfWork();
 
         #endregion
