@@ -14,6 +14,6 @@ namespace ScheduMail.Core.RepositoryInterfaces
         /// </summary>
         /// <param name="webSiteId">The web site id.</param>
         /// <returns>List of User EMails</returns>
-        IQueryable<WebSiteEMails> GetWebSiteEMails(int webSiteId);
+        IQueryable<WebSiteEMails> GetWebSiteEMails(long webSiteId);
     }
 }

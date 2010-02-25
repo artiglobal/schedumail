@@ -46,8 +46,8 @@
     </fieldset>       
 # }
         
-          <p>
-      <% using (Html.BeginForm("NewWebSite", "WebSite")) %>
+         <p>
+# using (Html.BeginForm("NewWebSite", "WebSite")) 
 # {
       <table>
         <tr>
@@ -55,14 +55,15 @@
             <input type="submit" value="Add New Web Site" />   
           </td>       
 # }
-       <% using (Html.BeginForm("Delete", "WebSite", new { id = ViewData["DeleteId"] }))
-         { %>
+        
+# using (Html.BeginForm("Delete", "WebSite", new { id = ViewData["DeleteId"] }))
+# { 
      <td>
             <input type="submit" value="Delete" />
         </td>
         </tr>
         </table>
-    <% } %>
+# }
 
          </p>
 

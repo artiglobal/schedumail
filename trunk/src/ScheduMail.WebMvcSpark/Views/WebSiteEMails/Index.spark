@@ -1,0 +1,62 @@
+<content name="title">
+	Communications
+</content>
+
+<viewdata model="System.Collections.Generic.List[[ScheduMail.Core.Domain.WebSiteEMails]]"/> 
+   
+# using (Html.BeginForm())
+# { 
+    <p>
+		<%=Html.DropDownList("WebSiteId", (SelectList)ViewData["webSites"], new { onChange = "this.form.submit()", @class = "dropdownlistdisplay" })%>
+	</p>
+
+	<p>
+    <table style="width:100%">
+        <tr>
+            <th></th>            
+            <th>
+                Title
+            </th>
+            <th>
+                Last sent on
+            </th>
+            <th>
+                Send next on
+            </th>
+            <th>              
+            </th>
+        </tr>
+
+    <% foreach (var item in Model)
+         { %>
+    
+        <tr>          
+            <td>
+                <%=Html.Encode(item.LogId)%>
+            </td>
+            <td>
+                <%=Html.Encode(item.EMailSubject)%>
+            </td>
+            <td>
+                <%=Html.Encode(String.Format("{0:g}", item.LastSent))%>
+            </td>
+            <td>
+                <%=Html.Encode(String.Format("{0:g}", item.NextSend))%>
+            </td>
+              <td>
+                <%=Html.ActionLink("View Log", "LogDetail", new {  id=item.LogId  })%>            
+            </td>
+        </tr>
+    
+    <% } %>
+
+    </table>
+    </p>
+
+    <p>
+        <%=Html.ActionLink("Add new communication", "CreateNewCommunication")%>
+    </p>
+    
+#}
+
+

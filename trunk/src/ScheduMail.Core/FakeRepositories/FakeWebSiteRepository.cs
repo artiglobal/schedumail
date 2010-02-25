@@ -60,18 +60,14 @@ namespace ScheduMail.Core.FakeRepositories
         public void Delete(ScheduMail.Core.Domain.WebSite entity)
         {
             throw new NotImplementedException();
-        }
-
-        #endregion
-
-        #region IWebSiteRepository Members
+        }      
 
         /// <summary>
         /// Gets the user E mails.
         /// </summary>
         /// <param name="webSiteId">The web site id.</param>
         /// <returns>List of User EMails.</returns>
-        public IQueryable<ScheduMail.Core.Domain.WebSiteEMails> GetWebSiteEMails(int webSiteId)
+        public IQueryable<ScheduMail.Core.Domain.WebSiteEMails> GetWebSiteEMails(long webSiteId)
         {
             throw new NotImplementedException();
         }
