@@ -9,7 +9,7 @@ namespace ScheduMail.Core.RepositoryInterfaces
     /// <summary>
     /// Provides a standard interface for Schedul operations
     /// </summary>
-    public interface IScheduleRepository : ICrudRepository<Schedule, long>
+    public interface IMailRespository : ICrudRepository<Mail, long>
     {        
     }
 }
