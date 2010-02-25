@@ -3,44 +3,80 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ScheduMail.Core.RepositoryInterfaces;
+using ScheduMail.DBModel;
+using ScheduMail.Core.Domain;
+using ScheduMail.Utils;
 
 namespace ScheduMail.EFDal.Dal
 {
     /// <summary>
     /// Web site repository crud operations for Schedule
-    /// </summary>
+    /// </summary
     public class EFScheduleRepositary : IScheduleRepository
     {
+        #region Private Members
+
+        /// <summary>
+        /// ADO.net entity context handle
+        /// </summary>
+        private ScheduMailDBEntities context;
+
+        #endregion
+
+        #region Ctor
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EFWebSiteRepository"/> class.
+        /// </summary>
+        public EFScheduleRepositary()
+        {
+            this.context = new ScheduMailDBEntities();
+        }
+
+        #endregion
+
         #region IScheduleRepository Members
 
         /// <summary>
-        /// Adds the Schedule instance into the dataabse
+        /// Saves the specified schedule.
         /// </summary>
-        /// <param name="schedule">Schedule instance.</param>
-        /// <returns>true or false value.</returns>
-        public bool Add(ScheduMail.DBModel.Schedule schedule)
+        /// <param name="webSite">The schedule.</param>
+        /// <returns>Changed schedule.</returns>
+        public ScheduMail.Core.Domain.Schedule Save(ScheduMail.Core.Domain.Schedule schedule)
         {
-            throw new NotImplementedException();
-        }
+            ScheduMail.DBModel.Schedule entity =
+                ObjectExtension.CloneProperties<ScheduMail.Core.Domain.Schedule, ScheduMail.DBModel.Schedule>(schedule);
+
+            if (schedule.IsNew())
+            {
+                this.context.AddToSchedules(entity);
+                this.context.SaveChanges();
+            }
+            else
+            {
+                var originalWebSite = (from w in this.context.Schedules
+                                       where w.Id == schedule.Id
+                                       select w).First();
+
+                this.context.ApplyPropertyChanges(originalWebSite.EntityKey.EntitySetName, entity);
+                this.context.SaveChanges();
+            }
+
+            return ObjectExtension.CloneProperties<ScheduMail.DBModel.Schedule, ScheduMail.Core.Domain.Schedule>(entity);
+        }   
 
         /// <summary>
-        /// Update the Schedule instance into the dataabse
+        /// Deletes the specified web site.
         /// </summary>
-        /// <param name="schedule">contains all the values of schedulee</param>
-        /// <returns>true/false as a sucess message</returns>
-        public bool Update(ScheduMail.DBModel.Schedule schedule)
+        /// <param name="schedules">The schedule.</param>
+        public void Delete(ScheduMail.Core.Domain.Schedule schedules)
         {
-            throw new NotImplementedException();
-        }
+            var entity = (from w in this.context.Schedules
+                          where w.Id == schedules.Id
+                          select w).First();
 
-        /// <summary>
-        /// Delete the Schedule instance from the dataabse
-        /// </summary>
-        /// <param name="id">id of the schedule</param>
-        /// <returns>true/false as a sucess message</returns>
-        public bool Delete(int id)
-        {
-            throw new NotImplementedException();
+            this.context.DeleteObject(entity);
+            this.context.SaveChanges();
         }
 
         /// <summary>
@@ -48,9 +84,27 @@ namespace ScheduMail.EFDal.Dal
         /// </summary>
         /// <param name="id">id of the schedule to return</param>
         /// <returns>object of Schedule</returns>
-        public ScheduMail.DBModel.Schedule Get(int id)
+        public ScheduMail.Core.Domain.Schedule GetById(long id)
         {
-            throw new NotImplementedException();
+            var entity = (from w in this.context.Schedules
+                          where w.Id == id
+                          select w).First();
+            return ObjectExtension.CloneProperties<ScheduMail.DBModel.Schedule, ScheduMail.Core.Domain.Schedule>(entity);
+        }
+
+        /// <summary>
+        /// Gets the list.
+        /// </summary>
+        /// <value>The list of Schedule.</value>
+        public IQueryable<ScheduMail.Core.Domain.Schedule> List
+        {
+            get
+            {
+                return ObjectExtension
+                          .CloneList<ScheduMail.DBModel.Schedule,
+                                ScheduMail.Core.Domain.Schedule>
+                                     (this.context.Schedules.ToList<ScheduMail.DBModel.Schedule>()).AsQueryable();
+            }
         }
 
         /// <summary>
@@ -58,6 +112,19 @@ namespace ScheduMail.EFDal.Dal
         /// </summary>
         /// <returns>return as a list</returns>
         public List<ScheduMail.DBModel.Schedule> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region IScheduleRepository Members
+
+        /// <summary>
+        /// returns all the instance from database of schedules
+        /// </summary>
+        /// <returns>return as a list</returns>
+        List<ScheduMail.Core.Domain.Schedule> IScheduleRepository.GetAll()
         {
             throw new NotImplementedException();
         }

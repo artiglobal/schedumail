@@ -1,22 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="X:\inetpub\Schedumail\src\ScheduMail.UnitsOfWorkTests\bin\Debug\ScheduMail.UnitsOfWorkTests.dll" total="6" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2010-02-23" time="19:48:39">
-  <environment nunit-version="2.5.2.9222" clr-version="2.0.50727.4927" os-version="Microsoft Windows NT 6.1.7600.0" platform="Win32NT" cwd="C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE" machine-name="BALI" user="000088" user-domain="BALI" />
+<test-results name="X:\inetpub\Schedumail\src\ScheduMail.UnitsOfWorkTests\bin\Debug\ScheduMail.UnitsOfWorkTests.dll" total="1" errors="1" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2010-02-25" time="12:47:10">
+  <environment nunit-version="2.5.3.9345" clr-version="2.0.50727.4927" os-version="Microsoft Windows NT 6.1.7600.0" platform="Win32NT" cwd="X:\inetpub\Schedumail\src\ScheduMail.UnitsOfWorkTests\bin\Debug" machine-name="R2D2" user="sqayyum" user-domain="THEFORCE" />
   <culture-info current-culture="en-GB" current-uiculture="en-US" />
-  <test-suite name="X:\inetpub\Schedumail\src\ScheduMail.UnitsOfWorkTests\bin\Debug\ScheduMail.UnitsOfWorkTests.dll" executed="True" success="True" time="6.718" asserts="0">
+  <test-suite name="X:\inetpub\Schedumail\src\ScheduMail.UnitsOfWorkTests\bin\Debug\ScheduMail.UnitsOfWorkTests.dll" executed="True" success="False" time="1.150" asserts="0">
     <results>
-      <test-suite name="ScheduMail" executed="True" success="True" time="6.714" asserts="0">
+      <test-suite name="ScheduMail" executed="True" success="False" time="1.144" asserts="0">
         <results>
-          <test-suite name="UnitsOfWorkTests" executed="True" success="True" time="6.714" asserts="0">
+          <test-suite name="UnitsOfWorkTests" executed="True" success="False" time="1.144" asserts="0">
             <results>
-              <test-suite name="WebSiteUnitOfWorkTest" executed="True" success="True" time="6.713" asserts="0">
+              <test-suite name="SchedulesUnitOfWorkTest" executed="True" success="False" time="0.983" asserts="0">
                 <results>
-                  <test-case name="ScheduMail.UnitsOfWorkTests.WebSiteUnitOfWorkTest.WebSite_ContainerTest" executed="True" success="True" time="2.476" asserts="2" />
-                  <test-case name="ScheduMail.UnitsOfWorkTests.WebSiteUnitOfWorkTest.WebSite_CreateTest" executed="True" success="True" time="4.052" asserts="1" />
-                  <test-case name="ScheduMail.UnitsOfWorkTests.WebSiteUnitOfWorkTest.WebSite_DeleteTest" executed="True" success="True" time="0.022" asserts="0" />
-                  <test-case name="ScheduMail.UnitsOfWorkTests.WebSiteUnitOfWorkTest.WebSite_GetById" executed="True" success="True" time="0.109" asserts="0" />
-                  <test-case name="ScheduMail.UnitsOfWorkTests.WebSiteUnitOfWorkTest.WebSite_List" executed="True" success="True" time="0.021" asserts="1" />
-                  <test-case name="ScheduMail.UnitsOfWorkTests.WebSiteUnitOfWorkTest.WebSiteEMails_List" executed="True" success="True" time="0.006" asserts="1" />
+                  <test-case name="ScheduMail.UnitsOfWorkTests.SchedulesUnitOfWorkTest.Schedule_ContainerTest" executed="True" success="False" time="0.970" asserts="0">
+                    <failure>
+                      <message><![CDATA[Castle.MicroKernel.ComponentNotFoundException : No component for supporting the service ScheduMail.Core.RepositoryInterfaces.IScheduleRepository was found]]></message>
+                      <stack-trace><![CDATA[at Castle.MicroKernel.DefaultKernel.get_Item(Type service)
+at Castle.Windsor.WindsorContainer.Resolve(Type service)
+at Castle.Windsor.WindsorContainer.Resolve[T]()
+at ScheduMail.UnitsOfWorkTests.SchedulesUnitOfWorkTest.Schedule_ContainerTest() in X:\inetpub\Schedumail\src\ScheduMail.UnitsOfWorkTests\SchedulesUnitOfWorkTest.cs:line 31
+]]></stack-trace>
+                    </failure>
+                  </test-case>
                 </results>
               </test-suite>
             </results>

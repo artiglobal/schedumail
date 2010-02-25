@@ -89,6 +89,7 @@
     <Compile Include="RuleException.cs" />
     <Compile Include="ServiceLocator.cs" />
     <Compile Include="UnitsOfWorkFactory\ILogEventUnitOfWork.cs" />
+    <Compile Include="UnitsOfWorkFactory\IScheduleUnitOfWork.cs" />
     <Compile Include="UnitsOfWorkFactory\IUnitOfWorkFactory.cs" />
     <Compile Include="UnitsOfWorkFactory\IWebSiteUnitOfWork.cs" />
   </ItemGroup>

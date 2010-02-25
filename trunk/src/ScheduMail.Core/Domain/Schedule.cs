@@ -26,22 +26,22 @@ namespace ScheduMail.Core.Domain
         /// <summary>
         /// Start of Schedule.
         /// </summary>
-        private DateTime startDateTime;
+        private DateTime? startDateTime;
 
         /// <summary>
         /// Expiry of Schedule.
         /// </summary>
-        private DateTime endDateTime;
+        private DateTime? endDateTime;
 
         /// <summary>
         /// Days of Week to run.
         /// </summary>
-        private int daysOfWeekToRun;
+        private string daysOfWeekToRun;
 
         /// <summary>
         /// Flag to indicate whether or not should be ran daily, weekly or monthly.
         /// </summary>
-        private int dailyWeeklyOrMonthly;     
+        private string dailyWeeklyOrMonthly;     
 
         /// <summary>
         /// Gets or sets the mail id.
@@ -64,7 +64,7 @@ namespace ScheduMail.Core.Domain
         /// Gets or sets the daily weekly or monthly.
         /// </summary>
         /// <value>The daily weekly or monthly.</value>
-        public int DailyWeeklyOrMonthly
+        public string DailyWeeklyOrMonthly
         {
             get 
             { 
@@ -98,7 +98,7 @@ namespace ScheduMail.Core.Domain
         /// Gets or sets the start date time.
         /// </summary>
         /// <value>The start date time.</value>
-        public DateTime StartDateTime
+        public DateTime? StartDateTime
         {
             get
             {
@@ -115,7 +115,7 @@ namespace ScheduMail.Core.Domain
         /// Gets or sets the end date time.
         /// </summary>
         /// <value>The end date time.</value>
-        public DateTime EndDateTime
+        public DateTime? EndDateTime
         {
             get
             {
@@ -132,7 +132,7 @@ namespace ScheduMail.Core.Domain
         /// Gets or sets the days of week to run.
         /// </summary>
         /// <value>The days of week to run.</value>
-        public int DaysOfWeekToRun
+        public string DaysOfWeekToRun
         {
             get
             {
