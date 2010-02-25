@@ -14,27 +14,27 @@ namespace ScheduMail.Core.UnitsOfWorkFactory
         /// <summary>
         /// Gets the list.
         /// </summary>
-        /// <value>The Web site list.</value>
+        /// <value>The schedule list.</value>
         List<Schedule> List { get; }
 
         /// <summary>
-        /// Saves the specified web site.
+        /// Saves the specified schedule.
         /// </summary>
-        /// <param name="webSite">The web site.</param>
-        /// <returns>Changed Web site instance.</returns>
+        /// <param name="schedule">The schedule.</param>
+        /// <returns>Schedule instance.</returns>
         ScheduMail.Core.Domain.Schedule Save(Schedule schedule);
 
         /// <summary>
         /// Gets the by id.
         /// </summary>
-        /// <param name="id">The Web site id.</param>
-        /// <returns>Web Site instance.</returns>
+        /// <param name="id">The identification.</param>
+        /// <returns>Schedule instance.</returns>
         ScheduMail.Core.Domain.Schedule GetById(long id);
 
         /// <summary>
-        /// Deletes the specified web site.
+        /// Deletes the specified schedule.
         /// </summary>
-        /// <param name="webSite">The web site.</param>
+        /// <param name="schedule">The schedule.</param>
         void Delete(Schedule schedule);
     }
 }

@@ -14,21 +14,21 @@ namespace ScheduMail.Core.UnitsOfWorkFactory
         /// <summary>
         /// Gets the list.
         /// </summary>
-        /// <value>The list.</value>
+        /// <value>The list of mails.</value>
         List<Mail> List { get; }      
 
         /// <summary>
         /// Saves the specified web site.
         /// </summary>
         /// <param name="webSite">The web site.</param>
-        /// <returns></returns>
+        /// <returns>Mail instance.</returns>
         ScheduMail.Core.Domain.Mail Save(Mail webSite);
 
         /// <summary>
         /// Gets the by id.
         /// </summary>
-        /// <param name="id">The id.</param>
-        /// <returns></returns>
+        /// <param name="id">The identification of mail.</param>
+        /// <returns>>Mail instance</returns>
         ScheduMail.Core.Domain.Mail GetById(long id);
 
         /// <summary>

@@ -31,12 +31,21 @@ namespace ScheduMail.UnitsOfWork
         /// <summary>
         /// Gets the mail unit of work.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of mails.</returns>
         public ScheduMail.Core.UnitsOfWorkFactory.IMailUnitOfWork GetMailUnitOfWork()
         {
             return new MailUnitOfWork(new EFMailRepository());
         }
-      
-        #endregion              
+
+        /// <summary>
+        /// Gets the ASP net unit of work.
+        /// </summary>
+        /// <returns>List of AspNet Users.</returns>
+        public ScheduMail.Core.UnitsOfWorkFactory.IAspNetUnitOfWork GetAspNetUnitOfWork()
+        {
+            return new AspNetUserOfWork(new EFAspNetUsersRepository());
+        }
+
+        #endregion
     }
 }
