@@ -52,7 +52,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
         public ActionResult Create(FormCollection collection)
         {
             try
-            {              
+            {
                 return RedirectToAction("Index");
             }
             catch
@@ -81,7 +81,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
-            {               
+            {
                 return RedirectToAction("Index");
             }
             catch
@@ -99,20 +99,19 @@ namespace ScheduMail.WebMvcSpark.Controllers
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
             IMailUnitOfWork unitOfWork = factory.GetMailUnitOfWork();
 
-            Mail mail = unitOfWork.GetById(id.Value);
+            Mail mail = (id.HasValue) ? unitOfWork.GetById(id.Value) : new Mail();
 
-            return View(mail);            
+            return View(mail);
         }
 
         /// <summary>
         /// Creates this instance.
         /// </summary>
         /// <returns>The View Instance.</returns>
-       [AcceptVerbs(HttpVerbs.Post)]
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult EditMail(long? id, Mail mail)
         {
             return View();
         }
-
     }
 }
