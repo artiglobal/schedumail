@@ -23,7 +23,8 @@
                 <ul id="menu">              
                     <li>!{Html.ActionLink("Home", "Index", "Home")}</li>
                     <li>!{Html.ActionLink("Web Sites", "FindFirst", "WebSite")}</li>                   
-                    <li>!{Html.ActionLink("Communications", "Index", "Schedule")}</li>
+                    <li>!{Html.ActionLink("Communications", "Index", "WebSiteEMails")}</li>
+                     <li>!{Html.ActionLink("Schedule", "Index", "Schedule")}</li>
                     <li>!{Html.ActionLink("About", "About", "Home")}</li>                  
                 </ul>            
             </div>

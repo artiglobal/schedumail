@@ -25,8 +25,8 @@ namespace ScheduMail.WebMvc2.Controllers
         /// <returns>List View.</returns>
         public ActionResult List()
         {
-            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();            
-            IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();            
+            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+            IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();            
 
             return View(unitOfWork.List);
         }
@@ -61,7 +61,7 @@ namespace ScheduMail.WebMvc2.Controllers
             try
             {
                 IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-                IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
+                IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
                 unitOfWork.Save(webSite);
 
                 return RedirectToAction("List");
@@ -109,7 +109,7 @@ namespace ScheduMail.WebMvc2.Controllers
         public ActionResult Edit(int id)
         {
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-            IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
+            IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
             return View(unitOfWork.GetById(id));
         }
 
@@ -124,7 +124,7 @@ namespace ScheduMail.WebMvc2.Controllers
             try
             {
                 IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-                IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
+                IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
 
                 if (!ModelState.IsValid)
                 {

@@ -52,7 +52,7 @@ namespace NUnit.Samples.Money
         {
             WebSite webSite = new WebSite
             {
-                Id = 12,
+                Id = 3,
                 SiteName = "wwww.google.com",
                 Template = "<Hello World>",
                 Created = DateTime.Now,
@@ -77,8 +77,8 @@ namespace NUnit.Samples.Money
         [Test]
         public void EFWEBRepository_GetTest()
         {           
-            WebSite newSite = this.repository.GetById(10);
-            Assert.AreEqual(10, newSite.Id);
+            WebSite newSite = this.repository.GetById(2);
+            Assert.AreEqual(2, newSite.Id);
         }
 
         /// <summary>

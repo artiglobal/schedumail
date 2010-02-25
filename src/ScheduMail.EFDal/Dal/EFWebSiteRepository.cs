@@ -110,7 +110,7 @@ namespace ScheduMail.EFDal.Dal
         /// </summary>
         /// <param name="webSiteId">The web site id.</param>
         /// <returns>List of User EMails</returns>
-        public IQueryable<ScheduMail.Core.Domain.WebSiteEMails> GetWebSiteEMails(int webSiteId)
+        public IQueryable<ScheduMail.Core.Domain.WebSiteEMails> GetWebSiteEMails(long webSiteId)
         {
             var entities = from webSiteEmail in this.context.WebSites.Include("EMails")
                             join email in this.context.Mails on

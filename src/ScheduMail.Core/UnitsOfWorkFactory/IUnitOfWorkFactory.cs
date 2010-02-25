@@ -12,13 +12,14 @@ namespace ScheduMail.Core.UnitsOfWorkRepository
     /// </summary>
     public interface IUnitOfWorkFactory
     {
-        #region WebSite Crud interfaces
+        #region IUnitOfWorkFactory Crud interfaces
 
         /// <summary>
         /// Gets the unit of work.
         /// </summary>
         /// <returns>Interface for Unit of Work.</returns>
-        IWebSiteUnitOfWork GetUnitOfWork();       
+        IWebSiteUnitOfWork GetWebSiteUnitOfWork();
+        IlogEventUnitOfWork GetLogEventUnitOfWork();
 
         #endregion
     }

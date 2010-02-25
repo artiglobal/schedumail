@@ -29,7 +29,7 @@ namespace ScheduMail.WebMvc2.Controllers
         public ActionResult List()
         {
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-            IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
+            IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
 
             ViewData["webSites"] = unitOfWork.List;
 
@@ -43,7 +43,7 @@ namespace ScheduMail.WebMvc2.Controllers
         public ActionResult Create()
         {
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-            IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
+            IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
 
             WebSite site = ViewData["WebSite"] as WebSite;
 
@@ -65,7 +65,7 @@ namespace ScheduMail.WebMvc2.Controllers
             try
             {
                 IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-                IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
+                IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
 
                 unitOfWork.Save(webSite);
                 ViewData["webSites"] = GetWebSiteList();
@@ -90,7 +90,7 @@ namespace ScheduMail.WebMvc2.Controllers
             // Gets the selected website..
             long webSiteId = Convert.ToInt32(form["webSites"]);
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-            IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
+            IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
             WebSite webSite = unitOfWork.GetById(webSiteId);
 
             // Set up List of web sites.
@@ -110,7 +110,7 @@ namespace ScheduMail.WebMvc2.Controllers
         {
             /// Gets the selected product.              
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-            IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
+            IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
 
             WebSite webSite = unitOfWork.List[0];
 
@@ -156,7 +156,7 @@ namespace ScheduMail.WebMvc2.Controllers
             try
             {
                 IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-                IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
+                IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
                 if (id.HasValue)
                 {
                     WebSite webSite = unitOfWork.GetById(id.Value);
@@ -180,7 +180,7 @@ namespace ScheduMail.WebMvc2.Controllers
         private SelectList GetWebSiteList()
         {
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-            IWebSiteUnitOfWork unitOfWork = factory.GetUnitOfWork();
+            IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
 
             SelectList list = CopyToSelectList(0, unitOfWork);
             return list;

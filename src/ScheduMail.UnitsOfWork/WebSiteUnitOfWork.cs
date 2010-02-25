@@ -54,7 +54,7 @@ namespace ScheduMail.UnitsOfWork
         /// </summary>
         /// <param name="webSiteId">The web site id.</param>
         /// <returns>List Of Web Site EMails</returns>
-        public IList<ScheduMail.Core.Domain.WebSiteEMails> GetWebSiteEMails(int webSiteId)
+        public IList<ScheduMail.Core.Domain.WebSiteEMails> GetWebSiteEMails(long webSiteId)
         {
             return this.repository.GetWebSiteEMails(webSiteId).ToList();
         }

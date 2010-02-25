@@ -22,7 +22,7 @@ namespace ScheduMail.Core.UnitsOfWorkFactory
         /// </summary>
         /// <param name="webSiteId">The web site id.</param>
         /// <returns>List of Web Site EMails.</returns>
-        IList<ScheduMail.Core.Domain.WebSiteEMails> GetWebSiteEMails(int webSiteId);
+        IList<ScheduMail.Core.Domain.WebSiteEMails> GetWebSiteEMails(long webSiteId);
 
         /// <summary>
         /// Saves the specified web site.
