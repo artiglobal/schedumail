@@ -24,7 +24,8 @@
             
                 <ul id="menu">              
                     <li>!{Html.ActionLink("Home", "Index", "Home")}</li>
-                    <li>!{Html.ActionLink("Web Sites", "FindFirst", "WebSite")}</li>                   
+                    <li>!{Html.ActionLink("Web Sites", "FindFirst", "WebSite")}</li>  
+                    <li>!{Html.ActionLink("Users", "Index", "User")}</li>                   
                     <li>!{Html.ActionLink("Communications", "Index", "WebSiteEMails")}</li>                    
                     <li>!{Html.ActionLink("About", "About", "Home")}</li>                  
                 </ul>            

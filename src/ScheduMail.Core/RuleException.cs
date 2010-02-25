@@ -19,7 +19,7 @@ public class RuleException : Exception
     /// <param name="value">The value of excption.</param>
     public RuleException(string key, string value)
     {
-        this.Errors = new NameValueCollection { { key, value } };
+        this.Errors = new NameValueCollection { { key, value } };           
     }
 
     /// <summary>

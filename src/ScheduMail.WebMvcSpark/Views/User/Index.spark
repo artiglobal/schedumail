@@ -1,0 +1,52 @@
+<content name="title">
+	Users
+</content>
+
+<viewdata model="System.Collections.Generic.List[[System.Web.Security.MembershipUser]]"/> 
+
+    <h2>
+        Index</h2>
+    <table style="width: 100%">
+        <tr>
+            <th>
+            </th>
+            <th>
+                Username
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Active
+            </th>
+        </tr>             
+
+        <tr each="var item in Model">
+            <td>
+                <%=Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })%>
+                |
+                <%=Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })%>
+            </td>
+            <td>
+                <%=Html.Encode(item.UserName)%>
+            </td>
+            <td>
+                <%=Html.Encode(item.Email)%>
+            </td>
+            <td>
+                <%=Html.CheckBox("Active", item.IsApproved)%>
+            </td>
+        </tr>             
+    </table>
+    <p>
+        <%=Html.ActionLink("Create New", "Create")%>
+    </p>
+
+<!-- some cheap java script to disable all checkboxes -->    
+<script type="text/javascript">
+   $('table input[type=checkbox]').attr('disabled','true'); 
+</script>
+
+    
+    
+
