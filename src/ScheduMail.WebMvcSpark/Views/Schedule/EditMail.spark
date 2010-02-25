@@ -15,7 +15,7 @@
             <legend>Fields</legend>
             <p>
                 <label for="Id">Id:</label>
-                <%= Html.TextBox("Id", Model.Id) %>
+               !{ Html.TextBox("Id", Model.Id) }
                 <%= Html.ValidationMessage("Id", "*") %>
             </p>
             <p>

@@ -10,8 +10,7 @@
 	SceduleMail
 </content>
 
-<h2>Scedule Mail</h2>
-
+<h2>Schedule Mail</h2>
 
 # using (Html.BeginForm()) 
 # {
@@ -20,8 +19,7 @@
             <legend>Account Information</legend>
             <p>
                 <label for="content">content:</label>
-                !{Html.TextBox("content")}
-                
+                !{Html.TextBox("content")}                
             </p>
         </fieldset>
     </div>
