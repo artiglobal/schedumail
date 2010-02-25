@@ -11,11 +11,11 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SchedumailDBModel", "FK_LogEvent_0", "Mail", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ScheduMail.DBModel.Mail), "LogEvent", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.LogEvent))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SchedumailDBModel", "FK_Mail_0", "WebSite", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(ScheduMail.DBModel.WebSite), "Mail", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.Mail))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SchedumailDBModel", "FK_Schedule_0", "Mail", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(ScheduMail.DBModel.Mail), "Schedule", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.Schedule))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SchedumailDBModel", "UserWebSite1", "WebSite", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.WebSite), "aspnet_Users", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.aspnet_Users))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SchedumailDBModel", "FK_Schedule_0", "Mail", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(ScheduMail.DBModel.Mail), "Schedule", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.Schedule))]
 
 // Original file name:
-// Generation date: 23/02/2010 15:29:04
+// Generation date: 24/02/2010 14:47:27
 namespace ScheduMail.DBModel
 {
     
@@ -110,21 +110,6 @@ namespace ScheduMail.DBModel
         }
         private global::System.Data.Objects.ObjectQuery<Mail> _Mails;
         /// <summary>
-        /// There are no comments for Schedules in the schema.
-        /// </summary>
-        public global::System.Data.Objects.ObjectQuery<Schedule> Schedules
-        {
-            get
-            {
-                if ((this._Schedules == null))
-                {
-                    this._Schedules = base.CreateQuery<Schedule>("[Schedules]");
-                }
-                return this._Schedules;
-            }
-        }
-        private global::System.Data.Objects.ObjectQuery<Schedule> _Schedules;
-        /// <summary>
         /// There are no comments for WebSites in the schema.
         /// </summary>
         public global::System.Data.Objects.ObjectQuery<WebSite> WebSites
@@ -139,6 +124,21 @@ namespace ScheduMail.DBModel
             }
         }
         private global::System.Data.Objects.ObjectQuery<WebSite> _WebSites;
+        /// <summary>
+        /// There are no comments for Schedules in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<Schedule> Schedules
+        {
+            get
+            {
+                if ((this._Schedules == null))
+                {
+                    this._Schedules = base.CreateQuery<Schedule>("[Schedules]");
+                }
+                return this._Schedules;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<Schedule> _Schedules;
         /// <summary>
         /// There are no comments for aspnet_Users in the schema.
         /// </summary>
@@ -168,18 +168,18 @@ namespace ScheduMail.DBModel
             base.AddObject("Mails", mail);
         }
         /// <summary>
-        /// There are no comments for Schedules in the schema.
-        /// </summary>
-        public void AddToSchedules(Schedule schedule)
-        {
-            base.AddObject("Schedules", schedule);
-        }
-        /// <summary>
         /// There are no comments for WebSites in the schema.
         /// </summary>
         public void AddToWebSites(WebSite webSite)
         {
             base.AddObject("WebSites", webSite);
+        }
+        /// <summary>
+        /// There are no comments for Schedules in the schema.
+        /// </summary>
+        public void AddToSchedules(Schedule schedule)
+        {
+            base.AddObject("Schedules", schedule);
         }
     }
     /// <summary>
@@ -1498,295 +1498,6 @@ namespace ScheduMail.DBModel
         }
     }
     /// <summary>
-    /// There are no comments for SchedumailDBModel.Schedule in the schema.
-    /// </summary>
-    /// <KeyProperties>
-    /// Id
-    /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="SchedumailDBModel", Name="Schedule")]
-    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
-    [global::System.Serializable()]
-    public partial class Schedule : global::System.Data.Objects.DataClasses.EntityObject
-    {
-        /// <summary>
-        /// Create a new Schedule object.
-        /// </summary>
-        /// <param name="id">Initial value of Id.</param>
-        public static Schedule CreateSchedule(long id)
-        {
-            Schedule schedule = new Schedule();
-            schedule.Id = id;
-            return schedule;
-        }
-        /// <summary>
-        /// There are no comments for Property Id in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public long Id
-        {
-            get
-            {
-                return this._Id;
-            }
-            set
-            {
-                this.OnIdChanging(value);
-                this.ReportPropertyChanging("Id");
-                this._Id = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("Id");
-                this.OnIdChanged();
-            }
-        }
-        private long _Id;
-        partial void OnIdChanging(long value);
-        partial void OnIdChanged();
-        /// <summary>
-        /// There are no comments for Property Enabled in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<bool> Enabled
-        {
-            get
-            {
-                return this._Enabled;
-            }
-            set
-            {
-                this.OnEnabledChanging(value);
-                this.ReportPropertyChanging("Enabled");
-                this._Enabled = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("Enabled");
-                this.OnEnabledChanged();
-            }
-        }
-        private global::System.Nullable<bool> _Enabled;
-        partial void OnEnabledChanging(global::System.Nullable<bool> value);
-        partial void OnEnabledChanged();
-        /// <summary>
-        /// There are no comments for Property StartDateTime in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<global::System.DateTime> StartDateTime
-        {
-            get
-            {
-                return this._StartDateTime;
-            }
-            set
-            {
-                this.OnStartDateTimeChanging(value);
-                this.ReportPropertyChanging("StartDateTime");
-                this._StartDateTime = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("StartDateTime");
-                this.OnStartDateTimeChanged();
-            }
-        }
-        private global::System.Nullable<global::System.DateTime> _StartDateTime;
-        partial void OnStartDateTimeChanging(global::System.Nullable<global::System.DateTime> value);
-        partial void OnStartDateTimeChanged();
-        /// <summary>
-        /// There are no comments for Property EndDateTime in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<global::System.DateTime> EndDateTime
-        {
-            get
-            {
-                return this._EndDateTime;
-            }
-            set
-            {
-                this.OnEndDateTimeChanging(value);
-                this.ReportPropertyChanging("EndDateTime");
-                this._EndDateTime = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("EndDateTime");
-                this.OnEndDateTimeChanged();
-            }
-        }
-        private global::System.Nullable<global::System.DateTime> _EndDateTime;
-        partial void OnEndDateTimeChanging(global::System.Nullable<global::System.DateTime> value);
-        partial void OnEndDateTimeChanged();
-        /// <summary>
-        /// There are no comments for Property DaysOfWeekToRun in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<long> DaysOfWeekToRun
-        {
-            get
-            {
-                return this._DaysOfWeekToRun;
-            }
-            set
-            {
-                this.OnDaysOfWeekToRunChanging(value);
-                this.ReportPropertyChanging("DaysOfWeekToRun");
-                this._DaysOfWeekToRun = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("DaysOfWeekToRun");
-                this.OnDaysOfWeekToRunChanged();
-            }
-        }
-        private global::System.Nullable<long> _DaysOfWeekToRun;
-        partial void OnDaysOfWeekToRunChanging(global::System.Nullable<long> value);
-        partial void OnDaysOfWeekToRunChanged();
-        /// <summary>
-        /// There are no comments for Property Created in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<global::System.DateTime> Created
-        {
-            get
-            {
-                return this._Created;
-            }
-            set
-            {
-                this.OnCreatedChanging(value);
-                this.ReportPropertyChanging("Created");
-                this._Created = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("Created");
-                this.OnCreatedChanged();
-            }
-        }
-        private global::System.Nullable<global::System.DateTime> _Created;
-        partial void OnCreatedChanging(global::System.Nullable<global::System.DateTime> value);
-        partial void OnCreatedChanged();
-        /// <summary>
-        /// There are no comments for Property CreatedBy in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string CreatedBy
-        {
-            get
-            {
-                return this._CreatedBy;
-            }
-            set
-            {
-                this.OnCreatedByChanging(value);
-                this.ReportPropertyChanging("CreatedBy");
-                this._CreatedBy = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("CreatedBy");
-                this.OnCreatedByChanged();
-            }
-        }
-        private string _CreatedBy;
-        partial void OnCreatedByChanging(string value);
-        partial void OnCreatedByChanged();
-        /// <summary>
-        /// There are no comments for Property Modified in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<global::System.DateTime> Modified
-        {
-            get
-            {
-                return this._Modified;
-            }
-            set
-            {
-                this.OnModifiedChanging(value);
-                this.ReportPropertyChanging("Modified");
-                this._Modified = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("Modified");
-                this.OnModifiedChanged();
-            }
-        }
-        private global::System.Nullable<global::System.DateTime> _Modified;
-        partial void OnModifiedChanging(global::System.Nullable<global::System.DateTime> value);
-        partial void OnModifiedChanged();
-        /// <summary>
-        /// There are no comments for Property ModifiedBy in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string ModifiedBy
-        {
-            get
-            {
-                return this._ModifiedBy;
-            }
-            set
-            {
-                this.OnModifiedByChanging(value);
-                this.ReportPropertyChanging("ModifiedBy");
-                this._ModifiedBy = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("ModifiedBy");
-                this.OnModifiedByChanged();
-            }
-        }
-        private string _ModifiedBy;
-        partial void OnModifiedByChanging(string value);
-        partial void OnModifiedByChanged();
-        /// <summary>
-        /// There are no comments for Property DailyWeeklyOrMonthly in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<long> DailyWeeklyOrMonthly
-        {
-            get
-            {
-                return this._DailyWeeklyOrMonthly;
-            }
-            set
-            {
-                this.OnDailyWeeklyOrMonthlyChanging(value);
-                this.ReportPropertyChanging("DailyWeeklyOrMonthly");
-                this._DailyWeeklyOrMonthly = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("DailyWeeklyOrMonthly");
-                this.OnDailyWeeklyOrMonthlyChanged();
-            }
-        }
-        private global::System.Nullable<long> _DailyWeeklyOrMonthly;
-        partial void OnDailyWeeklyOrMonthlyChanging(global::System.Nullable<long> value);
-        partial void OnDailyWeeklyOrMonthlyChanged();
-        /// <summary>
-        /// There are no comments for Mail in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("SchedumailDBModel", "FK_Schedule_0", "Mail")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Mail Mail
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Mail>("SchedumailDBModel.FK_Schedule_0", "Mail").Value;
-            }
-            set
-            {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Mail>("SchedumailDBModel.FK_Schedule_0", "Mail").Value = value;
-            }
-        }
-        /// <summary>
-        /// There are no comments for Mail in the schema.
-        /// </summary>
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Mail> MailReference
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Mail>("SchedumailDBModel.FK_Schedule_0", "Mail");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Mail>("SchedumailDBModel.FK_Schedule_0", "Mail", value);
-                }
-            }
-        }
-    }
-    /// <summary>
     /// There are no comments for SchedumailDBModel.WebSite in the schema.
     /// </summary>
     /// <KeyProperties>
@@ -2007,6 +1718,295 @@ namespace ScheduMail.DBModel
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<aspnet_Users>("SchedumailDBModel.UserWebSite1", "aspnet_Users", value);
+                }
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for SchedumailDBModel.Schedule in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// Id
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="SchedumailDBModel", Name="Schedule")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class Schedule : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new Schedule object.
+        /// </summary>
+        /// <param name="id">Initial value of Id.</param>
+        public static Schedule CreateSchedule(long id)
+        {
+            Schedule schedule = new Schedule();
+            schedule.Id = id;
+            return schedule;
+        }
+        /// <summary>
+        /// There are no comments for Property Id in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public long Id
+        {
+            get
+            {
+                return this._Id;
+            }
+            set
+            {
+                this.OnIdChanging(value);
+                this.ReportPropertyChanging("Id");
+                this._Id = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Id");
+                this.OnIdChanged();
+            }
+        }
+        private long _Id;
+        partial void OnIdChanging(long value);
+        partial void OnIdChanged();
+        /// <summary>
+        /// There are no comments for Property Enabled in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<bool> Enabled
+        {
+            get
+            {
+                return this._Enabled;
+            }
+            set
+            {
+                this.OnEnabledChanging(value);
+                this.ReportPropertyChanging("Enabled");
+                this._Enabled = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Enabled");
+                this.OnEnabledChanged();
+            }
+        }
+        private global::System.Nullable<bool> _Enabled;
+        partial void OnEnabledChanging(global::System.Nullable<bool> value);
+        partial void OnEnabledChanged();
+        /// <summary>
+        /// There are no comments for Property StartDateTime in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> StartDateTime
+        {
+            get
+            {
+                return this._StartDateTime;
+            }
+            set
+            {
+                this.OnStartDateTimeChanging(value);
+                this.ReportPropertyChanging("StartDateTime");
+                this._StartDateTime = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("StartDateTime");
+                this.OnStartDateTimeChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _StartDateTime;
+        partial void OnStartDateTimeChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnStartDateTimeChanged();
+        /// <summary>
+        /// There are no comments for Property EndDateTime in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> EndDateTime
+        {
+            get
+            {
+                return this._EndDateTime;
+            }
+            set
+            {
+                this.OnEndDateTimeChanging(value);
+                this.ReportPropertyChanging("EndDateTime");
+                this._EndDateTime = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("EndDateTime");
+                this.OnEndDateTimeChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _EndDateTime;
+        partial void OnEndDateTimeChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnEndDateTimeChanged();
+        /// <summary>
+        /// There are no comments for Property DaysOfWeekToRun in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string DaysOfWeekToRun
+        {
+            get
+            {
+                return this._DaysOfWeekToRun;
+            }
+            set
+            {
+                this.OnDaysOfWeekToRunChanging(value);
+                this.ReportPropertyChanging("DaysOfWeekToRun");
+                this._DaysOfWeekToRun = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("DaysOfWeekToRun");
+                this.OnDaysOfWeekToRunChanged();
+            }
+        }
+        private string _DaysOfWeekToRun;
+        partial void OnDaysOfWeekToRunChanging(string value);
+        partial void OnDaysOfWeekToRunChanged();
+        /// <summary>
+        /// There are no comments for Property Created in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> Created
+        {
+            get
+            {
+                return this._Created;
+            }
+            set
+            {
+                this.OnCreatedChanging(value);
+                this.ReportPropertyChanging("Created");
+                this._Created = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Created");
+                this.OnCreatedChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _Created;
+        partial void OnCreatedChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnCreatedChanged();
+        /// <summary>
+        /// There are no comments for Property CreatedBy in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string CreatedBy
+        {
+            get
+            {
+                return this._CreatedBy;
+            }
+            set
+            {
+                this.OnCreatedByChanging(value);
+                this.ReportPropertyChanging("CreatedBy");
+                this._CreatedBy = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("CreatedBy");
+                this.OnCreatedByChanged();
+            }
+        }
+        private string _CreatedBy;
+        partial void OnCreatedByChanging(string value);
+        partial void OnCreatedByChanged();
+        /// <summary>
+        /// There are no comments for Property Modified in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> Modified
+        {
+            get
+            {
+                return this._Modified;
+            }
+            set
+            {
+                this.OnModifiedChanging(value);
+                this.ReportPropertyChanging("Modified");
+                this._Modified = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Modified");
+                this.OnModifiedChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _Modified;
+        partial void OnModifiedChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnModifiedChanged();
+        /// <summary>
+        /// There are no comments for Property ModifiedBy in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string ModifiedBy
+        {
+            get
+            {
+                return this._ModifiedBy;
+            }
+            set
+            {
+                this.OnModifiedByChanging(value);
+                this.ReportPropertyChanging("ModifiedBy");
+                this._ModifiedBy = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("ModifiedBy");
+                this.OnModifiedByChanged();
+            }
+        }
+        private string _ModifiedBy;
+        partial void OnModifiedByChanging(string value);
+        partial void OnModifiedByChanged();
+        /// <summary>
+        /// There are no comments for Property DailyWeeklyOrMonthly in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string DailyWeeklyOrMonthly
+        {
+            get
+            {
+                return this._DailyWeeklyOrMonthly;
+            }
+            set
+            {
+                this.OnDailyWeeklyOrMonthlyChanging(value);
+                this.ReportPropertyChanging("DailyWeeklyOrMonthly");
+                this._DailyWeeklyOrMonthly = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("DailyWeeklyOrMonthly");
+                this.OnDailyWeeklyOrMonthlyChanged();
+            }
+        }
+        private string _DailyWeeklyOrMonthly;
+        partial void OnDailyWeeklyOrMonthlyChanging(string value);
+        partial void OnDailyWeeklyOrMonthlyChanged();
+        /// <summary>
+        /// There are no comments for Mail in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("SchedumailDBModel", "FK_Schedule_0", "Mail")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public Mail Mail
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Mail>("SchedumailDBModel.FK_Schedule_0", "Mail").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Mail>("SchedumailDBModel.FK_Schedule_0", "Mail").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Mail in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<Mail> MailReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Mail>("SchedumailDBModel.FK_Schedule_0", "Mail");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Mail>("SchedumailDBModel.FK_Schedule_0", "Mail", value);
                 }
             }
         }

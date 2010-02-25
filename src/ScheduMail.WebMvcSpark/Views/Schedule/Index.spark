@@ -1,8 +1,16 @@
+<script type="text/javascript">
+	$(function() {
+		$("#datepicker").datepicker();
+	});
+	</script>
+	
 <content name="title">
 	SceduleMail
 </content>
 
 <h2>Scedule Mail</h2>
+
+
 
 
 
@@ -25,6 +33,28 @@
             <p>
                 <label for="URL">URL:</label>
                 !{Html.TextBox("URL")}
+                <label for="username">username:</label>
+                !{Html.TextBox("username")}
+                <label for="password">password:</label>
+                !{Html.TextBox("password")}
+                 <p>
+                <input type="submit" value="validate" />
+				</p>
+            </p>
+        </fieldset>
+    </div>
+     <div>
+        <fieldset>
+            <legend>Schedule </legend>
+            <p>
+                <label for="URL">Start date:</label>
+      
+                <div class="demo">
+
+<p>Date: <input id="datepicker" type="text"></p>
+
+</div>
+
                 <label for="username">username:</label>
                 !{Html.TextBox("username")}
                 <label for="password">password:</label>
