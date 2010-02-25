@@ -19,6 +19,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
         public ActionResult Index()
         {
             ViewData["Message"] = "Welcome to ASP.NET MVC!";
+            int i = 0;
 
             return View();
         }
