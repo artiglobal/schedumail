@@ -17,6 +17,12 @@ namespace ScheduMail.Core.Domain
         public long LogId { get; set; }
 
         /// <summary>
+        /// Gets or sets the email id.
+        /// </summary>
+        /// <value>The email id.</value>
+        public long EmailId { get; set; }
+
+        /// <summary>
         /// Gets or sets the E mail subject.
         /// </summary>
         /// <value>The E mail subject.</value>

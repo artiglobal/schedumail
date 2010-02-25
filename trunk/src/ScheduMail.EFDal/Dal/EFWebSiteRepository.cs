@@ -118,7 +118,7 @@ namespace ScheduMail.EFDal.Dal
                             join log in this.context.LogEvents on
                                 email.Id equals log.Mail.Id
                             where webSiteEmail.Id == webSiteId
-                            select new ScheduMail.Core.Domain.WebSiteEMails { EMailSubject = email.Subject, LastSent = email.LastSent, NextSend = email.NextSend, LogId = log.Id };
+                            select new ScheduMail.Core.Domain.WebSiteEMails { EMailSubject = email.Subject, EmailId = email.Id, LastSent = email.LastSent, NextSend = email.NextSend, LogId = log.Id };
 
             return entities.AsQueryable<ScheduMail.Core.Domain.WebSiteEMails>();                
         }
