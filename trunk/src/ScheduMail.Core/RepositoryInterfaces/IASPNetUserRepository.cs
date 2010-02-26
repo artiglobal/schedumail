@@ -9,5 +9,6 @@ namespace ScheduMail.Core.RepositoryInterfaces
     /// </summary>
     public interface IASPNetUserRepository : ICrudRepository<AspnetUsers, string>
     {
+        IQueryable<ScheduMail.Core.Domain.AspnetUsers> ListByWebSiteId(long id);
     }
 }
