@@ -39,6 +39,12 @@
         </tr>
         </table>
         
+        </p>
+        
+        <hr />
+        
+        <p>
+            !{Html.CheckBox("isAdministrator")} &nbsp; Administrator
         </p>      
                 
         <p>
