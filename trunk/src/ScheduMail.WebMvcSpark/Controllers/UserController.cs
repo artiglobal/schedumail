@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -47,27 +48,34 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// <returns></returns>
         public ActionResult Create()
         {
-            return View();
+            ViewData["userWebSites"] = GetUserWebSitesForCreate();
+            AspnetUsers user = new AspnetUsers();
+            return View(user);
         }
-
+       
         /// <summary>
         /// Creates the specified collection.
         /// </summary>
         /// <param name="collection">The collection.</param>
         /// <returns></returns>
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(string userName, string email, bool isAdministrator)
+        public ActionResult Create(string userName, string email, List<UserWebSite> userWebSites, bool isAdministrator, FormCollection collection)
         {
-            try
-            {
-                // TODO: Add insert logic here
+               foreach (string key in collection.AllKeys)   
+               {
+                   if (key.Contains("item.UserSubscribedToWebSite"))            
+                    {
+                        var Ids = collection.GetValues (key);   
+                    }
+                   if (key.Contains("item.SiteName"))
+                   {
+                       var IdsA = collection.GetValues(key);
+                   }
+                }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+                List<UserWebSite> userWebSitesA = ViewData["userWebSites"] as List<UserWebSite>;
+
+                return RedirectToAction("Index");            
         }
 
         /// <summary>
@@ -84,22 +92,19 @@ namespace ScheduMail.WebMvcSpark.Controllers
             List<UserWebSite> userWebSites = new List<UserWebSite>
             {
                 new UserWebSite
-                {
-                    UserId = "AA",
+                {                    
                     WebSiteId = 1,
                     SiteName = "www.google.co.uk",
                     UserSubscribedToWebSite = true
                 },            
                 new UserWebSite
-                {
-                    UserId = "AA",
+                {                   
                     WebSiteId = 2,
                     SiteName = "www.telerik.co.uk",
                     UserSubscribedToWebSite = false
                 },
                 new UserWebSite
-                {
-                    UserId = "AA",
+                {                   
                     WebSiteId = 3,
                     SiteName = "www.telecriers.co.uk",
                     UserSubscribedToWebSite = true
@@ -173,6 +178,30 @@ namespace ScheduMail.WebMvcSpark.Controllers
             }
             SelectList list = new SelectList(items, "Value", "Text", webSiteId);
             return list;
+        }
+
+        /// <summary>
+        /// Gets the user web sites for create.
+        /// </summary>
+        /// <returns>List of Use Web sites with UserSubscribedToWebSite == false.</returns>
+        private static List<UserWebSite> GetUserWebSitesForCreate()
+        {
+            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+            IWebSiteUnitOfWork webSitesUnitOfWork = factory.GetWebSiteUnitOfWork();
+            List<WebSite> webSites = webSitesUnitOfWork.List;
+
+            List<UserWebSite> userWebSites = new List<UserWebSite>();
+            Action<WebSite> action = new Action<WebSite>(q => userWebSites.Add(new UserWebSite
+            {
+                SiteName = q.SiteName,
+                UserSubscribedToWebSite = false,
+                WebSiteId = q.Id
+            }
+            ));
+
+            webSites.ForEach(action);
+
+            return userWebSites;
         }
 
         #endregion

@@ -99,6 +99,8 @@
     <Content Include="bin\Castle.MicroKernel.xml" />
     <Content Include="bin\Castle.Windsor.dll" />
     <Content Include="bin\Castle.Windsor.xml" />
+    <Content Include="bin\ScheduMail.API.dll" />
+    <Content Include="bin\ScheduMail.API.pdb" />
     <Content Include="bin\ScheduMail.Core.dll" />
     <Content Include="bin\ScheduMail.Core.pdb" />
     <Content Include="bin\ScheduMail.DBModel.dll" />
