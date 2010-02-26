@@ -1,8 +1,41 @@
 <script src="../../Scripts/jquery-ui-1.7.2.custom.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+	$(document).ready(function() {	
+		$("input[name=dailyWeeklyOrMonthly]").click(function() {
+			if( $(this).val()==0 || $(this).val()==1  || $(this).val()==4  ) {
+				$("#wrapper").html(""); 
+			}
+			
+			if( $(this).val()==2  ) {
+				$("#wrapper").html(""); 
+				$('<label for="daysOfWeekToRun">daysOfWeekToRun</label>').appendTo('#wrapper');
+				$('<input id="daysOfWeekToRun" type="checkbox" name="daysOfWeekToRun" value="1" >Monday</input>').appendTo('#wrapper');
+				$('<input id="daysOfWeekToRun" type="checkbox" name="daysOfWeekToRun" value="2">Tuesday</input>').appendTo('#wrapper');
+				$('<input id="daysOfWeekToRun" type="checkbox" name="daysOfWeekToRun" value="3">Wednesday</input>').appendTo('#wrapper');
+				$('<input id="daysOfWeekToRun" type="checkbox" name="daysOfWeekToRun" value="4">Thursday</input>').appendTo('#wrapper');
+				$('<input id="daysOfWeekToRun" type="checkbox" name="daysOfWeekToRun" value="5">Friday</input>').appendTo('#wrapper');
+				$('<input id="daysOfWeekToRun" type="checkbox" name="daysOfWeekToRun" value="6">Saturday</input>').appendTo('#wrapper');
+				$('<input id="daysOfWeekToRun" type="checkbox" name="daysOfWeekToRun" value="7">Sunday</input>').appendTo('#wrapper');
+    
+			}
+			if( $(this).val()==3  ) {
+				$("#wrapper").html(""); 
+				$('<label for="daysOfWeekToRun">daysOfWeekToRun</label>').appendTo('#wrapper');
+				$('<input id="daysOfWeekToRun" name="daysOfWeekToRun" type="radio" value="1">Monday</input>').appendTo('#wrapper');
+				$('<input id="daysOfWeekToRun" name="daysOfWeekToRun" type="RADIO" value="2">Tuesday</input>').appendTo('#wrapper');
+				$('<input id="daysOfWeekToRun" name="daysOfWeekToRun" type="RADIO" value="3">Wednesday</input>').appendTo('#wrapper');
+				$('<input id="daysOfWeekToRun" name="daysOfWeekToRun" type="RADIO" value="4">Thursday</input>').appendTo('#wrapper');
+				$('<input id="daysOfWeekToRun" name="daysOfWeekToRun" type="RADIO" value="5">Friday</input>').appendTo('#wrapper');
+				$('<input id="daysOfWeekToRun" name="daysOfWeekToRun" type="RADIO" value="6">Saturday</input>').appendTo('#wrapper');
+				$('<input id="daysOfWeekToRun" name="daysOfWeekToRun" type="RADIO" value="7">Sunday</input>').appendTo('#wrapper');
+    
+			}
+	    });	
+	});
 	$(function() {
-		$("#datepicker").datepicker();
+		$("#startDateTime").datepicker();
+		$("#endDateTime").datepicker();
 	});
 	</script>
 	
@@ -44,22 +77,29 @@
         <fieldset>
             <legend>Schedule </legend>
             <p>
-                <label for="URL">Start date:</label>
-      
-                <div class="demo">
-
-<p>Date: <input id="datepicker" type="text"></p>
-
-</div>
-
-                <label for="username">username:</label>
-                !{Html.TextBox("username")}
-                <label for="password">password:</label>
-                !{Html.TextBox("password")}
-                 <p>
-                <input type="submit" value="validate" />
-				</p>
-            </p>
+                <label for="URL">Start date:</label 
+				<input id="startDateTime" name="startDateTime" type="text" >
+			</p>
+			<p>
+                <label for="URL">EndDate date:</label> 
+				<input id="endDateTime" name="endDateTime"  type="text">
+			</p>
+			<p>
+			  <label for="Minutes">Minutes:</label>
+				!{Html.DropDownList("hoursList", null, new { Style = "width: 151px;" })}					
+				<label for="Hours">Hours:</label>
+				!{Html.DropDownList("minutesList", null, new { Style = "width: 151px;" })}									                       
+			</p>
+			<p>
+	            <label for="dailyWeeklyOrMonthly">dailyWeeklyOrMonthly:</label>
+	            <input id="dailyWeeklyOrMonthly" type="radio" name="dailyWeeklyOrMonthly" value="0" >Single</input>
+				<input id="dailyWeeklyOrMonthly" type="radio" name="dailyWeeklyOrMonthly" value="1" >Daily</input>
+				<input id="dailyWeeklyOrMonthly" type="radio" name="dailyWeeklyOrMonthly" value="2" >Weekly</input>
+				<input id="dailyWeeklyOrMonthly" type="radio" name="dailyWeeklyOrMonthly" value="3" >Monthly</input>
+				<input id="dailyWeeklyOrMonthly" type="radio" name="dailyWeeklyOrMonthly" value="4" >Yearly</input>
+			</p>
+                <div id="wrapper"></div>
+              <input type="submit" name="submitButton" value="Save" />
         </fieldset>
     </div>
 # }
