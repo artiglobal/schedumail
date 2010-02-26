@@ -1,11 +1,17 @@
 <content name="title">
-	Users
+   Web Sites
 </content>
 
-<viewdata model="System.Collections.Generic.List[[System.Web.Security.MembershipUser]]"/> 
+<viewdata model="System.Collections.Generic.List[[ScheduMail.Core.Domain.AspnetUsers]]"/> 
 
-    <h2>
-        Index</h2>
+# using (Html.BeginForm())
+# { 
+   <p>
+		<b>Web Sites</b>
+		!{Html.DropDownList("webSiteId", (SelectList)ViewData["webSites"], new { onChange = "this.form.submit()", @class = "dropdownlistdisplay" })}
+	</p>
+	
+	<p>
     <table style="width: 100%">
         <tr>
             <th>
@@ -23,29 +29,32 @@
 
         <tr each="var item in Model">
             <td>
-                <%=Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })%>
+                !{Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) }
                 |
-                <%=Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })%>
+                !{Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })}
             </td>
             <td>
-                <%=Html.Encode(item.UserName)%>
+                !{Html.Encode(item.Username) }
             </td>
             <td>
-                <%=Html.Encode(item.Email)%>
+                !{Html.Encode(item.Email) }
             </td>
             <td>
-                <%=Html.CheckBox("Active", item.IsApproved)%>
+                !{Html.CheckBox("Active", item.IsApproved) }
             </td>
         </tr>             
     </table>
+    </p>
+    
     <p>
-        <%=Html.ActionLink("Create New", "Create")%>
+        !{Html.ActionLink("Add new user", "Create")}
     </p>
 
 <!-- some cheap java script to disable all checkboxes -->    
 <script type="text/javascript">
    $('table input[type=checkbox]').attr('disabled','true'); 
 </script>
+#}
 
     
     

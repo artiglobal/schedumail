@@ -10,6 +10,7 @@
 # using (Html.BeginForm())
 # { 
     <p>
+		<b>Web Sites</b>
 		<%=Html.DropDownList("WebSiteId", (SelectList)ViewData["webSites"], new { onChange = "this.form.submit()", @class = "dropdownlistdisplay" })%>
 	</p>
 

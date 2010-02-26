@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
 using System.Web.Security;
+using ScheduMail.Core.Domain;
+using ScheduMail.Core.UnitsOfWorkFactory;
+using ScheduMail.Core.UnitsOfWorkRepository;
 
 namespace ScheduMail.WebMvcSpark.Controllers
 {
@@ -17,14 +16,20 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// Indexes this instance.
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index()
-        {
-            List<MembershipUser> myUsers = GetUsers()
-                .OrderBy(q => q.UserName)
-                .ToList<MembershipUser>();         
+        public ActionResult Index(long? webSiteId)
+        {          
+            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+            
+            IWebSiteUnitOfWork webSitesUnitOfWork = factory.GetWebSiteUnitOfWork();            
+            List<WebSite> webSites = webSitesUnitOfWork.List;
+            webSiteId = (webSiteId.HasValue == true) ? webSiteId : webSites[0].Id;
+            ViewData["webSites"] = CopyToSelectList(webSiteId.Value, webSites);
+                                            
+            IAspNetUnitOfWork aspNetUserUnitOfWork = factory.GetAspNetUnitOfWork();
+            List<AspnetUsers> users = aspNetUserUnitOfWork.ListByWebSiteId(webSiteId.Value);
 
-            return View(myUsers);
-        }      
+            return View(users);
+        }
 
         /// <summary>
         /// Detailses the specified id.
@@ -70,9 +75,10 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// </summary>
         /// <param name="id">The id.</param>
         /// <returns></returns>
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            AspnetUsers users = new AspnetUsers();
+            return View(users);
         }
 
         /// <summary>
@@ -82,19 +88,29 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// <param name="collection">The collection.</param>
         /// <returns></returns>
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int? id, string submitButton, FormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                switch (submitButton)
+                {
+                    case "Save":
+                        // delegate sending to another controller action 
+                        return RedirectToAction("Index");
+                    case "Delete":
+                        // call another action to perform the cancellation 
+                        return RedirectToAction("Index");
+                    default:
+                        // If they've submitted the form without a submitButton,  
+                        // just return the view again. 
+                        return RedirectToAction("Index");
+                }                
             }
             catch
             {
                 return View();
             }
-        }
+        }                  
 
         #region Private Helper Methods
 
@@ -104,10 +120,27 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// <returns></returns>
         private static MembershipUser[] GetUsers()
         {
-            MembershipUserCollection userCollection = Membership.GetAllUsers();           
+            MembershipUserCollection userCollection = Membership.GetAllUsers();
             MembershipUser[] members = new MembershipUser[userCollection.Count];
-            userCollection.CopyTo(members, 0);            
+            userCollection.CopyTo(members, 0);
             return members;
+        }     
+
+        /// <summary>
+        /// Copies to select list.
+        /// </summary>
+        /// <param name="webSiteId">The web site id.</param>
+        /// <param name="unitOfWork">The unit of work.</param>
+        /// <returns></returns>
+        private SelectList CopyToSelectList(long webSiteId, List<WebSite> webSites)
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            foreach (ScheduMail.Core.Domain.WebSite item in webSites)
+            {
+                items.Add(new SelectListItem { Text = item.SiteName, Value = item.Id.ToString() });
+            }
+            SelectList list = new SelectList(items, "Value", "Text", webSiteId);
+            return list;
         }
 
         #endregion
