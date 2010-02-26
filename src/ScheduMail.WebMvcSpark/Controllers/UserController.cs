@@ -61,11 +61,11 @@ namespace ScheduMail.WebMvcSpark.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(string userName, string email, List<UserWebSite> userWebSites, bool isAdministrator, FormCollection collection)
         {
-               foreach (string key in collection.AllKeys)   
+               foreach (string key in collection["userWEBSITES"].Split(','))   
                {
                    if (key.Contains("item.UserSubscribedToWebSite"))            
                     {
-                        var Ids = collection.GetValues (key);   
+                        var Ids = collection.GetValues(key);  
                     }
                    if (key.Contains("item.SiteName"))
                    {

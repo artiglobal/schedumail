@@ -9,7 +9,7 @@
 <viewdata item="ScheduMail.Core.Domain.UserWebSite"/> 
 <viewdata userWebSites="System.Collections.Generic.List[[ScheduMail.Core.Domain.UserWebSite]]"/> 
 
-# using (Html.BeginForm()) 
+# using (Html.BeginForm(ViewData["userWebSites"])) 
 #{
     <fieldset>
         <legend>Details</legend>
@@ -31,7 +31,8 @@
             <td>
 				 !{Html.Hidden("item.Id")}  
 				 !{Html.Hidden("item.SiteName")}      
-				 !{Html.CheckBox("item.UserSubscribedToWebSite", item.UserSubscribedToWebSite)} &nbsp; ${item.SiteName}				 
+				
+				<input id="userWEBSITES" name="userWEBSITES"  type="checkbox" name="userWEBSITES" value="${item.WebSiteId}" >${item.SiteName}</input>			 
             </td>           
         </tr>
         </table>
