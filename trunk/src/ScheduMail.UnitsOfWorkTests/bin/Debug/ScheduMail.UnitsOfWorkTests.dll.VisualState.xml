@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1007]X:\inetpub\Schedumail\src\ScheduMail.UnitsOfWorkTests\bin\Debug\ScheduMail.UnitsOfWorkTests.dll</TopNode>
-  <SelectedNode>[0-1007]X:\inetpub\Schedumail\src\ScheduMail.UnitsOfWorkTests\bin\Debug\ScheduMail.UnitsOfWorkTests.dll</SelectedNode>
+  <TopNode>[0-1013]X:\inetpub\Schedumail\src\ScheduMail.UnitsOfWorkTests\bin\Debug\ScheduMail.UnitsOfWorkTests.dll</TopNode>
+  <SelectedNode>[0-1008]ScheduMail.UnitsOfWorkTests.SchedulesUnitOfWorkTest.Schedule_ContainerTest</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1007]X:\inetpub\Schedumail\src\ScheduMail.UnitsOfWorkTests\bin\Debug\ScheduMail.UnitsOfWorkTests.dll" Expanded="true" />
-    <Node UniqueName="[0-1008]ScheduMail" Expanded="true" />
-    <Node UniqueName="[0-1009]ScheduMail.UnitsOfWorkTests" Expanded="true" />
+    <Node UniqueName="[0-1013]X:\inetpub\Schedumail\src\ScheduMail.UnitsOfWorkTests\bin\Debug\ScheduMail.UnitsOfWorkTests.dll" Expanded="true" />
+    <Node UniqueName="[0-1014]ScheduMail" Expanded="true" />
+    <Node UniqueName="[0-1015]ScheduMail.UnitsOfWorkTests" Expanded="true" />
+    <Node UniqueName="[0-1007]ScheduMail.UnitsOfWorkTests.SchedulesUnitOfWorkTest" Expanded="true" />
     <Node UniqueName="[0-1000]ScheduMail.UnitsOfWorkTests.WebSiteUnitOfWorkTest" Expanded="true" />
   </Nodes>
 </VisualState>

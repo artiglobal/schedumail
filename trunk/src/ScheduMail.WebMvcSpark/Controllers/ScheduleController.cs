@@ -7,6 +7,7 @@ using System.Web.Mvc.Ajax;
 using ScheduMail.Core.UnitsOfWorkRepository;
 using ScheduMail.Core.UnitsOfWorkFactory;
 using ScheduMail.Core.Domain;
+using System.Xml;
 
 namespace ScheduMail.WebMvcSpark.Controllers
 {
@@ -19,8 +20,49 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// Indexes this instance.
         /// </summary>
         /// <returns>The View Instance.</returns>
+        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Index()
         {
+            SelectList hoursList = CopyToSelectList("/App_Data/Hours.xml", -1);
+            SelectList minutesList = CopyToSelectList("/App_Data/Minutes.xml", -1);
+            ViewData["hoursList"] = hoursList;
+            ViewData["minutesList"] = minutesList;
+            
+            
+            return View();
+        }
+
+        /// <summary>
+        /// Indexes this instance.
+        /// </summary>
+        /// <returns>The View Instance.</returns>
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Index(int? id, string submitButton,Schedule schedule, FormCollection collection)
+        {
+            try
+            {
+                SelectList hoursList = CopyToSelectList("/App_Data/Hours.xml", -1);
+                SelectList minutesList = CopyToSelectList("/App_Data/Minutes.xml", -1);
+                ViewData["hoursList"] = hoursList;
+                ViewData["minutesList"] = minutesList;
+            
+                switch (submitButton)
+                {
+                    case "Save":
+                        // delegate sending to another controller action 
+                        schedule.DaysOfWeekToRun = collection["DaysOfWeekToRun"];
+
+                        return View("Index", schedule);
+                }
+            }
+            catch
+            {
+                return View();
+            }
+
+           
+
+
             return View();
         }
 
@@ -112,6 +154,25 @@ namespace ScheduMail.WebMvcSpark.Controllers
         public ActionResult EditMail(long? id, Mail mail)
         {
             return View();
+        }
+
+        /// <summary>
+        /// Copies to select list.
+        /// </summary>
+        /// <param name="Id">id for selection list.</param>
+        /// <param name="source">source of XMl file</param>
+        /// <returns>SelectList</returns>
+        private SelectList CopyToSelectList(string source ,long Id)
+        {
+
+            List<SelectListItem> items = new List<SelectListItem>();
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(HttpContext.Request.PhysicalApplicationPath + source);
+            XmlNodeList xmlNodeList = xmlDoc.SelectNodes("/languages/language");
+            foreach (XmlNode node in xmlNodeList)
+                items.Add(new SelectListItem { Text = node.Attributes["name", ""].Value, Value = node.Attributes["value", ""].Value });
+            SelectList list = new SelectList(items, "Value", "Text", Id);
+            return list;
         }
     }
 }

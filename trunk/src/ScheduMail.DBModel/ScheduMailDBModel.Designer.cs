@@ -15,7 +15,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SchedumailDBModel", "FK_Schedule_0", "Mail", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(ScheduMail.DBModel.Mail), "Schedule", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.Schedule))]
 
 // Original file name:
-// Generation date: 24/02/2010 14:47:27
+// Generation date: 26/02/2010 11:47:57
 namespace ScheduMail.DBModel
 {
     
