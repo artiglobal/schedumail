@@ -1,39 +1,32 @@
 <content name="title">
 	Create Users
 </content>
-
-<h2>Create</h2>
-
+<h2>
+    Create</h2>
 !{ Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") } 
-
 # using (Html.BeginForm()) 
 #{
     <fieldset>
         <legend>Fields</legend>
         <p>
-            <label for="UserId">
-                UserId:</label>
-            !{ Html.TextBox("UserId") } !{ Html.ValidationMessage("UserId", "*") }
-        </p>
-        <p>
-            !{Html.Hidden("Id")}          
+            !{Html.Hidden("Id")}
             <label for="Username">
                 Username:</label>
             !{ Html.TextBox("Username") } !{ Html.ValidationMessage("Username", "*") }
         </p>
-      
         <p>
             <label for="Email">
                 Email:</label>
             !{ Html.TextBox("Email") } !{ Html.ValidationMessage("Email", "*") }
-        </p>
-       
+        </p>        
         <p>
+            !{Html.CheckBox("isAdministrator") } &nbsp; Administrator
+        </p>
+        <p>           
             <input type="submit" value="Create" />
         </p>
     </fieldset>
 #}
-
 <div>
     !{ Html.ActionLink("Back to List", "Index") }
 </div>
