@@ -16,45 +16,26 @@ namespace ScheduMail.Core.Domain
         /// <summary>
         /// User ID identification.
         /// </summary>
-        private int userID;
+        public string UserId { get; set; }
 
         /// <summary>
-        /// Web site ID
+        /// Gets or sets the web site id.
         /// </summary>
-        private int webSiteID;
+        /// <value>The web site id.</value>
+        public long WebSiteId { get; set; }
 
         /// <summary>
-        /// Gets or sets the user ID.
+        /// Gets or sets a value indicating whether [user subscribed to web site].
         /// </summary>
-        /// <value>The user ID.</value>
-        public int UserID
-        {
-            get
-            {
-                return this.userID;
-            }
-
-            set
-            {
-                this.userID = value;
-            }
-        }
+        /// <value>
+        /// 	<c>true</c> if [user subscribed to web site]; otherwise, <c>false</c>.
+        /// </value>
+        public bool UserSubscribedToWebSite { get; set; }
 
         /// <summary>
-        /// Gets or sets the web site ID.
+        /// Gets or sets the name of the web site.
         /// </summary>
-        /// <value>The web site ID.</value>
-        public int WebSiteID
-        {
-            get
-            {
-                return this.webSiteID;
-            }
-
-            set
-            {
-                this.webSiteID = value;
-            }
-        }
+        /// <value>The name of the web site.</value>
+        public string SiteName { get; set; }
     }
 }

@@ -1,31 +1,48 @@
 <content name="title">
-	Create Users
+	Edit User
 </content>
 
-<h2>Create</h2>
+<h2>Edit User</h2>
 
-!{ Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") } 
+!{Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.")} 
+
+<viewdata model="ScheduMail.Core.Domain.AspnetUsers"/> 
+<viewdata item="ScheduMail.Core.Domain.UserWebSite"/> 
+<viewdata webSites="System.Collections.Generic.List[[ScheduMail.Core.Domain.UserWebSite]]"/> 
 
 # using (Html.BeginForm()) 
 #{
     <fieldset>
-        <legend>Fields</legend>
-        <p>
-            <label for="UserId">
-                UserId:</label>
-            !{ Html.TextBox("UserId") } !{ Html.ValidationMessage("UserId", "*") }
-        </p>
+        <legend>Details</legend>       
         <p>
             !{Html.Hidden("Id")}          
             <label for="Username">
                 Username:</label>
-            !{ Html.TextBox("Username") } !{ Html.ValidationMessage("Username", "*") }
+            !{Html.TextBox("Username")} !{Html.ValidationMessage("Username", "*")}
         </p>
       
         <p>
             <label for="Email">
                 Email:</label>
-            !{ Html.TextBox("Email") } !{ Html.ValidationMessage("Email", "*") }
+            !{Html.TextBox("Email")} !{Html.ValidationMessage("Email", "*")}
+        </p>
+        
+		<p>        
+					
+		<h2>Websites</h2>	
+		<table>
+         <tr each="var item in webSites">                      
+            <td>
+				 !{Html.Hidden("item.Id")}    
+				 !{Html.CheckBox("item.SiteName", item.UserSubscribedToWebSite)} &nbsp; ${item.SiteName}				 
+            </td>           
+        </tr>
+        </table>
+        
+        </p>      
+                
+        <p>
+			  <%=Html.ActionLink("Reset Password", "ChangePassword", "Account", null, null)%>        
         </p>
        
         <p>
@@ -36,6 +53,6 @@
 #}
 
 <div>
-    !{ Html.ActionLink("Back to List", "Index") }
+    !{Html.ActionLink("Back to List", "Index")}
 </div>
 

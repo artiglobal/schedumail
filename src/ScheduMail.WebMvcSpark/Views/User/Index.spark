@@ -29,9 +29,7 @@
 
         <tr each="var item in Model">
             <td>
-                !{Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) }
-                |
-                !{Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })}
+                !{Html.ActionLink("Edit", "Edit", new { id=item.UserId }) }                
             </td>
             <td>
                 !{Html.Encode(item.Username) }
