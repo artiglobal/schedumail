@@ -36,5 +36,12 @@ namespace ScheduMail.Core.UnitsOfWorkFactory
         /// </summary>
         /// <param name="user">The user instance.</param>
         void Delete(AspnetUsers user);
+
+        /// <summary>
+        /// Gets the ASP ner users by id.
+        /// </summary>
+        /// <param name="id">The identification passed.</param>
+        /// <returns>List of ASP net Users.</returns>
+        List<ScheduMail.Core.Domain.AspnetUsers> ListByWebSiteId(long id);
     }
 }

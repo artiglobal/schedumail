@@ -8,7 +8,7 @@ using System;
 namespace ScheduMail.UnitsOfWork
 {
     /// <summary>
-    /// Web site unit of work.
+    /// user unit of work.
     /// </summary>
     public class AspNetUserOfWork : IAspNetUnitOfWork
     {
@@ -41,13 +41,22 @@ namespace ScheduMail.UnitsOfWork
         /// <summary>
         /// Gets the list.
         /// </summary>
-        /// <value>The Web site list.</value>
+        /// <value>The user list.</value>
         public List<ScheduMail.Core.Domain.AspnetUsers> List
         {
             get
             {
                 return this.repository.List.ToList();
             }
+        }
+
+        /// <summary>
+        /// Gets the list.
+        /// </summary>
+        /// <value>The user list.</value>
+        public List<ScheduMail.Core.Domain.AspnetUsers> ListByWebSiteId(long id)
+        {
+            return this.repository.ListByWebSiteId(id).ToList<ScheduMail.Core.Domain.AspnetUsers>();
         }
 
         /// <summary>
@@ -64,7 +73,7 @@ namespace ScheduMail.UnitsOfWork
         /// Saves the specified user.
         /// </summary>
         /// <param name="schedule">The users.</param>
-        /// <returns>Updated Web site instance.</returns>
+        /// <returns>Updated user instance.</returns>
         public ScheduMail.Core.Domain.AspnetUsers Save(ScheduMail.Core.Domain.AspnetUsers users)
         {
             throw new NotImplementedException();

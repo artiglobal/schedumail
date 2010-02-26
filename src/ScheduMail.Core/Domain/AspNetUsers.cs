@@ -15,7 +15,7 @@ namespace ScheduMail.Core.Domain
     /// </summary>
     [Serializable]
     public class AspnetUsers
-    {
+    {        
         /// <summary>
         /// User id private member variable.
         /// </summary>
@@ -135,6 +135,10 @@ namespace ScheduMail.Core.Domain
         /// FailedPasswordAnswerAttemptWindowStart member variable.
         /// </summary>
         private DateTime failedPasswordAnswerAttemptWindowStart;
+
+        public AspnetUsers()
+        {
+        }
 
         /// <summary>
         /// Gets or sets the user id.
