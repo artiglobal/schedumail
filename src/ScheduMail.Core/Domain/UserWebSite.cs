@@ -14,11 +14,6 @@ namespace ScheduMail.Core.Domain
     public class UserWebSite
     {
         /// <summary>
-        /// User ID identification.
-        /// </summary>
-        public string UserId { get; set; }
-
-        /// <summary>
         /// Gets or sets the web site id.
         /// </summary>
         /// <value>The web site id.</value>
