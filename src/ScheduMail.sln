@@ -1,12 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.Migrations", "ScheduMail.Migrations\ScheduMail.Migrations.csproj", "{DA70C778-36AC-4EDA-9C4D-E7E7B9256F10}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.Specifications", "ScheduMail.Specifications\ScheduMail.Specifications.csproj", "{E46B532A-79AD-4421-8274-BAA798F8C5B3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail", "ScheduMail\ScheduMail.csproj", "{6438C5F2-9DC2-43B4-8FCB-A0D528FF54D2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.Web", "ScheduMail.Web\ScheduMail.Web.csproj", "{EFA692DD-D56F-4D85-95C7-7AD368AAF36A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRasta.Codecs.Spark", "OpenRasta.Codecs.Spark\OpenRasta.Codecs.Spark.csproj", "{E975B88A-90AB-4392-882E-E2C17486C651}"
@@ -46,24 +40,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.UnitsOfWorkTests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.WebMvcSpark", "ScheduMail.WebMvcSpark\ScheduMail.WebMvcSpark.csproj", "{AD8FFDA5-765F-4441-9C9A-FCB7EF108D3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.API", "ScheduMail.API\ScheduMail.API.csproj", "{E08DEEEC-B9C3-40F0-B09A-167AE96AA07D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.Spark.TemplateParser", "ScheduMail.Spark.TemplateParser\ScheduMail.Spark.TemplateParser.csproj", "{04D91FB3-853A-4D2A-A676-E94F6BE92E5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.Spark.TemplateParserTest", "ScheduMail.Spark.TemplateParserTest\ScheduMail.Spark.TemplateParserTest.csproj", "{BAE628EB-75FD-497E-A5B0-9BD152F447F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DA70C778-36AC-4EDA-9C4D-E7E7B9256F10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA70C778-36AC-4EDA-9C4D-E7E7B9256F10}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA70C778-36AC-4EDA-9C4D-E7E7B9256F10}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA70C778-36AC-4EDA-9C4D-E7E7B9256F10}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E46B532A-79AD-4421-8274-BAA798F8C5B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E46B532A-79AD-4421-8274-BAA798F8C5B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E46B532A-79AD-4421-8274-BAA798F8C5B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E46B532A-79AD-4421-8274-BAA798F8C5B3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6438C5F2-9DC2-43B4-8FCB-A0D528FF54D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6438C5F2-9DC2-43B4-8FCB-A0D528FF54D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6438C5F2-9DC2-43B4-8FCB-A0D528FF54D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6438C5F2-9DC2-43B4-8FCB-A0D528FF54D2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EFA692DD-D56F-4D85-95C7-7AD368AAF36A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EFA692DD-D56F-4D85-95C7-7AD368AAF36A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFA692DD-D56F-4D85-95C7-7AD368AAF36A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -128,6 +116,18 @@ Global
 		{AD8FFDA5-765F-4441-9C9A-FCB7EF108D3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD8FFDA5-765F-4441-9C9A-FCB7EF108D3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD8FFDA5-765F-4441-9C9A-FCB7EF108D3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E08DEEEC-B9C3-40F0-B09A-167AE96AA07D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E08DEEEC-B9C3-40F0-B09A-167AE96AA07D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E08DEEEC-B9C3-40F0-B09A-167AE96AA07D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E08DEEEC-B9C3-40F0-B09A-167AE96AA07D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04D91FB3-853A-4D2A-A676-E94F6BE92E5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04D91FB3-853A-4D2A-A676-E94F6BE92E5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04D91FB3-853A-4D2A-A676-E94F6BE92E5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04D91FB3-853A-4D2A-A676-E94F6BE92E5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAE628EB-75FD-497E-A5B0-9BD152F447F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAE628EB-75FD-497E-A5B0-9BD152F447F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAE628EB-75FD-497E-A5B0-9BD152F447F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAE628EB-75FD-497E-A5B0-9BD152F447F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
