@@ -56,7 +56,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// <param name="collection">The collection.</param>
         /// <returns></returns>
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(string userName, string email, bool isAdministrator)
         {
             try
             {

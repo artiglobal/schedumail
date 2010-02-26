@@ -34,7 +34,7 @@
         <tr each="var item in Model">                      
             <td>
 				<%=Html.Hidden("EmailId", item.EmailId)%>
-				<%=Html.ActionLink(Html.Encode(item.EMailSubject), "EditMail", "Schedule", new { id = item.LogId }, null)%>                    
+				<%=Html.ActionLink(Html.Encode(item.EMailSubject), "Index", "Schedule", new { id = item.LogId }, null)%>                    
             </td>
             <td>
                 <%=Html.Encode(String.Format("{0:g}", item.LastSent))%>

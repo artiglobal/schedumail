@@ -21,12 +21,20 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// </summary>
         /// <returns>The View Instance.</returns>
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
             SelectList hoursList = CopyToSelectList("/App_Data/Hours.xml", -1);
             SelectList minutesList = CopyToSelectList("/App_Data/Minutes.xml", -1);
             ViewData["hoursList"] = hoursList;
             ViewData["minutesList"] = minutesList;
+
+            if (id.HasValue)
+            {
+                IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+
+                IMailUnitOfWork mailUnitOfWork = factory.GetMailUnitOfWork();
+                Mail mail = mailUnitOfWork.GetById(id.Value);
+            }
             
             
             return View();
