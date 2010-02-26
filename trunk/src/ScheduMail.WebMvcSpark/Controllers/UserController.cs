@@ -17,14 +17,14 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// </summary>
         /// <returns></returns>
         public ActionResult Index(long? webSiteId)
-        {          
+        {
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-            
-            IWebSiteUnitOfWork webSitesUnitOfWork = factory.GetWebSiteUnitOfWork();            
+
+            IWebSiteUnitOfWork webSitesUnitOfWork = factory.GetWebSiteUnitOfWork();
             List<WebSite> webSites = webSitesUnitOfWork.List;
             webSiteId = (webSiteId.HasValue == true) ? webSiteId : webSites[0].Id;
             ViewData["webSites"] = CopyToSelectList(webSiteId.Value, webSites);
-                                            
+
             IAspNetUnitOfWork aspNetUserUnitOfWork = factory.GetAspNetUnitOfWork();
             List<AspnetUsers> users = aspNetUserUnitOfWork.ListByWebSiteId(webSiteId.Value);
 
@@ -75,8 +75,40 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// </summary>
         /// <param name="id">The id.</param>
         /// <returns></returns>
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
+            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+            IWebSiteUnitOfWork webSitesUnitOfWork = factory.GetWebSiteUnitOfWork();
+            List<WebSite> webSites = webSitesUnitOfWork.List;
+
+            List<UserWebSite> userWebSites = new List<UserWebSite>
+            {
+                new UserWebSite
+                {
+                    UserId = "AA",
+                    WebSiteId = 1,
+                    SiteName = "www.google.co.uk",
+                    UserSubscribedToWebSite = true
+                },            
+                new UserWebSite
+                {
+                    UserId = "AA",
+                    WebSiteId = 2,
+                    SiteName = "www.telerik.co.uk",
+                    UserSubscribedToWebSite = false
+                },
+                new UserWebSite
+                {
+                    UserId = "AA",
+                    WebSiteId = 3,
+                    SiteName = "www.telecriers.co.uk",
+                    UserSubscribedToWebSite = true
+                }
+            };
+
+
+            ViewData["webSites"] = userWebSites;
+
             AspnetUsers users = new AspnetUsers();
             return View(users);
         }
@@ -104,13 +136,13 @@ namespace ScheduMail.WebMvcSpark.Controllers
                         // If they've submitted the form without a submitButton,  
                         // just return the view again. 
                         return RedirectToAction("Index");
-                }                
+                }
             }
             catch
             {
                 return View();
             }
-        }                  
+        }
 
         #region Private Helper Methods
 
@@ -124,7 +156,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
             MembershipUser[] members = new MembershipUser[userCollection.Count];
             userCollection.CopyTo(members, 0);
             return members;
-        }     
+        }
 
         /// <summary>
         /// Copies to select list.
