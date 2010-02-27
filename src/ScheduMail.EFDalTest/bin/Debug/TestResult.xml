@@ -1,29 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="X:\inetpub\Schedumail\src\ScheduMail.EFDalTest\bin\Debug\ScheduMail.EFDalTest.dll" total="7" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2010-02-23" time="20:17:28">
+<test-results name="X:\inetpub\Schedumail\src\ScheduMail.EFDalTest\bin\Debug\ScheduMail.EFDalTest.dll" total="7" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2010-02-25" time="12:31:04">
   <environment nunit-version="2.5.2.9222" clr-version="2.0.50727.4927" os-version="Microsoft Windows NT 6.1.7600.0" platform="Win32NT" cwd="C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE" machine-name="BALI" user="000088" user-domain="BALI" />
   <culture-info current-culture="en-GB" current-uiculture="en-US" />
-  <test-suite name="X:\inetpub\Schedumail\src\ScheduMail.EFDalTest\bin\Debug\ScheduMail.EFDalTest.dll" executed="True" success="True" time="9.529" asserts="0">
+  <test-suite name="X:\inetpub\Schedumail\src\ScheduMail.EFDalTest\bin\Debug\ScheduMail.EFDalTest.dll" executed="True" success="True" time="0.540" asserts="0">
     <results>
-      <test-suite name="NUnit" executed="True" success="True" time="9.509" asserts="0">
+      <test-suite name="NUnit" executed="True" success="True" time="0.537" asserts="0">
         <results>
-          <test-suite name="Samples" executed="True" success="True" time="9.508" asserts="0">
+          <test-suite name="Samples" executed="True" success="True" time="0.533" asserts="0">
             <results>
-              <test-suite name="Money" executed="True" success="True" time="9.508" asserts="0">
+              <test-suite name="Money" executed="True" success="True" time="0.514" asserts="0">
                 <results>
-                  <test-suite name="EFLogEventRepository_Test" executed="True" success="True" time="7.624" asserts="0">
+                  <test-suite name="EFLogEventRepository_Test" executed="True" success="True" time="0.091" asserts="0">
                     <results>
-                      <test-case name="NUnit.Samples.Money.EFLogEventRepository_Test.EFLogEventRepository_GetLogEvent" executed="True" success="True" time="7.613" asserts="0" />
+                      <test-case name="NUnit.Samples.Money.EFLogEventRepository_Test.EFLogEventRepository_GetLogEvent" executed="True" success="True" time="0.091" asserts="0" />
                     </results>
                   </test-suite>
-                  <test-suite name="EFWEBRepository_Test" executed="True" success="True" time="1.873" asserts="0">
+                  <test-suite name="EFWEBRepository_Test" executed="True" success="True" time="0.414" asserts="0">
                     <results>
-                      <test-case name="NUnit.Samples.Money.EFWEBRepository_Test.EFWEBRepository_GetTest" executed="True" success="True" time="0.111" asserts="1" />
-                      <test-case name="NUnit.Samples.Money.EFWEBRepository_Test.EFWEBRepository_ListTest" executed="True" success="True" time="0.329" asserts="1" />
-                      <test-case name="NUnit.Samples.Money.EFWEBRepository_Test.EFWEBRepository_ListWebSiteEMailsTest" executed="True" success="True" time="0.537" asserts="1" />
-                      <test-case name="NUnit.Samples.Money.EFWEBRepository_Test.EFWEBRepository_RemoveTest" executed="True" success="True" time="0.700" asserts="0" />
-                      <test-case name="NUnit.Samples.Money.EFWEBRepository_Test.EFWEBRepository_SaveTest" executed="True" success="True" time="0.078" asserts="7" />
-                      <test-case name="NUnit.Samples.Money.EFWEBRepository_Test.EFWEBRepository_UpdateTest" executed="True" success="True" time="0.105" asserts="7" />
+                      <test-case name="NUnit.Samples.Money.EFWEBRepository_Test.EFWEBRepository_GetTest" executed="True" success="True" time="0.010" asserts="1" />
+                      <test-case name="NUnit.Samples.Money.EFWEBRepository_Test.EFWEBRepository_ListTest" executed="True" success="True" time="0.023" asserts="1" />
+                      <test-case name="NUnit.Samples.Money.EFWEBRepository_Test.EFWEBRepository_ListWebSiteEMailsTest" executed="True" success="True" time="0.032" asserts="1" />
+                      <test-case name="NUnit.Samples.Money.EFWEBRepository_Test.EFWEBRepository_RemoveTest" executed="True" success="True" time="0.172" asserts="0" />
+                      <test-case name="NUnit.Samples.Money.EFWEBRepository_Test.EFWEBRepository_SaveTest" executed="True" success="True" time="0.079" asserts="7" />
+                      <test-case name="NUnit.Samples.Money.EFWEBRepository_Test.EFWEBRepository_UpdateTest" executed="True" success="True" time="0.086" asserts="7" />
                     </results>
                   </test-suite>
                 </results>

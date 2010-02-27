@@ -52,30 +52,27 @@ namespace ScheduMail.WebMvcSpark.Controllers
             AspnetUsers user = new AspnetUsers();
             return View(user);
         }
-       
+        
         /// <summary>
         /// Creates the specified collection.
         /// </summary>
         /// <param name="collection">The collection.</param>
         /// <returns></returns>
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(string userName, string email, List<UserWebSite> userWebSites, bool isAdministrator, FormCollection collection)
+        public ActionResult Create(string userName, string email, string[] selectedObjects, List<UserWebSite> userWebSites, bool isAdministrator, FormCollection collection)
         {
-               foreach (string key in collection["userWEBSITES"].Split(','))   
-               {
-                   if (key.Contains("item.UserSubscribedToWebSite"))            
-                    {
-                        var Ids = collection.GetValues(key);  
-                    }
-                   if (key.Contains("item.SiteName"))
-                   {
-                       var IdsA = collection.GetValues(key);
-                   }
-                }
+            // Note checkboxes require special handling in mvc
+            // Posts Render an additional <input type="hidden".../> for checkboxes if checked which provides a true and false value.
+            // This addresses scenarios where unchecked checkboxes are not sent in the request. 
+            // Sending a hidden input makes it possible to know that the checkbox 
+            // was present on the page when the request was submitted.
+            // as a result of this querying formas parameters produces unexpected results. The workaround institued for
+            // this problem is to only pass checkboxes which are selected/changed in selected Objects.
+            // Inspect the key value to work out what has changed.
+            
+            List<UserWebSite> userWebSitesA = ViewData["userWebSites"] as List<UserWebSite>;
 
-                List<UserWebSite> userWebSitesA = ViewData["userWebSites"] as List<UserWebSite>;
-
-                return RedirectToAction("Index");            
+            return RedirectToAction("Index");
         }
 
         /// <summary>
