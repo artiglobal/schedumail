@@ -8,7 +8,7 @@
     <Node UniqueName="[0-1010]NUnit" Expanded="true" />
     <Node UniqueName="[0-1011]NUnit.Samples" Expanded="true" />
     <Node UniqueName="[0-1012]NUnit.Samples.Money" Expanded="true" />
-    <Node UniqueName="[0-1007]NUnit.Samples.Money.EFLogEventRepository_Test" Expanded="true" />
-    <Node UniqueName="[0-1000]NUnit.Samples.Money.EFWEBRepository_Test" Expanded="true" />
+    <Node UniqueName="[0-1000]NUnit.Samples.Money.EFLogEventRepository_Test" Expanded="true" />
+    <Node UniqueName="[0-1002]NUnit.Samples.Money.EFWEBRepository_Test" Expanded="true" />
   </Nodes>
 </VisualState>

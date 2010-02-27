@@ -30,9 +30,12 @@
          <tr each="var item in userWebSites">                      
             <td>
 				 !{Html.Hidden("item.Id")}  
-				 !{Html.Hidden("item.SiteName")}      
+				 !{Html.Hidden("item.SiteName")}      				 				 
+				 <input type="checkbox" name="selectedObjects" value="${item.WebSiteId}"> 
+							${item.SiteName}</input>
+
 				
-				<input id="userWEBSITES" name="userWEBSITES"  type="checkbox" name="userWEBSITES" value="${item.WebSiteId}" >${item.SiteName}</input>			 
+			
             </td>           
         </tr>
         </table>
