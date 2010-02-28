@@ -5,6 +5,8 @@ using System.Web.Security;
 using ScheduMail.Core.Domain;
 using ScheduMail.Core.UnitsOfWorkFactory;
 using ScheduMail.Core.UnitsOfWorkRepository;
+using ScheduMail.UnitsOfWork;
+using ScheduMail.WebMvcSpark.Extensions;
 
 namespace ScheduMail.WebMvcSpark.Controllers
 {
@@ -58,14 +60,13 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// Creates the specified user name.
         /// </summary>
         /// <param name="userName">Name of the user.</param>
-        /// <param name="email">The email.</param>
+        /// <param name="email">The email instance.</param>
         /// <param name="selectedObjects">The selected objects.</param>
-        /// <param name="userWebSites">The user web sites.</param>
         /// <param name="isAdministrator">if set to <c>true</c> [is administrator].</param>
         /// <param name="collection">The collection.</param>
         /// <returns>The view instance.</returns>
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(string userName, string email, string[] selectedObjects, List<UserWebSite> userWebSites, bool isAdministrator, FormCollection collection)
+        public ActionResult Create(string userName, string email, string[] selectedObjects, bool isAdministrator, FormCollection collection)
         {
             // Note checkboxes require special handling in mvc
             // Posts Render an additional <input type="hidden".../> for checkboxes if checked which provides a true and false value.
@@ -74,10 +75,34 @@ namespace ScheduMail.WebMvcSpark.Controllers
             // was present on the page when the request was submitted.
             // as a result of this querying formas parameters produces unexpected results. The workaround institued for
             // this problem takes account that only checkboxes which are selected/changed in selected Objects as passed.
-            // Inspect the key value to work out what has changed.            
-            List<UserWebSite> userWebSitesA = ViewData["userWebSites"] as List<UserWebSite>;
+            // Inspect the key value to work out what has changed.       
+            try
+            {
+                IUnitOfWorkFactory factory = new WebSiteUnitOfWorkFactory();
+                IAspNetUnitOfWork unitOfWork = factory.GetAspNetUnitOfWork();
+               
+                ViewData["userWebSites"] = GetUserWebSitesForCreate();
+                AspnetUsers user = new AspnetUsers
+                {
+                    Username = userName,
+                    Email = email
+                };
 
-            return RedirectToAction("Index");
+                user = unitOfWork.Save(user, isAdministrator, selectedObjects);
+
+                return RedirectToAction("Index");
+            }
+            catch (RuleException ex)
+            {                
+                ex.CopyToModelState(ModelState);
+                return View();
+            }
+            catch (Exception ex)
+            {
+                RuleException rex = new RuleException("error", ex.Message);
+                rex.CopyToModelState(ModelState);
+                return View();
+            }
         }
 
         /// <summary>
@@ -204,6 +229,17 @@ namespace ScheduMail.WebMvcSpark.Controllers
             webSites.ForEach(action);
 
             return userWebSites;
+        }
+
+        /// <summary>
+        /// Gets the web sites.
+        /// </summary>
+        /// <returns>List of Web sites.</returns>
+        private static List<WebSite> GetWebSites()
+        {
+            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+            IWebSiteUnitOfWork webSitesUnitOfWork = factory.GetWebSiteUnitOfWork();
+            return webSitesUnitOfWork.List;
         }
 
         #endregion

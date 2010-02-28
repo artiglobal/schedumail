@@ -21,8 +21,10 @@ namespace ScheduMail.Core.UnitsOfWorkFactory
         /// Saves the specified user.
         /// </summary>
         /// <param name="user">The user instance.</param>
-        /// <returns>Aspnet user instance.</returns>
-        ScheduMail.Core.Domain.AspnetUsers Save(AspnetUsers user);
+        /// <param name="isAdministrator">if set to <c>true</c> [is administrator].</param>
+        /// <param name="selectedWebSites">The selected web sites.</param>
+        /// <returns>The User instance.</returns>
+        ScheduMail.Core.Domain.AspnetUsers Save(AspnetUsers user, bool isAdministrator, string[] selectedWebSites);
 
         /// <summary>
         /// Gets the by id.
