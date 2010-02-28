@@ -22,7 +22,7 @@ namespace ScheduMail.EFDal.Dal
         #region Ctor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EFWebSiteRepository"/> class.
+        /// Initializes a new instance of the <see cref="EFScheduleRepositary"/> class.
         /// </summary>
         public EFScheduleRepositary()
         {
@@ -36,7 +36,7 @@ namespace ScheduMail.EFDal.Dal
         /// <summary>
         /// Saves the specified schedule.
         /// </summary>
-        /// <param name="webSite">The schedule.</param>
+        /// <param name="schedule">The schedule.</param>
         /// <returns>Changed schedule.</returns>
         public ScheduMail.Core.Domain.Schedule Save(ScheduMail.Core.Domain.Schedule schedule)
         {

@@ -43,23 +43,22 @@ namespace ScheduMail.UnitsOfWorkTests
         [Test]
         public void Schedule_CreateTest()
         {
-            var ScheduleRepositoryMock = new Mock<IScheduleRepository>();
-            var ScheduleMock = new Mock<Schedule>();
-            ScheduleMock.Object.Id = 1;
-            ScheduleMock.Object.DailyWeeklyOrMonthly = "1";
-            ScheduleMock.Object.DaysOfWeekToRun = "1,2,3,4";
-            ScheduleMock.Object.StartDateTime = DateTime.Now;
-            ScheduleMock.Object.EndDateTime = DateTime.Now.AddYears(1);
+            var scheduleRepositoryMock = new Mock<IScheduleRepository>();
+            var scheduleMock = new Mock<Schedule>();
+            scheduleMock.Object.Id = 1;
+            scheduleMock.Object.DailyWeeklyOrMonthly = "1";
+            scheduleMock.Object.DaysOfWeekToRun = "1,2,3,4";
+            scheduleMock.Object.StartDateTime = DateTime.Now;
+            scheduleMock.Object.EndDateTime = DateTime.Now.AddYears(1);
             
+            scheduleRepositoryMock.Setup(repository => repository.Save(scheduleMock.Object))
+                .Returns(scheduleMock.Object);
 
-            ScheduleRepositoryMock.Setup(repository => repository.Save(ScheduleMock.Object))
-                .Returns(ScheduleMock.Object);
+            ScheduleUnitOfWork uow = new ScheduleUnitOfWork(scheduleRepositoryMock.Object);
+            Schedule schedule = uow.Save(scheduleMock.Object);
 
-            ScheduleUnitOfWork uow = new ScheduleUnitOfWork(ScheduleRepositoryMock.Object);
-            Schedule Schedule = uow.Save(ScheduleMock.Object);
-
-            ScheduleRepositoryMock.Verify(repository => repository.Save(ScheduleMock.Object), Times.Exactly(1));
-            Assert.IsTrue(Schedule == ScheduleMock.Object);
+            scheduleRepositoryMock.Verify(repository => repository.Save(scheduleMock.Object), Times.Exactly(1));
+            Assert.IsTrue(schedule == scheduleMock.Object);
         }
 
         /// <summary>
@@ -68,21 +67,21 @@ namespace ScheduMail.UnitsOfWorkTests
         [Test]
         public void Schedule_DeleteTest()
         {
-            var ScheduleRepositoryMock = new Mock<IScheduleRepository>();
-            var ScheduleMock = new Mock<Schedule>();
-            ScheduleMock.Object.Id = 1;
-            ScheduleMock.Object.Id = 1;
-            ScheduleMock.Object.DailyWeeklyOrMonthly = "1";
-            ScheduleMock.Object.DaysOfWeekToRun = "1,2,3,4";
-            ScheduleMock.Object.StartDateTime = DateTime.Now;
-            ScheduleMock.Object.EndDateTime = DateTime.Now.AddYears(1);
+            var scheduleRepositoryMock = new Mock<IScheduleRepository>();
+            var scheduleMock = new Mock<Schedule>();
+            scheduleMock.Object.Id = 1;
+            scheduleMock.Object.Id = 1;
+            scheduleMock.Object.DailyWeeklyOrMonthly = "1";
+            scheduleMock.Object.DaysOfWeekToRun = "1,2,3,4";
+            scheduleMock.Object.StartDateTime = DateTime.Now;
+            scheduleMock.Object.EndDateTime = DateTime.Now.AddYears(1);
 
-            ScheduleRepositoryMock.Setup(repository => repository.Delete(ScheduleMock.Object));
+            scheduleRepositoryMock.Setup(repository => repository.Delete(scheduleMock.Object));
 
-            ScheduleUnitOfWork unitOfWork = new ScheduleUnitOfWork(ScheduleRepositoryMock.Object);
-            unitOfWork.Delete(ScheduleMock.Object);
+            ScheduleUnitOfWork unitOfWork = new ScheduleUnitOfWork(scheduleRepositoryMock.Object);
+            unitOfWork.Delete(scheduleMock.Object);
 
-            ScheduleRepositoryMock.Verify(repository => repository.Delete(ScheduleMock.Object), Times.Exactly(1));
+            scheduleRepositoryMock.Verify(repository => repository.Delete(scheduleMock.Object), Times.Exactly(1));
         }
 
         /// <summary>
@@ -91,24 +90,24 @@ namespace ScheduMail.UnitsOfWorkTests
         [Test]
         public void Schedule_GetById()
         {
-            var ScheduleRepositoryMock = new Mock<IScheduleRepository>();
-            var ScheduleMock = new Mock<Schedule>();
-            ScheduleMock.Object.Id = 0;
-            ScheduleMock.Object.DailyWeeklyOrMonthly = "1";
-            ScheduleMock.Object.DaysOfWeekToRun = "1,2,3,4";
-            ScheduleMock.Object.StartDateTime = DateTime.Now;
-            ScheduleMock.Object.EndDateTime = DateTime.Now.AddYears(1);
+            var scheduleRepositoryMock = new Mock<IScheduleRepository>();
+            var scheduleMock = new Mock<Schedule>();
+            scheduleMock.Object.Id = 0;
+            scheduleMock.Object.DailyWeeklyOrMonthly = "1";
+            scheduleMock.Object.DaysOfWeekToRun = "1,2,3,4";
+            scheduleMock.Object.StartDateTime = DateTime.Now;
+            scheduleMock.Object.EndDateTime = DateTime.Now.AddYears(1);
 
-            ScheduleRepositoryMock.Setup(repository => repository.GetById(It.Is<long>(id => id > 0 && id < 6)))
-                    .Returns(ScheduleMock.Object);
+            scheduleRepositoryMock.Setup(repository => repository.GetById(It.Is<long>(id => id > 0 && id < 6)))
+                    .Returns(scheduleMock.Object);
 
-            ScheduleUnitOfWork unitOfWork = new ScheduleUnitOfWork(ScheduleRepositoryMock.Object);
+            ScheduleUnitOfWork unitOfWork = new ScheduleUnitOfWork(scheduleRepositoryMock.Object);
             for (long i = 1; i <= 2; i++)
             {
                 unitOfWork.GetById(i);
             }
 
-            ScheduleRepositoryMock.Verify(repository => repository.GetById(It.Is<long>(id => id > 0 && id < 6)), Times.Exactly(2));
+            scheduleRepositoryMock.Verify(repository => repository.GetById(It.Is<long>(id => id > 0 && id < 6)), Times.Exactly(2));
         }
 
         /// <summary>
@@ -117,19 +116,17 @@ namespace ScheduMail.UnitsOfWorkTests
         [Test]
         public void Schedule_List()
         {
-            var ScheduleRepositoryMock = new Mock<IScheduleRepository>();
-            List<Schedule> Schedules = new List<Schedule>();
+            var scheduleRepositoryMock = new Mock<IScheduleRepository>();
+            List<Schedule> schedules = new List<Schedule>();
 
-            ScheduleRepositoryMock.Setup(repository => repository.List)
-                    .Returns(Schedules.AsQueryable());
+            scheduleRepositoryMock.Setup(repository => repository.List)
+                    .Returns(schedules.AsQueryable());
 
-            ScheduleUnitOfWork unitOfWork = new ScheduleUnitOfWork(ScheduleRepositoryMock.Object);
-            List<Schedule> ScheduleList = unitOfWork.List;
+            ScheduleUnitOfWork unitOfWork = new ScheduleUnitOfWork(scheduleRepositoryMock.Object);
+            List<Schedule> scheduleList = unitOfWork.List;
 
-            ScheduleRepositoryMock.Verify(repository => repository.List, Times.AtLeastOnce());
-            Assert.True(ScheduleList.Count == 0);
-        }
-
-       
+            scheduleRepositoryMock.Verify(repository => repository.List, Times.AtLeastOnce());
+            Assert.True(scheduleList.Count == 0);
+        }       
     }
 }

@@ -12,7 +12,7 @@
    !{Html.ValidationSummary("Operation on Web Site was unsuccessful. Please correct the errors and try again.")}   
     
      <div style="text-align:right">				
-			<%=Html.DropDownList("WebSiteId", (SelectList)ViewData["webSites"], 
+			<%=Html.DropDownList("webSiteId", (SelectList)ViewData["webSites"], 
 				new { onChange = "this.form.submit()", @class = "dropdownlistdisplay" })%>
 		</div>
 

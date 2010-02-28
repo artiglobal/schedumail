@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using ScheduMail.Core.RepositoryInterfaces;
 using ScheduMail.Core.UnitsOfWorkFactory;
-using System;
 
 namespace ScheduMail.UnitsOfWork
 {
@@ -30,7 +30,7 @@ namespace ScheduMail.UnitsOfWork
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebSiteUnitOfWork"/> class.
+        /// Initializes a new instance of the <see cref="AspNetUserOfWork"/> class.
         /// </summary>
         /// <param name="repository">The repository.</param>
         public AspNetUserOfWork(IASPNetUserRepository repository)
@@ -51,9 +51,10 @@ namespace ScheduMail.UnitsOfWork
         }
 
         /// <summary>
-        /// Gets the list.
+        /// Gets the ASP ner users by id.
         /// </summary>
-        /// <value>The user list.</value>
+        /// <param name="id">The identification passed.</param>
+        /// <returns>List of ASP net Users.</returns>
         public List<ScheduMail.Core.Domain.AspnetUsers> ListByWebSiteId(long id)
         {
             return this.repository.ListByWebSiteId(id).ToList<ScheduMail.Core.Domain.AspnetUsers>();
@@ -72,7 +73,7 @@ namespace ScheduMail.UnitsOfWork
         /// <summary>
         /// Saves the specified user.
         /// </summary>
-        /// <param name="schedule">The users.</param>
+        /// <param name="users">The users.</param>
         /// <returns>Updated user instance.</returns>
         public ScheduMail.Core.Domain.AspnetUsers Save(ScheduMail.Core.Domain.AspnetUsers users)
         {
@@ -82,7 +83,7 @@ namespace ScheduMail.UnitsOfWork
         /// <summary>
         /// Deletes the specified users.
         /// </summary>
-        /// <param name="schedule">The users.</param>
+        /// <param name="users">The users.</param>
         public void Delete(ScheduMail.Core.Domain.AspnetUsers users)
         {
             throw new NotImplementedException();
@@ -91,7 +92,7 @@ namespace ScheduMail.UnitsOfWork
         /// <summary>
         /// Gets the rule violations.
         /// </summary>
-        /// <param name="schedule">The users.</param>
+        /// <param name="user">The users.</param>
         /// <returns>Collection of Rules Violations.</returns>
         private NameValueCollection GetRuleViolations(ScheduMail.Core.Domain.AspnetUsers user)
         {

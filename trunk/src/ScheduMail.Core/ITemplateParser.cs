@@ -10,13 +10,14 @@ namespace ScheduMail.Core.Facade
   /// </summary>
   public interface ITemplateParser 
   {
-    /// <summary>
-    /// Renders a template given a template and data
-    /// </summary>
-    /// <param name="data">Object instance used for data context when template is parsed</param>
-    /// <param name="templateName">A unique name for the template.</param>
-    /// <param name="templateBody">Template content to be parsed by template parser.</param>
-    /// <returns>Parsed template</returns>
+      /// <summary>
+      /// Renders the specified data.
+      /// </summary>
+      /// <typeparam name="TEMPLATEDATA">The type of the EMPLATEDATA.</typeparam>
+      /// <param name="data">The data instance.</param>
+      /// <param name="templateName">Name of the template.</param>
+      /// <param name="templateBody">The template body.</param>
+      /// <returns>Parsed data instance.</returns>
     string Render<TEMPLATEDATA>(TEMPLATEDATA data, string templateName, string templateBody); 
   }
 }

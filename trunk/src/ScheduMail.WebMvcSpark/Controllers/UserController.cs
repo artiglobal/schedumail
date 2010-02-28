@@ -14,9 +14,10 @@ namespace ScheduMail.WebMvcSpark.Controllers
     public class UserController : Controller
     {
         /// <summary>
-        /// Indexes this instance.
+        /// Indexes the specified web site id.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="webSiteId">The web site id.</param>
+        /// <returns>The view instance.</returns>
         public ActionResult Index(long? webSiteId)
         {
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
@@ -24,7 +25,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
             IWebSiteUnitOfWork webSitesUnitOfWork = factory.GetWebSiteUnitOfWork();
             List<WebSite> webSites = webSitesUnitOfWork.List;
             webSiteId = (webSiteId.HasValue == true) ? webSiteId : webSites[0].Id;
-            ViewData["webSites"] = CopyToSelectList(webSiteId.Value, webSites);
+            ViewData["webSites"] = this.CopyToSelectList(webSiteId.Value, webSites);
 
             IAspNetUnitOfWork aspNetUserUnitOfWork = factory.GetAspNetUnitOfWork();
             List<AspnetUsers> users = aspNetUserUnitOfWork.ListByWebSiteId(webSiteId.Value);
@@ -35,8 +36,8 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// <summary>
         /// Detailses the specified id.
         /// </summary>
-        /// <param name="id">The id.</param>
-        /// <returns></returns>
+        /// <param name="id">The identification value.</param>
+        /// <returns>The view instance.</returns>
         public ActionResult Details(int id)
         {
             return View();
@@ -45,19 +46,24 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// <summary>
         /// Creates this instance.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The view instance.</returns>
         public ActionResult Create()
         {
             ViewData["userWebSites"] = GetUserWebSitesForCreate();
             AspnetUsers user = new AspnetUsers();
             return View(user);
         }
-        
+
         /// <summary>
-        /// Creates the specified collection.
+        /// Creates the specified user name.
         /// </summary>
+        /// <param name="userName">Name of the user.</param>
+        /// <param name="email">The email.</param>
+        /// <param name="selectedObjects">The selected objects.</param>
+        /// <param name="userWebSites">The user web sites.</param>
+        /// <param name="isAdministrator">if set to <c>true</c> [is administrator].</param>
         /// <param name="collection">The collection.</param>
-        /// <returns></returns>
+        /// <returns>The view instance.</returns>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(string userName, string email, string[] selectedObjects, List<UserWebSite> userWebSites, bool isAdministrator, FormCollection collection)
         {
@@ -67,9 +73,8 @@ namespace ScheduMail.WebMvcSpark.Controllers
             // Sending a hidden input makes it possible to know that the checkbox 
             // was present on the page when the request was submitted.
             // as a result of this querying formas parameters produces unexpected results. The workaround institued for
-            // this problem is to only pass checkboxes which are selected/changed in selected Objects.
-            // Inspect the key value to work out what has changed.
-            
+            // this problem takes account that only checkboxes which are selected/changed in selected Objects as passed.
+            // Inspect the key value to work out what has changed.            
             List<UserWebSite> userWebSitesA = ViewData["userWebSites"] as List<UserWebSite>;
 
             return RedirectToAction("Index");
@@ -78,8 +83,8 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// <summary>
         /// Edits the specified id.
         /// </summary>
-        /// <param name="id">The id.</param>
-        /// <returns></returns>
+        /// <param name="id">The identification value.</param>
+        /// <returns>The view instance.</returns>
         public ActionResult Edit(string id)
         {
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
@@ -108,7 +113,6 @@ namespace ScheduMail.WebMvcSpark.Controllers
                 }
             };
 
-
             ViewData["webSites"] = userWebSites;
 
             AspnetUsers users = new AspnetUsers();
@@ -118,9 +122,10 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// <summary>
         /// Edits the specified id.
         /// </summary>
-        /// <param name="id">The id.</param>
+        /// <param name="id">The identification value.</param>
+        /// <param name="submitButton">The submit button.</param>
         /// <param name="collection">The collection.</param>
-        /// <returns></returns>
+        /// <returns>The view instance.</returns>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(int? id, string submitButton, FormCollection collection)
         {
@@ -151,7 +156,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// <summary>
         /// Gets the users.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The view instance.</returns>
         private static MembershipUser[] GetUsers()
         {
             MembershipUserCollection userCollection = Membership.GetAllUsers();
@@ -164,8 +169,8 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// Copies to select list.
         /// </summary>
         /// <param name="webSiteId">The web site id.</param>
-        /// <param name="unitOfWork">The unit of work.</param>
-        /// <returns></returns>
+        /// <param name="webSites">The list of websites.</param>
+        /// <returns>List of Select items.</returns>
         private SelectList CopyToSelectList(long webSiteId, List<WebSite> webSites)
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -173,6 +178,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
             {
                 items.Add(new SelectListItem { Text = item.SiteName, Value = item.Id.ToString() });
             }
+
             SelectList list = new SelectList(items, "Value", "Text", webSiteId);
             return list;
         }
@@ -193,8 +199,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
                 SiteName = q.SiteName,
                 UserSubscribedToWebSite = false,
                 WebSiteId = q.Id
-            }
-            ));
+            }));
 
             webSites.ForEach(action);
 

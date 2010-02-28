@@ -23,7 +23,7 @@ namespace ScheduMail.Core.Domain
         /// Gets or sets a value indicating whether [user subscribed to web site].
         /// </summary>
         /// <value>
-        /// 	<c>true</c> if [user subscribed to web site]; otherwise, <c>false</c>.
+        ///    <c>true</c> if [user subscribed to web site]; otherwise, <c>false</c>.
         /// </value>
         public bool UserSubscribedToWebSite { get; set; }
 

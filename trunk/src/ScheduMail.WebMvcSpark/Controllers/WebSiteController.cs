@@ -1,10 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using ScheduMail.Core.Domain;
 using ScheduMail.Core.UnitsOfWorkFactory;
 using ScheduMail.Core.UnitsOfWorkRepository;
 using ScheduMail.WebMvcSpark.Extensions;
-using System;
-using System.Collections.Generic;
 
 namespace ScheduMail.WebMvc2.Controllers
 {
@@ -16,62 +15,67 @@ namespace ScheduMail.WebMvc2.Controllers
         /// <summary>
         /// Edits the web site.
         /// </summary>
-        /// <param name="WebSiteId">The web site id.</param>
+        /// <param name="webSiteId">The web site id.</param>
         /// <param name="submitButton">The submit button.</param>
-        /// <returns></returns>
-        public ActionResult EditWebSite(int? WebSiteId, string submitButton)
+        /// <returns>The view instance.</returns>
+        public ActionResult EditWebSite(int? webSiteId, string submitButton)
         {
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
             IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
 
-            SelectList list = CopyToSelectList(0, unitOfWork);
+            SelectList list = this.CopyToSelectList(0, unitOfWork);
             ViewData["webSites"] = list;
 
             // Deal with adding new Web Site
-            if (WebSiteId == -1) return View(new WebSite { });
+            if (webSiteId == -1)
+            {
+                return View(new WebSite { });
+            }
 
-            return View(((WebSiteId.HasValue) ? unitOfWork.GetById(WebSiteId.Value) : unitOfWork.List[0]));
+            // if webSiteId supplied get search websites otherwise default to the first webSite.
+            return View(webSiteId.HasValue ? unitOfWork.GetById(webSiteId.Value) : unitOfWork.List[0]);
         }
 
         /// <summary>
         /// Edits the web site.
         /// </summary>
-        /// <param name="WebSiteId">The web site id.</param>
+        /// <param name="webSiteId">The web site id.</param>
         /// <param name="submitButton">The submit button.</param>
         /// <param name="webSite">The web site.</param>
-        /// <returns>The Action Result.</returns>
+        /// <returns>The action result.</returns>
         [AcceptVerbs(HttpVerbs.Post)]
         [ValidateInput(false)]
-        public ActionResult EditWebSite(int? WebSiteId, string submitButton, WebSite webSite)
+        public ActionResult EditWebSite(int? webSiteId, string submitButton, WebSite webSite)
         {
             try
             {
                 IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
                 IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
 
-                SelectList list = CopyToSelectList(0, unitOfWork);
-                ViewData["webSites"] = list;
+                SelectList list = this.CopyToSelectList(0, unitOfWork);
+                ViewData["webSites"] = this.GetWebSiteList();
 
                 switch (submitButton)
                 {
                     case "Add New Web Site":
+                        // reset so displays default value                        
                         return RedirectToAction("EditWebSite", new { WebSiteId = -1 });
                     case "Save":
                         unitOfWork.Save(webSite);
-                        ViewData["webSites"] = GetWebSiteList();
-                        return View();
-                    case "Delete":
-                        webSite = unitOfWork.GetById(WebSiteId.Value);
-                        unitOfWork.Delete(webSite);
                         int? tempVal = null;
                         return RedirectToAction("EditWebSite", new { WebSiteId = tempVal });
+                    case "Delete":
+                        webSite = unitOfWork.GetById(webSiteId.Value);
+                        unitOfWork.Delete(webSite);
+                        tempVal = null;
+                        return RedirectToAction("EditWebSite", new { WebSiteId = tempVal });
                     default: // Change of drop down list ...                                           
-                        return RedirectToAction("EditWebSite", new { WebSiteId = WebSiteId });
+                        return RedirectToAction("EditWebSite", new { WebSiteId = webSiteId });
                 }
             }
             catch (RuleException ex)
             {
-                ViewData["webSites"] = GetWebSiteList();
+                ViewData["webSites"] = this.GetWebSiteList();
                 ex.CopyToModelState(ModelState);
                 return View();
             }
@@ -88,7 +92,7 @@ namespace ScheduMail.WebMvc2.Controllers
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
             IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
 
-            SelectList list = CopyToSelectList(0, unitOfWork);
+            SelectList list = this.CopyToSelectList(0, unitOfWork);
             return list;
         }
 
@@ -97,7 +101,7 @@ namespace ScheduMail.WebMvc2.Controllers
         /// </summary>
         /// <param name="webSiteId">The web site id.</param>
         /// <param name="unitOfWork">The unit of work.</param>
-        /// <returns></returns>
+        /// <returns>List of select items.</returns>
         private SelectList CopyToSelectList(long webSiteId, IWebSiteUnitOfWork unitOfWork)
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -105,6 +109,7 @@ namespace ScheduMail.WebMvc2.Controllers
             {
                 items.Add(new SelectListItem { Text = item.SiteName, Value = item.Id.ToString() });
             }
+
             SelectList list = new SelectList(items, "Value", "Text", webSiteId);
             return list;
         }
