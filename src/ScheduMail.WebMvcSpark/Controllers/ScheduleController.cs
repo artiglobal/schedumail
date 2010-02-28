@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
-using ScheduMail.Core.UnitsOfWorkRepository;
-using ScheduMail.Core.UnitsOfWorkFactory;
-using ScheduMail.Core.Domain;
 using System.Xml;
+using ScheduMail.Core.Domain;
+using ScheduMail.Core.UnitsOfWorkFactory;
+using ScheduMail.Core.UnitsOfWorkRepository;
 
 namespace ScheduMail.WebMvcSpark.Controllers
 {
@@ -17,14 +15,15 @@ namespace ScheduMail.WebMvcSpark.Controllers
     public class ScheduleController : Controller
     {
         /// <summary>
-        /// Indexes this instance.
+        /// Indexes the specified id.
         /// </summary>
-        /// <returns>The View Instance.</returns>
+        /// <param name="id">The identification value.</param>
+        /// <returns>The view instance.</returns>
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Index(int? id)
         {
-            SelectList hoursList = CopyToSelectList("/App_Data/Hours.xml", -1);
-            SelectList minutesList = CopyToSelectList("/App_Data/Minutes.xml", -1);
+            SelectList hoursList = this.CopyToSelectList("/App_Data/Hours.xml", -1);
+            SelectList minutesList = this.CopyToSelectList("/App_Data/Minutes.xml", -1);
             ViewData["hoursList"] = hoursList;
             ViewData["minutesList"] = minutesList;
 
@@ -35,22 +34,25 @@ namespace ScheduMail.WebMvcSpark.Controllers
                 IMailUnitOfWork mailUnitOfWork = factory.GetMailUnitOfWork();
                 Mail mail = mailUnitOfWork.GetById(id.Value);
             }
-            
-            
+                        
             return View();
         }
 
         /// <summary>
-        /// Indexes this instance.
+        /// Indexes the specified id.
         /// </summary>
-        /// <returns>The View Instance.</returns>
+        /// <param name="id">The identification value.</param>
+        /// <param name="submitButton">The submit button.</param>
+        /// <param name="schedule">The schedule.</param>
+        /// <param name="collection">The collection.</param>
+        /// <returns>The view instance.</returns>
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Index(int? id, string submitButton,Schedule schedule, FormCollection collection)
+        public ActionResult Index(int? id, string submitButton, Schedule schedule, FormCollection collection)
         {
             try
             {
-                SelectList hoursList = CopyToSelectList("/App_Data/Hours.xml", -1);
-                SelectList minutesList = CopyToSelectList("/App_Data/Minutes.xml", -1);
+                SelectList hoursList = this.CopyToSelectList("/App_Data/Hours.xml", -1);
+                SelectList minutesList = this.CopyToSelectList("/App_Data/Minutes.xml", -1);
                 ViewData["hoursList"] = hoursList;
                 ViewData["minutesList"] = minutesList;
             
@@ -67,10 +69,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
             {
                 return View();
             }
-
            
-
-
             return View();
         }
 
@@ -141,23 +140,26 @@ namespace ScheduMail.WebMvcSpark.Controllers
         }
 
         /// <summary>
-        /// Creates this instance.
+        /// Edits the mail.
         /// </summary>
-        /// <returns>The View Instance.</returns>
+        /// <param name="id">The identification value.</param>
+        /// <returns>The view instance.</returns>
         public ActionResult EditMail(long? id)
         {
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
             IMailUnitOfWork unitOfWork = factory.GetMailUnitOfWork();
 
-            Mail mail = (id.HasValue) ? unitOfWork.GetById(id.Value) : new Mail();
+            Mail mail = id.HasValue ? unitOfWork.GetById(id.Value) : new Mail();
 
             return View(mail);
         }
 
         /// <summary>
-        /// Creates this instance.
+        /// Edits the mail.
         /// </summary>
-        /// <returns>The View Instance.</returns>
+        /// <param name="id">The identification value.</param>
+        /// <param name="mail">The mail instance.</param>
+        /// <returns>The instance view.</returns>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult EditMail(long? id, Mail mail)
         {
@@ -167,19 +169,21 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// <summary>
         /// Copies to select list.
         /// </summary>
-        /// <param name="Id">id for selection list.</param>
-        /// <param name="source">source of XMl file</param>
-        /// <returns>SelectList</returns>
-        private SelectList CopyToSelectList(string source ,long Id)
+        /// <param name="source">The source.</param>
+        /// <param name="id">The identification value.</param>
+        /// <returns>Select list of items.</returns>
+        private SelectList CopyToSelectList(string source, long id)
         {
-
             List<SelectListItem> items = new List<SelectListItem>();
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(HttpContext.Request.PhysicalApplicationPath + source);
             XmlNodeList xmlNodeList = xmlDoc.SelectNodes("/languages/language");
             foreach (XmlNode node in xmlNodeList)
-                items.Add(new SelectListItem { Text = node.Attributes["name", ""].Value, Value = node.Attributes["value", ""].Value });
-            SelectList list = new SelectList(items, "Value", "Text", Id);
+            {
+                items.Add(new SelectListItem { Text = node.Attributes["name", String.Empty].Value, Value = node.Attributes["value", String.Empty].Value });
+            }
+
+            SelectList list = new SelectList(items, "Value", "Text", id);
             return list;
         }
     }

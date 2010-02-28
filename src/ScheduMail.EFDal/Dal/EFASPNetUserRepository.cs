@@ -69,7 +69,7 @@ namespace ScheduMail.EFDal.Dal
         /// <summary>
         /// Lists the by web site id.
         /// </summary>
-        /// <param name="id">The id.</param>
+        /// <param name="id">The identification value.</param>
         /// <returns>AspNetUser instance.</returns>
         public IQueryable<ScheduMail.Core.Domain.AspnetUsers> ListByWebSiteId(long id)
         {
@@ -93,7 +93,7 @@ namespace ScheduMail.EFDal.Dal
         /// <summary>
         /// Saves the specified user.
         /// </summary>
-        /// <param name="webSite">The user.</param>
+        /// <param name="webSite">The website instance.</param>
         /// <returns>Changed user.</returns>
         public ScheduMail.Core.Domain.AspnetUsers Save(ScheduMail.Core.Domain.AspnetUsers webSite)
         {
@@ -103,7 +103,7 @@ namespace ScheduMail.EFDal.Dal
         /// <summary>
         /// Deletes the specified user.
         /// </summary>
-        /// <param name="webSite">The user.</param>
+        /// <param name="user">The user instance.</param>
         public void Delete(ScheduMail.Core.Domain.AspnetUsers user)
         {
             var entity = (from u in this.context.aspnet_Users

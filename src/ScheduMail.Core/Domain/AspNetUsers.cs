@@ -136,6 +136,9 @@ namespace ScheduMail.Core.Domain
         /// </summary>
         private DateTime failedPasswordAnswerAttemptWindowStart;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AspnetUsers"/> class.
+        /// </summary>
         public AspnetUsers()
         {
         }

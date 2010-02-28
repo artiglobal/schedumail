@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
-using ScheduMail.Core.UnitsOfWorkRepository;
-using ScheduMail.Core.UnitsOfWorkFactory;
 using ScheduMail.Core.Domain;
+using ScheduMail.Core.UnitsOfWorkFactory;
+using ScheduMail.Core.UnitsOfWorkRepository;
 
 namespace ScheduMail.WebMvcSpark.Controllers
 {
@@ -18,7 +13,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// <summary>
         /// Details the specified log event id.
         /// </summary>
-        /// <param name="logEventId">The log event id.</param>
+        /// <param name="id">The log event id.</param>
         /// <returns>The view instance.</returns>
         public ActionResult Detail(long? id)
         {
@@ -29,6 +24,5 @@ namespace ScheduMail.WebMvcSpark.Controllers
 
             return View(logEvent);
         }
-
     }
 }

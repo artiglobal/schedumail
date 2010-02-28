@@ -29,7 +29,7 @@ namespace ScheduMail.UnitsOfWork
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebSiteUnitOfWork"/> class.
+        /// Initializes a new instance of the <see cref="ScheduleUnitOfWork"/> class.
         /// </summary>
         /// <param name="repository">The repository.</param>
         public ScheduleUnitOfWork(IScheduleRepository repository)

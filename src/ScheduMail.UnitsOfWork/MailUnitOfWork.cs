@@ -29,7 +29,7 @@ namespace ScheduMail.UnitsOfWork
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebSiteUnitOfWork"/> class.
+        /// Initializes a new instance of the <see cref="MailUnitOfWork"/> class.
         /// </summary>
         /// <param name="repository">The repository.</param>
         public MailUnitOfWork(IMailRespository repository)
@@ -62,7 +62,7 @@ namespace ScheduMail.UnitsOfWork
         /// <summary>
         /// Saves the specified mail.
         /// </summary>
-        /// <param name="schedule">The mail.</param>
+        /// <param name="schedule">The mail instance.</param>
         /// <returns>Updated Web site instance.</returns>
         public ScheduMail.Core.Domain.Mail Save(ScheduMail.Core.Domain.Mail schedule)
         {
@@ -78,7 +78,7 @@ namespace ScheduMail.UnitsOfWork
         /// <summary>
         /// Deletes the specified mail.
         /// </summary>
-        /// <param name="schedule">The mail.</param>
+        /// <param name="schedule">The schedule instance.</param>
         public void Delete(ScheduMail.Core.Domain.Mail schedule)
         {
             this.repository.Delete(schedule);
@@ -87,7 +87,7 @@ namespace ScheduMail.UnitsOfWork
         /// <summary>
         /// Gets the rule violations.
         /// </summary>
-        /// <param name="schedule">The mail.</param>
+        /// <param name="schedule">The mail instance.</param>
         /// <returns>Collection of Rules Violations.</returns>
         private NameValueCollection GetRuleViolations(ScheduMail.Core.Domain.Mail schedule)
         {

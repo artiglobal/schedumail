@@ -1,12 +1,8 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
-using ScheduMail.Core.UnitsOfWorkRepository;
-using ScheduMail.Core.UnitsOfWorkFactory;
 using ScheduMail.Core.Domain;
+using ScheduMail.Core.UnitsOfWorkFactory;
+using ScheduMail.Core.UnitsOfWorkRepository;
 
 namespace ScheduMail.WebMvcSpark.Controllers
 {
@@ -16,23 +12,22 @@ namespace ScheduMail.WebMvcSpark.Controllers
     public class WebSiteEMailsController : Controller
     {
         /// <summary>
-        /// Indexes the specified user E mail id.
+        /// Indexes the specified web site id.
         /// </summary>
-        /// <param name="UserEMailId">The user E mail id.</param>
-        /// <returns>List of Web Site EMails.</returns>
-        public ActionResult Index(long? WebSiteId)
+        /// <param name="webSiteId">The web site id.</param>
+        /// <returns>List of emails returned.</returns>
+        public ActionResult Index(long? webSiteId)
         {
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
             IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
 
-            WebSiteId = (WebSiteId.HasValue == false) ? unitOfWork.List[0].Id : WebSiteId;
-            IList<WebSiteEMails> webSiteEmails = unitOfWork.GetWebSiteEMails(WebSiteId.Value);
+            webSiteId = (webSiteId.HasValue == false) ? unitOfWork.List[0].Id : webSiteId;
+            IList<WebSiteEMails> webSiteEmails = unitOfWork.GetWebSiteEMails(webSiteId.Value);
 
-            ViewData["webSites"] = CopyToSelectList(WebSiteId.Value, unitOfWork);
+            ViewData["webSites"] = this.CopyToSelectList(webSiteId.Value, unitOfWork);
 
             return View(webSiteEmails);
         }
-
 
         #region Private Helpers
 
@@ -45,7 +40,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
             IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
 
-            SelectList list = CopyToSelectList(0, unitOfWork);
+            SelectList list = this.CopyToSelectList(0, unitOfWork);
             return list;
         }
 
@@ -54,7 +49,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// </summary>
         /// <param name="webSiteId">The web site id.</param>
         /// <param name="unitOfWork">The unit of work.</param>
-        /// <returns></returns>
+        /// <returns>List of selected items.</returns>
         private SelectList CopyToSelectList(long webSiteId, IWebSiteUnitOfWork unitOfWork)
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -62,11 +57,11 @@ namespace ScheduMail.WebMvcSpark.Controllers
             {
                 items.Add(new SelectListItem { Text = item.SiteName, Value = item.Id.ToString() });
             }
+
             SelectList list = new SelectList(items, "Value", "Text", webSiteId);
             return list;
         }
 
         #endregion
-
     }
 }
