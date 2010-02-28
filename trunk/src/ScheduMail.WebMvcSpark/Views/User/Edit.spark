@@ -33,7 +33,7 @@
 		<table>
          <tr each="var item in webSites">                      
             <td>
-				 !{Html.Hidden("item.Id")}    
+				   
 				 !{Html.CheckBox("item.SiteName", item.UserSubscribedToWebSite)} &nbsp; ${item.SiteName}				 
             </td>           
         </tr>

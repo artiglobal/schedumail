@@ -1,0 +1,62 @@
+<content name="title">
+   Web Sites
+</content>
+
+<viewdata webSite="ScheduMail.Core.Domain.WebSite" />
+
+    <h2>
+        Web Sites</h2>               
+        
+# using (Html.BeginForm("EditWebSite", "WebSite")) 
+# {
+   !{Html.ValidationSummary("Operation on Web Site was unsuccessful. Please correct the errors and try again.")}   
+    
+     <div style="text-align:right">				
+			<%=Html.DropDownList("WebSiteId", (SelectList)ViewData["webSites"], 
+				new { onChange = "this.form.submit()", @class = "dropdownlistdisplay" })%>
+		</div>
+
+    <fieldset>		    
+        <legend>Fields</legend>
+        
+        !{Html.Hidden("Id")}       
+                        
+        <div class="editor-label">              
+          <label for="SiteName">SiteName:</label>                                          
+        </div>
+                 
+         <div class="editor-field">
+			!{Html.TextBox("SiteName", null, new { style = "width:500px;" })}			
+            !{Html.ValidationMessage("SiteName")}           
+        </div>
+        
+         <div class="editor-label">
+            <label for="Template">Template:</label> 
+        </div>
+        <div class="editor-field">
+		   !{Html.TextArea("Template", new { @rows = "20", @cols = "73" })}           
+           !{Html.ValidationMessage("Template")} 
+        </div>
+       
+        <p>            
+            <input type="submit" name="submitButton" value="Save" />
+        </p>
+    </fieldset>               
+         <p>
+
+      <table>
+        <tr>
+          <td>
+           <input type="submit" name="submitButton" value="Add New Web Site" />           
+          </td>      
+        
+            <td>
+                <input type="submit" name="submitButton" value="Delete" />                 
+            </td>
+        </tr>
+      </table>
+         </p>
+# }
+
+      
+

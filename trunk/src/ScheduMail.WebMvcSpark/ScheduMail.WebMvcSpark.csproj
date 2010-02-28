@@ -87,11 +87,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\WebSiteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogEventController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Controllers\WebSiteController.cs" />
     <Compile Include="Controllers\WebSiteEMailsController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -115,9 +115,6 @@
     <None Include="Views\Shared\_global.spark" />
     <None Include="Views\Schedule\Index.spark" />
     <None Include="Views\Shared\Site.Master" />
-    <None Include="Views\WebSite\List.spark">
-    </None>
-    <None Include="Views\WebSite\Create.spark" />
     <None Include="Views\WebSiteEMails\Index.spark" />
     <None Include="Views\LogEvent\Detail.spark">
     </None>
@@ -126,6 +123,7 @@
     </None>
     <None Include="Views\User\Create.spark" />
     <None Include="Views\User\Edit.spark" />
+    <None Include="Views\WebSite\EditWebSite.spark" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />
@@ -188,7 +186,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>2263</DevelopmentServerPort>
+          <DevelopmentServerPort>3218</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
