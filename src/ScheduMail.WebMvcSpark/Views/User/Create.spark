@@ -32,10 +32,7 @@
 				 !{Html.Hidden("item.Id")}  
 				 !{Html.Hidden("item.SiteName")}      				 				 
 				 <input type="checkbox" name="selectedObjects" value="${item.WebSiteId}"> 
-							${item.SiteName}</input>
-
-				
-			
+							${item.SiteName}</input>							
             </td>           
         </tr>
         </table>

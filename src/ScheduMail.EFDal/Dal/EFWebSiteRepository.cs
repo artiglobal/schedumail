@@ -120,7 +120,7 @@ namespace ScheduMail.EFDal.Dal
                             where webSiteEmail.Id == webSiteId
                             select new ScheduMail.Core.Domain.WebSiteEMails { EMailSubject = email.Subject, EmailId = email.Id, LastSent = email.LastSent, NextSend = email.NextSend, LogId = log.Id };
 
-            return entities.AsQueryable<ScheduMail.Core.Domain.WebSiteEMails>();                
+            return entities.AsQueryable<ScheduMail.Core.Domain.WebSiteEMails>().Distinct();           
         }
 
         #endregion

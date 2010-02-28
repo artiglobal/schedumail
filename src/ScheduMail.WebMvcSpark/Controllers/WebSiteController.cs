@@ -14,159 +14,65 @@ namespace ScheduMail.WebMvc2.Controllers
     public class WebSiteController : Controller
     {
         /// <summary>
-        /// Indexes this instance.
+        /// Edits the web site.
         /// </summary>
-        /// <returns>View Instance.</returns>
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        /// <summary>
-        /// Lists this instance.
-        /// </summary>
-        /// <returns>List View.</returns>
-        public ActionResult List()
+        /// <param name="WebSiteId">The web site id.</param>
+        /// <param name="submitButton">The submit button.</param>
+        /// <returns></returns>
+        public ActionResult EditWebSite(int? WebSiteId, string submitButton)
         {
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
             IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
-
-            ViewData["webSites"] = unitOfWork.List;
-
-            return View();
-        }
-
-        /// <summary>
-        /// Creates this instance.
-        /// </summary>
-        /// <returns>View Instance.</returns>
-        public ActionResult Create()
-        {
-            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-            IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
-
-            WebSite site = ViewData["WebSite"] as WebSite;
 
             SelectList list = CopyToSelectList(0, unitOfWork);
             ViewData["webSites"] = list;
 
-            return View();
+            // Deal with adding new Web Site
+            if (WebSiteId == -1) return View(new WebSite { });
+
+            return View(((WebSiteId.HasValue) ? unitOfWork.GetById(WebSiteId.Value) : unitOfWork.List[0]));
         }
 
         /// <summary>
-        /// Creates the specified web site.
+        /// Edits the web site.
         /// </summary>
+        /// <param name="WebSiteId">The web site id.</param>
+        /// <param name="submitButton">The submit button.</param>
         /// <param name="webSite">The web site.</param>
-        /// <returns>The navigated to view.</returns>
+        /// <returns>The Action Result.</returns>
         [AcceptVerbs(HttpVerbs.Post)]
         [ValidateInput(false)]
-        public ActionResult Create(WebSite webSite)
+        public ActionResult EditWebSite(int? WebSiteId, string submitButton, WebSite webSite)
         {
             try
             {
                 IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
                 IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
 
-                unitOfWork.Save(webSite);
-                ViewData["webSites"] = GetWebSiteList();
-                return RedirectToAction("Create");
+                SelectList list = CopyToSelectList(0, unitOfWork);
+                ViewData["webSites"] = list;
+
+                switch (submitButton)
+                {
+                    case "Add New Web Site":
+                        return RedirectToAction("EditWebSite", new { WebSiteId = -1 });
+                    case "Save":
+                        unitOfWork.Save(webSite);
+                        ViewData["webSites"] = GetWebSiteList();
+                        return View();
+                    case "Delete":
+                        webSite = unitOfWork.GetById(WebSiteId.Value);
+                        unitOfWork.Delete(webSite);
+                        int? tempVal = null;
+                        return RedirectToAction("EditWebSite", new { WebSiteId = tempVal });
+                    default: // Change of drop down list ...                                           
+                        return RedirectToAction("EditWebSite", new { WebSiteId = WebSiteId });
+                }
             }
             catch (RuleException ex)
             {
                 ViewData["webSites"] = GetWebSiteList();
                 ex.CopyToModelState(ModelState);
-                return View();
-            }
-        }
-
-        /// <summary>
-        /// Selectors the specified form.
-        /// </summary>
-        /// <param name="form">The form.</param>
-        /// <returns></returns>
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Selector(FormCollection form)
-        {
-            // Gets the selected website..
-            long webSiteId = Convert.ToInt32(form["webSites"]);
-            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-            IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
-            WebSite webSite = unitOfWork.GetById(webSiteId);
-
-            // Set up List of web sites.
-            SelectList list = CopyToSelectList(webSiteId, unitOfWork);
-            ViewData["webSites"] = list;
-            ViewData["DeleteId"] = webSiteId;
-            return View("Create", webSite);
-        }
-
-        /// <summary>
-        /// Finds the first.
-        /// </summary>
-        /// <param name="form">The form.</param>
-        /// <returns>Gets initial view.</returns>
-        [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult FindFirst(FormCollection form)
-        {
-            /// Gets the selected product.              
-            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-            IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
-
-            WebSite webSite = unitOfWork.List[0];
-
-            SelectList list = CopyToSelectList(0, unitOfWork);
-
-            ViewData["DeleteId"] = webSite.Id;
-            ViewData["webSites"] = list;
-            return View("Create", webSite);
-        }
-
-        /// <summary>
-        /// News the web site.
-        /// </summary>
-        /// <param name="form">The form.</param>
-        /// <returns>Redirection to Create</returns>
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult NewWebSite(FormCollection form)
-        {
-
-            return RedirectToAction("Create");
-
-        }
-
-        /// <summary>
-        /// Deletes the specified id.
-        /// </summary>
-        /// <param name="id">The id instance.</param>
-        /// <returns>View Instance.</returns>
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        /// <summary>
-        /// Deletes the specified id.
-        /// </summary>
-        /// <param name="id">The id instance.</param>
-        /// <param name="collection">The collection.</param>
-        /// <returns>View Instance.</returns>
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Delete(int? id, FormCollection collection)
-        {
-            try
-            {
-                IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-                IWebSiteUnitOfWork unitOfWork = factory.GetWebSiteUnitOfWork();
-                if (id.HasValue)
-                {
-                    WebSite webSite = unitOfWork.GetById(id.Value);
-                    unitOfWork.Delete(webSite);
-                }
-
-                return RedirectToAction("Create");
-            }
-            catch
-            {
                 return View();
             }
         }
