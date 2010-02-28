@@ -97,11 +97,14 @@ namespace ScheduMail.EFDal.Dal
         /// <param name="webSite">The web site.</param>
         public void Delete(ScheduMail.Core.Domain.WebSite webSite)
         {
-            var entity = (from w in this.context.WebSites
+            var entity = (from w in this.context.WebSites.Include("Mail.LogEvent")                          
                           where w.Id == webSite.Id
                           select w).First();
 
             this.context.DeleteObject(entity);
+            //// debug statement to check cascading delete changes.
+            //// var oses = context.ObjectStateManager.GetObjectStateEntries(EntityState.Deleted);
+
             this.context.SaveChanges();
         }
 

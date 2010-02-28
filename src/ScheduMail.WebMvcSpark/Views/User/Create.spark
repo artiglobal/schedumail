@@ -9,7 +9,7 @@
 <viewdata item="ScheduMail.Core.Domain.UserWebSite"/> 
 <viewdata userWebSites="System.Collections.Generic.List[[ScheduMail.Core.Domain.UserWebSite]]"/> 
 
-# using (Html.BeginForm(ViewData["userWebSites"])) 
+# using (Html.BeginForm()) 
 #{
     <fieldset>
         <legend>Details</legend>
@@ -17,12 +17,12 @@
             !{Html.Hidden("Id")}
             <label for="Username">
                 Username:</label>
-            !{Html.TextBox("Username")} !{Html.ValidationMessage("Username", "*")}
+            !{Html.TextBox("Username")} !{Html.ValidationMessage("Username")}
         </p>
         <p>
             <label for="Email">
                 Email:</label>
-            !{Html.TextBox("Email")} !{Html.ValidationMessage("Email", "*")}
+            !{Html.TextBox("Email")} !{Html.ValidationMessage("Email")}
         </p>    
         
         <h2>Websites</h2>	

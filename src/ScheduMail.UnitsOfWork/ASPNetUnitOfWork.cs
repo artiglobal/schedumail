@@ -71,13 +71,21 @@ namespace ScheduMail.UnitsOfWork
         }
 
         /// <summary>
-        /// Saves the specified user.
+        /// Saves the specified users.
         /// </summary>
         /// <param name="users">The users.</param>
+        /// <param name="isAdministrator">if set to <c>true</c> [is administrator].</param>
+        /// <param name="selectedWebSites">The selected web sites.</param>
         /// <returns>Updated user instance.</returns>
-        public ScheduMail.Core.Domain.AspnetUsers Save(ScheduMail.Core.Domain.AspnetUsers users)
+        public ScheduMail.Core.Domain.AspnetUsers Save(ScheduMail.Core.Domain.AspnetUsers users, bool isAdministrator, string[] selectedWebSites)
         {
-            throw new NotImplementedException();
+            var errors = this.GetRuleViolations(users);
+            if (errors.Count > 0)
+            {
+                throw new RuleException(errors);
+            }
+
+            return this.repository.Save(users, isAdministrator, selectedWebSites);
         }
 
         /// <summary>
@@ -97,6 +105,26 @@ namespace ScheduMail.UnitsOfWork
         private NameValueCollection GetRuleViolations(ScheduMail.Core.Domain.AspnetUsers user)
         {
             var errors = new NameValueCollection();
+
+            if (user.Username.Length > 50)
+            {
+                errors.Add("Username", "Username is required");
+            }
+
+            if (String.IsNullOrEmpty(user.Email))
+            {
+                errors.Add("Username", "Username is required");
+            }
+
+            if (user.Email.Length > 50)
+            {
+                errors.Add("Email", "EMail is required");
+            }
+
+            if (String.IsNullOrEmpty(user.Email))
+            {
+                errors.Add("Email", "EMail is required");
+            }
 
             return errors;
         }

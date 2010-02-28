@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web.Security;
 using ScheduMail.Core.RepositoryInterfaces;
 using ScheduMail.DBModel;
 using ScheduMail.Utils;
@@ -13,7 +14,7 @@ namespace ScheduMail.EFDal.Dal
     /// </summary>
     public class EFAspNetUsersRepository : IASPNetUserRepository
     {
-         #region Private Members
+        #region Private Members
 
         /// <summary>
         /// ADO.net entity context handle
@@ -80,7 +81,7 @@ namespace ScheduMail.EFDal.Dal
             var users = (from w in this.context.WebSites
                          from u in w.aspnet_Users
                          where w.Id == id
-                         select u).ToList<ScheduMail.DBModel.aspnet_Users>();                              
+                         select u).ToList<ScheduMail.DBModel.aspnet_Users>();
 
             return ObjectExtension
                       .CloneList<ScheduMail.DBModel.aspnet_Users,
@@ -88,6 +89,79 @@ namespace ScheduMail.EFDal.Dal
                                  (users)
                                  .OrderBy(q => q.CreateDate)
                       .AsQueryable();
+        }
+
+        /// <summary>
+        /// Saves the specified user.
+        /// </summary>
+        /// <param name="user">The user instance.</param>
+        /// <param name="isAdministrator">if set to <c>true</c> [is administrator].</param>
+        /// <param name="selectedWebSites">The selected web sites.</param>
+        /// <returns>Saved user instance.</returns>
+        public ScheduMail.Core.Domain.AspnetUsers Save(ScheduMail.Core.Domain.AspnetUsers user, bool isAdministrator, string[] selectedWebSites)
+        {
+            // Strategy takes account of the fact that users will have already been added
+            // through web forms. This strategy is clearly not optimal, so for now typical code has been added
+            // to account for this strategy. this can be modified as fit.
+            // Note currently usernames are email addresses which doesn;t make sense as there is a seperate email address
+            // to add on specification. Suggest that username is provided as a unique name and email address is added seperately.
+
+            // First check that user supplied has already been added through webadmin.
+            MembershipUser memberShipUser = Membership.GetUser(user.Username);
+            if (memberShipUser == null)
+            {
+                throw new RuleException("Username", "User entered does not exist, add user using admin facility");
+            }
+
+            // Next read existing user and associated website records (website records reflect many-to- many relationship between
+            // usr and web sites.
+            ScheduMail.DBModel.aspnet_Users entityUser =
+                this.context.aspnet_Users.Include("WebSite")
+                .Where(q => q.Username == memberShipUser.UserName).First();
+
+            entityUser.Email = user.Email;
+
+            // Clean up any existing website associations.
+            int count = entityUser.WebSite.Count;
+            for (int i = 0; i < count; i++)
+            {
+                entityUser.WebSite.Remove(entityUser.WebSite.ElementAt(0));
+            }
+           
+            // if there are any website associations to add
+            // associate websites with user. Note will add entries to userwebsite.
+            if (selectedWebSites != null)
+            {
+                foreach (string website in selectedWebSites)
+                {
+                    long entityWebSiteId = Convert.ToInt64(website);
+                    ScheduMail.DBModel.WebSite entityWebSite = this.context.WebSites.Where(q => q.Id == entityWebSiteId).First();
+                    entityUser.WebSite.Add(entityWebSite);
+                }
+            }
+
+            // persist changes
+            this.context.SaveChanges();
+
+            string[] roles = { "Admin" };
+
+            // Check is user is / or should be in admin role.
+            if (isAdministrator == true)
+            {
+                if (!Roles.IsUserInRole(user.Username, "Admin"))
+                {
+                    Roles.AddUserToRoles(user.Username, roles);
+                }
+            }
+            else
+            {
+                if (Roles.IsUserInRole(user.Username, "Admin"))
+                {
+                    Roles.RemoveUserFromRole(user.Username, "Admin");
+                }
+            }
+
+            return ObjectExtension.CloneProperties<ScheduMail.DBModel.aspnet_Users, ScheduMail.Core.Domain.AspnetUsers>(entityUser);
         }
 
         /// <summary>
@@ -112,8 +186,8 @@ namespace ScheduMail.EFDal.Dal
 
             this.context.DeleteObject(entity);
             this.context.SaveChanges();
-        }    
-   
+        }
+
         #endregion
     }
 }
