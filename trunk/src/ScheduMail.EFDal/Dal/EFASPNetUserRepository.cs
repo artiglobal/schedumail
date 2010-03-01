@@ -61,10 +61,15 @@ namespace ScheduMail.EFDal.Dal
         /// <returns>Website instance.</returns>
         public ScheduMail.Core.Domain.AspnetUsers GetById(string id)
         {
-            var entity = (from w in this.context.aspnet_Users
+            var entity = (from w in this.context.aspnet_Users.Include("WebSite")
                           where w.UserId == id
                           select w).First();
-            return ObjectExtension.CloneProperties<ScheduMail.DBModel.aspnet_Users, ScheduMail.Core.Domain.AspnetUsers>(entity);
+            ScheduMail.Core.Domain.AspnetUsers coreUser = ObjectExtension.CloneProperties<ScheduMail.DBModel.aspnet_Users, ScheduMail.Core.Domain.AspnetUsers>(entity);
+            List<ScheduMail.Core.Domain.WebSite> webSites =
+                ObjectExtension.CloneList<ScheduMail.DBModel.WebSite, 
+                    ScheduMail.Core.Domain.WebSite>(entity.WebSite.ToList<ScheduMail.DBModel.WebSite>());
+            coreUser.WebSites = webSites;
+            return coreUser;
         }
 
         /// <summary>

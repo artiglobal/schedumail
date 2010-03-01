@@ -1,64 +1,43 @@
 <content name="title">
-	Edit User
+	Edit Users
 </content>
-
-<h2>Edit User</h2>
-
+<h2>
+    Edit User </h2>
 !{Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.")} 
 
 <viewdata model="ScheduMail.Core.Domain.AspnetUsers"/> 
 <viewdata item="ScheduMail.Core.Domain.UserWebSite"/> 
-<viewdata webSites="System.Collections.Generic.List[[ScheduMail.Core.Domain.UserWebSite]]"/> 
+<viewdata userWebSites="System.Collections.Generic.List[[ScheduMail.Core.Domain.UserWebSite]]"/> 
+<viewdata listItems="System.Collections.Generic.List[[CheckBoxListInfo]]"/> 
 
 # using (Html.BeginForm()) 
 #{
     <fieldset>
-        <legend>Details</legend>       
+        <legend>Details</legend>
         <p>
-            !{Html.Hidden("Id")}          
+            !{Html.Hidden("Id")}
             <label for="Username">
                 Username:</label>
-            !{Html.TextBox("Username")} !{Html.ValidationMessage("Username", "*")}
+            !{Html.TextBox("Username")} !{Html.ValidationMessage("Username")}
         </p>
-      
         <p>
             <label for="Email">
                 Email:</label>
-            !{Html.TextBox("Email")} !{Html.ValidationMessage("Email", "*")}
-        </p>
+            !{Html.TextBox("Email")} !{Html.ValidationMessage("Email")}
+        </p>    
         
-		<p>        
-					
-		<h2>Websites</h2>	
-		<table>
-         <tr each="var item in webSites">                      
-            <td>
-				   
-				 !{Html.CheckBox("item.SiteName", item.UserSubscribedToWebSite)} &nbsp; ${item.SiteName}				 
-            </td>           
-        </tr>
-        </table>
-        
-        </p>
-        
+        <h2>Websites</h2>			         				
+			<div><%=Html.CheckBoxList("listItems", listItems)%></div>			
         <hr />
-        
+            
         <p>
             !{Html.CheckBox("isAdministrator")} &nbsp; Administrator
-        </p>      
-                
-        <p>
-			  <%=Html.ActionLink("Reset Password", "ChangePassword", "Account", null, null)%>        
         </p>
-       
-        <p>
-            <input type="submit" name="submitButton" value="Save" />
-            <input type="submit" name="submitButton" value="Delete" />
+        <p>           
+            <input type="submit" value="Save" />
         </p>
     </fieldset>
 #}
-
 <div>
     !{Html.ActionLink("Back to List", "Index")}
 </div>
-

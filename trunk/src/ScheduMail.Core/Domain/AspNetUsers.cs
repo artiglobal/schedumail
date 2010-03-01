@@ -127,7 +127,7 @@ namespace ScheduMail.Core.Domain
         private DateTime failedPasswordAttemptWindowStart;
 
         /// <summary>
-        /// Faile dPasswordAnswerAttemptCount private member variable.
+        /// Failed PasswordAnswerAttemptCount private member variable.
         /// </summary>
         private int failedPasswordAnswerAttemptCount;
 
@@ -135,6 +135,11 @@ namespace ScheduMail.Core.Domain
         /// FailedPasswordAnswerAttemptWindowStart member variable.
         /// </summary>
         private DateTime failedPasswordAnswerAttemptWindowStart;
+
+        /// <summary>
+        /// List of associated web sites
+        /// </summary>
+        private List<WebSite> webSites;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AspnetUsers"/> class.
@@ -554,6 +559,22 @@ namespace ScheduMail.Core.Domain
             set
             {
                 this.failedPasswordAnswerAttemptWindowStart = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the web sites.
+        /// </summary>
+        /// <value>The web sites.</value>
+        public List<WebSite> WebSites
+        {
+            get 
+            { 
+                return webSites; 
+            }
+            set 
+            { 
+                webSites = value; 
             }
         }
     }
