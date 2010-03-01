@@ -1,5 +1,7 @@
 ﻿using ScheduMail.Core.UnitsOfWorkRepository;
 using ScheduMail.EFDal.Dal;
+using ScheduMail.Core.RepositoryInterfaces;
+using ScheduMail.Core.Facade;
 
 namespace ScheduMail.UnitsOfWork
 {
@@ -16,7 +18,8 @@ namespace ScheduMail.UnitsOfWork
         /// <returns>Web site unit of work unstance.</returns>
         public ScheduMail.Core.UnitsOfWorkFactory.IWebSiteUnitOfWork GetWebSiteUnitOfWork()
         {
-            return new WebSiteUnitOfWork(new EFWebSiteRepository());
+            IWebSiteRepository webSiteRepository = ServiceLocator.Resolve<IWebSiteRepository>();
+            return new WebSiteUnitOfWork(webSiteRepository);
         }
 
         /// <summary>
@@ -25,7 +28,8 @@ namespace ScheduMail.UnitsOfWork
         /// <returns>LogEvent Unit of Work instance.</returns>
         public ScheduMail.Core.UnitsOfWorkFactory.IlogEventUnitOfWork GetLogEventUnitOfWork()
         {
-            return new LogEventUnitOfWork(new EFLogEventRepository());
+            ILogEventRepository logEventRepository = ServiceLocator.Resolve<ILogEventRepository>();
+            return new LogEventUnitOfWork(logEventRepository);            
         }
 
         /// <summary>
@@ -34,7 +38,8 @@ namespace ScheduMail.UnitsOfWork
         /// <returns>List of mails.</returns>
         public ScheduMail.Core.UnitsOfWorkFactory.IMailUnitOfWork GetMailUnitOfWork()
         {
-            return new MailUnitOfWork(new EFMailRepository());
+            IMailRespository mailRepository = ServiceLocator.Resolve<IMailRespository>();
+            return new MailUnitOfWork(mailRepository);        
         }
 
         /// <summary>
@@ -43,7 +48,8 @@ namespace ScheduMail.UnitsOfWork
         /// <returns>List of AspNet Users.</returns>
         public ScheduMail.Core.UnitsOfWorkFactory.IAspNetUnitOfWork GetAspNetUnitOfWork()
         {
-            return new AspNetUserOfWork(new EFAspNetUsersRepository());
+            IASPNetUserRepository userRepository = ServiceLocator.Resolve<IASPNetUserRepository>();
+            return new AspNetUserOfWork(userRepository);               
         }
 
         #endregion
