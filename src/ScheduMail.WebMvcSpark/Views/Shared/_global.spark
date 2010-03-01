@@ -3,3 +3,4 @@
 <use namespace="System.Web.Mvc" />
 <use namespace="System.Collections.Generic" />
 <use namespace="System.Linq" />
+<use namespace="ScheduMail.WebMvcSpark.Extensions" />

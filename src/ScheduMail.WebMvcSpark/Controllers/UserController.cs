@@ -80,7 +80,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
             {
                 IUnitOfWorkFactory factory = new WebSiteUnitOfWorkFactory();
                 IAspNetUnitOfWork unitOfWork = factory.GetAspNetUnitOfWork();
-               
+
                 ViewData["userWebSites"] = GetUserWebSitesForCreate();
                 AspnetUsers user = new AspnetUsers
                 {
@@ -93,7 +93,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
                 return RedirectToAction("Index");
             }
             catch (RuleException ex)
-            {                
+            {
                 ex.CopyToModelState(ModelState);
                 return View();
             }
@@ -112,36 +112,30 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// <returns>The view instance.</returns>
         public ActionResult Edit(string id)
         {
-            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-            IWebSiteUnitOfWork webSitesUnitOfWork = factory.GetWebSiteUnitOfWork();
-            List<WebSite> webSites = webSitesUnitOfWork.List;
+            List<UserWebSite> userWebSites = GetUserWebSitesForCreate();
 
-            List<UserWebSite> userWebSites = new List<UserWebSite>
+            IUnitOfWorkFactory factory = new WebSiteUnitOfWorkFactory();
+            IAspNetUnitOfWork unitOfWork = factory.GetAspNetUnitOfWork();
+
+            AspnetUsers user = unitOfWork.GetById(id);
+            ViewData["isAdministrator"] = Roles.IsUserInRole(user.Username, "Admin");
+
+            List<CheckBoxListInfo> checkBoxListItems = new List<CheckBoxListInfo>();
+            foreach (UserWebSite userWebSite in userWebSites)
             {
-                new UserWebSite
-                {                    
-                    WebSiteId = 1,
-                    SiteName = "www.google.co.uk",
-                    UserSubscribedToWebSite = true
-                },            
-                new UserWebSite
-                {                   
-                    WebSiteId = 2,
-                    SiteName = "www.telerik.co.uk",
-                    UserSubscribedToWebSite = false
-                },
-                new UserWebSite
-                {                   
-                    WebSiteId = 3,
-                    SiteName = "www.telecriers.co.uk",
-                    UserSubscribedToWebSite = true
+                bool isChecked = false;
+                if (user.WebSites.Find(q => q.Id == userWebSite.WebSiteId) != null)
+                {
+                    isChecked = true;
                 }
-            };
+                CheckBoxListInfo info =
+                   new CheckBoxListInfo(userWebSite.WebSiteId.ToString(), userWebSite.SiteName, isChecked);
+                checkBoxListItems.Add(info);
+            }
 
-            ViewData["webSites"] = userWebSites;
+            ViewData["listItems"] = checkBoxListItems;
 
-            AspnetUsers users = new AspnetUsers();
-            return View(users);
+            return View(user);
         }
 
         /// <summary>
@@ -152,7 +146,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// <param name="collection">The collection.</param>
         /// <returns>The view instance.</returns>
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int? id, string submitButton, FormCollection collection)
+        public ActionResult Edit(int? id, string submitButton, string[] listItems, FormCollection collection)
         {
             try
             {
