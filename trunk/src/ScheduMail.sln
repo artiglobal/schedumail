@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.Web", "ScheduMai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRasta.Codecs.Spark", "OpenRasta.Codecs.Spark\OpenRasta.Codecs.Spark.csproj", "{E975B88A-90AB-4392-882E-E2C17486C651}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.WebMvc2", "ScheduMail.WebMvc2\ScheduMail.WebMvc2.csproj", "{7D927124-2593-4631-B839-3ACC25F6044B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.Core", "ScheduMail.Core\ScheduMail.Core.csproj", "{FCD5706E-40A6-43A8-817E-8AFEBB1400FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.DBModel", "ScheduMail.DBModel\ScheduMail.DBModel.csproj", "{021B9D0C-8E70-4B4E-BFD1-2301450355B9}"
@@ -17,8 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{22A83EF1-D
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.CoreTest", "ScheduMail.CoreTest\ScheduMail.CoreTest.csproj", "{FB30D273-5F6B-48C3-9764-3A97B34BA34A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.WebMvc2Test", "ScheduMail.WebMvc2Test\ScheduMail.WebMvc2Test.csproj", "{C4E97A27-F576-4C84-98FE-AE146A5405D5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.EFDalTest", "ScheduMail.EFDalTest\ScheduMail.EFDalTest.csproj", "{A8DF95C9-09CE-440F-87D0-7CDF6E85D7C5}"
 EndProject
@@ -60,10 +56,6 @@ Global
 		{E975B88A-90AB-4392-882E-E2C17486C651}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E975B88A-90AB-4392-882E-E2C17486C651}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E975B88A-90AB-4392-882E-E2C17486C651}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7D927124-2593-4631-B839-3ACC25F6044B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D927124-2593-4631-B839-3ACC25F6044B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D927124-2593-4631-B839-3ACC25F6044B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D927124-2593-4631-B839-3ACC25F6044B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FCD5706E-40A6-43A8-817E-8AFEBB1400FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FCD5706E-40A6-43A8-817E-8AFEBB1400FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCD5706E-40A6-43A8-817E-8AFEBB1400FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -76,10 +68,6 @@ Global
 		{FB30D273-5F6B-48C3-9764-3A97B34BA34A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB30D273-5F6B-48C3-9764-3A97B34BA34A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB30D273-5F6B-48C3-9764-3A97B34BA34A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C4E97A27-F576-4C84-98FE-AE146A5405D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4E97A27-F576-4C84-98FE-AE146A5405D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4E97A27-F576-4C84-98FE-AE146A5405D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4E97A27-F576-4C84-98FE-AE146A5405D5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A8DF95C9-09CE-440F-87D0-7CDF6E85D7C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A8DF95C9-09CE-440F-87D0-7CDF6E85D7C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8DF95C9-09CE-440F-87D0-7CDF6E85D7C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
