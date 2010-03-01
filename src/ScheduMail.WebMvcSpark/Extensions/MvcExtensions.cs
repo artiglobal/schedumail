@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace ScheduMail.WebMvcSpark.Extensions
@@ -55,9 +55,9 @@ namespace ScheduMail.WebMvcSpark.Extensions
         /// Checks the box list.
         /// </summary>
         /// <param name="htmlHelper">The HTML helper.</param>
-        /// <param name="name">The name.</param>
+        /// <param name="name">The named instance.</param>
         /// <param name="listInfo">The list info.</param>
-        /// <returns></returns>
+        /// <returns>List of checkbox list items.</returns>
         public static string CheckBoxList(this HtmlHelper htmlHelper, string name, List<CheckBoxListInfo> listInfo)
         {
             return htmlHelper.CheckBoxList(name, listInfo, ((IDictionary<string, object>)null));
@@ -67,40 +67,49 @@ namespace ScheduMail.WebMvcSpark.Extensions
         /// Checks the box list.
         /// </summary>
         /// <param name="htmlHelper">The HTML helper.</param>
-        /// <param name="name">The name.</param>
+        /// <param name="name">The name instance.</param>
         /// <param name="listInfo">The list info.</param>
         /// <param name="htmlAttributes">The HTML attributes.</param>
-        /// <returns></returns>
-        public static string CheckBoxList(this HtmlHelper htmlHelper, string name, List<CheckBoxListInfo> listInfo,
-            object htmlAttributes)
+        /// <returns>List of checkbox items.</returns>
+        public static string CheckBoxList(this HtmlHelper htmlHelper, string name, List<CheckBoxListInfo> listInfo, object htmlAttributes)
         {
-            return htmlHelper.CheckBoxList(name, listInfo,
-                ((IDictionary<string, object>)new RouteValueDictionary(htmlAttributes)));
+            return htmlHelper.CheckBoxList(name, listInfo, ((IDictionary<string, object>)new RouteValueDictionary(htmlAttributes)));
         }
 
         /// <summary>
         /// Checks the box list.
         /// </summary>
         /// <param name="htmlHelper">The HTML helper.</param>
-        /// <param name="name">The name.</param>
+        /// <param name="name">The name instance.</param>
         /// <param name="listInfo">The list info.</param>
         /// <param name="htmlAttributes">The HTML attributes.</param>
-        /// <returns></returns>
-        public static string CheckBoxList(this HtmlHelper htmlHelper, string name, List<CheckBoxListInfo> listInfo,
-
-            IDictionary<string, object> htmlAttributes)
+        /// <returns>List of checkbox items.</returns>
+        public static string CheckBoxList(this HtmlHelper htmlHelper, string name, List<CheckBoxListInfo> listInfo, IDictionary<string, object> htmlAttributes)
         {
             if (String.IsNullOrEmpty(name))
+            {
                 throw new ArgumentException("The argument must have a value", "name");
+            }
+
             if (listInfo == null)
+            {
                 throw new ArgumentNullException("listInfo");
+            }
+
             if (listInfo.Count < 1)
+            {
                 throw new ArgumentException("The list must contain at least one value", "listInfo");
+            }
+
             StringBuilder sb = new StringBuilder();
             foreach (CheckBoxListInfo info in listInfo)
             {
                 TagBuilder builder = new TagBuilder("input");
-                if (info.IsChecked) builder.MergeAttribute("checked", "checked");
+                if (info.IsChecked)
+                {
+                    builder.MergeAttribute("checked", "checked");
+                }
+
                 builder.MergeAttributes<string, object>(htmlAttributes);
                 builder.MergeAttribute("type", "checkbox");
                 builder.MergeAttribute("value", info.Value);
@@ -131,8 +140,25 @@ namespace ScheduMail.WebMvcSpark.Extensions
             this.DisplayText = displayText;
             this.IsChecked = isChecked;
         }
+
+        /// <summary>
+        /// Gets the value.
+        /// </summary>
+        /// <value>The value.</value>
         public string Value { get; private set; }
+
+        /// <summary>
+        /// Gets the display text.
+        /// </summary>
+        /// <value>The display text.</value>
         public string DisplayText { get; private set; }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is checked.
+        /// </summary>
+        /// <value>
+        ///    <c>true</c> if this instance is checked; otherwise, <c>false</c>.
+        /// </value>
         public bool IsChecked { get; private set; }
     }
 }

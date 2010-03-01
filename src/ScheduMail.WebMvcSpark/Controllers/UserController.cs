@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
 using System.Linq;
+using System.Web.Mvc;
 using System.Web.Security;
 using ScheduMail.Core.Domain;
 using ScheduMail.Core.UnitsOfWorkFactory;
@@ -52,16 +52,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// <returns>The view instance.</returns>
         public ActionResult Create()
         {
-            ViewData["userWebSites"] = GetUserWebSitesForCreate();
-            List<UserWebSite> userWebSites = ViewData["userWebSites"] as List<UserWebSite>;
-
-            List<CheckBoxListInfo> checkBoxListItems = new List<CheckBoxListInfo>();
-            foreach (UserWebSite userWebSite in userWebSites)
-            {               
-                CheckBoxListInfo info =
-                   new CheckBoxListInfo(userWebSite.WebSiteId.ToString(), userWebSite.SiteName, false);
-                checkBoxListItems.Add(info);
-            }
+            List<CheckBoxListInfo> checkBoxListItems = PopulateCheckBoxesForCreate();
 
             ViewData["listItems"] = checkBoxListItems;
             AspnetUsers user = new AspnetUsers();
@@ -69,16 +60,14 @@ namespace ScheduMail.WebMvcSpark.Controllers
         }
 
         /// <summary>
-        /// Creates the specified user name.
+        /// Creates the specified user.
         /// </summary>
-        /// <param name="userName">Name of the user.</param>
-        /// <param name="email">The email instance.</param>
+        /// <param name="user">The user instance.</param>
         /// <param name="selectedObjects">The selected objects.</param>
         /// <param name="isAdministrator">if set to <c>true</c> [is administrator].</param>
-        /// <param name="collection">The collection.</param>
         /// <returns>The view instance.</returns>
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(string userName, string email, string[] selectedObjects, bool isAdministrator, FormCollection collection)
+        public ActionResult Create(AspnetUsers user, string[] selectedObjects, bool isAdministrator)
         {
             // Note checkboxes require special handling in mvc
             // Posts Render an additional <input type="hidden".../> for checkboxes if checked which provides a true and false value.
@@ -93,35 +82,9 @@ namespace ScheduMail.WebMvcSpark.Controllers
                 IUnitOfWorkFactory factory = new WebSiteUnitOfWorkFactory();
                 IAspNetUnitOfWork unitOfWork = factory.GetAspNetUnitOfWork();
 
-                ViewData["userWebSites"] = GetUserWebSitesForCreate();
-                List<UserWebSite> userWebSites = ViewData["userWebSites"] as List<UserWebSite>;
-
-                List<CheckBoxListInfo> checkBoxListItems = new List<CheckBoxListInfo>();
-                foreach (UserWebSite userWebSite in userWebSites)
-                {                   
-                    bool isChecked = false;
-                    if (selectedObjects != null)
-                    {
-                        var selectedObject = selectedObjects.Where(q => q == userWebSite.WebSiteId.ToString());
-                        if (selectedObject != null)
-                        {
-                            isChecked = true;
-                        }
-                    }
-                    CheckBoxListInfo info =
-                       new CheckBoxListInfo(userWebSite.WebSiteId.ToString(), userWebSite.SiteName, isChecked);
-                    checkBoxListItems.Add(info);
-                }
-
+                List<CheckBoxListInfo> checkBoxListItems = GetCheckedBoxes(selectedObjects);
                 ViewData["listItems"] = checkBoxListItems;
-
-                ViewData["userWebSites"] = GetUserWebSitesForCreate();
-                AspnetUsers user = new AspnetUsers
-                {
-                    Username = userName,
-                    Email = email
-                };
-
+                           
                 user = unitOfWork.Save(user, isAdministrator, selectedObjects);
 
                 return RedirectToAction("Index");
@@ -138,22 +101,21 @@ namespace ScheduMail.WebMvcSpark.Controllers
                 return View();
             }
         }
-
+      
         /// <summary>
         /// Edits the specified id.
         /// </summary>
         /// <param name="id">The identification value.</param>
         /// <returns>The view instance.</returns>
         public ActionResult Edit(string id)
-        {
-            List<UserWebSite> userWebSites = GetUserWebSitesForCreate();
-
+        {            
             IUnitOfWorkFactory factory = new WebSiteUnitOfWorkFactory();
             IAspNetUnitOfWork unitOfWork = factory.GetAspNetUnitOfWork();
 
             AspnetUsers user = unitOfWork.GetById(id);
             ViewData["isAdministrator"] = Roles.IsUserInRole(user.Username, "Admin");
 
+            List<UserWebSite> userWebSites = GetUserWebSitesWithDefaultDetails();
             List<CheckBoxListInfo> checkBoxListItems = new List<CheckBoxListInfo>();
             foreach (UserWebSite userWebSite in userWebSites)
             {
@@ -162,6 +124,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
                 {
                     isChecked = true;
                 }
+
                 CheckBoxListInfo info =
                    new CheckBoxListInfo(userWebSite.WebSiteId.ToString(), userWebSite.SiteName, isChecked);
                 checkBoxListItems.Add(info);
@@ -173,16 +136,18 @@ namespace ScheduMail.WebMvcSpark.Controllers
         }
 
         /// <summary>
-        /// Edits the specified id.
+        /// Edits the specified user id.
         /// </summary>
-        /// <param name="id">The identification value.</param>
+        /// <param name="userId">The user id.</param>
         /// <param name="submitButton">The submit button.</param>
+        /// <param name="user">The user instance.</param>
+        /// <param name="isAdministrator">if set to <c>true</c> [is administrator].</param>
+        /// <param name="selectedObjects">The selected objects.</param>
         /// <param name="collection">The collection.</param>
         /// <returns>The view instance.</returns>
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(string userId, 
-            string userName, 
-            string email, 
+        public ActionResult Edit(
+            string userId,           
             string submitButton, 
             AspnetUsers user,
             bool isAdministrator, 
@@ -205,7 +170,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
                 switch (submitButton)
                 {
                     case "Save":
-                        ViewData["userWebSites"] = GetUserWebSitesForCreate();                      
+                        ViewData["userWebSites"] = GetUserWebSitesWithDefaultDetails();                      
                         user = unitOfWork.Save(user, isAdministrator, selectedObjects);
                         return RedirectToAction("Index");
                     case "Delete":                      
@@ -222,7 +187,6 @@ namespace ScheduMail.WebMvcSpark.Controllers
                 RuleException rex = new RuleException("error", ex.Message);
                 rex.CopyToModelState(ModelState);
                 return View();
-
             }
         }
 
@@ -262,7 +226,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// Gets the user web sites for create.
         /// </summary>
         /// <returns>List of Use Web sites with UserSubscribedToWebSite == false.</returns>
-        private static List<UserWebSite> GetUserWebSitesForCreate()
+        private static List<UserWebSite> GetUserWebSitesWithDefaultDetails()
         {
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
             IWebSiteUnitOfWork webSitesUnitOfWork = factory.GetWebSiteUnitOfWork();
@@ -290,6 +254,56 @@ namespace ScheduMail.WebMvcSpark.Controllers
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
             IWebSiteUnitOfWork webSitesUnitOfWork = factory.GetWebSiteUnitOfWork();
             return webSitesUnitOfWork.List;
+        }
+
+        /// <summary>
+        /// Populates the check boxes for create.
+        /// Defalts al checkboxes to false
+        /// </summary>
+        /// <returns>List of checkbox list items.</returns>
+        private static List<CheckBoxListInfo> PopulateCheckBoxesForCreate()
+        {
+            List<UserWebSite> userWebSites = GetUserWebSitesWithDefaultDetails();
+
+            List<CheckBoxListInfo> checkBoxListItems = new List<CheckBoxListInfo>();
+            foreach (UserWebSite userWebSite in userWebSites)
+            {
+                CheckBoxListInfo info =
+                   new CheckBoxListInfo(userWebSite.WebSiteId.ToString(), userWebSite.SiteName, false);
+                checkBoxListItems.Add(info);
+            }
+
+            return checkBoxListItems;
+        }
+
+        /// <summary>
+        /// Gets the checked boxes.
+        /// </summary>
+        /// <param name="selectedObjects">The selected objects.</param>
+        /// <returns>List of check box items.</returns>
+        private static List<CheckBoxListInfo> GetCheckedBoxes(string[] selectedObjects)
+        {
+            List<UserWebSite> userWebSites = GetUserWebSitesWithDefaultDetails();
+
+            List<CheckBoxListInfo> checkBoxListItems = new List<CheckBoxListInfo>();
+            foreach (UserWebSite userWebSite in userWebSites)
+            {
+                bool isChecked = false;
+                if (selectedObjects != null)
+                {
+                    var selectedObject = selectedObjects.Where(q => q == userWebSite.WebSiteId.ToString());
+                    if (selectedObject != null)
+                    {
+                        isChecked = true;
+                    }
+                }
+
+                CheckBoxListInfo info =
+                   new CheckBoxListInfo(userWebSite.WebSiteId.ToString(), userWebSite.SiteName, isChecked);
+                checkBoxListItems.Add(info);
+            }
+
+            return checkBoxListItems;
         }
 
         #endregion

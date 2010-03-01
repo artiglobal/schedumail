@@ -91,10 +91,10 @@ namespace ScheduMail.UnitsOfWork
         /// <summary>
         /// Deletes the specified users.
         /// </summary>
-        /// <param name="users">The users.</param>
+        /// <param name="user">The user instance.</param>
         public void Delete(ScheduMail.Core.Domain.AspnetUsers user)
         {
-            repository.Delete(user);
+            this.repository.Delete(user);
         }
 
         /// <summary>
