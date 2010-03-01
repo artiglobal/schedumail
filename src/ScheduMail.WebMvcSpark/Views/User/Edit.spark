@@ -2,15 +2,13 @@
 	Edit Users
 </content>
 <h2>
-    Edit User </h2>
+    Edit User Assignement Details</h2>
 !{Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.")} 
 
 <viewdata model="ScheduMail.Core.Domain.AspnetUsers"/> 
 <viewdata item="ScheduMail.Core.Domain.UserWebSite"/> 
 <viewdata userWebSites="System.Collections.Generic.List[[ScheduMail.Core.Domain.UserWebSite]]"/> 
 <viewdata listItems="System.Collections.Generic.List[[CheckBoxListInfo]]"/> 
-
-<h2>Add Users to WebSite</h2>
 
 # using (Html.BeginForm()) 
 #{
