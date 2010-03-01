@@ -4,6 +4,8 @@
 
 <viewdata model="System.Collections.Generic.List[[ScheduMail.Core.Domain.AspnetUsers]]"/> 
 
+<h2>Users Assigned to WebSite</h2>
+
 # using (Html.BeginForm())
 # { 
    <p>

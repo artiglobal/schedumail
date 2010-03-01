@@ -92,9 +92,9 @@ namespace ScheduMail.UnitsOfWork
         /// Deletes the specified users.
         /// </summary>
         /// <param name="users">The users.</param>
-        public void Delete(ScheduMail.Core.Domain.AspnetUsers users)
+        public void Delete(ScheduMail.Core.Domain.AspnetUsers user)
         {
-            throw new NotImplementedException();
+            repository.Delete(user);
         }
 
         /// <summary>

@@ -1,13 +1,12 @@
 <content name="title">
-	Create Users
+	<h2>Add Users to WebSite</h2>
 </content>
-<h2>
-    Create User </h2>
+
 !{Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.")} 
 
 <viewdata model="ScheduMail.Core.Domain.AspnetUsers"/> 
 <viewdata item="ScheduMail.Core.Domain.UserWebSite"/> 
-<viewdata userWebSites="System.Collections.Generic.List[[ScheduMail.Core.Domain.UserWebSite]]"/> 
+<viewdata listItems="System.Collections.Generic.List[[CheckBoxListInfo]]"/> 
 
 # using (Html.BeginForm()) 
 #{
@@ -24,18 +23,10 @@
                 Email:</label>
             !{Html.TextBox("Email")} !{Html.ValidationMessage("Email")}
         </p>    
-        
-        <h2>Websites</h2>	
-		<table>
-         <tr each="var item in userWebSites">                      
-            <td>
-				 !{Html.Hidden("item.Id")}  
-				 !{Html.Hidden("item.SiteName")}      				 				 
-				 <input type="checkbox" name="selectedObjects" value="${item.WebSiteId}"> 
-							${item.SiteName}</input>							
-            </td>           
-        </tr>
-        </table>
+              
+		 <h2>Websites</h2>			         				
+			<div><%=Html.CheckBoxList("selectedObjects", listItems)%></div>			
+        <hr />
         
         <hr />
             
@@ -43,7 +34,7 @@
             !{Html.CheckBox("isAdministrator")} &nbsp; Administrator
         </p>
         <p>           
-            <input type="submit" value="Create" />
+             <input type="submit" name="submitButton" value="Save" />
         </p>
     </fieldset>
 #}
