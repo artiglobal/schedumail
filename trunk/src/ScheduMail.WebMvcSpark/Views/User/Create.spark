@@ -13,7 +13,7 @@
     <fieldset>
         <legend>Details</legend>
         <p>
-            !{Html.Hidden("Id")}
+            !{Html.Hidden("UserId")}
             <label for="Username">
                 Username:</label>
             !{Html.TextBox("Username")} !{Html.ValidationMessage("Username")}

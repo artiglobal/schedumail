@@ -570,11 +570,12 @@ namespace ScheduMail.Core.Domain
         {
             get 
             { 
-                return webSites; 
+                return this.webSites; 
             }
+
             set 
             { 
-                webSites = value; 
+                this.webSites = value; 
             }
         }
     }

@@ -189,8 +189,11 @@ namespace ScheduMail.EFDal.Dal
                           where u.UserId == user.UserId
                           select u).First();
 
-            for(int i = 0; i < entity.WebSite.Count; i++)
-                 entity.WebSite.Remove(entity.WebSite.ElementAt(0));
+            for (int i = 0; i < entity.WebSite.Count; i++)
+            {
+                entity.WebSite.Remove(entity.WebSite.ElementAt(0));
+            }
+
             this.context.SaveChanges();
         }
 
