@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Linq;
 using System.Web.Security;
 using ScheduMail.Core.Domain;
 using ScheduMail.Core.UnitsOfWorkFactory;
@@ -52,6 +53,17 @@ namespace ScheduMail.WebMvcSpark.Controllers
         public ActionResult Create()
         {
             ViewData["userWebSites"] = GetUserWebSitesForCreate();
+            List<UserWebSite> userWebSites = ViewData["userWebSites"] as List<UserWebSite>;
+
+            List<CheckBoxListInfo> checkBoxListItems = new List<CheckBoxListInfo>();
+            foreach (UserWebSite userWebSite in userWebSites)
+            {               
+                CheckBoxListInfo info =
+                   new CheckBoxListInfo(userWebSite.WebSiteId.ToString(), userWebSite.SiteName, false);
+                checkBoxListItems.Add(info);
+            }
+
+            ViewData["listItems"] = checkBoxListItems;
             AspnetUsers user = new AspnetUsers();
             return View(user);
         }
@@ -80,6 +92,28 @@ namespace ScheduMail.WebMvcSpark.Controllers
             {
                 IUnitOfWorkFactory factory = new WebSiteUnitOfWorkFactory();
                 IAspNetUnitOfWork unitOfWork = factory.GetAspNetUnitOfWork();
+
+                ViewData["userWebSites"] = GetUserWebSitesForCreate();
+                List<UserWebSite> userWebSites = ViewData["userWebSites"] as List<UserWebSite>;
+
+                List<CheckBoxListInfo> checkBoxListItems = new List<CheckBoxListInfo>();
+                foreach (UserWebSite userWebSite in userWebSites)
+                {                   
+                    bool isChecked = false;
+                    if (selectedObjects != null)
+                    {
+                        var selectedObject = selectedObjects.Where(q => q == userWebSite.WebSiteId.ToString());
+                        if (selectedObject != null)
+                        {
+                            isChecked = true;
+                        }
+                    }
+                    CheckBoxListInfo info =
+                       new CheckBoxListInfo(userWebSite.WebSiteId.ToString(), userWebSite.SiteName, isChecked);
+                    checkBoxListItems.Add(info);
+                }
+
+                ViewData["listItems"] = checkBoxListItems;
 
                 ViewData["userWebSites"] = GetUserWebSitesForCreate();
                 AspnetUsers user = new AspnetUsers
@@ -146,27 +180,49 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// <param name="collection">The collection.</param>
         /// <returns>The view instance.</returns>
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int? id, string submitButton, string[] listItems, FormCollection collection)
+        public ActionResult Edit(string userId, 
+            string userName, 
+            string email, 
+            string submitButton, 
+            AspnetUsers user,
+            bool isAdministrator, 
+            string[] selectedObjects, 
+            FormCollection collection)            
         {
             try
             {
+                // Note checkboxes require special handling in mvc
+                // Posts Render an additional <input type="hidden".../> for checkboxes if checked which provides a true and false value.
+                // This addresses scenarios where unchecked checkboxes are not sent in the request. 
+                // Sending a hidden input makes it possible to know that the checkbox 
+                // was present on the page when the request was submitted.
+                // as a result of this querying formas parameters produces unexpected results. The workaround institued for
+                // this problem takes account that only checkboxes which are selected/changed in selected Objects as passed.
+                // Inspect the key value to work out what has changed.       
+                IUnitOfWorkFactory factory = new WebSiteUnitOfWorkFactory();
+                IAspNetUnitOfWork unitOfWork = factory.GetAspNetUnitOfWork();
+
                 switch (submitButton)
                 {
                     case "Save":
-                        // delegate sending to another controller action 
+                        ViewData["userWebSites"] = GetUserWebSitesForCreate();                      
+                        user = unitOfWork.Save(user, isAdministrator, selectedObjects);
                         return RedirectToAction("Index");
-                    case "Delete":
-                        // call another action to perform the cancellation 
+                    case "Delete":                      
+                        unitOfWork.Delete(user);
                         return RedirectToAction("Index");
                     default:
                         // If they've submitted the form without a submitButton,  
                         // just return the view again. 
-                        return RedirectToAction("Index");
+                        return RedirectToAction("View");
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                RuleException rex = new RuleException("error", ex.Message);
+                rex.CopyToModelState(ModelState);
                 return View();
+
             }
         }
 

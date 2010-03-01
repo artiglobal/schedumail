@@ -185,11 +185,12 @@ namespace ScheduMail.EFDal.Dal
         /// <param name="user">The user instance.</param>
         public void Delete(ScheduMail.Core.Domain.AspnetUsers user)
         {
-            var entity = (from u in this.context.aspnet_Users
+            var entity = (from u in this.context.aspnet_Users.Include("WebSite")
                           where u.UserId == user.UserId
                           select u).First();
 
-            this.context.DeleteObject(entity);
+            for(int i = 0; i < entity.WebSite.Count; i++)
+                 entity.WebSite.Remove(entity.WebSite.ElementAt(0));
             this.context.SaveChanges();
         }
 
