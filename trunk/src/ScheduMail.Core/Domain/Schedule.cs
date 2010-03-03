@@ -16,7 +16,7 @@ namespace ScheduMail.Core.Domain
         /// <summary>
         /// Mail Identification.
         /// </summary>
-        private int mailId;
+        private long? mailId;
 
         /// <summary>
         /// Check for whether ir not enabled.
@@ -47,7 +47,7 @@ namespace ScheduMail.Core.Domain
         /// Gets or sets the mail id.
         /// </summary>
         /// <value>The mail id.</value>
-        public int MailId
+        public long? MailId
         {
             get
             {

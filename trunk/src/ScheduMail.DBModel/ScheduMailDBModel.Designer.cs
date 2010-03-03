@@ -15,7 +15,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SchedumailDBModel", "FK_Schedule_0", "Mail", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(ScheduMail.DBModel.Mail), "Schedule", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.Schedule))]
 
 // Original file name:
-// Generation date: 28/02/2010 13:29:30
+// Generation date: 03/03/2010 12:29:58
 namespace ScheduMail.DBModel
 {
     
@@ -1769,9 +1769,9 @@ namespace ScheduMail.DBModel
         /// <summary>
         /// There are no comments for Property Enabled in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<bool> Enabled
+        public bool Enabled
         {
             get
             {
@@ -1786,8 +1786,8 @@ namespace ScheduMail.DBModel
                 this.OnEnabledChanged();
             }
         }
-        private global::System.Nullable<bool> _Enabled;
-        partial void OnEnabledChanging(global::System.Nullable<bool> value);
+        private bool _Enabled = true;
+        partial void OnEnabledChanging(bool value);
         partial void OnEnabledChanged();
         /// <summary>
         /// There are no comments for Property StartDateTime in the schema.

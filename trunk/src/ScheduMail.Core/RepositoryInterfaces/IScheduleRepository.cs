@@ -10,6 +10,13 @@ namespace ScheduMail.Core.RepositoryInterfaces
     /// Provides a standard interface for Schedul operations
     /// </summary>
     public interface IScheduleRepository : ICrudRepository<Schedule, long>
-    {        
+    {
+         /// <summary>
+        /// Gets the by mail id.
+        /// </summary>
+        /// <param name="MailId">The mail id.</param>
+        /// <returns>Schedule</returns>
+        ScheduMail.Core.Domain.Schedule GetByMailId(long? MailId);
+        
     }
 }

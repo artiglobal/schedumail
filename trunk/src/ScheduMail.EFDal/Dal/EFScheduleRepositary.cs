@@ -43,14 +43,21 @@ namespace ScheduMail.EFDal.Dal
             ScheduMail.DBModel.Schedule entity =
                 ObjectExtension.CloneProperties<ScheduMail.Core.Domain.Schedule, ScheduMail.DBModel.Schedule>(schedule);
 
+
+
             if (schedule.IsNew())
             {
+                entity.Mail = (from w in this.context.Mails
+                               where w.Id == schedule.MailId
+                               select w).FirstOrDefault();
                 this.context.AddToSchedules(entity);
                 this.context.SaveChanges();
             }
             else
             {
                 var originalWebSite = (from w in this.context.Schedules
+                                       join mails in this.context.Mails on
+                                       schedule.MailId equals mails.Id
                                        where w.Id == schedule.Id
                                        select w).First();
 
@@ -59,7 +66,7 @@ namespace ScheduMail.EFDal.Dal
             }
 
             return ObjectExtension.CloneProperties<ScheduMail.DBModel.Schedule, ScheduMail.Core.Domain.Schedule>(entity);
-        }   
+        }
 
         /// <summary>
         /// Deletes the specified web site.
@@ -84,7 +91,7 @@ namespace ScheduMail.EFDal.Dal
         {
             var entity = (from w in this.context.Schedules
                           where w.Id == id
-                          select w).First();
+                          select w).FirstOrDefault();
             return ObjectExtension.CloneProperties<ScheduMail.DBModel.Schedule, ScheduMail.Core.Domain.Schedule>(entity);
         }
 
@@ -102,6 +109,21 @@ namespace ScheduMail.EFDal.Dal
                                      (this.context.Schedules.ToList<ScheduMail.DBModel.Schedule>()).AsQueryable();
             }
         }
+
+        /// <summary>
+        /// Gets the by mail id.
+        /// </summary>
+        /// <param name="MailId">The mail id.</param>
+        /// <returns>Schedule</returns>
+        public ScheduMail.Core.Domain.Schedule GetByMailId(long? MailId)
+        {
+            var entity = (from w in this.context.Schedules
+                          where w.Mail.Id == MailId
+                          select w).FirstOrDefault();
+            return ObjectExtension.CloneProperties<ScheduMail.DBModel.Schedule, ScheduMail.Core.Domain.Schedule>(entity);
+
+        }
+
      
         #endregion      
     }
