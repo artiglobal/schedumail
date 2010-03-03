@@ -32,6 +32,13 @@ namespace ScheduMail.Core.UnitsOfWorkFactory
         ScheduMail.Core.Domain.Schedule GetById(long id);
 
         /// <summary>
+        /// Gets the by mail id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns>Schedule instance</returns>
+        ScheduMail.Core.Domain.Schedule GetByMailId(long? MailId);
+
+        /// <summary>
         /// Deletes the specified schedule.
         /// </summary>
         /// <param name="schedule">The schedule.</param>

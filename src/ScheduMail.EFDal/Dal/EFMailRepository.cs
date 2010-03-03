@@ -62,7 +62,7 @@ namespace ScheduMail.EFDal.Dal
         {
             var entity = (from w in this.context.Mails
                           where w.Id == id
-                          select w).First();
+                          select w).FirstOrDefault();
             return ObjectExtension.CloneProperties<ScheduMail.DBModel.Mail, ScheduMail.Core.Domain.Mail>(entity);
         }
 

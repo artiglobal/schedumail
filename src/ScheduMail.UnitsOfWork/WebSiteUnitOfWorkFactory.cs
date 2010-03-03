@@ -43,14 +43,25 @@ namespace ScheduMail.UnitsOfWork
         }
 
         /// <summary>
+        /// Gets the schedule unit of work.
+        /// </summary>
+        /// <returns>Listof Schedules.</returns>
+        public ScheduMail.Core.UnitsOfWorkFactory.IScheduleUnitOfWork GetScheduleUnitOfWork()
+        {
+            return new ScheduleUnitOfWork(new EFScheduleRepositary());
+        }
+
+        /// <summary>
         /// Gets the ASP net unit of work.
         /// </summary>
-        /// <returns>List of AspNet Users.</returns>
+        /// <returns>Log event instance.</returns>
         public ScheduMail.Core.UnitsOfWorkFactory.IAspNetUnitOfWork GetAspNetUnitOfWork()
         {
             IASPNetUserRepository userRepository = ServiceLocator.Resolve<IASPNetUserRepository>();
             return new AspNetUserOfWork(userRepository);               
         }
+
+
 
         #endregion
     }

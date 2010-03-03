@@ -6,9 +6,12 @@ using System.Xml;
 using ScheduMail.Core.Domain;
 using ScheduMail.Core.UnitsOfWorkFactory;
 using ScheduMail.Core.UnitsOfWorkRepository;
+using ScheduMail.UnitsOfWork;
+using ScheduMail.WebMvcSpark.Extensions;
 
 namespace ScheduMail.WebMvcSpark.Controllers
 {
+
     /// <summary>
     /// Scheduling controller.
     /// </summary>
@@ -30,11 +33,16 @@ namespace ScheduMail.WebMvcSpark.Controllers
             if (id.HasValue)
             {
                 IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-
                 IMailUnitOfWork mailUnitOfWork = factory.GetMailUnitOfWork();
                 Mail mail = mailUnitOfWork.GetById(id.Value);
+                ViewData["mail"] = mail;
+
+                IScheduleUnitOfWork scheduleUnitOfWork = factory.GetScheduleUnitOfWork();
+                Schedule schedule = scheduleUnitOfWork.GetByMailId(mail.Id);
+                ViewData["schedule"] = schedule;
+
             }
-                        
+
             return View();
         }
 
@@ -47,7 +55,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
         /// <param name="collection">The collection.</param>
         /// <returns>The view instance.</returns>
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Index(int? id, string submitButton, Schedule schedule, FormCollection collection)
+        public ActionResult Index(long? Id, string submitButton, Schedule schedule, FormCollection collection)
         {
             try
             {
@@ -55,22 +63,46 @@ namespace ScheduMail.WebMvcSpark.Controllers
                 SelectList minutesList = this.CopyToSelectList("/App_Data/Minutes.xml", -1);
                 ViewData["hoursList"] = hoursList;
                 ViewData["minutesList"] = minutesList;
-            
+
                 switch (submitButton)
                 {
                     case "Save":
                         // delegate sending to another controller action 
                         schedule.DaysOfWeekToRun = collection["DaysOfWeekToRun"];
+                        schedule.Enabled = Convert.ToBoolean(collection["collection"]);
+                        schedule.CreatedBy = User.Identity.Name;
+                        IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+                        IScheduleUnitOfWork scheduleUnitOfWork = factory.GetScheduleUnitOfWork();
+                        if (Id.HasValue)
+                        {
+                            schedule.MailId = (long)Id;
+                            schedule.Id = scheduleUnitOfWork.GetByMailId(schedule.MailId).Id;
+                            
+                        }
+                        //IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+                        //IScheduleUnitOfWork scheduleUnitOfWork = factory.GetScheduleUnitOfWork();
+                        scheduleUnitOfWork.Save(schedule);
+
+                        // IMailUnitOfWork mailUnitOfWork = factory.GetMailUnitOfWork();
+                        //Mail mail = mailUnitOfWork.GetById(id.Value);
 
                         return View("Index", schedule);
                 }
+                return View("Index", schedule);
             }
-            catch
+
+            catch (RuleException ex)
             {
+
+                ex.CopyToModelState(ModelState);
                 return View();
             }
-           
-            return View();
+            catch (Exception ex)
+            {
+                RuleException rex = new RuleException("error", ex.Message);
+                rex.CopyToModelState(ModelState);
+                return View();
+            }
         }
 
         /// <summary>

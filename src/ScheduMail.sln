@@ -42,6 +42,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.Spark.TemplatePa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.Spark.TemplateParserTest", "ScheduMail.Spark.TemplateParserTest\ScheduMail.Spark.TemplateParserTest.csproj", "{BAE628EB-75FD-497E-A5B0-9BD152F447F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduleMailRunner", "ScheduleMailRunner\ScheduleMailRunner.csproj", "{4670120D-A2F1-467C-A2AC-2A8ED09FF5BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -116,6 +118,10 @@ Global
 		{BAE628EB-75FD-497E-A5B0-9BD152F447F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAE628EB-75FD-497E-A5B0-9BD152F447F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAE628EB-75FD-497E-A5B0-9BD152F447F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4670120D-A2F1-467C-A2AC-2A8ED09FF5BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4670120D-A2F1-467C-A2AC-2A8ED09FF5BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4670120D-A2F1-467C-A2AC-2A8ED09FF5BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4670120D-A2F1-467C-A2AC-2A8ED09FF5BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

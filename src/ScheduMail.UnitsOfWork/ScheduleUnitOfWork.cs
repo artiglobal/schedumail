@@ -3,6 +3,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using ScheduMail.Core.RepositoryInterfaces;
 using ScheduMail.Core.UnitsOfWorkFactory;
+using System;
 
 namespace ScheduMail.UnitsOfWork
 {
@@ -93,27 +94,39 @@ namespace ScheduMail.UnitsOfWork
         {
             var errors = new NameValueCollection();
 
-            if (schedule.StartDateTime != null)
+            if (schedule.StartDateTime == null)
             {
                 errors.Add("StartDateTime", "Start date is required");
             }
 
-            if (schedule.EndDateTime != null)
+            if (schedule.EndDateTime == null)
             {
-                errors.Add("StartDateTime", "End date is required");
+                errors.Add("EndDateTime", "End date is required");
             }
 
             if (string.IsNullOrEmpty(schedule.DailyWeeklyOrMonthly))
             {
                 errors.Add("DailyWeeklyOrMonthly", "Please check the time to run");
             }
-
-            if (string.IsNullOrEmpty(schedule.DaysOfWeekToRun))
+            if (Convert.ToString(schedule.DailyWeeklyOrMonthly)=="2" || Convert.ToString(schedule.DailyWeeklyOrMonthly)=="4")
             {
-                errors.Add("DailyWeeklyOrMonthly", "Please check days of the week");
+                if (string.IsNullOrEmpty(schedule.DaysOfWeekToRun))
+                {
+                    errors.Add("DaysOfWeekToRun", "Please check days of the week");
+                }
             }
 
             return errors;
+        }
+
+        #endregion
+
+        #region IScheduleUnitOfWork Members
+
+
+        public ScheduMail.Core.Domain.Schedule GetByMailId(long? MailId)
+        {
+            return this.repository.GetByMailId(MailId);
         }
 
         #endregion

@@ -107,7 +107,7 @@
           </Key>
           <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="MailId" Type="integer" />
-          <Property Name="Enabled" Type="bit" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
           <Property Name="StartDateTime" Type="datetime" />
           <Property Name="EndDateTime" Type="datetime" />
           <Property Name="DaysOfWeekToRun" Type="nvarchar" MaxLength="50" />
@@ -138,13 +138,11 @@
           <Property Name="Modified" Type="datetime" />
         </EntityType>
         <Association Name="FK_LogEvent_0">
-          <End Role="Mail" Type="SchedumailDBModel.Store.Mail" Multiplicity="1" >
-            <OnDelete Action = "Cascade"></OnDelete>
-          </End>
+          <End Role="Mail" Type="SchedumailDBModel.Store.Mail" Multiplicity="1" />
           <End Role="LogEvent" Type="SchedumailDBModel.Store.LogEvent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Mail">
-              <PropertyRef Name="Id" />              
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="LogEvent">
               <PropertyRef Name="MailId" />
@@ -152,9 +150,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Mail_0">
-          <End Role="WebSite" Type="SchedumailDBModel.Store.WebSite" Multiplicity="0..1">
-            <OnDelete Action = "Cascade"></OnDelete>
-          </End>
+          <End Role="WebSite" Type="SchedumailDBModel.Store.WebSite" Multiplicity="0..1" />
           <End Role="Mail" Type="SchedumailDBModel.Store.Mail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="WebSite">
@@ -326,7 +322,7 @@
           <Key>
             <PropertyRef Name="Id" /></Key>
           <Property Name="Id" Type="Int64" Nullable="false" />
-          <Property Name="Enabled" Type="Boolean" Nullable="true" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" DefaultValue="True" />
           <Property Name="StartDateTime" Type="DateTime" Nullable="true" />
           <Property Name="EndDateTime" Type="DateTime" Nullable="true" />
           <Property Name="DaysOfWeekToRun" Type="String" Nullable="true" />

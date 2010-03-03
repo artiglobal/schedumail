@@ -38,6 +38,12 @@ namespace ScheduMail.Core.UnitsOfWorkRepository
         /// <returns>Log event instance.</returns>
         IAspNetUnitOfWork GetAspNetUnitOfWork();
 
+        /// <summary>
+        /// Gets the schedule unit of work.
+        /// </summary>
+        /// <returns>Schedule instance.</returns>
+        IScheduleUnitOfWork GetScheduleUnitOfWork();
+
         #endregion
     }
 }

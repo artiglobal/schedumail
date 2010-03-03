@@ -1,0 +1,6 @@
+X:\inetpub\Schedumail\src\ScheduleMailRunner\bin\Debug\ScheduleMailRunner.exe
+X:\inetpub\Schedumail\src\ScheduleMailRunner\bin\Debug\ScheduleMailRunner.pdb
+X:\inetpub\Schedumail\src\ScheduleMailRunner\obj\Debug\ResolveAssemblyReference.cache
+X:\inetpub\Schedumail\src\ScheduleMailRunner\obj\Debug\ScheduleMailRunner.exe
+X:\inetpub\Schedumail\src\ScheduleMailRunner\obj\Debug\ScheduleMailRunner.pdb
+X:\inetpub\Schedumail\src\ScheduleMailRunner\bin\Debug\ScheduleMailRunner.exe.config
