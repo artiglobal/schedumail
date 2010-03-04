@@ -61,7 +61,7 @@
             <legend>Account Information</legend>
             <p>
                 <label for="content">content:</label>
-                !{Html.TextBox("content")}                
+                !{Html.TextArea("content", null, new { @class = "wysiwyg" })}
             </p>
         </fieldset>
     </div>
