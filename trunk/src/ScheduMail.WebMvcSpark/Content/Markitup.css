@@ -1,0 +1,61 @@
+﻿/* -------------------------------------------------------------------
+// markItUp!
+// By Jay Salvat - http://markitup.jaysalvat.com/
+// ------------------------------------------------------------------*/
+
+.miu_html .markItUpButton1 a {
+	background-image:url("../images/Markitup/bold.png");
+}
+.miu_html .markItUpButton2 a {
+	background-image:url("../images/Markitup/italic.png");
+}
+.miu_html .markItUpButton3 a {
+	background-image:url("../images/Markitup/stroke.png");
+}
+
+.miu_html .markItUpButton4 a {
+	background-image:url("../images/Markitup/paragraph.png"); 
+}
+.miu_html .markItUpButton5 a {
+	background-image:url("../images/Markitup/list-bullet.png");
+}
+.miu_html .markItUpButton6 a {
+	background-image:url("../images/Markitup/list-numeric.png");
+}
+.miu_html .markItUpButton7 a {
+	background-image:url("../images/Markitup/list-item.png");
+}
+
+.miu_html .markItUpButton8 a {
+	background-image:url("../images/Markitup/picture.png"); 
+}
+.miu_html .markItUpButton9 a {
+	background-image:url("../images/Markitup/link.png");
+}
+
+.miu_html .clean a {
+	background-image:url("../images/Markitup/clean.png");
+}
+
+.miu_html .table a {
+	background-image:url("../images/Markitup/table.png");
+}
+.miu_html .table-col a {
+	background-image:url("../images/Markitup/table-col.png");
+}
+.miu_html .table-row a {
+	background-image:url("../images/Markitup/table-row.png");
+}
+
+.miu_html .preview a {
+	background-image:url("../images/Markitup/preview.png");
+}
+
+.miu_html .markdown a {
+	background-image:url("../images/Markitup/html.png");
+}
+
+.miu_html .markItUpEditor {
+		border: 3px solid #CC0066;		
+		background-image:url("../images/Markitup/bg-editor-html.png");
+}
