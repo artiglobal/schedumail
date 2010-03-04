@@ -34,7 +34,8 @@ OUTPUT_DIR = File.join(PROJECT_ROOT, "build/bin/#{COMPILE_TARGET}/")
 	task :test => [:unit_test]
 	 
 	desc "Runs unit tests"
-	task :unit_test => :compile do
-	  runner = NUnitRunner.new :compilemode => COMPILE_TARGET, :source => 'src', :platform => 'x86'
-	  runner.executeTests ['ScheduMail.CoreTest','ScheduMail.Spark.TemplateParserTest',  'ScheduMail.UnitsOfWorkTests']
+	nunit  :unit_test => [:compile] do |nunit|
+	  testpath = "build/bin/#{COMPILE_TARGET}"
+	  nunit.path_to_command = "lib/NUnit/nunit-console.exe"
+	  nunit.assemblies "#{testpath}/ScheduMail.CoreTest.dll", "#{testpath}/ScheduMail.Spark.TemplateParserTest.dll", "#{testpath}/ScheduMail.UnitsOfWorkTests.dll"
 	end
