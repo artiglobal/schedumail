@@ -1,16 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.Web", "ScheduMail.Web\ScheduMail.Web.csproj", "{EFA692DD-D56F-4D85-95C7-7AD368AAF36A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRasta.Codecs.Spark", "OpenRasta.Codecs.Spark\OpenRasta.Codecs.Spark.csproj", "{E975B88A-90AB-4392-882E-E2C17486C651}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.Core", "ScheduMail.Core\ScheduMail.Core.csproj", "{FCD5706E-40A6-43A8-817E-8AFEBB1400FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.DBModel", "ScheduMail.DBModel\ScheduMail.DBModel.csproj", "{021B9D0C-8E70-4B4E-BFD1-2301450355B9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{22A83EF1-DEA0-4B10-B39A-5839F1CF6A2B}"
 	ProjectSection(SolutionItems) = preProject
+		..\doc\ReadMe.txt = ..\doc\ReadMe.txt
 		..\doc\scedumail.eap = ..\doc\scedumail.eap
 	EndProjectSection
 EndProject
@@ -44,20 +41,28 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.Spark.TemplatePa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduleMailRunner", "ScheduleMailRunner\ScheduleMailRunner.csproj", "{4670120D-A2F1-467C-A2AC-2A8ED09FF5BE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{6917B200-B25B-4ABA-8098-FECCB9DF3484}"
+	ProjectSection(SolutionItems) = preProject
+		..\rakefile.rb = ..\rakefile.rb
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{9D843C82-3C0D-4D22-AF18-AB5E0F4FDC64}"
+	ProjectSection(SolutionItems) = preProject
+		..\build\config\env.settings.template = ..\build\config\env.settings.template
+		..\build\config\schedumailrunner.app.config.template = ..\build\config\schedumailrunner.app.config.template
+		..\build\config\web.config.template = ..\build\config\web.config.template
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{B280DCC0-C563-419D-BA91-4448ECF87054}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduMail.API.Examples.Mvc", "ScheduMail.API.Examples.Mvc\ScheduMail.API.Examples.Mvc.csproj", "{B43E4A12-BB71-4289-BA8B-C067EA0287D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EFA692DD-D56F-4D85-95C7-7AD368AAF36A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EFA692DD-D56F-4D85-95C7-7AD368AAF36A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EFA692DD-D56F-4D85-95C7-7AD368AAF36A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EFA692DD-D56F-4D85-95C7-7AD368AAF36A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E975B88A-90AB-4392-882E-E2C17486C651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E975B88A-90AB-4392-882E-E2C17486C651}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E975B88A-90AB-4392-882E-E2C17486C651}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E975B88A-90AB-4392-882E-E2C17486C651}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FCD5706E-40A6-43A8-817E-8AFEBB1400FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FCD5706E-40A6-43A8-817E-8AFEBB1400FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCD5706E-40A6-43A8-817E-8AFEBB1400FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -122,8 +127,16 @@ Global
 		{4670120D-A2F1-467C-A2AC-2A8ED09FF5BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4670120D-A2F1-467C-A2AC-2A8ED09FF5BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4670120D-A2F1-467C-A2AC-2A8ED09FF5BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B43E4A12-BB71-4289-BA8B-C067EA0287D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B43E4A12-BB71-4289-BA8B-C067EA0287D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B43E4A12-BB71-4289-BA8B-C067EA0287D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B43E4A12-BB71-4289-BA8B-C067EA0287D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9D843C82-3C0D-4D22-AF18-AB5E0F4FDC64} = {6917B200-B25B-4ABA-8098-FECCB9DF3484}
+		{B43E4A12-BB71-4289-BA8B-C067EA0287D5} = {B280DCC0-C563-419D-BA91-4448ECF87054}
 	EndGlobalSection
 EndGlobal
