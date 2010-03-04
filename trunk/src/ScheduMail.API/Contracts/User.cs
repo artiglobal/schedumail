@@ -9,10 +9,11 @@ namespace ScheduMail.API.Contracts
   /// <summary>
   /// User DTO for retrieving  User data from the third-party / source systems
   /// </summary>
+  [Serializable]
   public class User 
   {
     public User() {
-      Data = new XDocument();
+      Data = new XElement("Data");
     }
 
     /// <summary>
@@ -43,6 +44,6 @@ namespace ScheduMail.API.Contracts
     /// Gets/Sts the custom data of the user.
     /// </summary>
     /// <value>Custom data for user.</value>
-    public XDocument Data { get; set; }
+    public XElement Data { get; set; }
   }
 }
