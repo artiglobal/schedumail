@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <languages>
-  <language  name="Please select ..." value="-1" />
   <language  name="00" value="0" />
   <language  name="15" value="15" />
   <language  name="30" value="30" />

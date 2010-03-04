@@ -25,11 +25,8 @@ namespace ScheduMail.WebMvcSpark.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Index(int? id)
         {
-            SelectList hoursList = this.CopyToSelectList("/App_Data/Hours.xml", -1);
-            SelectList minutesList = this.CopyToSelectList("/App_Data/Minutes.xml", -1);
-            ViewData["hoursList"] = hoursList;
-            ViewData["minutesList"] = minutesList;
-
+            SelectList hoursList = null;
+            SelectList minutesList = null;
             if (id.HasValue)
             {
                 IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
@@ -40,8 +37,25 @@ namespace ScheduMail.WebMvcSpark.Controllers
                 IScheduleUnitOfWork scheduleUnitOfWork = factory.GetScheduleUnitOfWork();
                 Schedule schedule = scheduleUnitOfWork.GetByMailId(mail.Id);
                 ViewData["schedule"] = schedule;
+                if (schedule.StartDateTime != null)
+                {
+                    hoursList = this.CopyToSelectList("/App_Data/Hours.xml", schedule.StartDateTime.Value.Hour);
+                    minutesList = this.CopyToSelectList("/App_Data/Minutes.xml", schedule.StartDateTime.Value.Minute);
+                }
+                else
+                {
+                    hoursList = this.CopyToSelectList("/App_Data/Hours.xml", 0);
+                    minutesList = this.CopyToSelectList("/App_Data/Minutes.xml", 0);
+                }
 
             }
+            else
+            {
+                hoursList = this.CopyToSelectList("/App_Data/Hours.xml", 0);
+                minutesList = this.CopyToSelectList("/App_Data/Minutes.xml",0);
+            }
+            ViewData["hoursList"] = hoursList;
+            ViewData["minutesList"] = minutesList;
 
             return View();
         }
@@ -59,10 +73,10 @@ namespace ScheduMail.WebMvcSpark.Controllers
         {
             try
             {
-                SelectList hoursList = this.CopyToSelectList("/App_Data/Hours.xml", -1);
-                SelectList minutesList = this.CopyToSelectList("/App_Data/Minutes.xml", -1);
-                ViewData["hoursList"] = hoursList;
-                ViewData["minutesList"] = minutesList;
+                SelectList hoursList = this.CopyToSelectList("/App_Data/Hours.xml",0);
+                SelectList minutesList = this.CopyToSelectList("/App_Data/Minutes.xml",0);
+                 ViewData["hoursList"] = hoursList;
+                 ViewData["minutesList"] = minutesList;
 
                 switch (submitButton)
                 {
@@ -73,20 +87,17 @@ namespace ScheduMail.WebMvcSpark.Controllers
                         schedule.CreatedBy = User.Identity.Name;
                         IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
                         IScheduleUnitOfWork scheduleUnitOfWork = factory.GetScheduleUnitOfWork();
+                        schedule.StartDateTime = new DateTime(schedule.StartDateTime.Value.Year, schedule.StartDateTime.Value.Month, schedule.StartDateTime.Value.Day, Convert.ToInt32(collection["hoursList"]), Convert.ToInt32(collection["minutesList"]), 0);
+                        schedule.EndDateTime = new DateTime(schedule.EndDateTime.Value.Year, schedule.EndDateTime.Value.Month, schedule.EndDateTime.Value.Day, Convert.ToInt32(collection["hoursList"]), Convert.ToInt32(collection["minutesList"]), 0);
+                        
                         if (Id.HasValue)
                         {
                             schedule.MailId = (long)Id;
                             schedule.Id = scheduleUnitOfWork.GetByMailId(schedule.MailId).Id;
-                            
                         }
-                        //IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
-                        //IScheduleUnitOfWork scheduleUnitOfWork = factory.GetScheduleUnitOfWork();
                         scheduleUnitOfWork.Save(schedule);
 
-                        // IMailUnitOfWork mailUnitOfWork = factory.GetMailUnitOfWork();
-                        //Mail mail = mailUnitOfWork.GetById(id.Value);
-
-                        return View("Index", schedule);
+                        return RedirectToAction("Index", "WebSiteEMails");
                 }
                 return View("Index", schedule);
             }

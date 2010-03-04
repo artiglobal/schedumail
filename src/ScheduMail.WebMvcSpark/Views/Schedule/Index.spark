@@ -3,30 +3,48 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {	
-		$("input[name=dailyWeeklyOrMonthly]").click(function() {
-			if( $(this).val()==0 || $(this).val()==1  || $(this).val()==2 || $(this).val()==4  ) {
+		 $("input[name=dailyWeeklyOrMonthly]").click(function(){
+		 autoSelector(this);
+		 });
+	
+	    //changing days and week 
+	    var days = "!{schedule.DailyWeeklyOrMonthly}";
+	    if(days.length > 0)
+		{
+			$("input[name=dailyWeeklyOrMonthly][value="+days+"]").attr("checked",true);
+			autoSelector("input[name=dailyWeeklyOrMonthly][value="+days+"]");
+		}
+	});
+	
+	function autoSelector(dwm) {
+			
+			if( $(dwm).val()==0 || $(dwm).val()==1  || $(dwm).val()==2 || $(dwm).val()==4  ) {
 				$("#wrapper").html(""); 
 			}
-			if( $(this).val()==3  ) {
+			if( $(dwm).val()==3  ) {
 				$("#wrapper").html(""); 
 				$('<label for="daysOfWeekToRun">daysOfWeekToRun</label>').appendTo('#wrapper');
-			  {schedule.EndDateTime}
-				$('<input id="daysOfWeekToRun" type="checkbox" name="daysOfWeekToRun" value="1" >Monday</input>').appendTo('#wrapper');
-				$('<input id="daysOfWeekToRun" type="checkbox" name="daysOfWeekToRun" value="2">Tuesday</input>').appendTo('#wrapper');
-				$('<input id="daysOfWeekToRun" type="checkbox" name="daysOfWeekToRun" value="3">Wednesday</input>').appendTo('#wrapper');
-				$('<input id="daysOfWeekToRun" type="checkbox" name="daysOfWeekToRun" value="4">Thursday</input>').appendTo('#wrapper');
-				$('<input id="daysOfWeekToRun" type="checkbox" name="daysOfWeekToRun" value="5">Friday</input>').appendTo('#wrapper');
-				$('<input id="daysOfWeekToRun" type="checkbox" name="daysOfWeekToRun" value="6">Saturday</input>').appendTo('#wrapper');
-				$('<input id="daysOfWeekToRun" type="checkbox" name="daysOfWeekToRun" value="7">Sunday</input>').appendTo('#wrapper');
-    
+				$('<input  type="checkbox" name="daysOfWeekToRun" value="1" >Monday</input>').appendTo('#wrapper');
+				$('<input  type="checkbox" name="daysOfWeekToRun" value="2">Tuesday</input>').appendTo('#wrapper');
+				$('<input  type="checkbox" name="daysOfWeekToRun" value="3">Wednesday</input>').appendTo('#wrapper');
+				$('<input  type="checkbox" name="daysOfWeekToRun" value="4">Thursday</input>').appendTo('#wrapper');
+				$('<input type="checkbox" name="daysOfWeekToRun" value="5">Friday</input>').appendTo('#wrapper');
+				$('<input  type="checkbox" name="daysOfWeekToRun" value="6">Saturday</input>').appendTo('#wrapper');
+				$('<input  type="checkbox" name="daysOfWeekToRun" value="7">Sunday</input>').appendTo('#wrapper');
+				var daysOfWeek = "!{schedule.DaysOfWeekToRun}";
+					if(daysOfWeek.length > 0)
+						{
+						var daysOfWeekArray = daysOfWeek.split(",");
+						for (i=0;i<daysOfWeekArray.length;i++){
+							$("input[name=daysOfWeekToRun][value="+daysOfWeekArray[i]+"]").attr("checked",true);
+						}
+				}
 			}
-	    });	
-	});
+	    }	
+	    
 	$(function() {
 		$("#StartDateTime").datepicker({ dateFormat: 'dd/mm/yy' });
 		$("#EndDateTime").datepicker({ dateFormat: 'dd/mm/yy' });
-		
-
 	});
 	</script>
 	
