@@ -11,10 +11,9 @@
     <script src="../../Scripts/jquery-ui-1.7.2.custom.min.js" type="text/javascript"></script>
     <script src="../../Scripts/jquery.markitup.js" type="text/javascript"></script>
     <script src="../../Scripts/jquery.markitup.settings.js" type="text/javascript"></script>
-    <script src="../../Scripts/ScheduMail.utils.js" type="text/javascript"></script>
     <script type="text/javascript">
       $(function() {
-        wysiwyg.bind();
+        $('textarea.wysiwyg').markItUp(htmlSettings);
       });
     </script>
 </head>
