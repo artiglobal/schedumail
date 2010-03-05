@@ -6,9 +6,11 @@ using ScheduMail.Core.UnitsOfWorkRepository;
 
 namespace ScheduMail.WebMvcSpark.Controllers
 {
+
     /// <summary>
     /// Web Site EMail Controller.
     /// </summary>
+    [Authorize]
     public class WebSiteEMailsController : Controller
     {
         /// <summary>

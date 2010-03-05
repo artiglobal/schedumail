@@ -97,45 +97,6 @@ namespace ScheduMail.WebMvcSpark.Controllers
         }
 
         /// <summary>
-        /// Registers this instance.
-        /// </summary>
-        /// <returns>The veiw instance.</returns>
-        public ActionResult Register()
-        {
-            ViewData["PasswordLength"] = this.MembershipService.MinPasswordLength;
-            return View();
-        }
-
-        /// <summary>
-        /// Registers the specified model.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns>Teh view instance.</returns>
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Register(RegisterModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                // Attempt to register the user
-                MembershipCreateStatus createStatus = this.MembershipService.CreateUser(model.UserName, model.Password, model.Email);
-
-                if (createStatus == MembershipCreateStatus.Success)
-                {
-                    this.FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError(String.Empty, AccountValidation.ErrorCodeToString(createStatus));
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            ViewData["PasswordLength"] = this.MembershipService.MinPasswordLength;
-            return View(model);
-        }
-
-        /// <summary>
         /// Changes the password.
         /// </summary>
         /// <returns>The logged on view instance.</returns>

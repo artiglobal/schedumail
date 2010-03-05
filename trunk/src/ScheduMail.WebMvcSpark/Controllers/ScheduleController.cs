@@ -11,10 +11,10 @@ using ScheduMail.WebMvcSpark.Extensions;
 
 namespace ScheduMail.WebMvcSpark.Controllers
 {
-
     /// <summary>
     /// Scheduling controller.
     /// </summary>
+    [Authorize]
     public class ScheduleController : Controller
     {
         /// <summary>

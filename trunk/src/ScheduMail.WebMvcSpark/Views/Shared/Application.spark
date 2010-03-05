@@ -31,12 +31,15 @@
             
             <div id="menucontainer">
             
-                <ul id="menu">              
-                    <li>!{Html.ActionLink("Home", "Index", "Home")}</li>
-                    <li>!{Html.ActionLink("Web Sites", "EditWebSite", "WebSite")}</li>                                    
-                    <li>!{Html.ActionLink("Users", "Index", "User")}</li>                   
-                    <li>!{Html.ActionLink("Communications", "Index", "WebSiteEMails")}</li>                    
-                    <li>!{Html.ActionLink("About", "About", "Home")}</li>                  
+                <ul id="menu">
+					<li>!{Html.ActionLink("Home", "Index", "Home")}</li>
+					<if condition="Request.IsAuthenticated">
+						<if condition="Request.IsAuthenticated">
+							<li>!{Html.ActionLink("Web Sites", "EditWebSite", "WebSite")}</li>                                    
+							<li>!{Html.ActionLink("Users", "Index", "User")}</li>							
+						</if>
+						<li>!{Html.ActionLink("Communications", "Index", "WebSiteEMails")}</li>
+					</if>
                 </ul>            
             </div>
         </div>
