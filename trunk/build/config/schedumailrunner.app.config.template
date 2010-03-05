@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
+	<configSections>
+		<section name="castle" type="Castle.Windsor.Configuration.AppDomain.CastleSectionHandler,Castle.Windsor"/>
+	</configSections>
+	<castle>
+		<components>
+			<component id="UsersAPI"
+				 service="ScheduMail.Core.Service.Interfaces.IUserService,ScheduMail.Core"
+				 type="ScheduMail.Core.Service.Implementations.UserService,ScheduMail.Core"
+				 lifestyle="Transient">
+			</component>
+			<component id="TemplateEngine"
+				 service="ScheduMail.Core.Facade.ITemplateParser,ScheduMail.Core"
+				 type="ScheduMail.Spark.TemplateParser.TemplateParser,ScheduMail.Spark.TemplateParser"
+				 lifestyle="Transient">
+				<parameters>
+					<assemblies>
+						<array>
+							<item>ScheduMail.API</item>
+						</array>
+					</assemblies>
+					<namespaces>
+						<array>
+							<item>System.Linq</item>
+							<item>System.Xml.Linq</item>
+							<item>ScheduMail.API.Contracts</item>
+						</array>
+					</namespaces>
+				</parameters>
+			</component>
+		</components>
+	</castle>
   <appSettings>
     <add key="URL" value="#{api_url}"/>
   </appSettings>
