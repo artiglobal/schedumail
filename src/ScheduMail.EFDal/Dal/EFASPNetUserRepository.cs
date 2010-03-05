@@ -105,18 +105,22 @@ namespace ScheduMail.EFDal.Dal
         /// <returns>Saved user instance.</returns>
         public ScheduMail.Core.Domain.AspnetUsers Save(ScheduMail.Core.Domain.AspnetUsers user, bool isAdministrator, string[] selectedWebSites)
         {
-            // Strategy takes account of the fact that users will have already been added
-            // through web forms. This strategy is clearly not optimal, so for now typical code has been added
-            // to account for this strategy. this can be modified as fit.
-            // Note currently usernames are email addresses which doesn;t make sense as there is a seperate email address
-            // to add on specification. Suggest that username is provided as a unique name and email address is added seperately.
-
-            // First check that user supplied has already been added through webadmin.
+            //ensure the username has not already been used
             MembershipUser memberShipUser = Membership.GetUser(user.Username);
-            if (memberShipUser == null)
+            if (memberShipUser != null)
             {
-                throw new RuleException("Username", "User entered does not exist, add user using admin facility");
+                throw new RuleException("Username", "Username already exists, please specify a different username");
             }
+
+            //ensure the email address has not already been used
+            bool emailExists = !string.IsNullOrEmpty(Membership.GetUserNameByEmail(user.Email));
+            if (emailExists)
+            {
+                throw new RuleException("Email", "Email address already exists, please specify a different email address");
+            }
+
+            //create user and populate membership to update website/ admin details
+            memberShipUser = Membership.CreateUser(user.Username, user.Password, user.Email);
 
             // Next read existing user and associated website records (website records reflect many-to- many relationship between
             // usr and web sites.

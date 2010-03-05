@@ -10,6 +10,7 @@ namespace ScheduMail.WebMvc2.Controllers
     /// <summary>
     /// Web site controller.
     /// </summary>
+    [Authorize(Roles = "Admin")]
     public class WebSiteController : Controller
     {
         /// <summary>

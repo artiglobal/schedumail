@@ -8,6 +8,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
     /// <summary>
     /// Log Event controller.
     /// </summary>
+    [Authorize]
     public class LogEventController : Controller
     {
         /// <summary>

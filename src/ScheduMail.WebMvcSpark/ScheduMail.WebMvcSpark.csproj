@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\WebSiteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogEventController.cs" />
@@ -177,7 +178,6 @@
     <None Include="Views\Account\ChangePassword.spark" />
     <None Include="Views\Account\ChangePasswordSuccess.spark" />
     <None Include="Views\Account\LogOn.spark" />
-    <None Include="Views\Account\Register.spark" />
     <None Include="Views\Home\About.spark" />
     <None Include="Views\Home\Index.spark" />
     <None Include="Views\Shared\Error.spark" />

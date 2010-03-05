@@ -1,6 +1,6 @@
 ﻿<if condition="Request.IsAuthenticated">
 	Welcome <b>${Context.User.Identity.Name}</b>!
-    [ !{Html.ActionLink("Log Off", "LogOff", "Account")} ]
+    [ !{Html.ActionLink("Change password", "ChangePassword", "Account")} | !{Html.ActionLink("Log Off", "LogOff", "Account")} ]
 </if>
 <else>
 	[ !{Html.ActionLink("Log On", "LogOn", "Account")} ]

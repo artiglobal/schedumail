@@ -34,7 +34,7 @@
             <label for="Template">Template:</label> 
         </div>
         <div class="editor-field">
-		   !{Html.TextArea("Template", new { @rows = "20", @cols = "73" })}           
+		   !{Html.TextArea("Template", null, 20, 73, new { @class = "wysiwyg" })}           
            !{Html.ValidationMessage("Template")} 
         </div>
        

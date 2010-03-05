@@ -11,6 +11,7 @@ using ScheduMail.WebMvcSpark.Extensions;
 
 namespace ScheduMail.WebMvcSpark.Controllers
 {
+    [Authorize]//(Roles="Admin")
     /// <summary>
     /// User controller used for managing users.
     /// </summary>
