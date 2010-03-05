@@ -16,8 +16,9 @@ OUTPUT_DIR = File.join(PROJECT_ROOT, "build/bin/#{COMPILE_TARGET}/")
 	desc "Expand .config files for the correct environment"
 	expandtemplates :config, [:env] do |tmp, args|
 		args.with_defaults(:env => "local")
-		tmp.expand_files "build/config/web.config.template" => "src/ScheduMail.WebMvcSpark/web.config"
-		tmp.expand_files "build/config/schedulmailrunner.app.config.template" => "src/ScheduMailRunner/app.config"
+		tmp.expand_files( 
+			"build/config/web.config.template" => "src/ScheduMail.WebMvcSpark/web.config",
+			"build/config/schedumailrunner.app.config.template" => "src/ScheduleMailRunner/app.config")
 		tmp.data_file = "build/config/#{args.env}.settings"
 	end
 

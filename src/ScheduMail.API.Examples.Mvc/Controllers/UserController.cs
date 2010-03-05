@@ -16,11 +16,13 @@ namespace ScheduMail.API.Examples.Mvc.Controllers
 
         public ActionResult List()
         {
-            var promotion = @"<promotion>
-                                <product>Widget 1</product>
-                                <discount>20%</discount>
-                                <expires>This Month</expires>
-                              </promotion>";
+            var promotion = @"<promotions>
+                                <promotion>
+                                  <product>Widget 1</product>
+                                  <discount>20%</discount>
+                                  <expires>This Month</expires>
+                                </promotion>
+                              </promotions>";
 
             var userData = XElement.Parse(promotion);
 
