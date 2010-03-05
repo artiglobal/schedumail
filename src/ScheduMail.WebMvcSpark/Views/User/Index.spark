@@ -47,7 +47,7 @@
     </p>
     
     <p>
-        !{Html.ActionLink("Assign new user", "Create")}
+        !{Html.ActionLink("Add a new user", "Create")}
     </p>
 
 <!-- some cheap java script to disable all checkboxes -->    
