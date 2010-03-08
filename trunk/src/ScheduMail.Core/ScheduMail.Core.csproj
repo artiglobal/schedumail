@@ -70,6 +70,7 @@
     <Compile Include="Domain\AspNetUsers.cs" />
     <Compile Include="Domain\BaseEntity.cs" />
     <Compile Include="Domain\Book.cs" />
+    <Compile Include="Domain\Email.cs" />
     <Compile Include="Domain\LogEvent.cs" />
     <Compile Include="Domain\LogType.cs" />
     <Compile Include="Domain\Mail.cs" />

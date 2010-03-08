@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <languages>
-  <language  name="0" value="0" />
+  <language  name="00" value="00" />
   <language  name="1" value="1" />
   <language  name="2" value="2" />
   <language  name="3" value="3" />
@@ -24,5 +24,4 @@
   <language  name="21" value="21" />
   <language  name="22" value="22" />
   <language  name="23" value="23" />
-  <language  name="24" value="24" />
 </languages>

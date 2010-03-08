@@ -220,8 +220,8 @@
             <End Role="aspnet_Users" EntitySet="aspnet_Users" /></AssociationSet>
           <EntitySet Name="Schedules" EntityType="SchedumailDBModel.Schedule" />
           <AssociationSet Name="FK_Schedule_0" Association="SchedumailDBModel.FK_Schedule_0">
-            <End Role="Mail" EntitySet="Mails" />
-            <End Role="Schedule" EntitySet="Schedules" /></AssociationSet></EntityContainer>
+            <End EntitySet="Mails" Role="Mail" />
+            <End EntitySet="Schedules" Role="Schedule" /></AssociationSet></EntityContainer>
         <EntityType Name="aspnet_Users">
           <Key>
             <PropertyRef Name="UserId" />
@@ -333,8 +333,8 @@
           <Property Name="DailyWeeklyOrMonthly" Type="String" Nullable="true" />
           <NavigationProperty Name="Mail" Relationship="SchedumailDBModel.FK_Schedule_0" FromRole="Schedule" ToRole="Mail" /></EntityType>
         <Association Name="FK_Schedule_0">
-          <End Type="SchedumailDBModel.Mail" Role="Mail" Multiplicity="0..1" />
-          <End Type="SchedumailDBModel.Schedule" Role="Schedule" Multiplicity="*" /></Association></Schema>
+          <End Type="SchedumailDBModel.Mail" Multiplicity="0..1" Role="Mail" />
+          <End Type="SchedumailDBModel.Schedule" Multiplicity="*" Role="Schedule" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -496,10 +496,10 @@
           <ConnectorPoint PointX="1.5" PointY="8.9994921875" />
           <ConnectorPoint PointX="1.5" PointY="13.538157552083334" />
           <ConnectorPoint PointX="3.25" PointY="13.538157552083334" /></AssociationConnector>
-        <EntityTypeShape EntityType="SchedumailDBModel.Schedule" Width="1.5" PointX="5.25" PointY="0.75" Height="3.1340950520833335" />
-        <AssociationConnector Association="SchedumailDBModel.FK_Schedule_0" >
+        <EntityTypeShape EntityType="SchedumailDBModel.Schedule" Width="1.5" PointX="5.25" PointY="0.5" Height="3.1340950520833331" />
+        <AssociationConnector Association="SchedumailDBModel.FK_Schedule_0">
           <ConnectorPoint PointX="3.75" PointY="5.75" />
-          <ConnectorPoint PointX="3.75" PointY="2.3170475260416667" />
-          <ConnectorPoint PointX="5.25" PointY="2.3170475260416667" /></AssociationConnector></Diagram></edmx:Diagrams>
+          <ConnectorPoint PointX="3.75" PointY="2.0670475260416667" />
+          <ConnectorPoint PointX="5.25" PointY="2.0670475260416667" /></AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

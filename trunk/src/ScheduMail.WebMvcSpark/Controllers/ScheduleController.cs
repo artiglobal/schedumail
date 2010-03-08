@@ -32,6 +32,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
                 IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
                 IMailUnitOfWork mailUnitOfWork = factory.GetMailUnitOfWork();
                 Mail mail = mailUnitOfWork.GetById(id.Value);
+                mailUnitOfWork.EmailsToBeSent();
                 ViewData["mail"] = mail;
 
                 IScheduleUnitOfWork scheduleUnitOfWork = factory.GetScheduleUnitOfWork();
@@ -83,12 +84,14 @@ namespace ScheduMail.WebMvcSpark.Controllers
                     case "Save":
                         // delegate sending to another controller action 
                         schedule.DaysOfWeekToRun = collection["DaysOfWeekToRun"];
-                        schedule.Enabled = Convert.ToBoolean(collection["collection"]);
+                        schedule.Enabled = true;
                         schedule.CreatedBy = User.Identity.Name;
                         IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
                         IScheduleUnitOfWork scheduleUnitOfWork = factory.GetScheduleUnitOfWork();
-                        schedule.StartDateTime = new DateTime(schedule.StartDateTime.Value.Year, schedule.StartDateTime.Value.Month, schedule.StartDateTime.Value.Day, Convert.ToInt32(collection["hoursList"]), Convert.ToInt32(collection["minutesList"]), 0);
-                        schedule.EndDateTime = new DateTime(schedule.EndDateTime.Value.Year, schedule.EndDateTime.Value.Month, schedule.EndDateTime.Value.Day, Convert.ToInt32(collection["hoursList"]), Convert.ToInt32(collection["minutesList"]), 0);
+                        if (schedule.StartDateTime != null)
+                            schedule.StartDateTime = new DateTime(schedule.StartDateTime.Value.Year, schedule.StartDateTime.Value.Month, schedule.StartDateTime.Value.Day, Convert.ToInt32(collection["hoursList"]), Convert.ToInt32(collection["minutesList"]), 0);
+                        if (schedule.EndDateTime != null)
+                            schedule.EndDateTime = new DateTime(schedule.EndDateTime.Value.Year, schedule.EndDateTime.Value.Month, schedule.EndDateTime.Value.Day, Convert.ToInt32(collection["hoursList"]), Convert.ToInt32(collection["minutesList"]), 0);
                         
                         if (Id.HasValue)
                         {

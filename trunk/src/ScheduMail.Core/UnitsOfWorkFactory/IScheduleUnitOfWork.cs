@@ -43,5 +43,13 @@ namespace ScheduMail.Core.UnitsOfWorkFactory
         /// </summary>
         /// <param name="schedule">The schedule.</param>
         void Delete(Schedule schedule);
+
+         /// <summary>
+        /// Gets the list of schedule.
+        /// </summary>
+        /// <param name="enabled">if set to <c>true</c> [enabled].</param>
+        /// <returns>list of schedule</returns>
+        List<ScheduMail.Core.Domain.Schedule> GetListOfSchedule(bool enabled);
+        
     }
 }

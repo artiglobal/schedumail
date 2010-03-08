@@ -42,12 +42,12 @@ namespace ScheduMail.Core.Domain
         /// <summary>
         /// Date time last sent.
         /// </summary>
-        private DateTime lastSent;
+        private DateTime? lastSent;
 
         /// <summary>
         /// Date time of next send.
         /// </summary>
-        private DateTime nextSend;       
+        private DateTime? nextSend;       
 
         /// <summary>
         /// Gets or sets the web site id.
@@ -138,7 +138,7 @@ namespace ScheduMail.Core.Domain
         /// Gets or sets the last sent.
         /// </summary>
         /// <value>The last sent.</value>
-        public DateTime LastSent
+        public DateTime? LastSent
         {
             get 
             { 
@@ -155,7 +155,7 @@ namespace ScheduMail.Core.Domain
         /// Gets or sets the next send.
         /// </summary>
         /// <value>The next send.</value>
-        public DateTime NextSend
+        public DateTime? NextSend
         {
             get 
             { 

@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ASPNetUnitOfWork.cs" />
+    <Compile Include="EmailUnitOfWork.cs" />
     <Compile Include="MailUnitOfWork.cs" />
     <Compile Include="LogEventUnitOfWork.cs" />
     <Compile Include="ScheduleUnitOfWork.cs" />
