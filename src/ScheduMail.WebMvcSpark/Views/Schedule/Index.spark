@@ -6,7 +6,7 @@
 		 $("input[name=dailyWeeklyOrMonthly]").click(function(){
 		 autoSelector(this);
 		 });
-	
+		
 	    //changing days and week 
 	    var days = "!{schedule.DailyWeeklyOrMonthly}";
 	    if(days.length > 0)
@@ -111,8 +111,9 @@
 				<input id="dailyWeeklyOrMonthly" type="radio" name="dailyWeeklyOrMonthly" value="5" >Yearly</input>
 			</p>
 			<p>
-				<label for="Enabled">Enabled:</label>
-				<input id="Enabled" type="checkbox" name="Enabled" Checked="!{schedule.Enabled}" />
+				<label for="Enabled">Enabled</label>
+				!{Html.CheckBox("Enabled", schedule.Enabled)}
+
 			</p>
                 <div id="wrapper"></div>
               <input type="submit" name="submitButton" value="Save" />

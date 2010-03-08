@@ -2,6 +2,7 @@
 using ScheduMail.Core.RepositoryInterfaces;
 using ScheduMail.DBModel;
 using ScheduMail.Utils;
+using System.Collections.Generic;
 
 namespace ScheduMail.EFDal.Dal
 {
@@ -123,6 +124,42 @@ namespace ScheduMail.EFDal.Dal
             return ObjectExtension.CloneProperties<ScheduMail.DBModel.Schedule, ScheduMail.Core.Domain.Schedule>(entity);
 
         }
+
+
+
+
+        /// <summary>
+        /// Gets the list of schedule.
+        /// </summary>
+        /// <param name="enabled">if set to <c>true</c> [enabled].</param>
+        /// <returns>list of schedule</returns>
+        public List<ScheduMail.Core.Domain.Schedule> GetListOfSchedule(bool enabled)
+        {
+            var entity = (from w in this.context.Schedules.Include("Mail")
+                          where w.Enabled == enabled
+                          select w).ToList();
+            ScheduMail.Core.Domain.Schedule objSchedule = null;
+            List<ScheduMail.Core.Domain.Schedule> ListofSchedules = new List<ScheduMail.Core.Domain.Schedule>();
+
+            foreach (ScheduMail.DBModel.Schedule schedule in entity)
+            {
+                objSchedule = new ScheduMail.Core.Domain.Schedule();
+                objSchedule.Id = schedule.Id;
+                objSchedule.StartDateTime = schedule.StartDateTime;
+                objSchedule.EndDateTime = schedule.EndDateTime;
+                objSchedule.Enabled = schedule.Enabled;
+                objSchedule.DaysOfWeekToRun = schedule.DaysOfWeekToRun;
+                objSchedule.DailyWeeklyOrMonthly = schedule.DailyWeeklyOrMonthly;
+                objSchedule.Created = schedule.Created;
+                objSchedule.Modified = schedule.Modified;
+                objSchedule.ModifiedBy = schedule.ModifiedBy;
+                objSchedule.MailId = schedule.Mail.Id;
+                ListofSchedules.Add(objSchedule);
+            }
+            return ListofSchedules;
+                  
+        }
+
 
      
         #endregion      

@@ -36,5 +36,11 @@ namespace ScheduMail.Core.UnitsOfWorkFactory
         /// </summary>
         /// <param name="webSite">The web site.</param>
         void Delete(Mail webSite);
+
+        /// <summary>
+        /// Emailses to be sent.
+        /// </summary>
+        /// <returns>list of mails</returns>
+        List<ScheduMail.Core.Domain.Mail> EmailsToBeSent();
     }
 }
