@@ -55,6 +55,10 @@
     <Compile Include="WebSiteUnitOfWorkFactory.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ScheduMail.API\ScheduMail.API.csproj">
+      <Project>{E08DEEEC-B9C3-40F0-B09A-167AE96AA07D}</Project>
+      <Name>ScheduMail.API</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ScheduMail.Core\ScheduMail.Core.csproj">
       <Project>{FCD5706E-40A6-43A8-817E-8AFEBB1400FF}</Project>
       <Name>ScheduMail.Core</Name>

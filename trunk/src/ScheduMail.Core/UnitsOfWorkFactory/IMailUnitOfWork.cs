@@ -42,5 +42,13 @@ namespace ScheduMail.Core.UnitsOfWorkFactory
         /// </summary>
         /// <returns>list of mails</returns>
         List<ScheduMail.Core.Domain.Mail> EmailsToBeSent();
+
+        /// <summary>
+        /// Sends the emails.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <param name="userName">Name of the user.</param>
+        /// <param name="password">The password.</param>
+        void SendEmails(string url, string userName, string password);
     }
 }
