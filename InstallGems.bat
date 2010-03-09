@@ -3,3 +3,4 @@
 
 @ECHO *** Installing Rake / Albacore
 @call gem install rake rake-compiler albacore
+pause
