@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Spark;
 
-namespace ScheduMail.Spark.TemplateParser 
+namespace ScheduMail.TemplateParsers.Spark 
 {
   /// <summary>
   /// Base class of all spark user template
