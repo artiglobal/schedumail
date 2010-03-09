@@ -46,7 +46,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{6917B200
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{9D843C82-3C0D-4D22-AF18-AB5E0F4FDC64}"
 	ProjectSection(SolutionItems) = preProject
-		..\build\config\env.settings.template = ..\build\config\env.settings.template
 		..\build\config\schedumailrunner.app.config.template = ..\build\config\schedumailrunner.app.config.template
 		..\build\config\web.config.template = ..\build\config\web.config.template
 	EndProjectSection

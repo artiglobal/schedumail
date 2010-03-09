@@ -17,6 +17,18 @@ namespace ScheduMail.WebMvcSpark.Controllers
     [Authorize]
     public class ScheduleController : Controller
     {
+
+        /// <summary>
+        /// Sends the emails.
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SendEmails()
+        {
+            IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
+            IMailUnitOfWork mailUnitOfWork = factory.GetMailUnitOfWork();
+            mailUnitOfWork.SendEmails("", "", "");
+            return View();
+        }
         /// <summary>
         /// Indexes the specified id.
         /// </summary>
@@ -25,6 +37,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Index(int? id)
         {
+             
             SelectList hoursList = null;
             SelectList minutesList = null;
             if (id.HasValue)
@@ -32,9 +45,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
                 IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
                 IMailUnitOfWork mailUnitOfWork = factory.GetMailUnitOfWork();
                 Mail mail = mailUnitOfWork.GetById(id.Value);
-                mailUnitOfWork.EmailsToBeSent();
                 ViewData["mail"] = mail;
-
                 IScheduleUnitOfWork scheduleUnitOfWork = factory.GetScheduleUnitOfWork();
                 Schedule schedule = scheduleUnitOfWork.GetByMailId(mail.Id);
                 ViewData["schedule"] = schedule;
@@ -103,6 +114,7 @@ namespace ScheduMail.WebMvcSpark.Controllers
                         return RedirectToAction("Index", "WebSiteEMails");
                 }
                 return View("Index", schedule);
+
             }
 
             catch (RuleException ex)

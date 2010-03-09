@@ -6,6 +6,9 @@ using ScheduMail.Core.UnitsOfWorkFactory;
 using ScheduMail.Core.UnitsOfWorkRepository;
 using ScheduMail.Core.Domain;
 using System;
+using ScheduMail.Core.Facade;
+using ScheduMail.Core.Service.Interfaces;
+using ScheduMail.API.Contracts;
 
 namespace ScheduMail.UnitsOfWork
 {
@@ -94,8 +97,8 @@ namespace ScheduMail.UnitsOfWork
         /// <returns>Collection of Rules Violations.</returns>
         private NameValueCollection GetRuleViolations(ScheduMail.Core.Domain.Mail schedule)
         {
-            var errors = new NameValueCollection();           
-            
+            var errors = new NameValueCollection();
+
             return errors;
         }
 
@@ -107,17 +110,14 @@ namespace ScheduMail.UnitsOfWork
         {
             IUnitOfWorkFactory factory = new ScheduMail.UnitsOfWork.WebSiteUnitOfWorkFactory();
             IScheduleUnitOfWork scheduleUnitOfWork = factory.GetScheduleUnitOfWork();
-            List<ScheduMail.Core.Domain.Schedule> scheduleList = scheduleUnitOfWork.GetListOfSchedule(true);
-
             Mail mail = null;
             //get list of all mails 
-
             List<Mail> listOfMails = this.List.ToList();
+            //generate the list of mails to be sent to users now
             List<Mail> listOfMailsToBeSent = new List<Mail>();
             DateTime date = DateTime.Now;
-
             bool toBeSent = false;
-
+            List<ScheduMail.Core.Domain.Schedule> scheduleList = scheduleUnitOfWork.GetListOfSchedule(true);
             foreach (Schedule schedule in scheduleList)
             {
                 //rset the value
@@ -128,12 +128,12 @@ namespace ScheduMail.UnitsOfWork
                 else
                 {
                     //validate mails are not expired
-                    if (schedule.StartDateTime <= date && schedule.EndDateTime >= date)
+                    if (schedule.StartDateTime <= date && schedule.EndDateTime >= date || schedule.EndDateTime==null)
                     {
                         //validate if its not before the time
                         if (schedule.StartDateTime.Value.TimeOfDay <= date.TimeOfDay)
                         {
-                                toBeSent = true;
+                            toBeSent = true;
                         }
                     }
                 }
@@ -142,133 +142,117 @@ namespace ScheduMail.UnitsOfWork
                 {
                     //find the mail object from schedule.MailId
                     mail = listOfMails.Find(delegate(Mail searchMail) { return searchMail.Id == schedule.MailId; });
-                    if (mail.LastSent == null)
+                    switch (schedule.DailyWeeklyOrMonthly)
                     {
-                        switch (schedule.DailyWeeklyOrMonthly)
-                        {
-                            // Single
-                            case "1":
+                        // Single
+                        case "1":
+                            // if mail has not been sent before then send it now.
+                            if (mail.LastSent == null)
                                 toBeSent = true;
-                                break;
-                            //Daily
-                            case "2":
+                            else
+                                toBeSent = false;
+
+                            break;
+                        //Daily
+                        case "2":
+                            // if mail has not been sent on the day then send it now.
+                            if (mail.LastSent == null)
                                 toBeSent = true;
-                                break;
-                            //Weekly
-                            case "3":
-                                // if not be sent before then vlaidaet if its the right day of the week;
-                                if (string.IsNullOrEmpty(schedule.DaysOfWeekToRun))
-                                    toBeSent = true;
-                                else if (schedule.DaysOfWeekToRun.Contains(Convert.ToString(((int)date.DayOfWeek))))
+                            else if (mail.LastSent.Value.Subtract(date).Days >= 1)
+                                toBeSent = true;
+                            else
+                                toBeSent = false;
+                            break;
+                        //Weekly
+                        case "3":
+                            // if no day has been selected then dont send the email
+                            if (string.IsNullOrEmpty(schedule.DaysOfWeekToRun))
+                                toBeSent = false;
+                            else if (mail.LastSent == null) // if not be sent before then validate if its the right day of the week;
+                            {
+                                 if (schedule.DaysOfWeekToRun.Contains(Convert.ToString(((int)date.DayOfWeek))))
                                 {
                                     toBeSent = true;
                                 }
                                 else
                                     toBeSent = false;
-                                break;
-                            //Monthly
-                            case "4":
-                                toBeSent = true;
-                                break;
-                            //yearly
-                            case "5":
-                                // if not be sent before then prepare to send;
-                                toBeSent = true;
-                                break;
-
-                        }
-                    }
-                    else
-                    {
-                        switch (schedule.DailyWeeklyOrMonthly)
-                        {
-                            // Single
-                            case "1":
-                                toBeSent = false;
-                                break;
-                            //Daily
-                            case "2":
-                                if (mail.LastSent.Value.Subtract(date).Days >= 1)
-                                    toBeSent = true;
-                                else
-                                    toBeSent = false;
-                                break;
-                            //Weekly
-                            case "3":
-                                // if not be sent before then vlaidaet if its the right day of the week;
+                            }
+                            else
+                            {
+                                // Validate the logic that mails need to be sent weekly on specific days
                                 System.Globalization.Calendar calendar = System.Threading.Thread.CurrentThread.CurrentCulture.Calendar;
                                 int lastWeek = calendar.GetWeekOfYear(mail.LastSent.Value, System.Globalization.CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
                                 int currentWeek = calendar.GetWeekOfYear(date, System.Globalization.CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
 
-                                if (lastWeek <= currentWeek )
+                                // confirms that email has not been already sent
+                                if (lastWeek <= currentWeek)
                                 {
-                                    if (string.IsNullOrEmpty(schedule.DaysOfWeekToRun))
+                                     if (schedule.DaysOfWeekToRun.Contains(Convert.ToString(((int)date.DayOfWeek))))
+                                    {
                                         toBeSent = true;
-                                    else if (schedule.DaysOfWeekToRun.Contains(Convert.ToString(((int)date.DayOfWeek))))
+                                    }
+                                    else
+                                        toBeSent = false;
+                                }// if mail has already been sent on that day of current  week then validate the different days to send it again
+                                else if (lastWeek == currentWeek && mail.LastSent.Value.DayOfWeek < date.DayOfWeek)
+                                {
+                                    if (schedule.DaysOfWeekToRun.Contains(Convert.ToString(((int)date.DayOfWeek))))
                                     {
                                         toBeSent = true;
                                     }
                                     else
                                         toBeSent = false;
                                 }
-                                else if (lastWeek == currentWeek && mail.LastSent.Value.DayOfWeek  < date.DayOfWeek)
+                            }
+                            break;
+                        //Monthly
+                        case "4":
+                            if (mail.LastSent == null)
+                                toBeSent = true;
+                            else if (mail.LastSent.Value.Month.CompareTo(date.Month) <= -1)
+                            {
+                                if (mail.LastSent.Value.Day == date.Day)
                                 {
-                                    if (string.IsNullOrEmpty(schedule.DaysOfWeekToRun))
-                                        toBeSent = true;
-                                    else if (schedule.DaysOfWeekToRun.Contains(Convert.ToString(((int)date.DayOfWeek))))
-                                    {
-                                        toBeSent = true;
-                                    }
-                                    else
-                                        toBeSent = false;
-                                }
-
-                                break;
-                            //Monthly
-                            case "4":
-                                if (mail.LastSent.Value.Month.CompareTo(date.Month) <= -1)
-                                {
-                                    if (mail.LastSent.Value.Day == date.Day)
-                                    {
-                                        toBeSent = true;
-                                    }
-                                    else
-                                        toBeSent = false;
+                                    toBeSent = true;
                                 }
                                 else
                                     toBeSent = false;
-                                break;
-                            //yearly
-                            case "5":
-                                // if not be sent before then prepare to send;
-                                if (mail.LastSent.Value.Month.CompareTo(date.Year) <= -1)
+                            }
+                            else
+                                toBeSent = false;
+                            break;
+                        //yearly
+                        case "5":
+                            // if not be sent before then prepare to send;
+                            if (mail.LastSent == null)
+                                toBeSent = true;
+                            else if (mail.LastSent.Value.Month.CompareTo(date.Year) <= -1)
+                            {
+                                if (mail.LastSent.Value.Day == date.Day)
                                 {
-                                    if (mail.LastSent.Value.Day == date.Day)
-                                    {
-                                        toBeSent = true;
-                                    }
-                                    else
-                                        toBeSent = false;
+                                    toBeSent = true;
                                 }
                                 else
                                     toBeSent = false;
-                                break;
+                            }
+                            else
+                                toBeSent = false;
+                            break;
 
-                        }
                     }
-                    if (toBeSent)
-                        listOfMailsToBeSent.Add(mail);
                 }
+                if (toBeSent)
+                    listOfMailsToBeSent.Add(mail);
             }
-
-            //return this.repository.(schedule);
-
-
             return listOfMailsToBeSent;
-
-            //return errors;
         }
 
+        /// <summary>
+        /// Gets the week rows.
+        /// </summary>
+        /// <param name="year">The year.</param>
+        /// <param name="month">The month.</param>
+        /// <returns>returns the number of month in that year</returns>
         public int GetWeekRows(int year, int month)
         {
             DateTime firstDayOfMonth = new DateTime(year, month, 1);
@@ -278,26 +262,57 @@ namespace ScheduMail.UnitsOfWork
             int firstWeek = calendar.GetWeekOfYear(firstDayOfMonth, System.Globalization.CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
             return lastWeek - firstWeek + 1;
         }
-        //public decimal RowsForMonth(int month, int year)
-        //{
-        //    DateTime first = new DateTime(year, month, 1);
 
-        //    //number of days pushed beyond monday this one sits
-        //    int offset = ((int)first.DayOfWeek) - 1;
+        /// <summary>
+        /// Sends the emails.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <param name="userName">Name of the user.</param>
+        /// <param name="password">The password.</param>
+        void IMailUnitOfWork.SendEmails(string url, string userName, string password)
+        {
+            try
+            {
+                url = "http://localhost:1840/user/list";
+                //Example of api and parser collaboration, this should be moved to service class(ISchedularService) or similar in the core project
+                var api = ServiceLocator.Resolve<IUserService>();
+                IList<User> listOfUsers = api.GetUsers(url, userName, password);
+                var template = @"
+            <var  user = ""(ScheduMail.API.Contracts.User)Data""/>
+            <var  promotion = ""(from p in user.Data.Elements('promotion')
+                                select new {
+                                  Product = (string)p.Element('product'),
+                                  Discount = (string)p.Element('discount'),
+                                  Expires = (string)p.Element('expires')
+                                }).FirstOrDefault()""/>
+            Dear ${user.FirstName},
 
-        //    int actualdays = DateTime.DaysInMonth(month, year) + offset;
+            We are excited to tell you about our latest offerings.  Due to your long standing account with us we would 
+            like to give you a sneak peak at our latest product before commercial release. The ${promotion.Product} is the
+            best thing since slice bread and for a limited time only we would like to extend you a discount of ${promotion.Discount}.
 
-        //    decimal rows = (actualdays / 7);
-        //    if ((rows - ((decimal)rows)) > .1)
-        //    {
-        //        rows++;
-        //    }
-        //    return rows;
-        //}
+            Act soon because the offer is only good until ${promotion.Expires}.
+
+            Happy Buying!
+
+            Click <a href='http://somecompany.com/unsubscribe?user=${user.EmailAddress}'>here</a> to unsubscribe from out mailings.
+          ";
+                var parser = ServiceLocator.Resolve<ITemplateParser>();
+                
+                foreach (User user in listOfUsers)
+                {
+                    var email = parser.Render(user, "emailTemplate", template);
+                    Console.Write(email);
+                    Console.WriteLine();
+                }
+
+            }
+            catch (Exception ex)
+            {
 
 
-
-
+            }
+        }
 
         #endregion
     }
