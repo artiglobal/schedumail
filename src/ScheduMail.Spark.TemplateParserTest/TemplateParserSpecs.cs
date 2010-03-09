@@ -10,7 +10,7 @@ namespace ScheduMail.Spark.TemplateParserTest
 {
   public class RenderingUserTemplateSpecs : Specification
   {
-    private TemplateParser.TemplateParser sut;
+    private TemplateParser sut;
     private User templateData;
     private string template;
     private string result;
@@ -20,7 +20,7 @@ namespace ScheduMail.Spark.TemplateParserTest
       var assemblies = new string[] { "ScheduMail.API" };
       var namespaces = new string[] { "ScheduMail.API.Contracts" };
 
-      sut = new TemplateParser.TemplateParser(assemblies,namespaces);
+      sut = new TemplateParser(assemblies,namespaces);
 
       templateData = new User
       {
