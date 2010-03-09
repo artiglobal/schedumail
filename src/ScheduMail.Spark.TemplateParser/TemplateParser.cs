@@ -6,7 +6,7 @@ using Spark;
 using Spark.FileSystem;
 using ScheduMail.Core.Facade;
 
-namespace ScheduMail.Spark.TemplateParser 
+namespace ScheduMail.TemplateParsers.Spark
 {
 
   public class TemplateParser : ITemplateParser

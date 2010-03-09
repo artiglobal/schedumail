@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using ScheduMail.Spark.TemplateParser;
+using ScheduMail.TemplateParsers.Spark;
 using ScheduMail.API.Contracts;
 
 namespace ScheduMail.Spark.TemplateParserTest 
