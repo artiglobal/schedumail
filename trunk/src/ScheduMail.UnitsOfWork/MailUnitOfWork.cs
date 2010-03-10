@@ -273,6 +273,7 @@ namespace ScheduMail.UnitsOfWork
         {
             List<Mail> listOfMails = EmailsToBeSent();
             Email email = null;
+            EmailUnitOfWork emailUnitOfWork = new EmailUnitOfWork();
             foreach (Mail mail in listOfMails)
             {
 
@@ -280,8 +281,7 @@ namespace ScheduMail.UnitsOfWork
                 //Example of api and parser collaboration, this should be moved to service class(ISchedularService) or similar in the core project
                 var api = ServiceLocator.Resolve<IUserService>();
                 var users = api.GetUsers(mail.URL, "user", "password");
-                var template = @"
-            <var  user = ""(ScheduMail.API.Contracts.User)Data""/>
+                var template = @"<var  user = ""(ScheduMail.API.Contracts.User)Data""/>
             <var  promotion = ""(from p in user.Data.Elements('promotion')
                                 select new {
                                   Product = (string)p.Element('product'),
@@ -309,7 +309,7 @@ namespace ScheduMail.UnitsOfWork
                     email.To = user.EmailAddress;
                     email.Subject = "";
                     email.From = "";
-                    EmailUnitOfWork emailUnitOfWork = new EmailUnitOfWork();
+                    
                     email.FireAndForget = true;
                     emailUnitOfWork.SendMail(email);
                     Console.Write(email);
