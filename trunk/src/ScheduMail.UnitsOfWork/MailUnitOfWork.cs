@@ -123,12 +123,12 @@ namespace ScheduMail.UnitsOfWork
                 //rset the value
                 toBeSent = false;
 
-                if (schedule.EndDateTime == null)
+                if (schedule.StartDateTime <= date && schedule.EndDateTime == null)
                     toBeSent = true;
                 else
                 {
                     //validate mails are not expired
-                    if (schedule.StartDateTime <= date && schedule.EndDateTime >= date || schedule.EndDateTime == null)
+                    if (schedule.StartDateTime <= date && schedule.EndDateTime >= date )
                     {
                         //validate if its not before the time
                         if (schedule.StartDateTime.Value.TimeOfDay <= date.TimeOfDay)
@@ -158,7 +158,7 @@ namespace ScheduMail.UnitsOfWork
                             // if mail has not been sent on the day then send it now.
                             if (mail.LastSent == null)
                                 toBeSent = true;
-                            else if (mail.LastSent.Value.Subtract(date).Days >= 1)
+                            else if (mail.LastSent.Value.Subtract(date).Days <= -1)
                                 toBeSent = true;
                             else
                                 toBeSent = false;
@@ -279,7 +279,7 @@ namespace ScheduMail.UnitsOfWork
                 mail.URL = "http://localhost:1840/user/list";
                 //Example of api and parser collaboration, this should be moved to service class(ISchedularService) or similar in the core project
                 var api = ServiceLocator.Resolve<IUserService>();
-                var users = api.GetUsers(url, "user", "password");
+                var users = api.GetUsers(mail.URL, "user", "password");
                 var template = @"
             <var  user = ""(ScheduMail.API.Contracts.User)Data""/>
             <var  promotion = ""(from p in user.Data.Elements('promotion')
@@ -309,12 +309,9 @@ namespace ScheduMail.UnitsOfWork
                     email.To = user.EmailAddress;
                     email.Subject = "";
                     email.From = "";
-                   
                     EmailUnitOfWork emailUnitOfWork = new EmailUnitOfWork();
                     email.FireAndForget = true;
                     emailUnitOfWork.SendMail(email);
-
-
                     Console.Write(email);
                     Console.WriteLine();
                 }
