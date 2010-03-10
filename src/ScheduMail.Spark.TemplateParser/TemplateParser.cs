@@ -30,6 +30,7 @@ namespace ScheduMail.TemplateParsers.Spark
 	    {
 		    settings.AddAssembly(assembly);
 	    }
+
       foreach (var item in namespaces)
 	    {
     		 settings.AddNamespace(item);
