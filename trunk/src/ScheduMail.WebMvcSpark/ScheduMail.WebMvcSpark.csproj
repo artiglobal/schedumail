@@ -195,6 +195,10 @@
       <Project>{021B9D0C-8E70-4B4E-BFD1-2301450355B9}</Project>
       <Name>ScheduMail.DBModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ScheduMail.Spark.TemplateParser\ScheduMail.Spark.TemplateParser.csproj">
+      <Project>{04D91FB3-853A-4D2A-A676-E94F6BE92E5B}</Project>
+      <Name>ScheduMail.Spark.TemplateParser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ScheduMail.UnitsOfWork\ScheduMail.UnitsOfWork.csproj">
       <Project>{12EADC1C-E7E8-46BC-8AF2-938821198A52}</Project>
       <Name>ScheduMail.UnitsOfWork</Name>

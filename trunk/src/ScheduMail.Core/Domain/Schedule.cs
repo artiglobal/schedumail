@@ -144,5 +144,6 @@ namespace ScheduMail.Core.Domain
                 this.daysOfWeekToRun = value;
             }
         }
+
     }
 }
