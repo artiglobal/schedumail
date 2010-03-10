@@ -13,9 +13,10 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SchedumailDBModel", "FK_Mail_0", "WebSite", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(ScheduMail.DBModel.WebSite), "Mail", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.Mail))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SchedumailDBModel", "UserWebSite1", "WebSite", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.WebSite), "aspnet_Users", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.aspnet_Users))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SchedumailDBModel", "FK_Schedule_0", "Mail", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(ScheduMail.DBModel.Mail), "Schedule", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.Schedule))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SchedumailDBModel", "UserRole", "Role", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.Role), "User", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ScheduMail.DBModel.User))]
 
 // Original file name:
-// Generation date: 05/03/2010 10:35:50
+// Generation date: 10/03/2010 11:07:56
 namespace ScheduMail.DBModel
 {
     
@@ -140,6 +141,96 @@ namespace ScheduMail.DBModel
         }
         private global::System.Data.Objects.ObjectQuery<Schedule> _Schedules;
         /// <summary>
+        /// There are no comments for aspnet_Applications in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<aspnet_Applications> aspnet_Applications
+        {
+            get
+            {
+                if ((this._aspnet_Applications == null))
+                {
+                    this._aspnet_Applications = base.CreateQuery<aspnet_Applications>("[aspnet_Applications]");
+                }
+                return this._aspnet_Applications;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<aspnet_Applications> _aspnet_Applications;
+        /// <summary>
+        /// There are no comments for aspnet_Profile in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<aspnet_Profile> aspnet_Profile
+        {
+            get
+            {
+                if ((this._aspnet_Profile == null))
+                {
+                    this._aspnet_Profile = base.CreateQuery<aspnet_Profile>("[aspnet_Profile]");
+                }
+                return this._aspnet_Profile;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<aspnet_Profile> _aspnet_Profile;
+        /// <summary>
+        /// There are no comments for aspnet_Roles in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<aspnet_Roles> aspnet_Roles
+        {
+            get
+            {
+                if ((this._aspnet_Roles == null))
+                {
+                    this._aspnet_Roles = base.CreateQuery<aspnet_Roles>("[aspnet_Roles]");
+                }
+                return this._aspnet_Roles;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<aspnet_Roles> _aspnet_Roles;
+        /// <summary>
+        /// There are no comments for aspnet_UsersInRoles in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<aspnet_UsersInRoles> aspnet_UsersInRoles
+        {
+            get
+            {
+                if ((this._aspnet_UsersInRoles == null))
+                {
+                    this._aspnet_UsersInRoles = base.CreateQuery<aspnet_UsersInRoles>("[aspnet_UsersInRoles]");
+                }
+                return this._aspnet_UsersInRoles;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<aspnet_UsersInRoles> _aspnet_UsersInRoles;
+        /// <summary>
+        /// There are no comments for Role in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<Role> Role
+        {
+            get
+            {
+                if ((this._Role == null))
+                {
+                    this._Role = base.CreateQuery<Role>("[Role]");
+                }
+                return this._Role;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<Role> _Role;
+        /// <summary>
+        /// There are no comments for User in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<User> User
+        {
+            get
+            {
+                if ((this._User == null))
+                {
+                    this._User = base.CreateQuery<User>("[User]");
+                }
+                return this._User;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<User> _User;
+        /// <summary>
         /// There are no comments for aspnet_Users in the schema.
         /// </summary>
         public void AddToaspnet_Users(aspnet_Users aspnet_Users)
@@ -180,6 +271,48 @@ namespace ScheduMail.DBModel
         public void AddToSchedules(Schedule schedule)
         {
             base.AddObject("Schedules", schedule);
+        }
+        /// <summary>
+        /// There are no comments for aspnet_Applications in the schema.
+        /// </summary>
+        public void AddToaspnet_Applications(aspnet_Applications aspnet_Applications)
+        {
+            base.AddObject("aspnet_Applications", aspnet_Applications);
+        }
+        /// <summary>
+        /// There are no comments for aspnet_Profile in the schema.
+        /// </summary>
+        public void AddToaspnet_Profile(aspnet_Profile aspnet_Profile)
+        {
+            base.AddObject("aspnet_Profile", aspnet_Profile);
+        }
+        /// <summary>
+        /// There are no comments for aspnet_Roles in the schema.
+        /// </summary>
+        public void AddToaspnet_Roles(aspnet_Roles aspnet_Roles)
+        {
+            base.AddObject("aspnet_Roles", aspnet_Roles);
+        }
+        /// <summary>
+        /// There are no comments for aspnet_UsersInRoles in the schema.
+        /// </summary>
+        public void AddToaspnet_UsersInRoles(aspnet_UsersInRoles aspnet_UsersInRoles)
+        {
+            base.AddObject("aspnet_UsersInRoles", aspnet_UsersInRoles);
+        }
+        /// <summary>
+        /// There are no comments for Role in the schema.
+        /// </summary>
+        public void AddToRole(Role role)
+        {
+            base.AddObject("Role", role);
+        }
+        /// <summary>
+        /// There are no comments for User in the schema.
+        /// </summary>
+        public void AddToUser(User user)
+        {
+            base.AddObject("User", user);
         }
     }
     /// <summary>
@@ -1418,6 +1551,29 @@ namespace ScheduMail.DBModel
         partial void OnNextSendChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnNextSendChanged();
         /// <summary>
+        /// There are no comments for Property URL in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string URL
+        {
+            get
+            {
+                return this._URL;
+            }
+            set
+            {
+                this.OnURLChanging(value);
+                this.ReportPropertyChanging("URL");
+                this._URL = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("URL");
+                this.OnURLChanged();
+            }
+        }
+        private string _URL;
+        partial void OnURLChanging(string value);
+        partial void OnURLChanged();
+        /// <summary>
         /// There are no comments for LogEvent in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("SchedumailDBModel", "FK_LogEvent_0", "LogEvent")]
@@ -2007,6 +2163,1189 @@ namespace ScheduMail.DBModel
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Mail>("SchedumailDBModel.FK_Schedule_0", "Mail", value);
+                }
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for SchedumailDBModel.aspnet_Applications in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// ApplicationId
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="SchedumailDBModel", Name="aspnet_Applications")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class aspnet_Applications : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new aspnet_Applications object.
+        /// </summary>
+        /// <param name="applicationId">Initial value of ApplicationId.</param>
+        /// <param name="applicationName">Initial value of ApplicationName.</param>
+        public static aspnet_Applications Createaspnet_Applications(string applicationId, string applicationName)
+        {
+            aspnet_Applications aspnet_Applications = new aspnet_Applications();
+            aspnet_Applications.ApplicationId = applicationId;
+            aspnet_Applications.ApplicationName = applicationName;
+            return aspnet_Applications;
+        }
+        /// <summary>
+        /// There are no comments for Property ApplicationId in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string ApplicationId
+        {
+            get
+            {
+                return this._ApplicationId;
+            }
+            set
+            {
+                this.OnApplicationIdChanging(value);
+                this.ReportPropertyChanging("ApplicationId");
+                this._ApplicationId = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("ApplicationId");
+                this.OnApplicationIdChanged();
+            }
+        }
+        private string _ApplicationId;
+        partial void OnApplicationIdChanging(string value);
+        partial void OnApplicationIdChanged();
+        /// <summary>
+        /// There are no comments for Property ApplicationName in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string ApplicationName
+        {
+            get
+            {
+                return this._ApplicationName;
+            }
+            set
+            {
+                this.OnApplicationNameChanging(value);
+                this.ReportPropertyChanging("ApplicationName");
+                this._ApplicationName = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("ApplicationName");
+                this.OnApplicationNameChanged();
+            }
+        }
+        private string _ApplicationName;
+        partial void OnApplicationNameChanging(string value);
+        partial void OnApplicationNameChanged();
+        /// <summary>
+        /// There are no comments for Property Description in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description
+        {
+            get
+            {
+                return this._Description;
+            }
+            set
+            {
+                this.OnDescriptionChanging(value);
+                this.ReportPropertyChanging("Description");
+                this._Description = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Description");
+                this.OnDescriptionChanged();
+            }
+        }
+        private string _Description;
+        partial void OnDescriptionChanging(string value);
+        partial void OnDescriptionChanged();
+    }
+    /// <summary>
+    /// There are no comments for SchedumailDBModel.aspnet_Profile in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// UserId
+    /// LastUpdatedDate
+    /// PropertyNames
+    /// PropertyValuesString
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="SchedumailDBModel", Name="aspnet_Profile")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class aspnet_Profile : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new aspnet_Profile object.
+        /// </summary>
+        /// <param name="userId">Initial value of UserId.</param>
+        /// <param name="lastUpdatedDate">Initial value of LastUpdatedDate.</param>
+        /// <param name="propertyNames">Initial value of PropertyNames.</param>
+        /// <param name="propertyValuesString">Initial value of PropertyValuesString.</param>
+        public static aspnet_Profile Createaspnet_Profile(string userId, global::System.DateTime lastUpdatedDate, string propertyNames, string propertyValuesString)
+        {
+            aspnet_Profile aspnet_Profile = new aspnet_Profile();
+            aspnet_Profile.UserId = userId;
+            aspnet_Profile.LastUpdatedDate = lastUpdatedDate;
+            aspnet_Profile.PropertyNames = propertyNames;
+            aspnet_Profile.PropertyValuesString = propertyValuesString;
+            return aspnet_Profile;
+        }
+        /// <summary>
+        /// There are no comments for Property UserId in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserId
+        {
+            get
+            {
+                return this._UserId;
+            }
+            set
+            {
+                this.OnUserIdChanging(value);
+                this.ReportPropertyChanging("UserId");
+                this._UserId = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("UserId");
+                this.OnUserIdChanged();
+            }
+        }
+        private string _UserId;
+        partial void OnUserIdChanging(string value);
+        partial void OnUserIdChanged();
+        /// <summary>
+        /// There are no comments for Property LastUpdatedDate in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime LastUpdatedDate
+        {
+            get
+            {
+                return this._LastUpdatedDate;
+            }
+            set
+            {
+                this.OnLastUpdatedDateChanging(value);
+                this.ReportPropertyChanging("LastUpdatedDate");
+                this._LastUpdatedDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("LastUpdatedDate");
+                this.OnLastUpdatedDateChanged();
+            }
+        }
+        private global::System.DateTime _LastUpdatedDate;
+        partial void OnLastUpdatedDateChanging(global::System.DateTime value);
+        partial void OnLastUpdatedDateChanged();
+        /// <summary>
+        /// There are no comments for Property PropertyNames in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string PropertyNames
+        {
+            get
+            {
+                return this._PropertyNames;
+            }
+            set
+            {
+                this.OnPropertyNamesChanging(value);
+                this.ReportPropertyChanging("PropertyNames");
+                this._PropertyNames = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("PropertyNames");
+                this.OnPropertyNamesChanged();
+            }
+        }
+        private string _PropertyNames;
+        partial void OnPropertyNamesChanging(string value);
+        partial void OnPropertyNamesChanged();
+        /// <summary>
+        /// There are no comments for Property PropertyValuesString in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string PropertyValuesString
+        {
+            get
+            {
+                return this._PropertyValuesString;
+            }
+            set
+            {
+                this.OnPropertyValuesStringChanging(value);
+                this.ReportPropertyChanging("PropertyValuesString");
+                this._PropertyValuesString = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("PropertyValuesString");
+                this.OnPropertyValuesStringChanged();
+            }
+        }
+        private string _PropertyValuesString;
+        partial void OnPropertyValuesStringChanging(string value);
+        partial void OnPropertyValuesStringChanged();
+    }
+    /// <summary>
+    /// There are no comments for SchedumailDBModel.aspnet_Roles in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// RoleId
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="SchedumailDBModel", Name="aspnet_Roles")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class aspnet_Roles : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new aspnet_Roles object.
+        /// </summary>
+        /// <param name="roleId">Initial value of RoleId.</param>
+        /// <param name="roleName">Initial value of RoleName.</param>
+        /// <param name="loweredRoleName">Initial value of LoweredRoleName.</param>
+        /// <param name="applicationId">Initial value of ApplicationId.</param>
+        public static aspnet_Roles Createaspnet_Roles(string roleId, string roleName, string loweredRoleName, string applicationId)
+        {
+            aspnet_Roles aspnet_Roles = new aspnet_Roles();
+            aspnet_Roles.RoleId = roleId;
+            aspnet_Roles.RoleName = roleName;
+            aspnet_Roles.LoweredRoleName = loweredRoleName;
+            aspnet_Roles.ApplicationId = applicationId;
+            return aspnet_Roles;
+        }
+        /// <summary>
+        /// There are no comments for Property RoleId in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string RoleId
+        {
+            get
+            {
+                return this._RoleId;
+            }
+            set
+            {
+                this.OnRoleIdChanging(value);
+                this.ReportPropertyChanging("RoleId");
+                this._RoleId = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("RoleId");
+                this.OnRoleIdChanged();
+            }
+        }
+        private string _RoleId;
+        partial void OnRoleIdChanging(string value);
+        partial void OnRoleIdChanged();
+        /// <summary>
+        /// There are no comments for Property RoleName in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string RoleName
+        {
+            get
+            {
+                return this._RoleName;
+            }
+            set
+            {
+                this.OnRoleNameChanging(value);
+                this.ReportPropertyChanging("RoleName");
+                this._RoleName = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("RoleName");
+                this.OnRoleNameChanged();
+            }
+        }
+        private string _RoleName;
+        partial void OnRoleNameChanging(string value);
+        partial void OnRoleNameChanged();
+        /// <summary>
+        /// There are no comments for Property LoweredRoleName in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string LoweredRoleName
+        {
+            get
+            {
+                return this._LoweredRoleName;
+            }
+            set
+            {
+                this.OnLoweredRoleNameChanging(value);
+                this.ReportPropertyChanging("LoweredRoleName");
+                this._LoweredRoleName = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("LoweredRoleName");
+                this.OnLoweredRoleNameChanged();
+            }
+        }
+        private string _LoweredRoleName;
+        partial void OnLoweredRoleNameChanging(string value);
+        partial void OnLoweredRoleNameChanged();
+        /// <summary>
+        /// There are no comments for Property ApplicationId in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string ApplicationId
+        {
+            get
+            {
+                return this._ApplicationId;
+            }
+            set
+            {
+                this.OnApplicationIdChanging(value);
+                this.ReportPropertyChanging("ApplicationId");
+                this._ApplicationId = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("ApplicationId");
+                this.OnApplicationIdChanged();
+            }
+        }
+        private string _ApplicationId;
+        partial void OnApplicationIdChanging(string value);
+        partial void OnApplicationIdChanged();
+    }
+    /// <summary>
+    /// There are no comments for SchedumailDBModel.aspnet_UsersInRoles in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// UserId
+    /// RoleId
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="SchedumailDBModel", Name="aspnet_UsersInRoles")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class aspnet_UsersInRoles : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new aspnet_UsersInRoles object.
+        /// </summary>
+        /// <param name="userId">Initial value of UserId.</param>
+        /// <param name="roleId">Initial value of RoleId.</param>
+        public static aspnet_UsersInRoles Createaspnet_UsersInRoles(string userId, string roleId)
+        {
+            aspnet_UsersInRoles aspnet_UsersInRoles = new aspnet_UsersInRoles();
+            aspnet_UsersInRoles.UserId = userId;
+            aspnet_UsersInRoles.RoleId = roleId;
+            return aspnet_UsersInRoles;
+        }
+        /// <summary>
+        /// There are no comments for Property UserId in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserId
+        {
+            get
+            {
+                return this._UserId;
+            }
+            set
+            {
+                this.OnUserIdChanging(value);
+                this.ReportPropertyChanging("UserId");
+                this._UserId = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("UserId");
+                this.OnUserIdChanged();
+            }
+        }
+        private string _UserId;
+        partial void OnUserIdChanging(string value);
+        partial void OnUserIdChanged();
+        /// <summary>
+        /// There are no comments for Property RoleId in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string RoleId
+        {
+            get
+            {
+                return this._RoleId;
+            }
+            set
+            {
+                this.OnRoleIdChanging(value);
+                this.ReportPropertyChanging("RoleId");
+                this._RoleId = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("RoleId");
+                this.OnRoleIdChanged();
+            }
+        }
+        private string _RoleId;
+        partial void OnRoleIdChanging(string value);
+        partial void OnRoleIdChanged();
+    }
+    /// <summary>
+    /// There are no comments for SchedumailDBModel.Role in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// Id
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="SchedumailDBModel", Name="Role")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class Role : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new Role object.
+        /// </summary>
+        /// <param name="id">Initial value of Id.</param>
+        /// <param name="name">Initial value of Name.</param>
+        /// <param name="description">Initial value of Description.</param>
+        /// <param name="isSystem">Initial value of IsSystem.</param>
+        /// <param name="createdBy">Initial value of CreatedBy.</param>
+        /// <param name="created">Initial value of Created.</param>
+        /// <param name="modifiedBy">Initial value of ModifiedBy.</param>
+        /// <param name="modified">Initial value of Modified.</param>
+        public static Role CreateRole(long id, string name, string description, bool isSystem, string createdBy, global::System.DateTime created, string modifiedBy, global::System.DateTime modified)
+        {
+            Role role = new Role();
+            role.Id = id;
+            role.Name = name;
+            role.Description = description;
+            role.IsSystem = isSystem;
+            role.CreatedBy = createdBy;
+            role.Created = created;
+            role.ModifiedBy = modifiedBy;
+            role.Modified = modified;
+            return role;
+        }
+        /// <summary>
+        /// There are no comments for Property Id in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public long Id
+        {
+            get
+            {
+                return this._Id;
+            }
+            set
+            {
+                this.OnIdChanging(value);
+                this.ReportPropertyChanging("Id");
+                this._Id = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Id");
+                this.OnIdChanged();
+            }
+        }
+        private long _Id;
+        partial void OnIdChanging(long value);
+        partial void OnIdChanged();
+        /// <summary>
+        /// There are no comments for Property Name in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this._Name;
+            }
+            set
+            {
+                this.OnNameChanging(value);
+                this.ReportPropertyChanging("Name");
+                this._Name = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Name");
+                this.OnNameChanged();
+            }
+        }
+        private string _Name;
+        partial void OnNameChanging(string value);
+        partial void OnNameChanged();
+        /// <summary>
+        /// There are no comments for Property Description in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description
+        {
+            get
+            {
+                return this._Description;
+            }
+            set
+            {
+                this.OnDescriptionChanging(value);
+                this.ReportPropertyChanging("Description");
+                this._Description = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Description");
+                this.OnDescriptionChanged();
+            }
+        }
+        private string _Description;
+        partial void OnDescriptionChanging(string value);
+        partial void OnDescriptionChanged();
+        /// <summary>
+        /// There are no comments for Property IsSystem in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsSystem
+        {
+            get
+            {
+                return this._IsSystem;
+            }
+            set
+            {
+                this.OnIsSystemChanging(value);
+                this.ReportPropertyChanging("IsSystem");
+                this._IsSystem = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("IsSystem");
+                this.OnIsSystemChanged();
+            }
+        }
+        private bool _IsSystem;
+        partial void OnIsSystemChanging(bool value);
+        partial void OnIsSystemChanged();
+        /// <summary>
+        /// There are no comments for Property CreatedBy in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string CreatedBy
+        {
+            get
+            {
+                return this._CreatedBy;
+            }
+            set
+            {
+                this.OnCreatedByChanging(value);
+                this.ReportPropertyChanging("CreatedBy");
+                this._CreatedBy = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("CreatedBy");
+                this.OnCreatedByChanged();
+            }
+        }
+        private string _CreatedBy;
+        partial void OnCreatedByChanging(string value);
+        partial void OnCreatedByChanged();
+        /// <summary>
+        /// There are no comments for Property Created in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime Created
+        {
+            get
+            {
+                return this._Created;
+            }
+            set
+            {
+                this.OnCreatedChanging(value);
+                this.ReportPropertyChanging("Created");
+                this._Created = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Created");
+                this.OnCreatedChanged();
+            }
+        }
+        private global::System.DateTime _Created;
+        partial void OnCreatedChanging(global::System.DateTime value);
+        partial void OnCreatedChanged();
+        /// <summary>
+        /// There are no comments for Property ModifiedBy in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string ModifiedBy
+        {
+            get
+            {
+                return this._ModifiedBy;
+            }
+            set
+            {
+                this.OnModifiedByChanging(value);
+                this.ReportPropertyChanging("ModifiedBy");
+                this._ModifiedBy = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("ModifiedBy");
+                this.OnModifiedByChanged();
+            }
+        }
+        private string _ModifiedBy;
+        partial void OnModifiedByChanging(string value);
+        partial void OnModifiedByChanged();
+        /// <summary>
+        /// There are no comments for Property Modified in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime Modified
+        {
+            get
+            {
+                return this._Modified;
+            }
+            set
+            {
+                this.OnModifiedChanging(value);
+                this.ReportPropertyChanging("Modified");
+                this._Modified = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Modified");
+                this.OnModifiedChanged();
+            }
+        }
+        private global::System.DateTime _Modified;
+        partial void OnModifiedChanging(global::System.DateTime value);
+        partial void OnModifiedChanged();
+        /// <summary>
+        /// There are no comments for User in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("SchedumailDBModel", "UserRole", "User")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<User> User
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<User>("SchedumailDBModel.UserRole", "User");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<User>("SchedumailDBModel.UserRole", "User", value);
+                }
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for SchedumailDBModel.User in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// Id
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="SchedumailDBModel", Name="User")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class User : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new User object.
+        /// </summary>
+        /// <param name="id">Initial value of Id.</param>
+        /// <param name="userName">Initial value of UserName.</param>
+        /// <param name="fullName">Initial value of FullName.</param>
+        /// <param name="password">Initial value of Password.</param>
+        /// <param name="emailAddress">Initial value of EmailAddress.</param>
+        /// <param name="passwordQuestion">Initial value of PasswordQuestion.</param>
+        /// <param name="passwordAnswer">Initial value of PasswordAnswer.</param>
+        /// <param name="isSystem">Initial value of IsSystem.</param>
+        /// <param name="isActive">Initial value of IsActive.</param>
+        /// <param name="isLockedOut">Initial value of IsLockedOut.</param>
+        /// <param name="lastActivityDate">Initial value of LastActivityDate.</param>
+        /// <param name="lastLockoutDate">Initial value of LastLockoutDate.</param>
+        /// <param name="lastLogOnDate">Initial value of LastLogOnDate.</param>
+        /// <param name="lastPasswordChangedDate">Initial value of LastPasswordChangedDate.</param>
+        /// <param name="createdBy">Initial value of CreatedBy.</param>
+        /// <param name="created">Initial value of Created.</param>
+        /// <param name="modifiedBy">Initial value of ModifiedBy.</param>
+        /// <param name="modified">Initial value of Modified.</param>
+        /// <param name="failedLoginCount">Initial value of FailedLoginCount.</param>
+        public static User CreateUser(
+                    long id, 
+                    string userName, 
+                    string fullName, 
+                    string password, 
+                    string emailAddress, 
+                    string passwordQuestion, 
+                    string passwordAnswer, 
+                    bool isSystem, 
+                    bool isActive, 
+                    bool isLockedOut, 
+                    global::System.DateTime lastActivityDate, 
+                    global::System.DateTime lastLockoutDate, 
+                    global::System.DateTime lastLogOnDate, 
+                    global::System.DateTime lastPasswordChangedDate, 
+                    string createdBy, 
+                    global::System.DateTime created, 
+                    string modifiedBy, 
+                    global::System.DateTime modified, 
+                    int failedLoginCount)
+        {
+            User user = new User();
+            user.Id = id;
+            user.UserName = userName;
+            user.FullName = fullName;
+            user.Password = password;
+            user.EmailAddress = emailAddress;
+            user.PasswordQuestion = passwordQuestion;
+            user.PasswordAnswer = passwordAnswer;
+            user.IsSystem = isSystem;
+            user.IsActive = isActive;
+            user.IsLockedOut = isLockedOut;
+            user.LastActivityDate = lastActivityDate;
+            user.LastLockoutDate = lastLockoutDate;
+            user.LastLogOnDate = lastLogOnDate;
+            user.LastPasswordChangedDate = lastPasswordChangedDate;
+            user.CreatedBy = createdBy;
+            user.Created = created;
+            user.ModifiedBy = modifiedBy;
+            user.Modified = modified;
+            user.FailedLoginCount = failedLoginCount;
+            return user;
+        }
+        /// <summary>
+        /// There are no comments for Property Id in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public long Id
+        {
+            get
+            {
+                return this._Id;
+            }
+            set
+            {
+                this.OnIdChanging(value);
+                this.ReportPropertyChanging("Id");
+                this._Id = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Id");
+                this.OnIdChanged();
+            }
+        }
+        private long _Id;
+        partial void OnIdChanging(long value);
+        partial void OnIdChanged();
+        /// <summary>
+        /// There are no comments for Property UserName in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName
+        {
+            get
+            {
+                return this._UserName;
+            }
+            set
+            {
+                this.OnUserNameChanging(value);
+                this.ReportPropertyChanging("UserName");
+                this._UserName = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("UserName");
+                this.OnUserNameChanged();
+            }
+        }
+        private string _UserName;
+        partial void OnUserNameChanging(string value);
+        partial void OnUserNameChanged();
+        /// <summary>
+        /// There are no comments for Property FullName in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string FullName
+        {
+            get
+            {
+                return this._FullName;
+            }
+            set
+            {
+                this.OnFullNameChanging(value);
+                this.ReportPropertyChanging("FullName");
+                this._FullName = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("FullName");
+                this.OnFullNameChanged();
+            }
+        }
+        private string _FullName;
+        partial void OnFullNameChanging(string value);
+        partial void OnFullNameChanged();
+        /// <summary>
+        /// There are no comments for Property Password in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password
+        {
+            get
+            {
+                return this._Password;
+            }
+            set
+            {
+                this.OnPasswordChanging(value);
+                this.ReportPropertyChanging("Password");
+                this._Password = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Password");
+                this.OnPasswordChanged();
+            }
+        }
+        private string _Password;
+        partial void OnPasswordChanging(string value);
+        partial void OnPasswordChanged();
+        /// <summary>
+        /// There are no comments for Property EmailAddress in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string EmailAddress
+        {
+            get
+            {
+                return this._EmailAddress;
+            }
+            set
+            {
+                this.OnEmailAddressChanging(value);
+                this.ReportPropertyChanging("EmailAddress");
+                this._EmailAddress = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("EmailAddress");
+                this.OnEmailAddressChanged();
+            }
+        }
+        private string _EmailAddress;
+        partial void OnEmailAddressChanging(string value);
+        partial void OnEmailAddressChanged();
+        /// <summary>
+        /// There are no comments for Property PasswordQuestion in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string PasswordQuestion
+        {
+            get
+            {
+                return this._PasswordQuestion;
+            }
+            set
+            {
+                this.OnPasswordQuestionChanging(value);
+                this.ReportPropertyChanging("PasswordQuestion");
+                this._PasswordQuestion = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("PasswordQuestion");
+                this.OnPasswordQuestionChanged();
+            }
+        }
+        private string _PasswordQuestion;
+        partial void OnPasswordQuestionChanging(string value);
+        partial void OnPasswordQuestionChanged();
+        /// <summary>
+        /// There are no comments for Property PasswordAnswer in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string PasswordAnswer
+        {
+            get
+            {
+                return this._PasswordAnswer;
+            }
+            set
+            {
+                this.OnPasswordAnswerChanging(value);
+                this.ReportPropertyChanging("PasswordAnswer");
+                this._PasswordAnswer = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("PasswordAnswer");
+                this.OnPasswordAnswerChanged();
+            }
+        }
+        private string _PasswordAnswer;
+        partial void OnPasswordAnswerChanging(string value);
+        partial void OnPasswordAnswerChanged();
+        /// <summary>
+        /// There are no comments for Property IsSystem in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsSystem
+        {
+            get
+            {
+                return this._IsSystem;
+            }
+            set
+            {
+                this.OnIsSystemChanging(value);
+                this.ReportPropertyChanging("IsSystem");
+                this._IsSystem = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("IsSystem");
+                this.OnIsSystemChanged();
+            }
+        }
+        private bool _IsSystem;
+        partial void OnIsSystemChanging(bool value);
+        partial void OnIsSystemChanged();
+        /// <summary>
+        /// There are no comments for Property IsActive in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsActive
+        {
+            get
+            {
+                return this._IsActive;
+            }
+            set
+            {
+                this.OnIsActiveChanging(value);
+                this.ReportPropertyChanging("IsActive");
+                this._IsActive = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("IsActive");
+                this.OnIsActiveChanged();
+            }
+        }
+        private bool _IsActive;
+        partial void OnIsActiveChanging(bool value);
+        partial void OnIsActiveChanged();
+        /// <summary>
+        /// There are no comments for Property IsLockedOut in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsLockedOut
+        {
+            get
+            {
+                return this._IsLockedOut;
+            }
+            set
+            {
+                this.OnIsLockedOutChanging(value);
+                this.ReportPropertyChanging("IsLockedOut");
+                this._IsLockedOut = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("IsLockedOut");
+                this.OnIsLockedOutChanged();
+            }
+        }
+        private bool _IsLockedOut;
+        partial void OnIsLockedOutChanging(bool value);
+        partial void OnIsLockedOutChanged();
+        /// <summary>
+        /// There are no comments for Property LastActivityDate in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime LastActivityDate
+        {
+            get
+            {
+                return this._LastActivityDate;
+            }
+            set
+            {
+                this.OnLastActivityDateChanging(value);
+                this.ReportPropertyChanging("LastActivityDate");
+                this._LastActivityDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("LastActivityDate");
+                this.OnLastActivityDateChanged();
+            }
+        }
+        private global::System.DateTime _LastActivityDate;
+        partial void OnLastActivityDateChanging(global::System.DateTime value);
+        partial void OnLastActivityDateChanged();
+        /// <summary>
+        /// There are no comments for Property LastLockoutDate in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime LastLockoutDate
+        {
+            get
+            {
+                return this._LastLockoutDate;
+            }
+            set
+            {
+                this.OnLastLockoutDateChanging(value);
+                this.ReportPropertyChanging("LastLockoutDate");
+                this._LastLockoutDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("LastLockoutDate");
+                this.OnLastLockoutDateChanged();
+            }
+        }
+        private global::System.DateTime _LastLockoutDate;
+        partial void OnLastLockoutDateChanging(global::System.DateTime value);
+        partial void OnLastLockoutDateChanged();
+        /// <summary>
+        /// There are no comments for Property LastLogOnDate in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime LastLogOnDate
+        {
+            get
+            {
+                return this._LastLogOnDate;
+            }
+            set
+            {
+                this.OnLastLogOnDateChanging(value);
+                this.ReportPropertyChanging("LastLogOnDate");
+                this._LastLogOnDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("LastLogOnDate");
+                this.OnLastLogOnDateChanged();
+            }
+        }
+        private global::System.DateTime _LastLogOnDate;
+        partial void OnLastLogOnDateChanging(global::System.DateTime value);
+        partial void OnLastLogOnDateChanged();
+        /// <summary>
+        /// There are no comments for Property LastPasswordChangedDate in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime LastPasswordChangedDate
+        {
+            get
+            {
+                return this._LastPasswordChangedDate;
+            }
+            set
+            {
+                this.OnLastPasswordChangedDateChanging(value);
+                this.ReportPropertyChanging("LastPasswordChangedDate");
+                this._LastPasswordChangedDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("LastPasswordChangedDate");
+                this.OnLastPasswordChangedDateChanged();
+            }
+        }
+        private global::System.DateTime _LastPasswordChangedDate;
+        partial void OnLastPasswordChangedDateChanging(global::System.DateTime value);
+        partial void OnLastPasswordChangedDateChanged();
+        /// <summary>
+        /// There are no comments for Property CreatedBy in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string CreatedBy
+        {
+            get
+            {
+                return this._CreatedBy;
+            }
+            set
+            {
+                this.OnCreatedByChanging(value);
+                this.ReportPropertyChanging("CreatedBy");
+                this._CreatedBy = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("CreatedBy");
+                this.OnCreatedByChanged();
+            }
+        }
+        private string _CreatedBy;
+        partial void OnCreatedByChanging(string value);
+        partial void OnCreatedByChanged();
+        /// <summary>
+        /// There are no comments for Property Created in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime Created
+        {
+            get
+            {
+                return this._Created;
+            }
+            set
+            {
+                this.OnCreatedChanging(value);
+                this.ReportPropertyChanging("Created");
+                this._Created = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Created");
+                this.OnCreatedChanged();
+            }
+        }
+        private global::System.DateTime _Created;
+        partial void OnCreatedChanging(global::System.DateTime value);
+        partial void OnCreatedChanged();
+        /// <summary>
+        /// There are no comments for Property ModifiedBy in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string ModifiedBy
+        {
+            get
+            {
+                return this._ModifiedBy;
+            }
+            set
+            {
+                this.OnModifiedByChanging(value);
+                this.ReportPropertyChanging("ModifiedBy");
+                this._ModifiedBy = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("ModifiedBy");
+                this.OnModifiedByChanged();
+            }
+        }
+        private string _ModifiedBy;
+        partial void OnModifiedByChanging(string value);
+        partial void OnModifiedByChanged();
+        /// <summary>
+        /// There are no comments for Property Modified in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime Modified
+        {
+            get
+            {
+                return this._Modified;
+            }
+            set
+            {
+                this.OnModifiedChanging(value);
+                this.ReportPropertyChanging("Modified");
+                this._Modified = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Modified");
+                this.OnModifiedChanged();
+            }
+        }
+        private global::System.DateTime _Modified;
+        partial void OnModifiedChanging(global::System.DateTime value);
+        partial void OnModifiedChanged();
+        /// <summary>
+        /// There are no comments for Property FailedLoginCount in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public int FailedLoginCount
+        {
+            get
+            {
+                return this._FailedLoginCount;
+            }
+            set
+            {
+                this.OnFailedLoginCountChanging(value);
+                this.ReportPropertyChanging("FailedLoginCount");
+                this._FailedLoginCount = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("FailedLoginCount");
+                this.OnFailedLoginCountChanged();
+            }
+        }
+        private int _FailedLoginCount;
+        partial void OnFailedLoginCountChanging(int value);
+        partial void OnFailedLoginCountChanged();
+        /// <summary>
+        /// There are no comments for Role in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("SchedumailDBModel", "UserRole", "Role")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<Role> Role
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Role>("SchedumailDBModel.UserRole", "Role");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Role>("SchedumailDBModel.UserRole", "Role", value);
                 }
             }
         }

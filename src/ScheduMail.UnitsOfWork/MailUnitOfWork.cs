@@ -128,7 +128,7 @@ namespace ScheduMail.UnitsOfWork
                 else
                 {
                     //validate mails are not expired
-                    if (schedule.StartDateTime <= date && schedule.EndDateTime >= date || schedule.EndDateTime==null)
+                    if (schedule.StartDateTime <= date && schedule.EndDateTime >= date || schedule.EndDateTime == null)
                     {
                         //validate if its not before the time
                         if (schedule.StartDateTime.Value.TimeOfDay <= date.TimeOfDay)
@@ -170,7 +170,7 @@ namespace ScheduMail.UnitsOfWork
                                 toBeSent = false;
                             else if (mail.LastSent == null) // if not be sent before then validate if its the right day of the week;
                             {
-                                 if (schedule.DaysOfWeekToRun.Contains(Convert.ToString(((int)date.DayOfWeek))))
+                                if (schedule.DaysOfWeekToRun.Contains(Convert.ToString(((int)date.DayOfWeek))))
                                 {
                                     toBeSent = true;
                                 }
@@ -187,7 +187,7 @@ namespace ScheduMail.UnitsOfWork
                                 // confirms that email has not been already sent
                                 if (lastWeek <= currentWeek)
                                 {
-                                     if (schedule.DaysOfWeekToRun.Contains(Convert.ToString(((int)date.DayOfWeek))))
+                                    if (schedule.DaysOfWeekToRun.Contains(Convert.ToString(((int)date.DayOfWeek))))
                                     {
                                         toBeSent = true;
                                     }
@@ -271,12 +271,15 @@ namespace ScheduMail.UnitsOfWork
         /// <param name="password">The password.</param>
         void IMailUnitOfWork.SendEmails(string url, string userName, string password)
         {
-            try
+            List<Mail> listOfMails = EmailsToBeSent();
+            Email email = null;
+            foreach (Mail mail in listOfMails)
             {
-                url = "http://localhost:1840/user/list";
+
+                mail.URL = "http://localhost:1840/user/list";
                 //Example of api and parser collaboration, this should be moved to service class(ISchedularService) or similar in the core project
                 var api = ServiceLocator.Resolve<IUserService>();
-                IList<User> listOfUsers = api.GetUsers(url, userName, password);
+                var users = api.GetUsers(url, "user", "password");
                 var template = @"
             <var  user = ""(ScheduMail.API.Contracts.User)Data""/>
             <var  promotion = ""(from p in user.Data.Elements('promotion')
@@ -298,20 +301,26 @@ namespace ScheduMail.UnitsOfWork
             Click <a href='http://somecompany.com/unsubscribe?user=${user.EmailAddress}'>here</a> to unsubscribe from out mailings.
           ";
                 var parser = ServiceLocator.Resolve<ITemplateParser>();
-                
-                foreach (User user in listOfUsers)
+
+                foreach (var user in users)
                 {
-                    var email = parser.Render(user, "emailTemplate", template);
+                    email = new Email();
+                    email.Body = parser.Render(user, "emailTemplate", template);
+                    email.To = user.EmailAddress;
+                    email.Subject = "";
+                    email.From = "";
+                   
+                    EmailUnitOfWork emailUnitOfWork = new EmailUnitOfWork();
+                    email.FireAndForget = true;
+                    emailUnitOfWork.SendMail(email);
+
+
                     Console.Write(email);
                     Console.WriteLine();
                 }
 
             }
-            catch (Exception ex)
-            {
 
-
-            }
         }
 
         #endregion

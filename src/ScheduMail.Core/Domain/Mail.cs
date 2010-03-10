@@ -47,7 +47,11 @@ namespace ScheduMail.Core.Domain
         /// <summary>
         /// Date time of next send.
         /// </summary>
-        private DateTime? nextSend;       
+        private DateTime? nextSend;
+        /// <summary>
+        /// URl for API
+        /// </summary>
+        private string url;
 
         /// <summary>
         /// Gets or sets the web site id.
@@ -165,6 +169,23 @@ namespace ScheduMail.Core.Domain
             set 
             { 
                 this.nextSend = value; 
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the URL.
+        /// </summary>
+        /// <value>The URL.</value>
+        public string URL
+        {
+            get
+            {
+                return this.url;
+            }
+
+            set
+            {
+                this.url = value;
             }
         }
     }
