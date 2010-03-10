@@ -288,17 +288,17 @@ namespace ScheduMail.UnitsOfWork
                                   Discount = (string)p.Element('discount'),
                                   Expires = (string)p.Element('expires')
                                 }).FirstOrDefault()""/>
-            Dear ${user.FirstName},
+            Dear !{user.FirstName},
 
             We are excited to tell you about our latest offerings.  Due to your long standing account with us we would 
-            like to give you a sneak peak at our latest product before commercial release. The ${promotion.Product} is the
-            best thing since slice bread and for a limited time only we would like to extend you a discount of ${promotion.Discount}.
+            like to give you a sneak peak at our latest product before commercial release. The !{promotion.Product} is the
+            best thing since slice bread and for a limited time only we would like to extend you a discount of !{promotion.Discount}.
 
-            Act soon because the offer is only good until ${promotion.Expires}.
+            Act soon because the offer is only good until !{promotion.Expires}.
 
             Happy Buying!
 
-            Click <a href='http://somecompany.com/unsubscribe?user=${user.EmailAddress}'>here</a> to unsubscribe from out mailings.
+            Click <a href='http://somecompany.com/unsubscribe?user=!{user.EmailAddress}'>here</a> to unsubscribe from out mailings.
           ";
                 var parser = ServiceLocator.Resolve<ITemplateParser>();
 
