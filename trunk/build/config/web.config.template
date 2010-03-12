@@ -52,6 +52,13 @@
 		</components>
 	</castle>
 	<appSettings/>
+	<system.data>  
+		<DbProviderFactories>  
+			<remove invariant="System.Data.SQLite"/>  
+			<add name="SQLite Data Provider" invariant="System.Data.SQLite" description=".Net Framework Data Provider for SQLite"
+type="System.Data.SQLite.SQLiteFactory, System.Data.SQLite" /> 
+		</DbProviderFactories> 
+	</system.data> 
 	<connectionStrings>
 		<add name="ScheduMailDBEntities" connectionString="metadata=res://*/ScheduMailDBModel.csdl|res://*/ScheduMailDBModel.ssdl|res://*/ScheduMailDBModel.msl;provider=System.Data.SQLite;provider connection string=&quot;#{connection_string}&quot;" providerName="System.Data.EntityClient"/>
 		<add name="SQLiteDbConnection" connectionString="#{connection_string}"/>
